@@ -178,6 +178,8 @@ def main():
             print ("Total Url Found : "+str(totalurl))
             print ("Download and Saved Url : "+str(savedurl))
             print ("diff : "+str(totalurl - savedurl))
+        else:
+            os._exit(1)
         
     else:
         print("Error in loading BasicConfigFile for Download Process")

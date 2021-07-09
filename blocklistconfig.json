@@ -1702,7 +1702,7 @@
     },
     {
       "fileloc": "./blocklistfiles/privacy/FHM.txt",
-      "value": 170,
+      "value": 169,
       "vname": "oisd(full)",
       "uname": "FHM",
       "format": "domains",
