@@ -1,4 +1,5 @@
 import os
+import sys
 import json 
 import requests
 import errno
@@ -179,7 +180,7 @@ def main():
             print ("Download and Saved Url : "+str(savedurl))
             print ("diff : "+str(totalurl - savedurl))
         else:
-            os._exit(1)
+            sys.exit("Error Occured")
         
     else:
         print("Error in loading BasicConfigFile for Download Process")
