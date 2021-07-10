@@ -27,10 +27,11 @@ jobs:
     - name: execute py script
       run: python downloadFromBlocklistCofig.py
     - name: create blocklist filter usig node
+      env:
+        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         mkdir result
-        export AWS_ACCESS_KEY = ${{ secrets.AWS_ACCESS_KEY }}
-        export AWS_SECRET_ACCESS_KEY = ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         node --max-old-space-size=12288 createtrie.js
         cd result
         ls -l
