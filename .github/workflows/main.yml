@@ -7,11 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    steps:
-    - name: load secrets
-      env:
-        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    steps:      
     - name: checkout repo content
       uses: actions/checkout@v2
     - name: setup python
@@ -22,6 +18,9 @@ jobs:
       uses: actions/setup-node@v2
       with: 
         node-version: '14'
+      env:
+        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name : install npm modules
       run : |
         npm install aws-sdk
