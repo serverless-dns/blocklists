@@ -2364,15 +2364,15 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, bloom
     console.log("time for creating blocklist: ", end - start);
 
     console.log("saving td and rd")
-    filesystem
-    filesystem.writeFile(savelocation + "td.txt", td, function (err) {
+    
+    let aw1 = filesystem.writeFile(savelocation + "td.txt", td, function (err) {
         if (err) {
             console.log(err);
             throw err
         }
         console.log('td write to file successful');
     });
-    filesystem.writeFile(savelocation + "rd.txt", rd.directory.bytes, function (err) {
+    let aw2 = filesystem.writeFile(savelocation + "rd.txt", rd.directory.bytes, function (err) {
         if (err) {
             console.log(err);
             throw err
@@ -2387,7 +2387,7 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, bloom
 
 
     //console.log(basicconfig)
-    filesystem.writeFile(savelocation + "basicconfig.json", JSON.stringify(basicconfig), function (err) {
+    let aw3 = filesystem.writeFile(savelocation + "basicconfig.json", JSON.stringify(basicconfig), function (err) {
         if (err) {
             console.log(err);
             throw err
@@ -2396,7 +2396,7 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, bloom
     });
 
 
-    filesystem.writeFile(savelocation + "filetag.json", JSON.stringify(tag_dict), function (err) {
+    let aw4 = filesystem.writeFile(savelocation + "filetag.json", JSON.stringify(tag_dict), function (err) {
         if (err) {
             console.log(err);
             throw err
@@ -2406,14 +2406,15 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, bloom
 
     //console.log(rd.directory.bytes)
     //console.log(bloomobj)
-    filesystem.writeFile(savelocation + "bloom_buckets.txt", bloomobj.buckets, function (err) {
+    let aw5 = filesystem.writeFile(savelocation + "bloom_buckets.txt", bloomobj.buckets, function (err) {
         if (err) {
             console.log(err);
             throw err
         }
         console.log('BloomFilter Buckets write to file successful');
     });
-
+    await Promise.all([aw1, aw2, aw3, aw4, aw5]);
+    
     console.log("Test BloomFilter and Blocklist Filter")
     //console.log(td)
     //console.log(rd.directory.bytes)

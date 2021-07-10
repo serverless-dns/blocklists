@@ -18,9 +18,6 @@ jobs:
       uses: actions/setup-node@v2
       with: 
         node-version: '14'
-      env:
-        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name : install npm modules
       run : |
         npm install aws-sdk
@@ -32,6 +29,8 @@ jobs:
     - name: create blocklist filter usig node
       run: |
         mkdir result
+        export AWS_ACCESS_KEY = ${{ secrets.AWS_ACCESS_KEY }}
+        export AWS_SECRET_ACCESS_KEY = ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         node --max-old-space-size=12288 createtrie.js
         cd result
         ls -l
