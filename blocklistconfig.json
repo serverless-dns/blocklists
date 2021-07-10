@@ -1,7 +1,6 @@
 {
   "conf": [
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/MTF.txt",
       "value": 0,
       "vname": "bypass-methods",
       "uname": "MTF",
@@ -11,7 +10,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/bypass-methods"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/KBI.txt",
       "value": 1,
       "vname": "safesearch-not-supported",
       "uname": "KBI",
@@ -21,7 +19,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/safesearch-not-supported"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/dating/YAC.txt",
       "value": 2,
       "vname": "olbat (dating)",
       "uname": "YAC",
@@ -31,7 +28,6 @@
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/dating/domains"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/gambling/HBP.txt",
       "value": 3,
       "vname": "olbat (gambling)",
       "uname": "HBP",
@@ -41,7 +37,6 @@
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/gambling/domains"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/gambling/NIM.txt",
       "value": 4,
       "vname": "Sinfonietta (gambling)",
       "uname": "NIM",
@@ -51,7 +46,6 @@
       "url": "https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/gambling-hosts"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/piracy/YWG.txt",
       "value": 5,
       "vname": "dht-bootstrap-nodes",
       "uname": "YWG",
@@ -61,7 +55,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/dht-bootstrap-nodes"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/piracy/SMQ.txt",
       "value": 6,
       "vname": "file-hosting",
       "uname": "SMQ",
@@ -71,7 +64,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/file-hosting"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/piracy/AQX.txt",
       "value": 7,
       "vname": "proxies",
       "uname": "AQX",
@@ -81,7 +73,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/proxies"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/piracy/BTG.txt",
       "value": 8,
       "vname": "streaming-audio",
       "uname": "BTG",
@@ -91,7 +82,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-audio"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/piracy/GUN.txt",
       "value": 9,
       "vname": "streaming-video",
       "uname": "GUN",
@@ -101,7 +91,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/piracy/KSH.txt",
       "value": 10,
       "vname": "torrent-clients",
       "uname": "KSH",
@@ -111,7 +100,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-clients"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/piracy/WAS.txt",
       "value": 11,
       "vname": "torrent-trackers",
       "uname": "WAS",
@@ -121,7 +109,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-trackers"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/piracy/AZY.txt",
       "value": 12,
       "vname": "torrent-websites",
       "uname": "AZY",
@@ -131,7 +118,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-websites"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/piracy/GWB.txt",
       "value": 13,
       "vname": "usenet",
       "uname": "GWB",
@@ -141,7 +127,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/usenet"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/piracy/YMG.txt",
       "value": 14,
       "vname": "warez",
       "uname": "YMG",
@@ -151,7 +136,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/warez"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/porn/CZM.txt",
       "value": 15,
       "vname": "tiuxo",
       "uname": "CZM",
@@ -161,7 +145,6 @@
       "url": "https://raw.githubusercontent.com/tiuxo/hosts/master/porn"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/porn/HYS.txt",
       "value": 16,
       "vname": "Niclas (Clefspeare13)",
       "uname": "HYS",
@@ -171,7 +154,6 @@
       "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/0.0.0.0/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/porn/XIF.txt",
       "value": 17,
       "vname": "Mahadi Xion",
       "uname": "XIF",
@@ -181,7 +163,6 @@
       "url": "https://raw.githubusercontent.com/mhxion/pornaway/master/hosts/porn_sites.txt"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/porn/TQN.txt",
       "value": 18,
       "vname": "Sinfonietta (porn)",
       "uname": "TQN",
@@ -191,7 +172,6 @@
       "url": "https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/social-networks/ZVO.txt",
       "value": 19,
       "vname": "olbat (social networks)",
       "uname": "ZVO",
@@ -201,7 +181,6 @@
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/social_networks/domains"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/YOM.txt",
       "value": 20,
       "vname": "9gag",
       "uname": "YOM",
@@ -211,7 +190,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/9gag"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/THR.txt",
       "value": 21,
       "vname": "amazon",
       "uname": "THR",
@@ -221,7 +199,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/amazon"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/RPW.txt",
       "value": 22,
       "vname": "blizzard",
       "uname": "RPW",
@@ -231,7 +208,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/blizzard"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/AMG.txt",
       "value": 23,
       "vname": "dailymotion",
       "uname": "AMG",
@@ -241,7 +217,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/dailymotion"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/WTJ.txt",
       "value": 24,
       "vname": "discord",
       "uname": "WTJ",
@@ -251,7 +226,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/discord"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/ZXU.txt",
       "value": 25,
       "vname": "disneyplus",
       "uname": "ZXU",
@@ -261,7 +235,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/disneyplus"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/FJG.txt",
       "value": 26,
       "vname": "ebay",
       "uname": "FJG",
@@ -271,7 +244,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/ebay"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/NYS.txt",
       "value": 27,
       "vname": "facebook",
       "uname": "NYS",
@@ -281,7 +253,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/facebook"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/OKG.txt",
       "value": 28,
       "vname": "fortnite",
       "uname": "OKG",
@@ -291,7 +262,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/fortnite"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/KNP.txt",
       "value": 29,
       "vname": "hulu",
       "uname": "KNP",
@@ -301,7 +271,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/hulu"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/FLI.txt",
       "value": 30,
       "vname": "imgur",
       "uname": "FLI",
@@ -311,7 +280,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/imgur"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/RYX.txt",
       "value": 31,
       "vname": "instagram",
       "uname": "RYX",
@@ -321,7 +289,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/instagram"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/CIH.txt",
       "value": 32,
       "vname": "leagueoflegends",
       "uname": "CIH",
@@ -331,7 +298,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/leagueoflegends"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/PTE.txt",
       "value": 33,
       "vname": "messenger",
       "uname": "PTE",
@@ -341,7 +307,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/messenger"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/KEA.txt",
       "value": 34,
       "vname": "minecraft",
       "uname": "KEA",
@@ -351,7 +316,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/minecraft"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/CMR.txt",
       "value": 35,
       "vname": "netflix",
       "uname": "CMR",
@@ -361,7 +325,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/netflix"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/DDO.txt",
       "value": 36,
       "vname": "pinterest",
       "uname": "DDO",
@@ -371,7 +334,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/pinterest"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/VLM.txt",
       "value": 37,
       "vname": "reddit",
       "uname": "VLM",
@@ -381,7 +343,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/reddit"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/JEH.txt",
       "value": 38,
       "vname": "roblox",
       "uname": "JEH",
@@ -391,7 +352,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/roblox"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/XLX.txt",
       "value": 39,
       "vname": "skype",
       "uname": "XLX",
@@ -401,7 +361,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/skype"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/OQW.txt",
       "value": 40,
       "vname": "snapchat",
       "uname": "OQW",
@@ -411,7 +370,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/snapchat"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/FXC.txt",
       "value": 41,
       "vname": "spotify",
       "uname": "FXC",
@@ -421,7 +379,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/spotify"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/HZJ.txt",
       "value": 42,
       "vname": "steam",
       "uname": "HZJ",
@@ -431,7 +388,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/steam"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/SWK.txt",
       "value": 43,
       "vname": "telegram",
       "uname": "SWK",
@@ -441,7 +397,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/telegram"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/VAM.txt",
       "value": 44,
       "vname": "tiktok",
       "uname": "VAM",
@@ -451,7 +406,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tiktok"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/AOS.txt",
       "value": 45,
       "vname": "tinder",
       "uname": "AOS",
@@ -461,7 +415,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tinder"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/FAL.txt",
       "value": 46,
       "vname": "tumblr",
       "uname": "FAL",
@@ -471,7 +424,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tumblr"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/CZK.txt",
       "value": 47,
       "vname": "twitch",
       "uname": "CZK",
@@ -481,7 +433,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitch"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/FZB.txt",
       "value": 48,
       "vname": "twitter",
       "uname": "FZB",
@@ -491,7 +442,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitter"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/PYW.txt",
       "value": 49,
       "vname": "vimeo",
       "uname": "PYW",
@@ -501,7 +451,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vimeo"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/JXA.txt",
       "value": 50,
       "vname": "vk",
       "uname": "JXA",
@@ -511,7 +460,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vk"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/KOR.txt",
       "value": 51,
       "vname": "whatsapp",
       "uname": "KOR",
@@ -521,7 +469,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/whatsapp"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/DEP.txt",
       "value": 52,
       "vname": "youtube",
       "uname": "DEP",
@@ -531,7 +478,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/youtube"
     },
     {
-      "fileloc": "./blocklistfiles/parentalcontrol/services/RFX.txt",
       "value": 53,
       "vname": "zoom",
       "uname": "RFX",
@@ -541,7 +487,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/zoom"
     },
     {
-      "fileloc": "./blocklistfiles/security/cryptojacking/DTT.txt",
       "value": 54,
       "vname": "hoshsadiq adblock-nocoin-list",
       "uname": "DTT",
@@ -551,7 +496,6 @@
       "url": "https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/cryptojacking/VZP.txt",
       "value": 55,
       "vname": "zerodot1 gitlab (coin blocker)",
       "uname": "VZP",
@@ -561,7 +505,6 @@
       "url": "https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser"
     },
     {
-      "fileloc": "./blocklistfiles/security/RAF.txt",
       "value": 56,
       "vname": "parked-domains-cname",
       "uname": "RAF",
@@ -571,7 +514,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/security/parked-domains-cname"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/THG.txt",
       "value": 57,
       "vname": "malwaredomainlist.com",
       "uname": "THG",
@@ -581,7 +523,6 @@
       "url": "https://www.malwaredomainlist.com/hostslist/hosts.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/YVH.txt",
       "value": 58,
       "vname": "StevenBlack",
       "uname": "YVH",
@@ -591,7 +532,6 @@
       "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Dead/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/XQV.txt",
       "value": 59,
       "vname": "PolishFiltersTeam",
       "uname": "XQV",
@@ -601,7 +541,6 @@
       "url": "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts_without_controversies.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/PIB.txt",
       "value": 60,
       "vname": "mirror1.malwaredomains",
       "uname": "PIB",
@@ -611,7 +550,6 @@
       "url": "https://mirror1.malwaredomains.com/files/justdomains"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/EEN.txt",
       "value": 61,
       "vname": "lists.disconnect.me (malware)",
       "uname": "EEN",
@@ -621,7 +559,6 @@
       "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/GDA.txt",
       "value": 62,
       "vname": "phishing.army",
       "uname": "GDA",
@@ -631,7 +568,6 @@
       "url": "https://phishing.army/download/phishing_army_blocklist.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/MAD.txt",
       "value": 63,
       "vname": "Spam404",
       "uname": "MAD",
@@ -641,7 +577,6 @@
       "url": "https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/NAK.txt",
       "value": 64,
       "vname": "quidsup (malware)",
       "uname": "NAK",
@@ -651,7 +586,6 @@
       "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/BPZ.txt",
       "value": 65,
       "vname": "mitchell krogza (Badd-Boyz-Hosts)",
       "uname": "BPZ",
@@ -661,7 +595,6 @@
       "url": "https://raw.githubusercontent.com/mitchellkrogza/Badd-Boyz-Hosts/master/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/HWO.txt",
       "value": 66,
       "vname": "mitchell krogza (Malware)",
       "uname": "HWO",
@@ -671,7 +604,6 @@
       "url": "https://raw.githubusercontent.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites/master/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/YUC.txt",
       "value": 67,
       "vname": "joewein.net (dom-bl-base) ",
       "uname": "YUC",
@@ -681,7 +613,6 @@
       "url": "https://joewein.net/dl/bl/dom-bl-base.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/IKY.txt",
       "value": 68,
       "vname": "joewein.net (dom-bl)",
       "uname": "IKY",
@@ -691,7 +622,6 @@
       "url": "https://joewein.net/dl/bl/dom-bl.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/LSS.txt",
       "value": 69,
       "vname": "mirror.cedia.org.ec (malware)",
       "uname": "LSS",
@@ -701,7 +631,6 @@
       "url": "https://mirror.cedia.org.ec/malwaredomains/immortal_domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/NOE.txt",
       "value": 70,
       "vname": "ethanr (bad_lists)",
       "uname": "NOE",
@@ -711,7 +640,6 @@
       "url": "https://bitbucket.org/ethanr/dns-blacklists/raw/master/bad_lists/Mandiant_APT1_Report_Appendix_D.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/PLR.txt",
       "value": 71,
       "vname": "olbat (malware)",
       "uname": "PLR",
@@ -721,7 +649,6 @@
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/malware/domains"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/FIT.txt",
       "value": 72,
       "vname": "olbat (phishing)",
       "uname": "FIT",
@@ -731,7 +658,6 @@
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/phishing/domains"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/LHX.txt",
       "value": 73,
       "vname": "Chris Buijs (spyware)",
       "uname": "LHX",
@@ -741,7 +667,6 @@
       "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/spyware/domains"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/FOF.txt",
       "value": 74,
       "vname": "DandelionSprout (malware)",
       "uname": "FOF",
@@ -751,7 +676,6 @@
       "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/DYA.txt",
       "value": 75,
       "vname": "azorult-tracker.net",
       "uname": "DYA",
@@ -761,7 +685,6 @@
       "url": "https://azorult-tracker.net/api/list/domain?format=plain"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/JAN.txt",
       "value": 76,
       "vname": "Miroslav Stampar (blackbook)",
       "uname": "JAN",
@@ -771,7 +694,6 @@
       "url": "https://raw.githubusercontent.com/stamparm/blackbook/master/blackbook.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/FHQ.txt",
       "value": 77,
       "vname": "phishing.mailscanner.info",
       "uname": "FHQ",
@@ -781,7 +703,6 @@
       "url": "http://phishing.mailscanner.info/phishing.bad.sites.conf"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/CMC.txt",
       "value": 78,
       "vname": "infinitytec (scam and phishing)",
       "uname": "CMC",
@@ -791,7 +712,6 @@
       "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/RKG.txt",
       "value": 79,
       "vname": "infosec.cert-pa.it",
       "uname": "RKG",
@@ -801,7 +721,6 @@
       "url": "https://infosec.cert-pa.it/analyze/listdomains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/XMK.txt",
       "value": 80,
       "vname": "stopforumspam.com",
       "uname": "XMK",
@@ -811,7 +730,6 @@
       "url": "https://www.stopforumspam.com/downloads/toxic_domains_whole.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/GAX.txt",
       "value": 81,
       "vname": "Miroslav Stampar (maltrail-malware)",
       "uname": "GAX",
@@ -821,7 +739,6 @@
       "url": "https://raw.githubusercontent.com/stamparm/aux/master/maltrail-malware-domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/RFI.txt",
       "value": 82,
       "vname": "rescure.fruxlabs.com (rescure)",
       "uname": "RFI",
@@ -831,7 +748,6 @@
       "url": "https://rescure.fruxlabs.com/rescure_domain_blacklist.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/AZR.txt",
       "value": 83,
       "vname": "rescure.fruxlabs.com (malware-maze)",
       "uname": "AZR",
@@ -841,7 +757,6 @@
       "url": "https://rescure.fruxlabs.com/malware/maze.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/CEN.txt",
       "value": 84,
       "vname": "rescure.fruxlabs.com (malware-ekans)",
       "uname": "CEN",
@@ -851,7 +766,6 @@
       "url": "https://rescure.fruxlabs.com/malware/ekans.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/SPR.txt",
       "value": 85,
       "vname": "rescure.fruxlabs.com (malware-wastedlocker)",
       "uname": "SPR",
@@ -861,7 +775,6 @@
       "url": "https://rescure.fruxlabs.com/malware/wastedlocker.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/MZT.txt",
       "value": 86,
       "vname": "blocklist.cyberthreatcoalition.org",
       "uname": "MZT",
@@ -871,7 +784,6 @@
       "url": "https://blocklist.cyberthreatcoalition.org/vetted/domain.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/NHM.txt",
       "value": 87,
       "vname": "sophoslabs (malicious)",
       "uname": "NHM",
@@ -881,7 +793,6 @@
       "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malicious_domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/GLV.txt",
       "value": 88,
       "vname": "sophoslabs (malware)",
       "uname": "GLV",
@@ -891,7 +802,6 @@
       "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malware_domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/NUY.txt",
       "value": 89,
       "vname": "rescure.fruxlabs.com (covid-list)",
       "uname": "NUY",
@@ -901,7 +811,6 @@
       "url": "https://rescure.fruxlabs.com/covid.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/EDM.txt",
       "value": 90,
       "vname": "managedsentinel",
       "uname": "EDM",
@@ -911,7 +820,6 @@
       "url": "https://managedsentinel.com/downloads/covid19_domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/ZFC.txt",
       "value": 91,
       "vname": "hole.cert.pl",
       "uname": "ZFC",
@@ -921,7 +829,6 @@
       "url": "https://hole.cert.pl/domains/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/security/threat-intelligence-feeds/DOP.txt",
       "value": 92,
       "vname": "osint.digitalside.it",
       "uname": "DOP",
@@ -931,7 +838,6 @@
       "url": "https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/XGC.txt",
       "value": 93,
       "vname": "affiliate-tracking-domains",
       "uname": "XGC",
@@ -941,7 +847,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/OHE.txt",
       "value": 94,
       "vname": "1Hosts (Complete)",
       "uname": "OHE",
@@ -951,7 +856,6 @@
       "url": "https://badmojr.github.io/1Hosts/complete/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/MYS.txt",
       "value": 95,
       "vname": "1Hosts (mini)",
       "uname": "MYS",
@@ -961,7 +865,6 @@
       "url": "https://badmojr.github.io/1Hosts/mini/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/IAJ.txt",
       "value": 96,
       "vname": "1Hosts (Pro)",
       "uname": "IAJ",
@@ -971,7 +874,6 @@
       "url": "https://badmojr.github.io/1Hosts/Pro/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/EAQ.txt",
       "value": 97,
       "vname": "280blocker",
       "uname": "EAQ",
@@ -981,7 +883,6 @@
       "url": "https://280blocker.net/files/280blocker_domain.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/AOC.txt",
       "value": 98,
       "vname": "ABPindo",
       "uname": "AOC",
@@ -991,7 +892,6 @@
       "url": "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/XAT.txt",
       "value": 99,
       "vname": "ABPVN List",
       "uname": "XAT",
@@ -1001,7 +901,6 @@
       "url": "https://abpvn.com/android/abpvn.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/OSE.txt",
       "value": 100,
       "vname": "ad-wars",
       "uname": "OSE",
@@ -1011,7 +910,6 @@
       "url": "https://raw.githubusercontent.com/jdlingyu/ad-wars/master/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/IBB.txt",
       "value": 101,
       "vname": "AdAway",
       "uname": "IBB",
@@ -1021,7 +919,6 @@
       "url": "https://raw.githubusercontent.com/AdAway/adaway.github.io/master/hosts.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/EGX.txt",
       "value": 102,
       "vname": "add.2o7Net",
       "uname": "EGX",
@@ -1031,7 +928,6 @@
       "url": "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.2o7Net/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/HZD.txt",
       "value": 103,
       "vname": "AdGuard DNS filter",
       "uname": "HZD",
@@ -1041,7 +937,6 @@
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/FLW.txt",
       "value": 104,
       "vname": "anti-AD",
       "uname": "FLW",
@@ -1051,7 +946,6 @@
       "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/ULZ.txt",
       "value": 105,
       "vname": "antipopads",
       "uname": "ULZ",
@@ -1061,7 +955,6 @@
       "url": "https://raw.githubusercontent.com/Yhonay/antipopads/master/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/OFY.txt",
       "value": 106,
       "vname": "Anudeep's Blacklist",
       "uname": "OFY",
@@ -1071,7 +964,6 @@
       "url": "https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/MLE.txt",
       "value": 107,
       "vname": "BarbBlock",
       "uname": "MLE",
@@ -1081,7 +973,6 @@
       "url": "https://raw.githubusercontent.com/paulgb/BarbBlock/master/blacklists/domain-list.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/YER.txt",
       "value": 108,
       "vname": "bkrucarci turk-adlist",
       "uname": "YER",
@@ -1091,7 +982,6 @@
       "url": "https://raw.githubusercontent.com/bkrucarci/turk-adlist/master/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/DMC.txt",
       "value": 109,
       "vname": "Bulgarian list",
       "uname": "DMC",
@@ -1101,7 +991,6 @@
       "url": "https://stanev.org/abp/adblock_bg.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/IJO.txt",
       "value": 110,
       "vname": "CAMELEON",
       "uname": "IJO",
@@ -1111,7 +1000,6 @@
       "url": "http://sysctl.org/cameleon/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/OWW.txt",
       "value": 111,
       "vname": "CertyficateIT",
       "uname": "OWW",
@@ -1121,7 +1009,6 @@
       "url": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/hostfile.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/EMY.txt",
       "value": 112,
       "vname": "Disconnect (Ads)",
       "uname": "EMY",
@@ -1131,7 +1018,6 @@
       "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/XKM.txt",
       "value": 113,
       "vname": "Disconnect (Malvertising)",
       "uname": "XKM",
@@ -1141,7 +1027,6 @@
       "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/CQT.txt",
       "value": 114,
       "vname": "Disconnect (Tracking)",
       "uname": "CQT",
@@ -1151,7 +1036,6 @@
       "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/ANW.txt",
       "value": 115,
       "vname": "EasyList China",
       "uname": "ANW",
@@ -1161,7 +1045,6 @@
       "url": "https://easylist-downloads.adblockplus.org/easylistchina.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/DGE.txt",
       "value": 116,
       "vname": "EasyList Czech and Slovak",
       "uname": "DGE",
@@ -1171,7 +1054,6 @@
       "url": "https://raw.githubusercontent.com/tomasko126/easylistczechandslovak/master/filters.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/BBS.txt",
       "value": 117,
       "vname": "EasyList Dutch",
       "uname": "BBS",
@@ -1181,7 +1063,6 @@
       "url": "https://easylist-downloads.adblockplus.org/easylistdutch.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/OKW.txt",
       "value": 118,
       "vname": "EasyList Germany",
       "uname": "OKW",
@@ -1191,7 +1072,6 @@
       "url": "https://easylist.to/easylistgermany/easylistgermany.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/ONV.txt",
       "value": 119,
       "vname": "EasyList Hebrew",
       "uname": "ONV",
@@ -1201,7 +1081,6 @@
       "url": "https://raw.githubusercontent.com/easylist/EasyListHebrew/master/EasyListHebrew.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/CDE.txt",
       "value": 120,
       "vname": "EasyList Italy",
       "uname": "CDE",
@@ -1211,7 +1090,6 @@
       "url": "https://easylist-downloads.adblockplus.org/easylistitaly.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/PAL.txt",
       "value": 121,
       "vname": "EasyList Lithuania",
       "uname": "PAL",
@@ -1221,7 +1099,6 @@
       "url": "https://raw.githubusercontent.com/EasyList-Lithuania/easylist_lithuania/master/easylistlithuania.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/DBP.txt",
       "value": 122,
       "vname": "EasyList",
       "uname": "DBP",
@@ -1231,7 +1108,6 @@
       "url": "https://easylist.to/easylist/easylist.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/MHP.txt",
       "value": 123,
       "vname": "EasyPrivacy",
       "uname": "MHP",
@@ -1241,7 +1117,6 @@
       "url": "https://easylist.to/easylist/easyprivacy.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/EPR.txt",
       "value": 124,
       "vname": "Energized Basic",
       "uname": "EPR",
@@ -1251,7 +1126,6 @@
       "url": "https://block.energized.pro/basic/formats/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/OUU.txt",
       "value": 125,
       "vname": "Energized Blu Go",
       "uname": "OUU",
@@ -1261,7 +1135,6 @@
       "url": "https://block.energized.pro/bluGo/formats/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/YXS.txt",
       "value": 126,
       "vname": "Energized Blu",
       "uname": "YXS",
@@ -1271,7 +1144,6 @@
       "url": "https://block.energized.pro/blu/formats/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/UQK.txt",
       "value": 127,
       "vname": "Energized Regional Extension",
       "uname": "UQK",
@@ -1281,7 +1153,6 @@
       "url": "https://block.energized.pro/extensions/regional/formats/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/GVI.txt",
       "value": 128,
       "vname": "Energized Spark",
       "uname": "GVI",
@@ -1291,7 +1162,6 @@
       "url": "https://block.energized.pro/spark/formats/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/TXJ.txt",
       "value": 129,
       "vname": "Energized Ultimate",
       "uname": "TXJ",
@@ -1301,7 +1171,6 @@
       "url": "https://block.energized.pro/ultimate/formats/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/DPY.txt",
       "value": 130,
       "vname": "Energized Xtreme Extension",
       "uname": "DPY",
@@ -1311,7 +1180,6 @@
       "url": "https://block.energized.pro/extensions/xtreme/formats/domains.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/DUC.txt",
       "value": 131,
       "vname": "Fanboy's Annoyance List",
       "uname": "DUC",
@@ -1321,7 +1189,6 @@
       "url": "https://easylist.to/easylist/fanboy-annoyance.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/WYE.txt",
       "value": 132,
       "vname": "Fanboy's Enhanced Tracking List",
       "uname": "WYE",
@@ -1331,7 +1198,6 @@
       "url": "https://fanboy.co.nz/enhancedstats.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/CGF.txt",
       "value": 133,
       "vname": "Finnish Easylist Addition",
       "uname": "CGF",
@@ -1341,7 +1207,6 @@
       "url": "https://raw.githubusercontent.com/finnish-easylist-addition/finnish-easylist-addition/master/Finland_adb.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/JRV.txt",
       "value": 134,
       "vname": "Frellwit's Swedish Hosts File",
       "uname": "JRV",
@@ -1351,7 +1216,6 @@
       "url": "https://raw.githubusercontent.com/lassekongo83/Frellwits-filter-lists/master/Frellwits-Swedish-Hosts-File.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/EOK.txt",
       "value": 135,
       "vname": "Goodbye Ads",
       "uname": "EOK",
@@ -1361,7 +1225,6 @@
       "url": "https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Hosts/GoodbyeAds.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/HQL.txt",
       "value": 136,
       "vname": "hostsVN",
       "uname": "HQL",
@@ -1371,7 +1234,6 @@
       "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/NNH.txt",
       "value": 137,
       "vname": "hufilter",
       "uname": "NNH",
@@ -1381,7 +1243,6 @@
       "url": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/KRM.txt",
       "value": 138,
       "vname": "Latvian List",
       "uname": "KRM",
@@ -1391,7 +1252,6 @@
       "url": "https://notabug.org/latvian-list/adblock-latvian/raw/master/lists/latvian-list.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/QKN.txt",
       "value": 139,
       "vname": "Lightswitch05 - Ads & Tracking",
       "uname": "QKN",
@@ -1401,7 +1261,6 @@
       "url": "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/MPR.txt",
       "value": 140,
       "vname": "Lightswitch05 - Tracking Aggressive",
       "uname": "MPR",
@@ -1411,7 +1270,6 @@
       "url": "https://www.github.developerdan.com/hosts/lists/tracking-aggressive-extended.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/EOO.txt",
       "value": 141,
       "vname": "Liste AR",
       "uname": "EOO",
@@ -1421,7 +1279,6 @@
       "url": "https://easylist-downloads.adblockplus.org/Liste_AR.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/MDE.txt",
       "value": 142,
       "vname": "Liste FR",
       "uname": "MDE",
@@ -1431,7 +1288,6 @@
       "url": "https://easylist-downloads.adblockplus.org/liste_fr.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/WWI.txt",
       "value": 143,
       "vname": "AdAway Blocking Hosts File for Japan",
       "uname": "WWI",
@@ -1441,7 +1297,6 @@
       "url": "https://raw.githubusercontent.com/logroid/adaway-hosts/master/hosts_no_white.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/TTI.txt",
       "value": 144,
       "vname": "MVPS HOSTS",
       "uname": "TTI",
@@ -1451,7 +1306,6 @@
       "url": "http://winhelp2002.mvps.org/hosts.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/rethinkdns-recommended/GFJ.txt",
       "value": 145,
       "vname": "StevenBlack",
       "uname": "GFJ",
@@ -1461,7 +1315,6 @@
       "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/rethinkdns-recommended/WOD.txt",
       "value": 146,
       "vname": "VeleSila (yhosts)",
       "uname": "WOD",
@@ -1471,7 +1324,6 @@
       "url": "https://raw.githubusercontent.com/VeleSila/yhosts/master/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/rethinkdns-recommended/YJR.txt",
       "value": 147,
       "vname": "tiuxo (ads)",
       "uname": "YJR",
@@ -1481,7 +1333,6 @@
       "url": "https://raw.githubusercontent.com/tiuxo/hosts/master/ads"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/WIB.txt",
       "value": 148,
       "vname": "No Facebook",
       "uname": "WIB",
@@ -1491,7 +1342,6 @@
       "url": "https://raw.githubusercontent.com/jmdugan/blocklists/master/corporations/facebook/all"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/NUI.txt",
       "value": 149,
       "vname": "No Google",
       "uname": "NUI",
@@ -1501,7 +1351,6 @@
       "url": "https://raw.githubusercontent.com/nickspaargaren/no-google/master/wildcards-domains"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/XIO.txt",
       "value": 150,
       "vname": "NoTrack Tracker Blocklist",
       "uname": "XIO",
@@ -1511,7 +1360,6 @@
       "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/notracking/OBW.txt",
       "value": 151,
       "vname": "NoTracking HostName",
       "uname": "OBW",
@@ -1521,7 +1369,6 @@
       "url": "https://raw.githubusercontent.com/notracking/hosts-blocklists/master/hostnames.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/YBO.txt",
       "value": 152,
       "vname": "Perflyst's Smart-TV Blocklist",
       "uname": "YBO",
@@ -1531,7 +1378,6 @@
       "url": "https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/TTW.txt",
       "value": 153,
       "vname": "Peter Lowe",
       "uname": "TTW",
@@ -1541,7 +1387,6 @@
       "url": "https://pgl.yoyo.org/as/serverlist.php?hostformat=domains&mimetype=plaintext"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/NML.txt",
       "value": 154,
       "vname": "RU AdList",
       "uname": "NML",
@@ -1551,7 +1396,6 @@
       "url": "https://easylist-downloads.adblockplus.org/advblock.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/MIN.txt",
       "value": 155,
       "vname": "Shalla's Blacklists (adv)",
       "uname": "MIN",
@@ -1561,7 +1405,6 @@
       "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/adv/domains"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/IFD.txt",
       "value": 156,
       "vname": "Shalla's Blacklists (tracker)",
       "uname": "IFD",
@@ -1571,7 +1414,6 @@
       "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/tracker/domains"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/AMI.txt",
       "value": 157,
       "vname": "someonewhocares.org (Dan Pollock)",
       "uname": "AMI",
@@ -1581,7 +1423,6 @@
       "url": "https://someonewhocares.org/hosts/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/TZF.txt",
       "value": 158,
       "vname": "UncheckyAds",
       "uname": "TZF",
@@ -1591,7 +1432,6 @@
       "url": "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/VKE.txt",
       "value": 159,
       "vname": "Personal Blocklist by WaLLy3K",
       "uname": "VKE",
@@ -1601,7 +1441,6 @@
       "url": "https://v.firebog.net/hosts/static/w3kbl.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/PWQ.txt",
       "value": 160,
       "vname": "WindowsSpyBlocker (Spy)",
       "uname": "PWQ",
@@ -1611,7 +1450,6 @@
       "url": "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/KUA.txt",
       "value": 161,
       "vname": "YousList",
       "uname": "KUA",
@@ -1621,7 +1459,6 @@
       "url": "https://raw.githubusercontent.com/yous/YousList/master/youslist.txt"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/native/FHW.txt",
       "value": 162,
       "vname": "alexa",
       "uname": "FHW",
@@ -1631,7 +1468,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/alexa"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/native/AGZ.txt",
       "value": 163,
       "vname": "apple",
       "uname": "AGZ",
@@ -1641,7 +1477,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/apple"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/native/IVN.txt",
       "value": 164,
       "vname": "huawei",
       "uname": "IVN",
@@ -1651,7 +1486,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/huawei"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/native/FIB.txt",
       "value": 165,
       "vname": "roku",
       "uname": "FIB",
@@ -1661,7 +1495,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/roku"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/native/FGF.txt",
       "value": 166,
       "vname": "samsung",
       "uname": "FGF",
@@ -1671,7 +1504,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/samsung"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/native/FLL.txt",
       "value": 167,
       "vname": "sonos",
       "uname": "FLL",
@@ -1681,7 +1513,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/sonos"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/native/IVO.txt",
       "value": 168,
       "vname": "windows",
       "uname": "IVO",
@@ -1691,7 +1522,6 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/windows"
     },
     {
-      "fileloc": "./blocklistfiles/privacy/native/ALQ.txt",
       "value": 169,
       "vname": "xiaomi",
       "uname": "ALQ",
@@ -1700,8 +1530,7 @@
       "subg": "native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi"
     },
-    {
-      "fileloc": "./blocklistfiles/privacy/FHM.txt",
+    {    
       "value": 170,
       "vname": "oisd(full)",
       "uname": "FHM",

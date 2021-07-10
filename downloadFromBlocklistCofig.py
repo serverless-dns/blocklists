@@ -14,7 +14,7 @@ configdict = {}
 valueExist = set()
 urlExist = set()
 unameExist = set()
-keyFormat = {"fileloc", "value", "vname", "uname", "format", "group", "subg", "url"}
+keyFormat = {"value", "vname", "uname", "format", "group", "subg", "url"}
 supportedFileFormat = {"domains", "hosts", "abp"}
 totalurl = 0
 savedurl = 0
@@ -26,7 +26,7 @@ def ValidateBasicConfig():
     failed = 0
     downloadLoc = ""
     for value in configdict["conf"]:
-        if len(value) != 8:            
+        if len(value) != 7:            
             print ("Invalid Blocklist config Format")
             print (value)
             return False
@@ -150,17 +150,23 @@ def downloadfile(url,format,download_loc_filename):
             notdownloaded.append(url +" : "+download_loc_filename)
 
     return ret
-def load_blocklistconfig():
+def load_blocklistconfig():    
     global isconfigload
     global configdict
-    if os.path.isfile(config_file_location):
-        with open(config_file_location) as json_file: 
-            configdict = json.load(json_file) 
-            json_file.close()
-            if "conf" in configdict:
-                isconfigload = True
-    if not isconfigload:
-        configdict["conf"] = {}
+    try:
+        if os.path.isfile(config_file_location):
+            with open(config_file_location) as json_file: 
+                configdict = json.load(json_file) 
+                json_file.close()
+                if "conf" in configdict:
+                    isconfigload = True
+        if not isconfigload:
+            configdict["conf"] = {}
+    except:
+        print ("Error in parsing Blocklist json file.")
+        print ("Check json format")
+        sys.exit("Error Occured")
+        
         
 def main():
     global totalurl
