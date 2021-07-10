@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
+    - name: load secrets
+      env:
+        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: checkout repo content
       uses: actions/checkout@v2
     - name: setup python
@@ -18,18 +22,19 @@ jobs:
       uses: actions/setup-node@v2
       with: 
         node-version: '14'
+    - name : install npm modules
+      run : |
+        npm install aws-sdk
     - name: install python packages
       run: |
         python -m pip install requests
     - name: execute py script
       run: python downloadFromBlocklistCofig.py
-    - name: create trie usig node
+    - name: create blocklist filter usig node
       run: |
-        ls
         mkdir result
-        ls
         node --max-old-space-size=12288 createtrie.js
         cd result
-        ls
+        ls -l
     
 

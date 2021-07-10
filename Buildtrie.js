@@ -1,14 +1,3 @@
-//compressed tries tree code starts
-var TrieObj = {}
-TrieObj.TrieLoad = false
-TrieObj.ft
-TrieObj.t
-function getft(){
-	return ft;
-}
-function gett(){
-	return t
-}
 var BASE64 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
 
 var config = {inspect: false, utf16: true, useBinarySearch: true, debug: false, selectsearch: true, fastPos: true, compress: true, unroll: false, useBuffer: true, write16: true, valueNode: true, base32: false, storeMeta: /*not supported yet*/false, allLists: false, fetch: true, fm: false};
@@ -1268,7 +1257,7 @@ Trie.prototype = {
             //level.push(...node.children);
         }
         //console.log(nbb)
-        console.log(inspect);
+        //console.log(inspect);
         return {level: level, div: ord};
     },
 
@@ -2313,8 +2302,6 @@ var base32;
 			var fileData = filesystem.readFileSync(filepath, 'utf8');
 			if (fileData.length > 1) {								
 				console.log("Adding file : "+filepath)
-				console.log(smallname)
-				console.log(tag[smallname])
 				var filelist = []
 				for (let line of fileData.split("\n")) {
 					//console.log(line.trim()+ "::" + line.trim().length)
@@ -2366,7 +2353,7 @@ var base32;
 	ft = new FrozenTrie(td, rd, nodeCount)
 	const end = new Date().getTime();
 	
-	console.log("time for rd and ft: ", end - start);
+	console.log("time for creating blocklist: ", end - start);
 	
 	console.log("saving td and rd")
 	filesystem
@@ -2419,84 +2406,38 @@ var base32;
 	  console.log('BloomFilter Buckets write to file successful');
 	});
 	
-	console.log(bloomobj.test("sg-ssl.effectivemeasure.net"));
-	console.log(bloomobj.test("staging.connatix.com"));
-	console.log(bloomobj.test("ads.redlightcenter.com"));
-	console.log(bloomobj.test("oascentral.chicagobusiness.com"));
-	console.log(bloomobj.test("simpsonitos.com"));
-	console.log(bloomobj.test("putlocker.fyi"));
-	console.log(bloomobj.test("celzero.com"));
+    console.log("Test BloomFilter and Blocklist Filter")
 	//console.log(td)
 	//console.log(rd.directory.bytes)
 	
-	
-	let ts = TxtEnc.encode("aim4media.com").reverse()
-	//config.debug = true
-	//let serresult = t.lookup_check(ts)
-	/*
-	let serresult = ft.lookup(ts)
-	console.log(serresult)
-	if(serresult){  
-		let converted
-		for(let [key,value] of serresult){
-			converted = t.flagsToTag(value)
-			console.log(converted) 
-		}		 
-	}
-	else{
-		console.log("word not found in trie")
-	}
+	let dnlist = ["sg-ssl.effectivemeasure.net","staging.connatix.com", "ads.redlightcenter.com","oascentral.chicagobusiness.com","simpsonitos.com","putlocker.fyi","celzero.com"]
+    for(let domainname of dnlist){
+        console.log("BloomFilter Test : "+bloomobj.test(domainname));
+        let ts = TxtEnc.encode(domainname).reverse()
+        //config.debug = true
+        //let serresult = t.lookup_check(ts)
+        
+        let serresult = ft.lookup(ts)
+        console.log("Searching : "+domainname)
+        console.log(serresult)
+        if(serresult){  
+            let converted
+            for(let [key,value] of serresult){
+                converted = t.flagsToTag(value)
+                console.log(converted) 
+            }		 
+        }
+        else{
+            console.log("word not found in trie")
+        }
+    }
 
-	*/
+
+	
 	//config.debug = true			
-	TrieObj.TrieLoad = false
 	//console.log(td);
   }
 
-  async function s3fetch(fname) {
-    const url = "https://bravepublic.s3.us-east-2.amazonaws.com/" + fname;
-    const res = await fetch(url,{ cf: { cacheTtl: 604800 } });
-    const b = await res.arrayBuffer();
-    if (config.debug) console.log("got res", res, b);
-    return b;
-  }
 
-  var ldownload = function(name, bin) {
 
-    let file = makeFile(bin);
-
-    let a = document.createElement('a');
-    a.href = file;
-    a.download = name;
-    a.click();
-
-    // manually revoke the object URL to avoid memory leaks.
-    if (file !== null) {
-        window.URL.revokeObjectURL(file);
-    }
-  }
-
-  var topen = function() {
-    window.open(textFile);
-  }
-
-  var makeFile = function(bin) {
-    const mime = 'text/plain; charset=x-user-defined'
-    const data = new Blob([bin], {type: mime});
-
-    // return a url href
-    return window.URL.createObjectURL(data);
-  };
-  module.exports.TrieObj = TrieObj;
-  module.exports.getft = getft;
   module.exports.build = build;
-  module.exports.ORD = ORD;
-  module.exports.s3fetch = s3fetch;
-  module.exports.TxtEnc = TxtEnc;
-  module.exports.gett = gett;
-  module.exports.DELIM = DELIM;
-  
-  module.exports.DEC16 = DEC16;
-  module.exports.BitString = BitString;
-  module.exports.CHR16 = CHR16;
-  module.exports.countSetBits = countSetBits;

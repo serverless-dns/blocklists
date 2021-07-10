@@ -1,1 +1,3 @@
 blocklistfiles/
+node_modules/
+result/
