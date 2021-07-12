@@ -64,7 +64,7 @@ async function loadConfig(bl_path) {
 async function main() {
 	try {
 				
-		await loadConfig("./blocklistconfig.json");
+		await loadConfig("./blocklistConfig.json");
 		await getBlockListFiles('./blocklistfiles/');
 
 		var uploadFileKey = Date.now()
