@@ -1,5 +1,7 @@
 name: Blocklist-Creation-S3Upload
 on:
+  push:
+  pull_request:
   schedule:
     - cron:  '0 0 1 * *'
 jobs:
@@ -29,9 +31,10 @@ jobs:
       env:
         AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
       run: |
         mkdir result
-        node --max-old-space-size=12288 createTrie.js
+        node --max-old-space-size=6144 createTrie.js
         cd result
         ls -l
     
