@@ -35,7 +35,7 @@ uname should contian 3 uppercase alpha character[A-Z].
 ```
 
 * format
-```
+```r
 format is a string field which is used to identify particular blocklist file format for parsing.
 currently supported file formats are ['domains', 'hosts', 'abp']
 format field cannot be empty.
