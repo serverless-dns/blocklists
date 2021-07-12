@@ -2364,8 +2364,8 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, basic
 
     console.log("saving td and rd")
     
-    if(!fs.existsSync(savelocation)){
-        fs.mkdirSync(savelocation)
+    if(!filesystem.existsSync(savelocation)){
+        filesystem.mkdirSync(savelocation)
     }
     let aw1 = filesystem.writeFile(savelocation + "td.txt", td, function (err) {
         if (err) {
