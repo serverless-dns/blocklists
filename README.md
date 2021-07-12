@@ -3,14 +3,14 @@ Rethink Dns blocklist download and creation.
 
 ## Development
 1. Download blocklist files
-    The following python script parses blocklistConfig.json and download blocklist files to ./blocklistfiles folder.
+    <br> The following python script parses blocklistConfig.json and download blocklist files to ./blocklistfiles folder.
     ```python
     > python -m pip install requests
     
     > python downloadFromBlocklistConfig.py
     ```
-2. Create blocklist dump and upload to AWS s3
-    The following node js script parses all downloaded file under ./blocklistfiles folder to create compressed blocklist dump to ./result folder and uploads it to aws s3 bucket.
+2. Create compressed blocklist and upload to AWS s3
+    <br> The following node js script parses all downloaded file under ./blocklistfiles folder to create compressed blocklist dump at ./result folder and uploads it to aws s3 bucket.
     
     *  AWS environment variable for linux/ubuntu
         ```shell
@@ -36,8 +36,9 @@ Rethink Dns blocklist download and creation.
         ```
         
 ## About Blocklist Download
-[blocklistConfig.json](https://github.com/serverless-dns/rethink-blocklist-metadata/blob/main/blocklistConfig.json) file, which contains information about list of blocklist file to download.
-Currently blocklistConfig.json contains 171 blocklists information, which is used to create blocklist dump with 5.5 million entries.
+
+- [blocklistConfig.json](https://github.com/serverless-dns/rethink-blocklist-metadata/blob/main/blocklistConfig.json) file contains information about list of blocklist files to download.
+- Currently 171 blocklist are supported, with 5.5 million domain name entries.
 
 ## Rethink Dns Blocklist Metadata Format
 ```json
@@ -53,7 +54,6 @@ Currently blocklistConfig.json contains 171 blocklists information, which is use
 ```
 1. value
     * value is a integer field which uniquely identifies blocklist.
-    * value is unique.
     * value cannot be greater than 255, this is current limitation.
 2. vname
     * vname is a string field which is used to denote blocklist with readable name in website and app.
@@ -62,7 +62,6 @@ Currently blocklistConfig.json contains 171 blocklists information, which is use
     * uname is a string field which is used to uniquely identify blocklist during dump creation and search.
     * uname field cannot be empty.
     * uname should contian 3 uppercase alpha character[A-Z].
-
 4. format
     * format is a string field which is used to identify particular blocklist file format for parsing.
     * currently supported file formats are ['domains', 'hosts', 'abp']
@@ -79,7 +78,7 @@ Currently blocklistConfig.json contains 171 blocklists information, which is use
 
 6. subg
     * subg is a string field and it denote sub group.
-    * subg field is used to cluster blocklist files at second field.
+    * subg field is used to cluster blocklist files at second level.
     * subg field can be empty.
 
 7. url
@@ -92,8 +91,8 @@ One can add or remove blocklist entries to blocklistConfig.json file on their cu
 
 ## Add Blocklist File To Rethink Dump
 To add your blocklist file to Rethink Dns dump.
-Create proper json structure as below, remove comments before adding to blocklistConfig.json file.
-After creating proper structure, append it to blocklistConfig.json file and create pull request.
+<br>Create proper json structure as below, remove comments before adding to blocklistConfig.json file.
+<br>After creating proper structure, append it to blocklistConfig.json file and create pull request.
 ```
     {
     //value should be unique in the File. Provide the value in incremental, eg if last blocklist value is 179, then your value should be 180
