@@ -1,5 +1,5 @@
 const fs = require('fs');
-const buildTrie = require("./Buildtrie.js")
+const buildTrie = require("./buildTrie.js")
 var AWS = require('aws-sdk');
 const s3 = new AWS.S3({
 		accessKeyId: process.env.AWS_ACCESS_KEY,
