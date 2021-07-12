@@ -25,6 +25,14 @@ def ValidateBasicConfig():
     global keyFormat    
     failed = 0
     downloadLoc = ""
+    regex = re.compile(
+        r'^(?:http|ftp)s?://'
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
+        r'localhost|'
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
+        r'(?::\d+)?'
+        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+
     for value in configdict["conf"]:
         if len(value) != 7:            
             print ("Invalid Blocklist config Format")
@@ -36,6 +44,10 @@ def ValidateBasicConfig():
             print (value)
             return False
 
+        if value["value"] >= 256:
+            print ("Value cannot be greater than 255")
+            print (value)
+            return False
         if value["value"] in valueExist:
             print ("Value Already Exist in Blocklist config json")
             print (value)
@@ -43,15 +55,22 @@ def ValidateBasicConfig():
         else:
             valueExist.add(value["value"])
 
+
+        if re.match(regex, value["url"]) is None:
+            print ("Invalid url format")
+            print (value)
+            return False
+
         if value["url"] in urlExist:
             print ("Url Already Exist in Blocklist config json")
             print (value)
             return False
         else:
             urlExist.add(value["url"])
-            
-        if len(value["uname"]) != 3:
-            print ("Uanme should be in 3 character length")
+                    
+        if not value["uname"].isupper() or not value["uname"].isalpha() or len(value["uname"]) != 3:
+            print ("Uanme is in Invalid Format")
+            print (value)
             return False
 
         if value["uname"] in unameExist:
@@ -176,7 +195,6 @@ def main():
     
     if isconfigload:
         if ValidateBasicConfig():
-
             ParseDownloadBasicConfig()
 
             print ("\n\n\n\n\n\nFile Not Downloaded")
