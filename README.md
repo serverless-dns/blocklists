@@ -5,8 +5,8 @@ Rethink Dns blocklist download and creation.
 1. Download blocklist files
     The following python script parses blocklistConfig.json and download blocklist files to ./blocklistfiles folder.
     ```
-        python -m pip install requests
-        python downloadFromBlocklistConfig.py
+    python -m pip install requests
+    python downloadFromBlocklistConfig.py
     ```
 2. Create blocklist dump and upload to AWS s3
     The following node js script parses all downloaded file under ./blocklistfiles folder to create compressed blocklist dump to ./result folder and uploads it to aws s3 bucket.
