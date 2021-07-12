@@ -68,7 +68,7 @@ url field should be in proper url format
 ## Add Blocklist To File
 To add your blocklist file to Rethink Dns dump.
 Create proper json structure as below
-```json
+```
     {    
       "value": 180, #Should be unique in the File. Provide the value in incremental, eg if last blocklist value is 179, then your value should be 180
       "vname": "oisd(full)", #Name to represent in website
