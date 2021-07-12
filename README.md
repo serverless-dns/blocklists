@@ -4,20 +4,29 @@ Rethink Dns blocklist download and creation.
 ## Development
 1. Download blocklist files
     The following python script parses blocklistConfig.json and download blocklist files to ./blocklistfiles folder.
-    1. python -m pip install requests
-    2. python downloadFromBlocklistConfig.py
+    ```
+        python -m pip install requests
+        python downloadFromBlocklistConfig.py
+    ```
 2. Create blocklist dump and upload to AWS s3
     The following node js script parses all downloaded file under ./blocklistfiles folder to create compressed blocklist dump to ./result folder and uploads it to aws s3 bucket.
     1. AWS environment variable for linux/ubuntu
-        * export AWS_ACCESS_KEY = <aws access key to acccess s3>
-        * export AWS_SECRET_ACCESS_KEY = <aws secret key to access s3>
-        * export AWS_BUCKET_NAME = <aws bucket name where files to be uploaded>
+    ```
+        export AWS_ACCESS_KEY = <aws access key to acccess s3>
+        export AWS_SECRET_ACCESS_KEY = <aws secret key to access s3>
+        export AWS_BUCKET_NAME = <aws bucket name where files to be uploaded>
+    ```
     2. AWS environment variable for windows
-        * set AWS_ACCESS_KEY = "aws access key to acccess s3"
-        * set AWS_SECRET_ACCESS_KEY = "aws secret key to access s3"
-        * set AWS_BUCKET_NAME = "aws bucket name where files to be uploaded"
-    3. npm install aws-sdk
-    4. node --max-old-space-size=6144 createTrie.js
+    ```
+        set AWS_ACCESS_KEY = "aws access key to acccess s3"
+        set AWS_SECRET_ACCESS_KEY = "aws secret key to access s3"
+        set AWS_BUCKET_NAME = "aws bucket name where files to be uploaded"
+    ```
+    3. Node command
+    ```
+        npm install aws-sdk
+        node --max-old-space-size=12288 createTrie.js
+    ```
 
 ## About Blocklist Download
 [blocklistConfig.json](https://github.com/serverless-dns/rethink-blocklist-metadata/blob/main/blocklistConfig.json) file, which contains information about list of blocklist file which is to be downloaded.
