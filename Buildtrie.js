@@ -2269,7 +2269,7 @@ var sbb32r, anb32r, adb32r, madb32r, yhb32r, vnb32r, allb32r, dblb32r, enb32r;
 var t, td, rd, ft;
 var tag, fl;
 var fm;
-var build = async function (blocklist, filesystem, savelocation, tag_dict, bloomobj, basicconfig) {
+var build = async function (blocklist, filesystem, savelocation, tag_dict, basicconfig) {
 
     let nodeCount = 0;
     // DELIM shouldn't be a valid base32 char
@@ -2315,7 +2315,6 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, bloom
                     //console.log(line.trim()+ "::" + line.trim().length)
                     linecount++
                     line = line.trim()
-                    bloomobj.add(line)
                     uniqueentry.add(line)
                     allb32r.push(TxtEnc.encode(tag[smallname] + line).reverse())
                     //filelist.push(line)
@@ -2350,21 +2349,24 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, bloom
 
 
     console.log("Building Trie")
+    const start = new Date().getTime();
     allb32r.forEach(s => t.insert(s));
     td = t.encode();
     nodeCount = t.getNodeCount();
-    console.log("Node Count : " + nodeCount)
-    const start = new Date().getTime();
+    console.log("Node Count : " + nodeCount)    
     rd = RankDirectory.Create(td, nodeCount, L1, L2);
     //makeTextFile(td);
 
     ft = new FrozenTrie(td, rd, nodeCount)
     const end = new Date().getTime();
 
-    console.log("time for creating blocklist: ", end - start);
+    console.log("time(millisecond) for creating blocklist: ", end - start);
 
     console.log("saving td and rd")
     
+    if(!fs.existsSync(savelocation)){
+        fs.mkdirSync(savelocation)
+    }
     let aw1 = filesystem.writeFile(savelocation + "td.txt", td, function (err) {
         if (err) {
             console.log(err);
@@ -2381,10 +2383,6 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, bloom
     });
 
     basicconfig.nodecount = nodeCount
-    basicconfig.bloom_m = bloomobj.m
-    basicconfig.bloom_k = bloomobj.k
-    basicconfig.bloom_locations = bloomobj._locations
-
 
     //console.log(basicconfig)
     let aw3 = filesystem.writeFile(savelocation + "basicconfig.json", JSON.stringify(basicconfig), function (err) {
@@ -2401,27 +2399,18 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, bloom
             console.log(err);
             throw err
         }
-        console.log('Tag_dict write to file successful');
+        console.log('filetag write to file successful');
     });
 
     //console.log(rd.directory.bytes)
-    //console.log(bloomobj)
-    let aw5 = filesystem.writeFile(savelocation + "bloom_buckets.txt", bloomobj.buckets, function (err) {
-        if (err) {
-            console.log(err);
-            throw err
-        }
-        console.log('BloomFilter Buckets write to file successful');
-    });
-    await Promise.all([aw1, aw2, aw3, aw4, aw5]);
+    await Promise.all([aw1, aw2, aw3, aw4]);
     
-    console.log("Test BloomFilter and Blocklist Filter")
+    console.log("Test Blocklist Filter")
     //console.log(td)
     //console.log(rd.directory.bytes)
 
     let dnlist = ["sg-ssl.effectivemeasure.net", "staging.connatix.com", "ads.redlightcenter.com", "oascentral.chicagobusiness.com", "simpsonitos.com", "putlocker.fyi", "celzero.com"]
     for (let domainname of dnlist) {
-        console.log("BloomFilter Test : " + bloomobj.test(domainname));
         let ts = TxtEnc.encode(domainname).reverse()
         //config.debug = true
         //let serresult = t.lookup_check(ts)

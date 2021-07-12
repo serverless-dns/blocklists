@@ -7,21 +7,21 @@ import re
 from urllib.parse import urlparse
 
 
-notdownloaded = []
-config_file_location = "./blocklistconfig.json"
-isconfigload = False
-configdict = {}
+notDownloaded = []
+configFileLocation = "./blocklistconfig.json"
+isConfigLoad = False
+configDict = {}
 valueExist = set()
 urlExist = set()
 unameExist = set()
 keyFormat = {"value", "vname", "uname", "format", "group", "subg", "url"}
 supportedFileFormat = {"domains", "hosts", "abp"}
-totalurl = 0
-savedurl = 0
+totalUrl = 0
+savedUrl = 0
 
         
     
-def ValidateBasicConfig():
+def validateBasicConfig():
     global keyFormat    
     failed = 0
     downloadLoc = ""
@@ -33,7 +33,7 @@ def ValidateBasicConfig():
         r'(?::\d+)?'
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
-    for value in configdict["conf"]:
+    for value in configDict["conf"]:
         if len(value) != 7:            
             print ("Invalid Blocklist config Format")
             print (value)
@@ -92,20 +92,20 @@ def ValidateBasicConfig():
     return True          
 
     
-def ParseDownloadBasicConfig():
-    global totalurl   
+def parseDownloadBasicConfig():
+    global totalUrl   
     downloadLoc = ""
-    for value in configdict["conf"]:
-        totalurl = totalurl + 1
+    for value in configDict["conf"]:
+        totalUrl = totalUrl + 1
         if value["subg"].strip() == "":
             downloadLoc = "./blocklistfiles/" + value["group"].strip() + "/" + value["uname"] + ".txt"
         else:
             downloadLoc = "./blocklistfiles/" + value["group"].strip() + "/"  + value["subg"].strip() + "/" + value["uname"] + ".txt"
 
-        ret = downloadfile(value["url"],value["format"],downloadLoc)            
+        ret = downloadFile(value["url"],value["format"],downloadLoc)            
 
 
-def createfilenotexist(filename):
+def createFileNotExist(filename):
     if not os.path.exists(os.path.dirname(filename)):
         try:
             os.makedirs(os.path.dirname(filename))
@@ -113,13 +113,13 @@ def createfilenotexist(filename):
             if exc.errno != errno.EEXIST:
                 raise
 
-def safe_str(obj):
+def safeStr(obj):
     try: return str(obj)
     except UnicodeEncodeError:
         return obj.encode('ascii', 'ignore').decode('ascii')
     return ""
 
-def regx_file_domain(txt,regx_str,grp_index):
+def regxFileDomain(txt,regx_str,grp_index):
     domainlist = set()
     abp_regx = re.compile(regx_str,re.M)
     for match in re.finditer(abp_regx, txt):
@@ -131,56 +131,56 @@ def regx_file_domain(txt,regx_str,grp_index):
 
     return "\n".join(domainlist)
     
-def write_file(download_loc_filename,filetxt):
-    global savedurl
+def writeFile(download_loc_filename,filetxt):
+    global savedUrl
     if filetxt:
-        createfilenotexist(download_loc_filename)         
+        createFileNotExist(download_loc_filename)         
         with open(download_loc_filename, "w") as f:  
-            f.write(safe_str(filetxt))  
+            f.write(safeStr(filetxt))  
             f.close()
-        savedurl = savedurl + 1
+        savedUrl = savedUrl + 1
         return True
     else:        
         return False
         
-def downloadfile(url,format,download_loc_filename):  
-    global totalurl  
-    print (str(totalurl) +" : Downloading From : "+url)
+def downloadFile(url,format,download_loc_filename):  
+    global totalUrl  
+    print (str(totalUrl) +" : Downloading From : "+url)
     ret = True
     try:
         r = requests.get(url)          
     except:
-        notdownloaded.append("Exception : "+ url +" : "+download_loc_filename)
+        notDownloaded.append("Exception : "+ url +" : "+download_loc_filename)
         return False
     if format == "domains":        
-        filetxt = regx_file_domain(r.text,r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)',0)
-        ret = write_file(download_loc_filename,filetxt)
+        filetxt = regxFileDomain(r.text,r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)',0)
+        ret = writeFile(download_loc_filename,filetxt)
         if not ret:
-            notdownloaded.append(url +" : "+download_loc_filename)
+            notDownloaded.append(url +" : "+download_loc_filename)
     elif format == "hosts":
-        filetxt = regx_file_domain(r.text,r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)',3)
-        ret = write_file(download_loc_filename,filetxt)
+        filetxt = regxFileDomain(r.text,r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)',3)
+        ret = writeFile(download_loc_filename,filetxt)
         if not ret:
-            notdownloaded.append(url +" : "+download_loc_filename) 
+            notDownloaded.append(url +" : "+download_loc_filename) 
     elif format == "abp":
-        filetxt = regx_file_domain(r.text,r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',1)               
-        ret = write_file(download_loc_filename,filetxt)
+        filetxt = regxFileDomain(r.text,r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',1)               
+        ret = writeFile(download_loc_filename,filetxt)
         if not ret:
-            notdownloaded.append(url +" : "+download_loc_filename)
+            notDownloaded.append(url +" : "+download_loc_filename)
 
     return ret
-def load_blocklistconfig():    
-    global isconfigload
-    global configdict
+def loadBlocklistConfig():    
+    global isConfigLoad
+    global configDict
     try:
-        if os.path.isfile(config_file_location):
-            with open(config_file_location) as json_file: 
-                configdict = json.load(json_file) 
+        if os.path.isfile(configFileLocation):
+            with open(configFileLocation) as json_file: 
+                configDict = json.load(json_file) 
                 json_file.close()
-                if "conf" in configdict:
-                    isconfigload = True
-        if not isconfigload:
-            configdict["conf"] = {}
+                if "conf" in configDict:
+                    isConfigLoad = True
+        if not isConfigLoad:
+            configDict["conf"] = {}
     except:
         print ("Error in parsing Blocklist json file.")
         print ("Check json format")
@@ -188,21 +188,21 @@ def load_blocklistconfig():
         
         
 def main():
-    global totalurl
-    global savedurl
+    global totalUrl
+    global savedUrl
 
-    load_blocklistconfig()
+    loadBlocklistConfig()
     
-    if isconfigload:
-        if ValidateBasicConfig():
-            ParseDownloadBasicConfig()
+    if isConfigLoad:
+        if validateBasicConfig():
+            parseDownloadBasicConfig()
 
             print ("\n\n\n\n\n\nFile Not Downloaded")
-            print ("\n".join(notdownloaded))                                                    
+            print ("\n".join(notDownloaded))                                                    
             
-            print ("Total Url Found : "+str(totalurl))
-            print ("Download and Saved Url : "+str(savedurl))
-            print ("diff : "+str(totalurl - savedurl))
+            print ("Total Url Found : "+str(totalUrl))
+            print ("Download and Saved Url : "+str(savedUrl))
+            print ("diff : "+str(totalUrl - savedUrl))
         else:
             print ("Validation Error")
             sys.exit("")

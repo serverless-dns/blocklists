@@ -10,7 +10,6 @@ const s3 = new AWS.S3({
 let blocklist = []
 var tag_dict = {}
 var rflags = []
-var bloomobj;
 var basicconfig = {};
 
 async function getBlockListFiles(path) {
@@ -34,7 +33,7 @@ async function getBlockListFiles(path) {
 
 
 
-async function loadConfig(bl_path, basicconfig_path) {
+async function loadConfig(bl_path) {
 	try {
 		var arr = []
 		var fileData = fs.readFileSync(bl_path, 'utf8');
@@ -54,8 +53,6 @@ async function loadConfig(bl_path, basicconfig_path) {
 			rflags[blocklistobj.conf[filedata].value] = blocklistobj.conf[filedata].uname
 
 		}
-		fileData = fs.readFileSync(basicconfig_path, 'utf8');
-		basicconfig = JSON.parse(fileData)
 		//fs.writeFileSync("./result/filetag.json", JSON.stringify(tag_dict));
 		//console.log(basicconfig)
 	}
@@ -68,19 +65,25 @@ async function loadConfig(bl_path, basicconfig_path) {
 async function main() {
 	try {
 				
-		await loadConfig("./blocklistconfig.json", "./basicconfig.json");
-		bloomobj = new BloomFilter.BloomFilter(basicconfig.bloom_m, basicconfig.bloom_k)
+		await loadConfig("./blocklistconfig.json");
 		await getBlockListFiles('./blocklistfiles/');
 
 		var uploadFileKey = Date.now()
 
-		await buildTrie.build(blocklist, fs, "./result/", tag_dict, bloomobj, basicconfig)
-		let aw1 = await uploadToS3("./result/td.txt", "completeblocklist/" + uploadFileKey + "/td.txt")
-		let aw2 = await uploadToS3("./result/rd.txt", "completeblocklist/" + uploadFileKey + "/rd.txt")
-		let aw3 = await uploadToS3("./result/basicconfig.json", "completeblocklist/" + uploadFileKey + "/basicconfig.json")
-		let aw4 = await uploadToS3("./result/bloom_buckets.txt", "completeblocklist/" + uploadFileKey + "/bloom_buckets.txt")
-		let aw5 = await uploadToS3("./result/filetag.json", "completeblocklist/" + uploadFileKey + "/filetag.json")
-		await Promise.all([aw1, aw2, aw3, aw4, aw5]);
+		await buildTrie.build(blocklist, fs, "./result/", tag_dict, basicconfig)
+		if(process.env.AWS_ACCESS_KEY != undefined && process.env.AWS_SECRET_ACCESS_KEY != undefined){
+			console.log("Uploading file to S3")
+			let aw1 = await uploadToS3("./result/td.txt", "completeblocklist/" + uploadFileKey + "/td.txt")
+			let aw2 = await uploadToS3("./result/rd.txt", "completeblocklist/" + uploadFileKey + "/rd.txt")
+			let aw3 = await uploadToS3("./result/basicconfig.json", "completeblocklist/" + uploadFileKey + "/basicconfig.json")
+			let aw4 = await uploadToS3("./result/filetag.json", "completeblocklist/" + uploadFileKey + "/filetag.json")
+			await Promise.all([aw1, aw2, aw3, aw4]);
+		}
+		else{
+			console.log("AWS access and secret key undefined")
+			console.log("Files not uploaded to s3")
+		}
+		
 	}
 	catch (e) {
 		console.log(e.stack)
