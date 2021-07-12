@@ -34,7 +34,7 @@ jobs:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
       run: |
         mkdir result
-        node --max-old-space-size=6144 createTrie.js
+        node --max-old-space-size=12288 createTrie.js
         cd result
         ls -l
     
