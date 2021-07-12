@@ -204,7 +204,8 @@ def main():
             print ("Download and Saved Url : "+str(savedurl))
             print ("diff : "+str(totalurl - savedurl))
         else:
-            sys.exit("Error Occured")
+            print ("Validation Error")
+            sys.exit("")
         
     else:
         print("Error in loading BasicConfigFile for Download Process")
