@@ -1,36 +1,43 @@
-## Rethink Dns Blocklist Metadata
+# Rethink Dns Blocklist Metadata
 Rethink Dns blocklist download and creation.
 
 ## Development
 1. Download blocklist files
     The following python script parses blocklistConfig.json and download blocklist files to ./blocklistfiles folder.
-    `
-    python -m pip install requests
-    python downloadFromBlocklistConfig.py
-    `
+    ```
+    > python -m pip install requests
+    
+    > python downloadFromBlocklistConfig.py
+    ```
 2. Create blocklist dump and upload to AWS s3
     The following node js script parses all downloaded file under ./blocklistfiles folder to create compressed blocklist dump to ./result folder and uploads it to aws s3 bucket.
-    1. AWS environment variable for linux/ubuntu
-    ```
-        export AWS_ACCESS_KEY = <aws access key to acccess s3>
-        export AWS_SECRET_ACCESS_KEY = <aws secret key to access s3>
-        export AWS_BUCKET_NAME = <aws bucket name where files to be uploaded>
-    ```
-    2. AWS environment variable for windows
-    ```
-        set AWS_ACCESS_KEY = "aws access key to acccess s3"
-        set AWS_SECRET_ACCESS_KEY = "aws secret key to access s3"
-        set AWS_BUCKET_NAME = "aws bucket name where files to be uploaded"
-    ```
-    3. Node command
-    ```
-        npm install aws-sdk
-        node --max-old-space-size=12288 createTrie.js
-    ```
+    
+    *  AWS environment variable for linux/ubuntu
+        ```
+        > export AWS_ACCESS_KEY = <aws access key to acccess s3>
+                
+        > export AWS_SECRET_ACCESS_KEY = <aws secret key to access s3>
+        
+        > export AWS_BUCKET_NAME = <aws bucket name where files to be uploaded>
+        ```
+    * AWS environment variable for windows
+        ```
+        > set AWS_ACCESS_KEY = "aws access key to acccess s3"
+        
+        > set AWS_SECRET_ACCESS_KEY = "aws secret key to access s3"
+        
+        > set AWS_BUCKET_NAME = "aws bucket name where files to be uploaded"
+        ```
+    * Node command
+        ```
+        > npm install aws-sdk
+        
+        > node --max-old-space-size=12288 createTrie.js
+        ```
 
 ## About Blocklist Download
-[blocklistConfig.json](https://github.com/serverless-dns/rethink-blocklist-metadata/blob/main/blocklistConfig.json) file, which contains information about list of blocklist file which is to be downloaded.
-Currently the above file contains information about 171 blocklists, which is used to create blocklist dump with 5.5 million entries.
+[blocklistConfig.json](https://github.com/serverless-dns/rethink-blocklist-metadata/blob/main/blocklistConfig.json) file, which contains information about list of blocklist file to download.
+Currently blocklistConfig.json contains 171 blocklists information, which is used to create blocklist dump with 5.5 million entries.
 
 ## Rethink Dns Blocklist Metadata Format
 ```json
