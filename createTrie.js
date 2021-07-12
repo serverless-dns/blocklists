@@ -1,6 +1,5 @@
 const fs = require('fs');
 const buildTrie = require("./Buildtrie.js")
-const BloomFilter = require("./BloomFilter.js");
 var AWS = require('aws-sdk');
 const s3 = new AWS.S3({
 		accessKeyId: process.env.AWS_ACCESS_KEY,

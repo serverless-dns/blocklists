@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 
 
 notDownloaded = []
-configFileLocation = "./blocklistconfig.json"
+configFileLocation = "./blocklistConfig.json"
 isConfigLoad = False
 configDict = {}
 valueExist = set()

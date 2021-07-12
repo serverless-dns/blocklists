@@ -24,14 +24,14 @@ jobs:
       run: |
         python -m pip install requests
     - name: execute py script
-      run: python downloadFromBlocklistCofig.py
+      run: python downloadFromBlocklistConfig.py
     - name: create blocklist filter usig node
       env:
         AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         mkdir result
-        node --max-old-space-size=12288 createtrie.js
+        node --max-old-space-size=12288 createTrie.js
         cd result
         ls -l
     
