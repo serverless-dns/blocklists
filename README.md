@@ -55,7 +55,7 @@ Currently the above file contains information about 171 blocklists, which is use
 ## Add Blocklist To File
 To add your blocklist file to Rethink Dns dump.
 Create proper json structure as below
-```json
+```
     {
       //value should be unique in the File. Provide the value in incremental, eg if last blocklist value is 179, then your value should be 180
       "value": 180,
