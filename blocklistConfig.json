@@ -848,12 +848,12 @@
     },
     {
       "value": 94,
-      "vname": "1Hosts (Complete)",
+      "vname": "1Hosts (Lite)",
       "uname": "OHE",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://badmojr.github.io/1Hosts/complete/domains.txt"
+      "url": "https://badmojr.github.io/1Hosts/Lite/domains.txt"
     },
     {
       "value": 95,
