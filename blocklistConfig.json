@@ -1538,6 +1538,15 @@
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt"
+    },
+    {
+      "value": 171,
+      "vname": "1Hosts (Xtra)",
+      "uname": "OMJ",
+      "format": "domains",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://badmojr.github.io/1Hosts/Xtra/domains.txt"
     }
   ]
 }
