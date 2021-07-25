@@ -1547,7 +1547,7 @@
       "group": "privacy",
       "subg": "",
       "url": "https://badmojr.github.io/1Hosts/Xtra/domains.txt"
-      },
+    },
     {    
       "value": 172,
       "vname": "Spotify Ads(GoodbyeAds)",
@@ -1556,6 +1556,24 @@
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Spotify-AdBlock.txt"
+    },  
+    {
+      "value": 173,
+      "vname": "AVG+Avast full (ftprivacy)",
+      "uname": "AAF",
+      "format": "hosts",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/avg-avast-data-mining-full-block.txt"
+    },
+    {
+      "value": 174,
+      "vname": "Hola full (ftprivacy)",
+      "uname": "HLF",
+      "format": "hosts",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/hola-luminati-full-block.txt"
     }
   ]
 }
