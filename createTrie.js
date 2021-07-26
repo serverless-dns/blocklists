@@ -3,19 +3,17 @@ const buildTrie = require("./buildTrie.js")
 var AWS = require('aws-sdk');
 var awsBucketName = process.env.AWS_BUCKET_NAME
 const s3 = new AWS.S3({
-		accessKeyId: process.env.AWS_ACCESS_KEY,
-		secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-	  });
+	accessKeyId: process.env.AWS_ACCESS_KEY,
+	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+});
 
 let blocklist = []
 var tag_dict = {}
-var rflags = []
 var basicconfig = {};
 
 async function getBlockListFiles(path) {
 	let arr = []
 	arr.push(path)
-	let count = 0
 	while (data = arr.shift()) {
 		const dir = await fs.promises.opendir(data);
 		for await (const dirent of dir) {
@@ -24,7 +22,6 @@ async function getBlockListFiles(path) {
 			}
 			else {
 				blocklist.push(data + dirent.name)
-				count++
 			}
 		}
 	}
@@ -33,24 +30,30 @@ async function getBlockListFiles(path) {
 
 
 
-async function loadConfig(bl_path) {
+async function loadConfig(blocklistConfigPath, unameVnameMapPath) {
 	try {
 		var arr = []
-		var fileData = fs.readFileSync(bl_path, 'utf8');
+		var fileData = fs.readFileSync(blocklistConfigPath, 'utf8');
 		blocklistobj = JSON.parse(fileData);
+		var mapData = fs.readFileSync(unameVnameMapPath, "utf-8")
+		unameVnameMap = JSON.parse(mapData)
 		tag_dict = {}
+		let uname = ""
 		for (let filedata in blocklistobj.conf) {
+			uname = unameVnameMap["" + filedata]
+			if (uname == undefined) {
+				uname = "" + filedata
+			}
+			tag_dict[uname] = {}
+			tag_dict[uname].value = filedata
+			tag_dict[uname].uname = uname
+			tag_dict[uname].vname = blocklistobj.conf[filedata].vname
 
-			tag_dict[blocklistobj.conf[filedata].uname] = {}
-			tag_dict[blocklistobj.conf[filedata].uname].value = blocklistobj.conf[filedata].value
-			tag_dict[blocklistobj.conf[filedata].uname].uname = blocklistobj.conf[filedata].uname
-			tag_dict[blocklistobj.conf[filedata].uname].vname = blocklistobj.conf[filedata].vname
-
-			tag_dict[blocklistobj.conf[filedata].uname].group = blocklistobj.conf[filedata].group
-			tag_dict[blocklistobj.conf[filedata].uname].subg = blocklistobj.conf[filedata].subg
-			tag_dict[blocklistobj.conf[filedata].uname].url = blocklistobj.conf[filedata].url
-			tag_dict[blocklistobj.conf[filedata].uname].entries = 0
-			rflags[blocklistobj.conf[filedata].value] = blocklistobj.conf[filedata].uname
+			tag_dict[uname].group = blocklistobj.conf[filedata].group
+			tag_dict[uname].subg = blocklistobj.conf[filedata].subg
+			tag_dict[uname].url = blocklistobj.conf[filedata].url
+			tag_dict[uname].show = 1
+			tag_dict[uname].entries = 0
 
 		}
 		//fs.writeFileSync("./result/filetag.json", JSON.stringify(tag_dict));
@@ -64,14 +67,14 @@ async function loadConfig(bl_path) {
 
 async function main() {
 	try {
-				
-		await loadConfig("./blocklistConfig.json");
+
+		await loadConfig("./blocklistConfig.json" , "./valueUnameMap.json");
 		await getBlockListFiles('./blocklistfiles/');
 
 		var uploadFileKey = Date.now()
 
 		await buildTrie.build(blocklist, fs, "./result/", tag_dict, basicconfig)
-		if(process.env.AWS_ACCESS_KEY != undefined && process.env.AWS_SECRET_ACCESS_KEY != undefined && awsBucketName != undefined){
+		if (process.env.AWS_ACCESS_KEY != undefined && process.env.AWS_SECRET_ACCESS_KEY != undefined && awsBucketName != undefined) {
 			console.log("Uploading file to S3")
 			let aw1 = await uploadToS3("./result/td.txt", "completeblocklist/" + uploadFileKey + "/td.txt")
 			let aw2 = await uploadToS3("./result/rd.txt", "completeblocklist/" + uploadFileKey + "/rd.txt")
@@ -79,15 +82,15 @@ async function main() {
 			let aw4 = await uploadToS3("./result/filetag.json", "completeblocklist/" + uploadFileKey + "/filetag.json")
 			await Promise.all([aw1, aw2, aw3, aw4]);
 		}
-		else{
+		else {
 			console.log("AWS access key or secret key or bucket name undefined")
 			console.log("Files not uploaded to s3")
 		}
-		
+
 	}
 	catch (e) {
 		console.log(e.stack)
-		node:process.exit(1)
+		node: process.exit(1)
 	}
 
 }

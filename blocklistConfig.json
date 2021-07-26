@@ -1,1539 +1,1197 @@
 {
   "conf": [
     {
-      "value": 0,
       "vname": "bypass-methods",
-      "uname": "MTF",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "bypass-methods",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/bypass-methods"
     },
     {
-      "value": 1,
       "vname": "safesearch-not-supported",
-      "uname": "KBI",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "safesearch-not-supported",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/safesearch-not-supported"
     },
     {
-      "value": 2,
       "vname": "olbat (dating)",
-      "uname": "YAC",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "dating",
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/dating/domains"
     },
     {
-      "value": 3,
       "vname": "olbat (gambling)",
-      "uname": "HBP",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "gambling",
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/gambling/domains"
     },
     {
-      "value": 4,
       "vname": "Sinfonietta (gambling)",
-      "uname": "NIM",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "gambling",
       "url": "https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/gambling-hosts"
     },
     {
-      "value": 5,
       "vname": "dht-bootstrap-nodes",
-      "uname": "YWG",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/dht-bootstrap-nodes"
     },
     {
-      "value": 6,
       "vname": "file-hosting",
-      "uname": "SMQ",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/file-hosting"
     },
     {
-      "value": 7,
       "vname": "proxies",
-      "uname": "AQX",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/proxies"
     },
     {
-      "value": 8,
       "vname": "streaming-audio",
-      "uname": "BTG",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-audio"
     },
     {
-      "value": 9,
       "vname": "streaming-video",
-      "uname": "GUN",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video"
     },
     {
-      "value": 10,
       "vname": "torrent-clients",
-      "uname": "KSH",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-clients"
     },
     {
-      "value": 11,
       "vname": "torrent-trackers",
-      "uname": "WAS",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-trackers"
     },
     {
-      "value": 12,
       "vname": "torrent-websites",
-      "uname": "AZY",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-websites"
     },
     {
-      "value": 13,
       "vname": "usenet",
-      "uname": "GWB",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/usenet"
     },
     {
-      "value": 14,
       "vname": "warez",
-      "uname": "YMG",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/warez"
     },
     {
-      "value": 15,
       "vname": "tiuxo",
-      "uname": "CZM",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/tiuxo/hosts/master/porn"
     },
     {
-      "value": 16,
       "vname": "Niclas (Clefspeare13)",
-      "uname": "HYS",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/0.0.0.0/hosts"
     },
     {
-      "value": 17,
       "vname": "Mahadi Xion",
-      "uname": "XIF",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/mhxion/pornaway/master/hosts/porn_sites.txt"
     },
     {
-      "value": 18,
       "vname": "Sinfonietta (porn)",
-      "uname": "TQN",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts"
     },
     {
-      "value": 19,
       "vname": "olbat (social networks)",
-      "uname": "ZVO",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "social-networks",
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/social_networks/domains"
     },
     {
-      "value": 20,
       "vname": "9gag",
-      "uname": "YOM",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/9gag"
     },
     {
-      "value": 21,
       "vname": "amazon",
-      "uname": "THR",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/amazon"
     },
     {
-      "value": 22,
       "vname": "blizzard",
-      "uname": "RPW",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/blizzard"
     },
     {
-      "value": 23,
       "vname": "dailymotion",
-      "uname": "AMG",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/dailymotion"
     },
     {
-      "value": 24,
       "vname": "discord",
-      "uname": "WTJ",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/discord"
     },
     {
-      "value": 25,
       "vname": "disneyplus",
-      "uname": "ZXU",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/disneyplus"
     },
     {
-      "value": 26,
       "vname": "ebay",
-      "uname": "FJG",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/ebay"
     },
     {
-      "value": 27,
       "vname": "facebook",
-      "uname": "NYS",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/facebook"
     },
     {
-      "value": 28,
       "vname": "fortnite",
-      "uname": "OKG",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/fortnite"
     },
     {
-      "value": 29,
       "vname": "hulu",
-      "uname": "KNP",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/hulu"
     },
     {
-      "value": 30,
       "vname": "imgur",
-      "uname": "FLI",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/imgur"
     },
     {
-      "value": 31,
       "vname": "instagram",
-      "uname": "RYX",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/instagram"
     },
     {
-      "value": 32,
       "vname": "leagueoflegends",
-      "uname": "CIH",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/leagueoflegends"
     },
     {
-      "value": 33,
       "vname": "messenger",
-      "uname": "PTE",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/messenger"
     },
     {
-      "value": 34,
       "vname": "minecraft",
-      "uname": "KEA",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/minecraft"
     },
     {
-      "value": 35,
       "vname": "netflix",
-      "uname": "CMR",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/netflix"
     },
     {
-      "value": 36,
       "vname": "pinterest",
-      "uname": "DDO",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/pinterest"
     },
     {
-      "value": 37,
       "vname": "reddit",
-      "uname": "VLM",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/reddit"
     },
     {
-      "value": 38,
       "vname": "roblox",
-      "uname": "JEH",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/roblox"
     },
     {
-      "value": 39,
       "vname": "skype",
-      "uname": "XLX",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/skype"
     },
     {
-      "value": 40,
       "vname": "snapchat",
-      "uname": "OQW",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/snapchat"
     },
     {
-      "value": 41,
       "vname": "spotify",
-      "uname": "FXC",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/spotify"
     },
     {
-      "value": 42,
       "vname": "steam",
-      "uname": "HZJ",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/steam"
     },
     {
-      "value": 43,
       "vname": "telegram",
-      "uname": "SWK",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/telegram"
     },
     {
-      "value": 44,
       "vname": "tiktok",
-      "uname": "VAM",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tiktok"
     },
     {
-      "value": 45,
       "vname": "tinder",
-      "uname": "AOS",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tinder"
     },
     {
-      "value": 46,
       "vname": "tumblr",
-      "uname": "FAL",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tumblr"
     },
     {
-      "value": 47,
       "vname": "twitch",
-      "uname": "CZK",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitch"
     },
     {
-      "value": 48,
       "vname": "twitter",
-      "uname": "FZB",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitter"
     },
     {
-      "value": 49,
       "vname": "vimeo",
-      "uname": "PYW",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vimeo"
     },
     {
-      "value": 50,
       "vname": "vk",
-      "uname": "JXA",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vk"
     },
     {
-      "value": 51,
       "vname": "whatsapp",
-      "uname": "KOR",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/whatsapp"
     },
     {
-      "value": 52,
       "vname": "youtube",
-      "uname": "DEP",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/youtube"
     },
     {
-      "value": 53,
       "vname": "zoom",
-      "uname": "RFX",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/zoom"
     },
     {
-      "value": 54,
       "vname": "hoshsadiq adblock-nocoin-list",
-      "uname": "DTT",
       "format": "hosts",
       "group": "security",
       "subg": "cryptojacking",
       "url": "https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt"
     },
     {
-      "value": 55,
       "vname": "zerodot1 gitlab (coin blocker)",
-      "uname": "VZP",
       "format": "hosts",
       "group": "security",
       "subg": "cryptojacking",
       "url": "https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser"
     },
     {
-      "value": 56,
       "vname": "parked-domains-cname",
-      "uname": "RAF",
       "format": "domains",
       "group": "security",
       "subg": "parked-domains-cname",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/security/parked-domains-cname"
     },
     {
-      "value": 57,
       "vname": "malwaredomainlist.com",
-      "uname": "THG",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://www.malwaredomainlist.com/hostslist/hosts.txt"
     },
     {
-      "value": 58,
       "vname": "StevenBlack",
-      "uname": "YVH",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Dead/hosts"
     },
     {
-      "value": 59,
       "vname": "PolishFiltersTeam",
-      "uname": "XQV",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts_without_controversies.txt"
     },
     {
-      "value": 60,
       "vname": "mirror1.malwaredomains",
-      "uname": "PIB",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://mirror1.malwaredomains.com/files/justdomains"
     },
     {
-      "value": 61,
       "vname": "lists.disconnect.me (malware)",
-      "uname": "EEN",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt"
     },
     {
-      "value": 62,
       "vname": "phishing.army",
-      "uname": "GDA",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://phishing.army/download/phishing_army_blocklist.txt"
     },
     {
-      "value": 63,
       "vname": "Spam404",
-      "uname": "MAD",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt"
     },
     {
-      "value": 64,
       "vname": "quidsup (malware)",
-      "uname": "NAK",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt"
     },
     {
-      "value": 65,
       "vname": "mitchell krogza (Badd-Boyz-Hosts)",
-      "uname": "BPZ",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/mitchellkrogza/Badd-Boyz-Hosts/master/hosts"
     },
     {
-      "value": 66,
       "vname": "mitchell krogza (Malware)",
-      "uname": "HWO",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites/master/hosts"
     },
     {
-      "value": 67,
       "vname": "joewein.net (dom-bl-base) ",
-      "uname": "YUC",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://joewein.net/dl/bl/dom-bl-base.txt"
     },
     {
-      "value": 68,
       "vname": "joewein.net (dom-bl)",
-      "uname": "IKY",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://joewein.net/dl/bl/dom-bl.txt"
     },
     {
-      "value": 69,
       "vname": "mirror.cedia.org.ec (malware)",
-      "uname": "LSS",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://mirror.cedia.org.ec/malwaredomains/immortal_domains.txt"
     },
     {
-      "value": 70,
       "vname": "ethanr (bad_lists)",
-      "uname": "NOE",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://bitbucket.org/ethanr/dns-blacklists/raw/master/bad_lists/Mandiant_APT1_Report_Appendix_D.txt"
     },
     {
-      "value": 71,
       "vname": "olbat (malware)",
-      "uname": "PLR",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/malware/domains"
     },
     {
-      "value": 72,
       "vname": "olbat (phishing)",
-      "uname": "FIT",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/phishing/domains"
     },
     {
-      "value": 73,
       "vname": "Chris Buijs (spyware)",
-      "uname": "LHX",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/spyware/domains"
     },
     {
-      "value": 74,
       "vname": "DandelionSprout (malware)",
-      "uname": "FOF",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt"
     },
     {
-      "value": 75,
       "vname": "azorult-tracker.net",
-      "uname": "DYA",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://azorult-tracker.net/api/list/domain?format=plain"
     },
     {
-      "value": 76,
       "vname": "Miroslav Stampar (blackbook)",
-      "uname": "JAN",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/stamparm/blackbook/master/blackbook.txt"
     },
     {
-      "value": 77,
       "vname": "phishing.mailscanner.info",
-      "uname": "FHQ",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "http://phishing.mailscanner.info/phishing.bad.sites.conf"
     },
     {
-      "value": 78,
       "vname": "infinitytec (scam and phishing)",
-      "uname": "CMC",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt"
     },
     {
-      "value": 79,
       "vname": "infosec.cert-pa.it",
-      "uname": "RKG",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://infosec.cert-pa.it/analyze/listdomains.txt"
     },
     {
-      "value": 80,
       "vname": "stopforumspam.com",
-      "uname": "XMK",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://www.stopforumspam.com/downloads/toxic_domains_whole.txt"
     },
     {
-      "value": 81,
       "vname": "Miroslav Stampar (maltrail-malware)",
-      "uname": "GAX",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/stamparm/aux/master/maltrail-malware-domains.txt"
     },
     {
-      "value": 82,
       "vname": "rescure.fruxlabs.com (rescure)",
-      "uname": "RFI",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/rescure_domain_blacklist.txt"
     },
     {
-      "value": 83,
       "vname": "rescure.fruxlabs.com (malware-maze)",
-      "uname": "AZR",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/maze.txt"
     },
     {
-      "value": 84,
       "vname": "rescure.fruxlabs.com (malware-ekans)",
-      "uname": "CEN",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/ekans.txt"
     },
     {
-      "value": 85,
       "vname": "rescure.fruxlabs.com (malware-wastedlocker)",
-      "uname": "SPR",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/wastedlocker.txt"
     },
     {
-      "value": 86,
       "vname": "blocklist.cyberthreatcoalition.org",
-      "uname": "MZT",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://blocklist.cyberthreatcoalition.org/vetted/domain.txt"
     },
     {
-      "value": 87,
       "vname": "sophoslabs (malicious)",
-      "uname": "NHM",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malicious_domains.txt"
     },
     {
-      "value": 88,
       "vname": "sophoslabs (malware)",
-      "uname": "GLV",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malware_domains.txt"
     },
     {
-      "value": 89,
       "vname": "rescure.fruxlabs.com (covid-list)",
-      "uname": "NUY",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/covid.txt"
     },
     {
-      "value": 90,
       "vname": "managedsentinel",
-      "uname": "EDM",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://managedsentinel.com/downloads/covid19_domains.txt"
     },
     {
-      "value": 91,
       "vname": "hole.cert.pl",
-      "uname": "ZFC",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://hole.cert.pl/domains/domains.txt"
     },
     {
-      "value": 92,
       "vname": "osint.digitalside.it",
-      "uname": "DOP",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt"
     },
     {
-      "value": 93,
       "vname": "affiliate-tracking-domains",
-      "uname": "XGC",
       "format": "domains",
       "group": "privacy",
       "subg": "affiliate-tracking-domains",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains"
     },
     {
-      "value": 94,
       "vname": "1Hosts (Complete)",
-      "uname": "OHE",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://badmojr.github.io/1Hosts/complete/domains.txt"
     },
     {
-      "value": 95,
       "vname": "1Hosts (mini)",
-      "uname": "MYS",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://badmojr.github.io/1Hosts/mini/domains.txt"
     },
     {
-      "value": 96,
       "vname": "1Hosts (Pro)",
-      "uname": "IAJ",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://badmojr.github.io/1Hosts/Pro/domains.txt"
     },
     {
-      "value": 97,
       "vname": "280blocker",
-      "uname": "EAQ",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://280blocker.net/files/280blocker_domain.txt"
     },
     {
-      "value": 98,
       "vname": "ABPindo",
-      "uname": "AOC",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt"
     },
     {
-      "value": 99,
       "vname": "ABPVN List",
-      "uname": "XAT",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://abpvn.com/android/abpvn.txt"
     },
     {
-      "value": 100,
       "vname": "ad-wars",
-      "uname": "OSE",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/jdlingyu/ad-wars/master/hosts"
     },
     {
-      "value": 101,
       "vname": "AdAway",
-      "uname": "IBB",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/AdAway/adaway.github.io/master/hosts.txt"
     },
     {
-      "value": 102,
       "vname": "add.2o7Net",
-      "uname": "EGX",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.2o7Net/hosts"
     },
     {
-      "value": 103,
       "vname": "AdGuard DNS filter",
-      "uname": "HZD",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
     },
     {
-      "value": 104,
       "vname": "anti-AD",
-      "uname": "FLW",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-domains.txt"
     },
     {
-      "value": 105,
       "vname": "antipopads",
-      "uname": "ULZ",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/Yhonay/antipopads/master/hosts"
     },
     {
-      "value": 106,
       "vname": "Anudeep's Blacklist",
-      "uname": "OFY",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt"
     },
     {
-      "value": 107,
       "vname": "BarbBlock",
-      "uname": "MLE",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/paulgb/BarbBlock/master/blacklists/domain-list.txt"
     },
     {
-      "value": 108,
       "vname": "bkrucarci turk-adlist",
-      "uname": "YER",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/bkrucarci/turk-adlist/master/hosts"
     },
     {
-      "value": 109,
       "vname": "Bulgarian list",
-      "uname": "DMC",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://stanev.org/abp/adblock_bg.txt"
     },
     {
-      "value": 110,
       "vname": "CAMELEON",
-      "uname": "IJO",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "http://sysctl.org/cameleon/hosts"
     },
     {
-      "value": 111,
       "vname": "CertyficateIT",
-      "uname": "OWW",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/hostfile.txt"
     },
     {
-      "value": 112,
       "vname": "Disconnect (Ads)",
-      "uname": "EMY",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt"
     },
     {
-      "value": 113,
       "vname": "Disconnect (Malvertising)",
-      "uname": "XKM",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt"
     },
     {
-      "value": 114,
       "vname": "Disconnect (Tracking)",
-      "uname": "CQT",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt"
     },
     {
-      "value": 115,
       "vname": "EasyList China",
-      "uname": "ANW",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://easylist-downloads.adblockplus.org/easylistchina.txt"
     },
     {
-      "value": 116,
       "vname": "EasyList Czech and Slovak",
-      "uname": "DGE",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/tomasko126/easylistczechandslovak/master/filters.txt"
     },
     {
-      "value": 117,
       "vname": "EasyList Dutch",
-      "uname": "BBS",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://easylist-downloads.adblockplus.org/easylistdutch.txt"
     },
     {
-      "value": 118,
       "vname": "EasyList Germany",
-      "uname": "OKW",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://easylist.to/easylistgermany/easylistgermany.txt"
     },
     {
-      "value": 119,
       "vname": "EasyList Hebrew",
-      "uname": "ONV",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/easylist/EasyListHebrew/master/EasyListHebrew.txt"
     },
     {
-      "value": 120,
       "vname": "EasyList Italy",
-      "uname": "CDE",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://easylist-downloads.adblockplus.org/easylistitaly.txt"
     },
     {
-      "value": 121,
       "vname": "EasyList Lithuania",
-      "uname": "PAL",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/EasyList-Lithuania/easylist_lithuania/master/easylistlithuania.txt"
     },
     {
-      "value": 122,
       "vname": "EasyList",
-      "uname": "DBP",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://easylist.to/easylist/easylist.txt"
     },
     {
-      "value": 123,
       "vname": "EasyPrivacy",
-      "uname": "MHP",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://easylist.to/easylist/easyprivacy.txt"
     },
     {
-      "value": 124,
       "vname": "Energized Basic",
-      "uname": "EPR",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://block.energized.pro/basic/formats/domains.txt"
     },
     {
-      "value": 125,
       "vname": "Energized Blu Go",
-      "uname": "OUU",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://block.energized.pro/bluGo/formats/domains.txt"
     },
     {
-      "value": 126,
       "vname": "Energized Blu",
-      "uname": "YXS",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://block.energized.pro/blu/formats/domains.txt"
     },
     {
-      "value": 127,
       "vname": "Energized Regional Extension",
-      "uname": "UQK",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://block.energized.pro/extensions/regional/formats/domains.txt"
     },
     {
-      "value": 128,
       "vname": "Energized Spark",
-      "uname": "GVI",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://block.energized.pro/spark/formats/domains.txt"
     },
     {
-      "value": 129,
       "vname": "Energized Ultimate",
-      "uname": "TXJ",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://block.energized.pro/ultimate/formats/domains.txt"
     },
     {
-      "value": 130,
       "vname": "Energized Xtreme Extension",
-      "uname": "DPY",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://block.energized.pro/extensions/xtreme/formats/domains.txt"
     },
     {
-      "value": 131,
       "vname": "Fanboy's Annoyance List",
-      "uname": "DUC",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://easylist.to/easylist/fanboy-annoyance.txt"
     },
     {
-      "value": 132,
       "vname": "Fanboy's Enhanced Tracking List",
-      "uname": "WYE",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://fanboy.co.nz/enhancedstats.txt"
     },
     {
-      "value": 133,
       "vname": "Finnish Easylist Addition",
-      "uname": "CGF",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/finnish-easylist-addition/finnish-easylist-addition/master/Finland_adb.txt"
     },
     {
-      "value": 134,
       "vname": "Frellwit's Swedish Hosts File",
-      "uname": "JRV",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/lassekongo83/Frellwits-filter-lists/master/Frellwits-Swedish-Hosts-File.txt"
     },
     {
-      "value": 135,
       "vname": "Goodbye Ads",
-      "uname": "EOK",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Hosts/GoodbyeAds.txt"
     },
     {
-      "value": 136,
       "vname": "hostsVN",
-      "uname": "HQL",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts"
     },
     {
-      "value": 137,
       "vname": "hufilter",
-      "uname": "NNH",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter.txt"
     },
     {
-      "value": 138,
       "vname": "Latvian List",
-      "uname": "KRM",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://notabug.org/latvian-list/adblock-latvian/raw/master/lists/latvian-list.txt"
     },
     {
-      "value": 139,
       "vname": "Lightswitch05 - Ads & Tracking",
-      "uname": "QKN",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt"
     },
     {
-      "value": 140,
       "vname": "Lightswitch05 - Tracking Aggressive",
-      "uname": "MPR",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://www.github.developerdan.com/hosts/lists/tracking-aggressive-extended.txt"
     },
     {
-      "value": 141,
       "vname": "Liste AR",
-      "uname": "EOO",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://easylist-downloads.adblockplus.org/Liste_AR.txt"
     },
     {
-      "value": 142,
       "vname": "Liste FR",
-      "uname": "MDE",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://easylist-downloads.adblockplus.org/liste_fr.txt"
     },
     {
-      "value": 143,
       "vname": "AdAway Blocking Hosts File for Japan",
-      "uname": "WWI",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/logroid/adaway-hosts/master/hosts_no_white.txt"
     },
     {
-      "value": 144,
       "vname": "MVPS HOSTS",
-      "uname": "TTI",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "http://winhelp2002.mvps.org/hosts.txt"
     },
     {
-      "value": 145,
       "vname": "StevenBlack",
-      "uname": "GFJ",
       "format": "hosts",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
       "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
     },
     {
-      "value": 146,
       "vname": "VeleSila (yhosts)",
-      "uname": "WOD",
       "format": "hosts",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
       "url": "https://raw.githubusercontent.com/VeleSila/yhosts/master/hosts"
     },
     {
-      "value": 147,
       "vname": "tiuxo (ads)",
-      "uname": "YJR",
       "format": "hosts",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
       "url": "https://raw.githubusercontent.com/tiuxo/hosts/master/ads"
     },
     {
-      "value": 148,
       "vname": "No Facebook",
-      "uname": "WIB",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/jmdugan/blocklists/master/corporations/facebook/all"
     },
     {
-      "value": 149,
       "vname": "No Google",
-      "uname": "NUI",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/nickspaargaren/no-google/master/wildcards-domains"
     },
     {
-      "value": 150,
       "vname": "NoTrack Tracker Blocklist",
-      "uname": "XIO",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt"
     },
     {
-      "value": 151,
       "vname": "NoTracking HostName",
-      "uname": "OBW",
       "format": "hosts",
       "group": "privacy",
       "subg": "notracking",
       "url": "https://raw.githubusercontent.com/notracking/hosts-blocklists/master/hostnames.txt"
     },
     {
-      "value": 152,
       "vname": "Perflyst's Smart-TV Blocklist",
-      "uname": "YBO",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt"
     },
     {
-      "value": 153,
       "vname": "Peter Lowe",
-      "uname": "TTW",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://pgl.yoyo.org/as/serverlist.php?hostformat=domains&mimetype=plaintext"
     },
     {
-      "value": 154,
       "vname": "RU AdList",
-      "uname": "NML",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://easylist-downloads.adblockplus.org/advblock.txt"
     },
     {
-      "value": 155,
       "vname": "Shalla's Blacklists (adv)",
-      "uname": "MIN",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/adv/domains"
     },
     {
-      "value": 156,
       "vname": "Shalla's Blacklists (tracker)",
-      "uname": "IFD",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/tracker/domains"
     },
     {
-      "value": 157,
       "vname": "someonewhocares.org (Dan Pollock)",
-      "uname": "AMI",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://someonewhocares.org/hosts/hosts"
     },
     {
-      "value": 158,
       "vname": "UncheckyAds",
-      "uname": "TZF",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts"
     },
     {
-      "value": 159,
       "vname": "Personal Blocklist by WaLLy3K",
-      "uname": "VKE",
       "format": "domains",
       "group": "privacy",
       "subg": "",
       "url": "https://v.firebog.net/hosts/static/w3kbl.txt"
     },
     {
-      "value": 160,
       "vname": "WindowsSpyBlocker (Spy)",
-      "uname": "PWQ",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt"
     },
     {
-      "value": 161,
       "vname": "YousList",
-      "uname": "KUA",
       "format": "abp",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/yous/YousList/master/youslist.txt"
     },
     {
-      "value": 162,
       "vname": "alexa",
-      "uname": "FHW",
       "format": "domains",
       "group": "privacy",
       "subg": "native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/alexa"
     },
     {
-      "value": 163,
       "vname": "apple",
-      "uname": "AGZ",
       "format": "domains",
       "group": "privacy",
       "subg": "native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/apple"
     },
     {
-      "value": 164,
       "vname": "huawei",
-      "uname": "IVN",
       "format": "domains",
       "group": "privacy",
       "subg": "native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/huawei"
     },
     {
-      "value": 165,
       "vname": "roku",
-      "uname": "FIB",
       "format": "domains",
       "group": "privacy",
       "subg": "native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/roku"
     },
     {
-      "value": 166,
       "vname": "samsung",
-      "uname": "FGF",
       "format": "domains",
       "group": "privacy",
       "subg": "native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/samsung"
     },
     {
-      "value": 167,
       "vname": "sonos",
-      "uname": "FLL",
       "format": "domains",
       "group": "privacy",
       "subg": "native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/sonos"
     },
     {
-      "value": 168,
       "vname": "windows",
-      "uname": "IVO",
       "format": "domains",
       "group": "privacy",
       "subg": "native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/windows"
     },
     {
-      "value": 169,
       "vname": "xiaomi",
-      "uname": "ALQ",
       "format": "domains",
       "group": "privacy",
       "subg": "native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi"
     },
     {    
-      "value": 170,
       "vname": "oisd(full)",
-      "uname": "FHM",
       "format": "domains",
       "group": "privacy",
       "subg": "",

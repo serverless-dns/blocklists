@@ -9,12 +9,14 @@ from urllib.parse import urlparse
 
 notDownloaded = []
 configFileLocation = "./blocklistConfig.json"
+vnameMapFileLocation = "./valueUnameMap.json"
 isConfigLoad = False
 configDict = {}
+unameVnameMap = {}
 valueExist = set()
 urlExist = set()
 unameExist = set()
-keyFormat = {"value", "vname", "uname", "format", "group", "subg", "url"}
+keyFormat = {"vname",  "format", "group", "subg", "url"}
 supportedFileFormat = {"domains", "hosts", "abp"}
 totalUrl = 0
 savedUrl = 0
@@ -34,7 +36,7 @@ def validateBasicConfig():
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
     for value in configDict["conf"]:
-        if len(value) != 7:            
+        if len(value) != 5:            
             print ("Invalid Blocklist config Format")
             print (value)
             return False
@@ -43,17 +45,6 @@ def validateBasicConfig():
             print ("Invalid key format")
             print (value)
             return False
-
-        if value["value"] >= 256:
-            print ("Value cannot be greater than 255")
-            print (value)
-            return False
-        if value["value"] in valueExist:
-            print ("Value Already Exist in Blocklist config json")
-            print (value)
-            return False
-        else:
-            valueExist.add(value["value"])
 
 
         if re.match(regex, value["url"]) is None:
@@ -68,17 +59,6 @@ def validateBasicConfig():
         else:
             urlExist.add(value["url"])
                     
-        if not value["uname"].isupper() or not value["uname"].isalpha() or len(value["uname"]) != 3:
-            print ("Uanme is in Invalid Format")
-            print (value)
-            return False
-
-        if value["uname"] in unameExist:
-            print ("Uname Already Exist in Blocklist config json")
-            print(value)
-            return False
-        else:
-            unameExist.add(value["uname"])
 
         if not value["format"] in supportedFileFormat:
             print ("Added file format not supported currently")
@@ -94,14 +74,22 @@ def validateBasicConfig():
     
 def parseDownloadBasicConfig():
     global totalUrl   
+    global unameVnameMap
     downloadLoc = ""
+    totalUrl = 0
+    fileName = ""
     for value in configDict["conf"]:
-        totalUrl = totalUrl + 1
-        if value["subg"].strip() == "":
-            downloadLoc = "./blocklistfiles/" + value["group"].strip() + "/" + value["uname"] + ".txt"
+        if str(totalUrl) in unameVnameMap:
+            fileName = unameVnameMap[str(totalUrl)]
         else:
-            downloadLoc = "./blocklistfiles/" + value["group"].strip() + "/"  + value["subg"].strip() + "/" + value["uname"] + ".txt"
+            fileName = str(totalUrl)
 
+        if value["subg"].strip() == "":
+            downloadLoc = "./blocklistfiles/" + value["group"].strip() + "/" + fileName + ".txt"
+        else:
+            downloadLoc = "./blocklistfiles/" + value["group"].strip() + "/"  + value["subg"].strip() + "/" + fileName + ".txt"
+
+        totalUrl = totalUrl + 1
         ret = downloadFile(value["url"],value["format"],downloadLoc)            
 
 
@@ -172,6 +160,7 @@ def downloadFile(url,format,download_loc_filename):
 def loadBlocklistConfig():    
     global isConfigLoad
     global configDict
+    global unameVnameMap
     try:
         if os.path.isfile(configFileLocation):
             with open(configFileLocation) as json_file: 
@@ -181,6 +170,12 @@ def loadBlocklistConfig():
                     isConfigLoad = True
         if not isConfigLoad:
             configDict["conf"] = {}
+
+        if os.path.isfile(vnameMapFileLocation):
+            with open(vnameMapFileLocation) as json_file: 
+                unameVnameMap = json.load(json_file) 
+                json_file.close()
+        
     except:
         print ("Error in parsing Blocklist json file.")
         print ("Check json format")
