@@ -659,11 +659,11 @@
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains"
     },
     {
-      "vname": "1Hosts (Complete)",
+      "vname": "1Hosts (Lite)",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://badmojr.github.io/1Hosts/complete/domains.txt"
+      "url": "https://badmojr.github.io/1Hosts/Lite/domains.txt"
     },
     {
       "vname": "1Hosts (mini)",
@@ -1196,6 +1196,20 @@
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt"
+    },
+    {
+      "vname": "1Hosts (Xtra)",
+      "format": "domains",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://badmojr.github.io/1Hosts/Xtra/domains.txt"
+      },
+    {    
+      "vname": "Spotify Ads(GoodbyeAds)",
+      "format": "hosts",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Spotify-AdBlock.txt"
     }
   ]
 }
