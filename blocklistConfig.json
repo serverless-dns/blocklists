@@ -1563,7 +1563,7 @@
       "uname": "AAF",
       "format": "hosts",
       "group": "privacy",
-      "subg": "",
+      "subg": "services",
       "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/avg-avast-data-mining-full-block.txt"
     },
     {
@@ -1572,7 +1572,7 @@
       "uname": "HLF",
       "format": "hosts",
       "group": "privacy",
-      "subg": "",
+      "subg": "services",
       "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/hola-luminati-full-block.txt"
     }
   ]
