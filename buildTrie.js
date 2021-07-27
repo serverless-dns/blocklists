@@ -2328,8 +2328,8 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, basic
                 }*/
                 totallinecount = totallinecount + linecount
                 tag_dict[smallname].entries = linecount
-                if ( tag_dict[smallname].entries == 0 ){
-                    tag_dict[smallname].show = 0
+                if ( tag_dict[smallname].entries > 1 ){
+                    tag_dict[smallname].show = 1
                 }
                 filecount = filecount + 1
             }

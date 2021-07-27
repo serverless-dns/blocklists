@@ -40,9 +40,15 @@ If you're a developer looking to experiment with the code-base or generate your 
     python -m pip install requests
     # this python-script parses `blocklistConfig.json` and downloads corresponding
     # blocklists in to `./blocklistfiles` directory.
-    python downloadFromBlocklistConfig.py
+    python download.py
     ```
 2. Create and upload to S3; a compressed, compact radix-trie of domains present in downloaded blocklists.    
+    ```shell        
+        # this nodejs script parses downloaded files in the ./blocklistfiles directory to create
+        # a compressed, compact radix-trie and related files in the ./result directory.        
+        node --max-old-space-size=12288 build.js
+    ```
+3. Upload to S3
     ```shell
         # set aws environment variables for ubuntu/mac, like so:
         export AWS_ACCESS_KEY = "access-key with s3 permissions"
@@ -52,12 +58,9 @@ If you're a developer looking to experiment with the code-base or generate your 
         set AWS_ACCESS_KEY = "aws access key to acccess s3"
         set AWS_SECRET_ACCESS_KEY = "aws secret key to access s3"
         set AWS_BUCKET_NAME = "aws bucket name where files to be uploaded"
-    ```
-    ```shell
         # installs the aws-sdk for nodejs
         npm install aws-sdk
-        # this nodejs script parses downloaded files in the ./blocklistfiles directory to create
-        # a compressed, compact radix-trie and related files in the ./result directory.
-        # And, it also uploads those files to the specified S3 bucket.
-        node --max-old-space-size=12288 createTrie.js
+        # this nodejs script uploads compact radix-trie files in ./result directory to the specified S3 bucket.
+        node upload.js
     ```
+    

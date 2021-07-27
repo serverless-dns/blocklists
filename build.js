@@ -48,7 +48,7 @@ async function loadConfig(blocklistConfigPath, unameVnameMapPath) {
 			tag_dict[uname].group = blocklistobj.conf[index].group
 			tag_dict[uname].subg = blocklistobj.conf[index].subg
 			tag_dict[uname].url = blocklistobj.conf[index].url
-			tag_dict[uname].show = 1
+			tag_dict[uname].show = 0
 			tag_dict[uname].entries = 0
 
 		}
