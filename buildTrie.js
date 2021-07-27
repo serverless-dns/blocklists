@@ -2310,6 +2310,8 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, basic
             var fileData = filesystem.readFileSync(filepath, 'utf8');
             if (fileData.length > 1) {
                 console.log("Adding file : " + filepath)
+                console.log(smallname +" : File tag : "+tag[smallname])
+                console.log(tag_dict[smallname])
                 var filelist = []
                 for (let line of fileData.split("\n")) {
                     //console.log(line.trim()+ "::" + line.trim().length)

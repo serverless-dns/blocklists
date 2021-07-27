@@ -90,6 +90,7 @@ def parseDownloadBasicConfig():
             downloadLoc = "./blocklistfiles/" + value["group"].strip() + "/"  + value["subg"].strip() + "/" + fileName + ".txt"
 
         totalUrl = totalUrl + 1
+        #print (downloadLoc)
         ret = downloadFile(value["url"],value["format"],downloadLoc)            
 
 
@@ -134,6 +135,7 @@ def writeFile(download_loc_filename,filetxt):
 def downloadFile(url,format,download_loc_filename):  
     global totalUrl  
     print (str(totalUrl) +" : Downloading From : "+url)
+    print ("Download Location : "+download_loc_filename)
     ret = True
     try:
         r = requests.get(url)          

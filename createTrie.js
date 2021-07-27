@@ -1,6 +1,7 @@
 const fs = require('fs');
 const buildTrie = require("./buildTrie.js")
 var AWS = require('aws-sdk');
+const { Console } = require('console');
 var awsBucketName = process.env.AWS_BUCKET_NAME
 const s3 = new AWS.S3({
 	accessKeyId: process.env.AWS_ACCESS_KEY,
@@ -35,29 +36,30 @@ async function loadConfig(blocklistConfigPath, unameVnameMapPath) {
 		var arr = []
 		var fileData = fs.readFileSync(blocklistConfigPath, 'utf8');
 		blocklistobj = JSON.parse(fileData);
-		var mapData = fs.readFileSync(unameVnameMapPath, "utf-8")
+		var mapData = fs.readFileSync(unameVnameMapPath, "utf8")
 		unameVnameMap = JSON.parse(mapData)
 		tag_dict = {}
 		let uname = ""
-		for (let filedata in blocklistobj.conf) {
-			uname = unameVnameMap["" + filedata]
+		for (let index in blocklistobj.conf) {
+			uname = unameVnameMap[index]
 			if (uname == undefined) {
-				uname = "" + filedata
+				uname = index + ""
 			}
-			tag_dict[uname] = {}
-			tag_dict[uname].value = filedata
-			tag_dict[uname].uname = uname
-			tag_dict[uname].vname = blocklistobj.conf[filedata].vname
 
-			tag_dict[uname].group = blocklistobj.conf[filedata].group
-			tag_dict[uname].subg = blocklistobj.conf[filedata].subg
-			tag_dict[uname].url = blocklistobj.conf[filedata].url
+			tag_dict[uname] = {}
+			tag_dict[uname].value = parseInt(index)
+			tag_dict[uname].uname = uname
+			tag_dict[uname].vname = blocklistobj.conf[index].vname
+
+			tag_dict[uname].group = blocklistobj.conf[index].group
+			tag_dict[uname].subg = blocklistobj.conf[index].subg
+			tag_dict[uname].url = blocklistobj.conf[index].url
 			tag_dict[uname].show = 1
 			tag_dict[uname].entries = 0
 
 		}
+
 		//fs.writeFileSync("./result/filetag.json", JSON.stringify(tag_dict));
-		//console.log(basicconfig)
 	}
 	catch (e) {
 		console.log(e)
@@ -68,7 +70,7 @@ async function loadConfig(blocklistConfigPath, unameVnameMapPath) {
 async function main() {
 	try {
 
-		await loadConfig("./blocklistConfig.json" , "./valueUnameMap.json");
+		await loadConfig("./blocklistConfig.json", "./valueUnameMap.json");		
 		await getBlockListFiles('./blocklistfiles/');
 
 		var uploadFileKey = Date.now()
