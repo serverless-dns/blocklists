@@ -2311,7 +2311,7 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, basic
             if (fileData.length > 1) {
                 console.log("Adding file : " + filepath)
                 console.log(smallname +" : File tag : "+tag[smallname])
-                console.log(tag_dict[smallname])
+                //console.log(tag_dict[smallname])
                 var filelist = []
                 for (let line of fileData.split("\n")) {
                     //console.log(line.trim()+ "::" + line.trim().length)
@@ -2328,6 +2328,9 @@ var build = async function (blocklist, filesystem, savelocation, tag_dict, basic
                 }*/
                 totallinecount = totallinecount + linecount
                 tag_dict[smallname].entries = linecount
+                if ( tag_dict[smallname].entries == 0 ){
+                    tag_dict[smallname].show = 0
+                }
                 filecount = filecount + 1
             }
             else {

@@ -17,8 +17,8 @@ jobs:
     - name: install python packages
       run: |
         python -m pip install requests
-    - name: execute py script
-      run: python downloadFromBlocklistConfig.py
+    - name: Validate blocklistconfig.json
+      run: python download.py
 
     
 

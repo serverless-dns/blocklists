@@ -1,12 +1,6 @@
 const fs = require('fs');
 const buildTrie = require("./buildTrie.js")
-var AWS = require('aws-sdk');
-const { Console } = require('console');
-var awsBucketName = process.env.AWS_BUCKET_NAME
-const s3 = new AWS.S3({
-	accessKeyId: process.env.AWS_ACCESS_KEY,
-	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-});
+
 
 let blocklist = []
 var tag_dict = {}
@@ -72,23 +66,7 @@ async function main() {
 
 		await loadConfig("./blocklistConfig.json", "./valueUnameMap.json");		
 		await getBlockListFiles('./blocklistfiles/');
-
-		var uploadFileKey = Date.now()
-
 		await buildTrie.build(blocklist, fs, "./result/", tag_dict, basicconfig)
-		if (process.env.AWS_ACCESS_KEY != undefined && process.env.AWS_SECRET_ACCESS_KEY != undefined && awsBucketName != undefined) {
-			console.log("Uploading file to S3")
-			let aw1 = await uploadToS3("./result/td.txt", "completeblocklist/" + uploadFileKey + "/td.txt")
-			let aw2 = await uploadToS3("./result/rd.txt", "completeblocklist/" + uploadFileKey + "/rd.txt")
-			let aw3 = await uploadToS3("./result/basicconfig.json", "completeblocklist/" + uploadFileKey + "/basicconfig.json")
-			let aw4 = await uploadToS3("./result/filetag.json", "completeblocklist/" + uploadFileKey + "/filetag.json")
-			await Promise.all([aw1, aw2, aw3, aw4]);
-		}
-		else {
-			console.log("AWS access key or secret key or bucket name undefined")
-			console.log("Files not uploaded to s3")
-		}
-
 	}
 	catch (e) {
 		console.log(e.stack)
@@ -99,18 +77,3 @@ async function main() {
 
 
 main()
-
-async function uploadToS3(fileName, key) {
-	var readstream = fs.createReadStream(fileName)
-	console.log("File Uploading To : " + key)
-	const params = {
-		Bucket: awsBucketName,
-		Key: key,
-		Body: readstream,
-		ACL: 'public-read'
-	};
-	s3.upload(params, function (s3Err, data) {
-		if (s3Err) throw s3Err
-		console.log(`File uploaded successfully at ${data.Location}`)
-	});
-}

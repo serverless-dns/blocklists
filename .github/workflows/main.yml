@@ -24,17 +24,19 @@ jobs:
     - name: install python packages
       run: |
         python -m pip install requests
-    - name: execute py script
-      run: python downloadFromBlocklistConfig.py
-    - name: create blocklist filter usig node
+    - name: Download blocklist script execution
+      run: python download.py
+    - name: Build blocklist filter using node
+      run: |
+        mkdir result
+        node --max-old-space-size=12288 build.js        
+    - name: Upload blocklist to aws s3
       env:
         AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
       run: |
-        mkdir result
-        node --max-old-space-size=12288 createTrie.js
-        cd result
-        ls -l
+        node upload.js       
+        
     
 
