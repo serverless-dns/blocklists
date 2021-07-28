@@ -16,7 +16,7 @@ This repository is a collection of DNS-based blocklists that can be set at [reth
     * may be empty, but preferably not.
 2. `format`
     * a non-empty string, identifies a particular blocklist file-format.
-    * supported file-formats: [`domains`](https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/gambling-hosts), [`hosts`](https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt), [`abp`](https://stanev.org/abp/adblock_bg.txt).
+    * supported file-formats: [`domains`](https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt), [`hosts`](https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/gambling-hosts), [`abp`](https://stanev.org/abp/adblock_bg.txt).
 3. `group`
     * a non-empty string, buckets blocklists into a group.
     * current in-use groups are: `privacy`, `security`, `parentalcontrol`.
