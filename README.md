@@ -36,11 +36,11 @@ If you're a developer looking to experiment with the code-base or generate your 
 
 1. Download blocklist files.
     ```python
-    # install a required dependency
-    python -m pip install requests
-    # this python-script parses `blocklistConfig.json` and downloads corresponding
-    # blocklists in to `./blocklistfiles` directory.
-    python download.py
+        # install a required dependency
+        python -m pip install requests
+        # this python-script parses `blocklistConfig.json` and downloads corresponding
+        # blocklists in to `./blocklistfiles` directory.
+        python download.py
     ```
 2. Create and upload to S3; a compressed, compact radix-trie of domains present in downloaded blocklists.    
     ```shell        
