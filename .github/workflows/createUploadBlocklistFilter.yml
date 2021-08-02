@@ -27,7 +27,6 @@ jobs:
         npm cache clean --force
         npm update
         npm install -g aws-sdk
-        export PATH="/opt/hostedtoolcache/node/14.17.3/x64/lib/:$PATH"
         npm config -ls -l
         node upload.js       
         
