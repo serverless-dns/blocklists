@@ -28,7 +28,7 @@ jobs:
         npm update
         npm install -g aws-sdk
         export PATH=$PATH:/opt/hostedtoolcache/node/14.17.3/x64/lib/
-        ls node_modules
+        npm config -ls -l
         node upload.js       
         
     
