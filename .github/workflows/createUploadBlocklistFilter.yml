@@ -20,6 +20,7 @@ jobs:
         node-version: '14'
     - name : install npm modules
       run : |
+        npm cache clean --force
         npm install aws-sdk
     - name: install python packages
       run: |
