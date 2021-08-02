@@ -17,7 +17,10 @@ jobs:
     - name: setup node
       uses: actions/setup-node@v2
       with: 
-        node-version: '14'  
+        node-version: '12'
+    - name : install npm modules
+      run : |
+        npm install aws-sdk
     - name: install python packages
       run: |
         python -m pip install requests
@@ -33,7 +36,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
       run: |
-        npm install aws-sdk
         node upload.js       
         
     
