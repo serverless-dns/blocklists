@@ -27,6 +27,7 @@ jobs:
         npm cache clean --force
         npm update
         npm install -g aws-sdk
+        ls node_modules
         node upload.js       
         
     
