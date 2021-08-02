@@ -24,10 +24,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
       run: |
-        npm cache clean --force
-        npm update
-        npm install -g aws-sdk
-        npm config -ls -l
+        npm install aws-sdk
         node upload.js       
         
     

@@ -1,3 +1,4 @@
 blocklistfiles/
 node_modules/
 result/
+package-lock.json
