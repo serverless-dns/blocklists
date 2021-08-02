@@ -1,7 +1,8 @@
 name: Blocklist-Creation-S3Upload
 on:
-  schedule:
-    - cron:  '0 0 1 * *'
+  push:
+  pull_request:
+  repository_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
