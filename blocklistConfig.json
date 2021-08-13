@@ -1226,10 +1226,10 @@
       "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/hola-luminati-full-block.txt"
      },
      {
-      "vname": "CPBL Final (bongochong)",
+      "vname": "Combined Privacy BlockLists: Final (bongochong)",
       "format": "hosts",
-      "group": "security",
-      "subg": "piracy",
+      "group": "privacy",
+      "subg": "",
       "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/newhosts-final.hosts"
     }
   ]
