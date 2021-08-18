@@ -1224,13 +1224,20 @@
       "group": "privacy",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/hola-luminati-full-block.txt"
-     },
-     {
+    },
+    {
       "vname": "Combined Privacy Block Lists: Final (bongochong)",
       "format": "hosts",
       "group": "privacy",
       "subg": "notracking",
       "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/newhosts-final.hosts"
+    },
+    {
+      "vname": "Developerdan's Hosts (ads & tracking)",
+      "format": "hosts",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt"
     }
   ]
 }
