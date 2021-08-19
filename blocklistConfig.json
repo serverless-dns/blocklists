@@ -1298,8 +1298,8 @@
     {
       "vname": "Porn (blocklistproject)",
       "format": "domains",
-      "group": "privacy",
-      "subg": "parentalcontrol",
+      "group": "parentalcontrol",
+      "subg": "porn",
       "url": "https://blocklistproject.github.io/Lists/porn.txt"
     },
     {
