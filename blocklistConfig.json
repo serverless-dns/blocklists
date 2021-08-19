@@ -1291,7 +1291,7 @@
     {
       "vname": "Cryptojacking (blocklistproject)",
       "format": "domains",
-      "group": "privacy",
+      "group": "security",
       "subg": "cryptojacking",
       "url": "https://blocklistproject.github.io/Lists/crypto.txt"
     },
