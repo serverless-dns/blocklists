@@ -1224,13 +1224,132 @@
       "group": "privacy",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/hola-luminati-full-block.txt"
-     },
-     {
+    },
+    {
       "vname": "Combined Privacy Block Lists: Final (bongochong)",
       "format": "hosts",
       "group": "privacy",
       "subg": "notracking",
       "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/newhosts-final.hosts"
+    },
+    {
+      "vname": "BitTorrent trackers All (ngosang)",
+      "format": "hosts",
+      "group": "parentalcontrol",
+      "subg": "piracy",
+      "url": "https://ngosang.github.io/trackerslist/trackers_all.txt"
+    },
+    {
+      "vname": "Torrent (blocklistproject)",
+      "format": "domains",
+      "group": "parentalcontrol",
+      "subg": "",
+      "url": "https://blocklistproject.github.io/Lists/torrent.txt"
+    },
+    {
+      "vname": "Drugs (blocklistproject)",
+      "format": "domains",
+      "group": "parentalcontrol",
+      "subg": "",
+      "url": "https://blocklistproject.github.io/Lists/drugs.txt"
+    },
+    {
+      "vname": "Ransomware (blocklistproject)",
+      "format": "domains",
+      "group": "security",
+      "subg": "",
+      "url": "https://blocklistproject.github.io/Lists/ransomware.txt"
+    },
+    {
+      "vname": "TikTok (blocklistproject)",
+      "format": "domains",
+      "group": "parentalcontrol",
+      "subg": "social-networks",
+      "url": "https://blocklistproject.github.io/Lists/tiktok.txt"
+    },
+    {
+      "vname": "Malware (blocklistproject)",
+      "format": "domains",
+      "group": "security",
+      "subg": "",
+      "url": "https://blocklistproject.github.io/Lists/malware.txt"
+    },
+    {
+      "vname": "Phishing (blocklistproject)",
+      "format": "domains",
+      "group": "security",
+      "subg": "",
+      "url": "https://blocklistproject.github.io/Lists/phishing.txt"
+    },
+    {
+      "vname": "Ads (blocklistproject)",
+      "format": "hosts",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://blocklistproject.github.io/Lists/ads.txt"
+    },
+    {
+      "vname": "Cryptojacking (blocklistproject)",
+      "format": "domains",
+      "group": "privacy",
+      "subg": "cryptojacking",
+      "url": "https://blocklistproject.github.io/Lists/crypto.txt"
+    },
+    {
+      "vname": "Porn (blocklistproject)",
+      "format": "domains",
+      "group": "privacy",
+      "subg": "parentalcontrol",
+      "url": "https://blocklistproject.github.io/Lists/porn.txt"
+    },
+    {
+      "vname": "WhatsApp  (blocklistproject)",
+      "format": "domains",
+      "group": "parentalcontrol",
+      "subg": "social-networks",
+      "url": "https://blocklistproject.github.io/Lists/whatsapp.txt"
+    },
+    {
+      "vname": "Vaping (blocklistproject)",
+      "format": "domains",
+      "group": "parentalcontrol",
+      "subg": "",
+      "url": "https://blocklistproject.github.io/Lists/vaping.txt"
+    },
+    {
+      "vname": "Piracy (blocklistproject)",
+      "format": "domains",
+      "group": "parentalcontrol",
+      "subg": "piracy",
+      "url": "https://blocklistproject.github.io/Lists/piracy.txt"
+    },
+    {
+      "vname": "Facebook (blocklistproject)",
+      "format": "domains",
+      "group": "parentalcontrol",
+      "subg": "social-networks",
+      "url": "https://blocklistproject.github.io/Lists/facebook.txt"
+    },
+    {
+      "vname": "Gambling (blocklistproject)",
+      "format": "domains",
+      "group": "parentalcontrol",
+      "subg": "gambling",
+      "url": "https://blocklistproject.github.io/Lists/gambling.txt"
+    },
+    {
+      "vname": "Blocklistproject Basic",
+      "format": "hosts",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://blocklistproject.github.io/Lists/basic.txt"
+    },
+    {
+      "vname": "Blocklistproject Full",
+      "format": "hosts",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://blocklistproject.github.io/Lists/everything.txt
     }
   ]
 }
