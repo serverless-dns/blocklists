@@ -1235,8 +1235,8 @@
     {
       "vname": "BitTorrent trackers All (ngosang)",
       "format": "hosts",
-      "group": "parentalcontrol",
-      "subg": "piracy",
+      "group": "privacy",
+      "subg": "",
       "url": "https://ngosang.github.io/trackerslist/trackers_all.txt"
     },
     {
