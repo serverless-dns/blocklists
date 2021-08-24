@@ -676,7 +676,7 @@
       "vname": "1Hosts (Pro)",
       "format": "domains",
       "group": "privacy",
-      "subg": "",
+      "subg": "rethinkdns-recommended",
       "url": "https://badmojr.github.io/1Hosts/Pro/domains.txt"
     },
     {
@@ -946,10 +946,10 @@
       "url": "https://raw.githubusercontent.com/lassekongo83/Frellwits-filter-lists/master/Frellwits-Swedish-Hosts-File.txt"
     },
     {
-      "vname": "GoodbyeAds (Jerryn)",
+      "vname": "GoodbyeAds (jerryn70)",
       "format": "hosts",
       "group": "privacy",
-      "subg": "",
+      "subg": "rethinkdns-recommended",
       "url": "https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Hosts/GoodbyeAds.txt"
     },
     {
@@ -1233,119 +1233,112 @@
       "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/newhosts-final.hosts"
     },
     {
-      "vname": "BitTorrent trackers All (ngosang)",
+      "vname": "Torrent (The Block List Project)",
       "format": "hosts",
-      "group": "privacy",
-      "subg": "",
-      "url": "https://ngosang.github.io/trackerslist/trackers_all.txt"
-    },
-    {
-      "vname": "Torrent (blocklistproject)",
-      "format": "domains",
       "group": "parentalcontrol",
-      "subg": "",
+      "subg": "piracy",
       "url": "https://blocklistproject.github.io/Lists/torrent.txt"
     },
     {
-      "vname": "Drugs (blocklistproject)",
-      "format": "domains",
+      "vname": "Drugs (The Block List Project)",
+      "format": "hosts",
       "group": "parentalcontrol",
       "subg": "",
       "url": "https://blocklistproject.github.io/Lists/drugs.txt"
     },
     {
-      "vname": "Ransomware (blocklistproject)",
+      "vname": "Ransomware (The Block List Project)",
       "format": "domains",
       "group": "security",
-      "subg": "",
+      "subg": "threat-intellgence-feeds",
       "url": "https://blocklistproject.github.io/Lists/ransomware.txt"
     },
     {
-      "vname": "TikTok (blocklistproject)",
+      "vname": "TikTok (The Block List Project)",
       "format": "domains",
       "group": "parentalcontrol",
-      "subg": "social-networks",
+      "subg": "services",
       "url": "https://blocklistproject.github.io/Lists/tiktok.txt"
     },
     {
-      "vname": "Malware (blocklistproject)",
+      "vname": "Malware (The Block List Project)",
       "format": "domains",
       "group": "security",
       "subg": "",
       "url": "https://blocklistproject.github.io/Lists/malware.txt"
     },
     {
-      "vname": "Phishing (blocklistproject)",
+      "vname": "Phishing (The Block List Project)",
       "format": "domains",
       "group": "security",
       "subg": "",
       "url": "https://blocklistproject.github.io/Lists/phishing.txt"
     },
     {
-      "vname": "Ads (blocklistproject)",
+      "vname": "Ads (The Block List Project)",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
       "url": "https://blocklistproject.github.io/Lists/ads.txt"
     },
     {
-      "vname": "Cryptojacking (blocklistproject)",
-      "format": "domains",
+      "vname": "Cryptojacking (The Block List Project)",
+      "format": "hosts",
       "group": "security",
       "subg": "cryptojacking",
       "url": "https://blocklistproject.github.io/Lists/crypto.txt"
     },
     {
-      "vname": "Porn (blocklistproject)",
-      "format": "domains",
+      "vname": "Porn (The Block List Project)",
+      "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://blocklistproject.github.io/Lists/porn.txt"
     },
     {
-      "vname": "WhatsApp  (blocklistproject)",
-      "format": "domains",
+      "vname": "WhatsApp (The Block List Project)",
+      "format": "hosts",
       "group": "parentalcontrol",
-      "subg": "social-networks",
+      "subg": "services",
       "url": "https://blocklistproject.github.io/Lists/whatsapp.txt"
     },
     {
-      "vname": "Vaping (blocklistproject)",
-      "format": "domains",
+      "vname": "Vaping (The Block List Project)",
+      "format": "hosts",
       "group": "parentalcontrol",
       "subg": "",
       "url": "https://blocklistproject.github.io/Lists/vaping.txt"
     },
     {
-      "vname": "Piracy (blocklistproject)",
-      "format": "domains",
+      "vname": "Piracy (The Block List Project)",
+      "format": "hosts",
       "group": "parentalcontrol",
       "subg": "piracy",
       "url": "https://blocklistproject.github.io/Lists/piracy.txt"
     },
     {
-      "vname": "Facebook (blocklistproject)",
-      "format": "domains",
+      "vname": "Facebook (The Block List Project)",
+      "format": "hosts",
       "group": "parentalcontrol",
-      "subg": "social-networks",
+      "subg": "services",
       "url": "https://blocklistproject.github.io/Lists/facebook.txt"
     },
     {
-      "vname": "Gambling (blocklistproject)",
-      "format": "domains",
+      "vname": "Gambling (The Block List Project)",
+      "format": "hosts",
       "group": "parentalcontrol",
       "subg": "gambling",
       "url": "https://blocklistproject.github.io/Lists/gambling.txt"
     },
     {
-      "vname": "Blocklistproject Basic",
+      "vname": "The Block List Project Basic",
       "format": "hosts",
       "group": "privacy",
-      "subg": "",
+      "subg": "rethinkdns-recommended",
       "url": "https://blocklistproject.github.io/Lists/basic.txt"
     },
     {
-      "vname": "Blocklistproject Full",
+      "vname": "The Block List Project Full",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
