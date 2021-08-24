@@ -1195,7 +1195,7 @@
       "format": "domains",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
-      "url": "https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt"
+      "url": "https://dbl.oisd.nl/"
     },
     {
       "vname": "1Hosts (Xtra)",
