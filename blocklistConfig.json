@@ -1214,14 +1214,14 @@
     {
       "vname": "AVG + Avast (ftprivacy)",
       "format": "domains",
-      "group": "privacy",
+      "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/avg-avast-data-mining-full-block.txt"
     },
     {
       "vname": "Hola VPN (ftprivacy)",
       "format": "domains",
-      "group": "privacy",
+      "group": "parentalcontrol",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/hola-luminati-full-block.txt"
     },
