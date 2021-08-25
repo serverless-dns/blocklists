@@ -3,6 +3,7 @@ on:
   schedule:
     - cron:  '0 0 1/7 * *'
   repository_dispatch:
+    types: [custom_event_type]
 jobs:
   build:
     runs-on: ubuntu-latest
