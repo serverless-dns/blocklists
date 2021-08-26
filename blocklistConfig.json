@@ -117,7 +117,7 @@
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
-      "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/0.0.0.0/hosts"
+      "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/mobile/hosts"
     },
     {
       "vname": "Porn (Mahadi Xion)",
@@ -1343,6 +1343,13 @@
       "group": "privacy",
       "subg": "",
       "url": "https://blocklistproject.github.io/Lists/everything.txt"
-    }
+    },
+    {
+      "vname": "Strict No Porn (Clefspeare13)",
+      "format": "hosts",
+      "group": "parentalcontrol",
+      "subg": "porn",
+      "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/strict/0.0.0.0/hosts"
+    },
   ]
 }
