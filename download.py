@@ -1,9 +1,9 @@
 import os
-import sys
-import json 
-import requests
 import errno
+import json
 import re
+import sys
+import urllib.request
 from urllib.parse import urlparse
 
 
@@ -21,10 +21,10 @@ supportedFileFormat = {"domains", "hosts", "abp"}
 totalUrl = 0
 savedUrl = 0
 
-        
-    
+
+
 def validateBasicConfig():
-    global keyFormat    
+    global keyFormat
     failed = 0
     downloadLoc = ""
     regex = re.compile(
@@ -36,7 +36,7 @@ def validateBasicConfig():
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
     for value in configDict["conf"]:
-        if len(value) != 5:            
+        if len(value) != 5:
             print ("Invalid Blocklist config Format")
             print (value)
             return False
@@ -58,7 +58,7 @@ def validateBasicConfig():
             return False
         else:
             urlExist.add(value["url"])
-                    
+
 
         if not value["format"] in supportedFileFormat:
             print ("Added file format not supported currently")
@@ -69,11 +69,11 @@ def validateBasicConfig():
             print ("group name mandatory")
             print (value)
             return False
-    return True          
+    return True
 
-    
+
 def parseDownloadBasicConfig():
-    global totalUrl   
+    global totalUrl
     global unameVnameMap
     downloadLoc = ""
     totalUrl = 0
@@ -91,7 +91,7 @@ def parseDownloadBasicConfig():
 
         totalUrl = totalUrl + 1
         #print (downloadLoc)
-        ret = downloadFile(value["url"],value["format"],downloadLoc)            
+        ret = downloadFile(value["url"],value["format"],downloadLoc)
 
 
 def createFileNotExist(filename):
@@ -116,57 +116,59 @@ def regxFileDomain(txt,regx_str,grp_index):
         g2 = g2.strip()
         if g2 and g2[-1]!='.':
             domainlist.add(g2)
-    
+
 
     return "\n".join(domainlist)
-    
+
 def writeFile(download_loc_filename,filetxt):
     global savedUrl
     if filetxt:
-        createFileNotExist(download_loc_filename)         
-        with open(download_loc_filename, "w") as f:  
-            f.write(safeStr(filetxt))  
+        createFileNotExist(download_loc_filename)
+        with open(download_loc_filename, "w") as f:
+            f.write(safeStr(filetxt))
             f.close()
         savedUrl = savedUrl + 1
         return True
-    else:        
+    else:
         return False
-        
-def downloadFile(url,format,download_loc_filename):  
-    global totalUrl  
+
+def downloadFile(url,format,download_loc_filename):
+    global totalUrl
     print (str(totalUrl) +" : Downloading From : "+url)
     print ("Download Location : "+download_loc_filename)
     ret = True
     try:
-        r = requests.get(url)          
+        response = urllib.request.urlopen(url)
+        data = response.read()
+        txt = data.decode('utf-8')
     except:
         notDownloaded.append("Exception : "+ url +" : "+download_loc_filename)
         return False
-    if format == "domains":        
-        filetxt = regxFileDomain(r.text,r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)',0)
+    if format == "domains":
+        filetxt = regxFileDomain(txt,r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)',0)
         ret = writeFile(download_loc_filename,filetxt)
         if not ret:
             notDownloaded.append(url +" : "+download_loc_filename)
     elif format == "hosts":
-        filetxt = regxFileDomain(r.text,r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)',3)
+        filetxt = regxFileDomain(txt,r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)',3)
         ret = writeFile(download_loc_filename,filetxt)
         if not ret:
-            notDownloaded.append(url +" : "+download_loc_filename) 
+            notDownloaded.append(url +" : "+download_loc_filename)
     elif format == "abp":
-        filetxt = regxFileDomain(r.text,r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',1)               
+        filetxt = regxFileDomain(txt,r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',1)
         ret = writeFile(download_loc_filename,filetxt)
         if not ret:
             notDownloaded.append(url +" : "+download_loc_filename)
 
     return ret
-def loadBlocklistConfig():    
+def loadBlocklistConfig():
     global isConfigLoad
     global configDict
     global unameVnameMap
     try:
         if os.path.isfile(configFileLocation):
-            with open(configFileLocation) as json_file: 
-                configDict = json.load(json_file) 
+            with open(configFileLocation) as json_file:
+                configDict = json.load(json_file)
                 json_file.close()
                 if "conf" in configDict:
                     isConfigLoad = True
@@ -174,38 +176,38 @@ def loadBlocklistConfig():
             configDict["conf"] = {}
 
         if os.path.isfile(vnameMapFileLocation):
-            with open(vnameMapFileLocation) as json_file: 
-                unameVnameMap = json.load(json_file) 
+            with open(vnameMapFileLocation) as json_file:
+                unameVnameMap = json.load(json_file)
                 json_file.close()
-        
+
     except:
         print ("Error in parsing Blocklist json file.")
         print ("Check json format")
         sys.exit("Error Occured")
-        
-        
+
+
 def main():
     global totalUrl
     global savedUrl
 
     loadBlocklistConfig()
-    
+
     if isConfigLoad:
         if validateBasicConfig():
             parseDownloadBasicConfig()
 
             print ("\n\n\n\n\n\nFile Not Downloaded")
-            print ("\n".join(notDownloaded))                                                    
-            
+            print ("\n".join(notDownloaded))
+
             print ("Total Url Found : "+str(totalUrl))
             print ("Download and Saved Url : "+str(savedUrl))
             print ("diff : "+str(totalUrl - savedUrl))
         else:
             print ("Validation Error")
             sys.exit("")
-        
+
     else:
         print("Error in loading BasicConfigFile for Download Process")
-    
-        
+
+
 main()
