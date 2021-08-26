@@ -418,7 +418,7 @@
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts_without_controversies.txt"
+      "url": "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt"
     },
     {
       "vname": "Malware (malwaredomains.com)",
