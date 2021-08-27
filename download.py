@@ -244,7 +244,7 @@ def main():
     global retryBlocklist
     tmpRetryBlocklist = list()
     loadBlocklistConfig()
-
+    exitWithError = False
     if isConfigLoad:
         if validateBasicConfig():
             parseDownloadBasicConfig(configDict["conf"])                                               
@@ -268,9 +268,12 @@ def main():
             if len(retryBlocklist) >= 1:
                 print ("\nError in downloading blocklist\n")
                 for value in retryBlocklist:
+                    if not ('try again' in value["pack"]):
+                        exitWithError = True
                     print(value)
                     print("\n")
-                sys.exit("")
+                if exitWithError:
+                    sys.exit("")
         else:
             print ("Validation Error")
             sys.exit("")
