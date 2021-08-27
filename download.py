@@ -249,6 +249,9 @@ def main():
         if validateBasicConfig():
             parseDownloadBasicConfig(configDict["conf"])                                               
             
+            print ("\nTotal blocklist : "+str(totalUrl))
+            print ("Download and saved blocklist : "+str(savedUrl))
+            print ("Difference : "+str(totalUrl-savedUrl))
 
             if len(retryBlocklist) >= 1:
                 print("\n\nretry download block list\n\n")
@@ -259,11 +262,6 @@ def main():
             
             print("\n\nTry later blocklist not downloaded")
             print("\n".join(blocklistNotDownloaded))
-
-
-            print ("\nTotal blocklist : "+str(totalUrl))
-            print ("Download and saved blocklist : "+str(savedUrl))
-            print ("Difference : "+str(totalUrl-savedUrl))
 
             if len(retryBlocklist) >= 1:
                 print ("\nError in downloading blocklist\n")
