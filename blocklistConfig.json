@@ -5,1344 +5,1536 @@
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "bypass-methods",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/bypass-methods"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/bypass-methods",
+      "pack": []
     },
     {
       "vname": "Safesearch-only",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "safesearch",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/safesearch-not-supported"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/safesearch-not-supported",
+      "pack": []
     },
     {
       "vname": "Dating (olbat)",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "dating",
-      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/dating/domains"
+      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/dating/domains",
+      "pack": []
     },
     {
       "vname": "Gambling (olbat)",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "gambling",
-      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/gambling/domains"
+      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/gambling/domains",
+      "pack": []
     },
     {
       "vname": "Gambling (Sinfonietta)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "gambling",
-      "url": "https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/gambling-hosts"
+      "url": "https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/gambling-hosts",
+      "pack": []
     },
     {
       "vname": "Torrents (DHT-nodes)",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/dht-bootstrap-nodes"
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/dht-bootstrap-nodes",
+      "pack": []
     },
     {
       "vname": "File hosting",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/file-hosting"
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/file-hosting",
+      "pack": []
     },
     {
       "vname": "Proxies",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/proxies"
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/proxies",
+      "pack": []
     },
     {
       "vname": "Streaming Audio",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-audio"
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-audio",
+      "pack": []
     },
     {
       "vname": "Streaming Video",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video"
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video",
+      "pack": []
     },
     {
       "vname": "Torrent Clients",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-clients"
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-clients",
+      "pack": []
     },
     {
       "vname": "Torrent Trackers",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-trackers"
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-trackers",
+      "pack": []
     },
     {
       "vname": "Torrent Websites",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-websites"
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-websites",
+      "pack": []
     },
     {
       "vname": "Usenet",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/usenet"
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/usenet",
+      "pack": []
     },
     {
       "vname": "Warez",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/warez"
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/warez",
+      "pack": []
     },
     {
       "vname": "Porn (Tiuxo)",
-      "format": "hosts",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "porn",
-      "url": "https://raw.githubusercontent.com/tiuxo/hosts/master/porn"
+      "url": "https://raw.githubusercontent.com/tiuxo/hosts/master/porn",
+      "pack": []
     },
     {
       "vname": "Porn (Clefspeare13)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
-      "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/0.0.0.0/hosts"
+      "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/0.0.0.0/hosts",
+      "pack": []
     },
     {
       "vname": "Porn (Mahadi Xion)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
-      "url": "https://raw.githubusercontent.com/mhxion/pornaway/master/hosts/porn_sites.txt"
+      "url": "https://raw.githubusercontent.com/mhxion/pornaway/master/hosts/porn_sites.txt",
+      "pack": []
     },
     {
       "vname": "Porn (Sinfonietta)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
-      "url": "https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts"
+      "url": "https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts",
+      "pack": []
     },
     {
       "vname": "Social networks (oblat)",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "social-networks",
-      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/social_networks/domains"
+      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/social_networks/domains",
+      "pack": []
     },
     {
       "vname": "9Gag",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/9gag"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/9gag",
+      "pack": []
     },
     {
       "vname": "Amazon",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/amazon"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/amazon",
+      "pack": []
     },
     {
       "vname": "Blizzard",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/blizzard"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/blizzard",
+      "pack": []
     },
     {
       "vname": "Daily Motion",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/dailymotion"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/dailymotion",
+      "pack": []
     },
     {
       "vname": "Discord",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/discord"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/discord",
+      "pack": []
     },
     {
       "vname": "Disneyplus",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/disneyplus"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/disneyplus",
+      "pack": []
     },
     {
       "vname": "EBay",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/ebay"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/ebay",
+      "pack": []
     },
     {
       "vname": "Facebook",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/facebook"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/facebook",
+      "pack": []
     },
     {
       "vname": "Fortnite",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/fortnite"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/fortnite",
+      "pack": []
     },
     {
       "vname": "Hulu",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/hulu"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/hulu",
+      "pack": []
     },
     {
       "vname": "Imgur",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/imgur"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/imgur",
+      "pack": []
     },
     {
       "vname": "Instagram",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/instagram"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/instagram",
+      "pack": []
     },
     {
       "vname": "League of Legends",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/leagueoflegends"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/leagueoflegends",
+      "pack": []
     },
     {
       "vname": "Facebook Messenger",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/messenger"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/messenger",
+      "pack": []
     },
     {
       "vname": "Minecraft",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/minecraft"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/minecraft",
+      "pack": []
     },
     {
       "vname": "Netflix",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/netflix"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/netflix",
+      "pack": []
     },
     {
       "vname": "Pinterest",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/pinterest"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/pinterest",
+      "pack": []
     },
     {
       "vname": "Reddit",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/reddit"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/reddit",
+      "pack": []
     },
     {
       "vname": "Roblox",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/roblox"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/roblox",
+      "pack": []
     },
     {
       "vname": "Skype",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/skype"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/skype",
+      "pack": []
     },
     {
       "vname": "Snapchat",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/snapchat"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/snapchat",
+      "pack": []
     },
     {
       "vname": "Spotify",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/spotify"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/spotify",
+      "pack": []
     },
     {
       "vname": "Steam",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/steam"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/steam",
+      "pack": []
     },
     {
       "vname": "Telegram",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/telegram"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/telegram",
+      "pack": []
     },
     {
       "vname": "Tiktok",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tiktok"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tiktok",
+      "pack": []
     },
     {
       "vname": "Tinder",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tinder"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tinder",
+      "pack": []
     },
     {
       "vname": "Tumblr",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tumblr"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tumblr",
+      "pack": []
     },
     {
       "vname": "Twitch",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitch"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitch",
+      "pack": []
     },
     {
       "vname": "Twitter",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitter"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitter",
+      "pack": []
     },
     {
       "vname": "Vimeo",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vimeo"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vimeo",
+      "pack": []
     },
     {
       "vname": "VK",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vk"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vk",
+      "pack": []
     },
     {
       "vname": "WhatsApp",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/whatsapp"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/whatsapp",
+      "pack": []
     },
     {
       "vname": "YouTube",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/youtube"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/youtube",
+      "pack": []
     },
     {
       "vname": "Zoom",
-      "format": "domains",
+      "format": "wildcard",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/zoom"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/zoom",
+      "pack": []
     },
     {
       "vname": "Adblock Nocoin List (hoshsadiq)",
       "format": "hosts",
       "group": "security",
       "subg": "cryptojacking",
-      "url": "https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt"
+      "url": "https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt",
+      "pack": []
     },
     {
       "vname": "Coin blocker (Zerodot1)",
       "format": "hosts",
       "group": "security",
       "subg": "cryptojacking",
-      "url": "https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser"
+      "url": "https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser",
+      "pack": []
     },
     {
       "vname": "Parked domains (NextDNS)",
-      "format": "domains",
+      "format": "wildcard",
       "group": "security",
       "subg": "parked-domains-cname",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/security/parked-domains-cname"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/security/parked-domains-cname",
+      "pack": []
     },
     {
       "vname": "Malware (malwaredomainlist.com)",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://www.malwaredomainlist.com/hostslist/hosts.txt"
+      "url": "https://www.malwaredomainlist.com/hostslist/hosts.txt",
+      "pack": []
     },
     {
       "vname": "Security (StevenBlack)",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Dead/hosts"
+      "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Dead/hosts",
+      "pack": []
     },
     {
       "vname": "KADHosts (PolishFiltersTeam)",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts_without_controversies.txt"
+      "url": "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts_without_controversies.txt",
+      "pack": []
     },
     {
       "vname": "Malware (malwaredomains.com)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://mirror1.malwaredomains.com/files/justdomains"
+      "url": "https://mirror1.malwaredomains.com/files/justdomains",
+      "pack": []
     },
     {
       "vname": "Malware (Disconnect.me)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt"
+      "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt",
+      "pack": []
     },
     {
       "vname": "Phishing.Army",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://phishing.army/download/phishing_army_blocklist.txt"
+      "url": "https://phishing.army/download/phishing_army_blocklist.txt",
+      "pack": []
     },
     {
       "vname": "Spam404",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt"
+      "url": "https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt",
+      "pack": []
     },
     {
       "vname": "Malware (quidsup)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt"
+      "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt",
+      "pack": []
     },
     {
       "vname": "Badd Boyz Hosts (Mitchell Krogza)",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/mitchellkrogza/Badd-Boyz-Hosts/master/hosts"
+      "url": "https://raw.githubusercontent.com/mitchellkrogza/Badd-Boyz-Hosts/master/hosts",
+      "pack": []
     },
     {
       "vname": "Malware (Mitchell Krogza)",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites/master/hosts"
+      "url": "https://raw.githubusercontent.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites/master/hosts",
+      "pack": []
     },
     {
       "vname": "Domain blocklist basic (joewein.net) ",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://joewein.net/dl/bl/dom-bl-base.txt"
+      "url": "https://joewein.net/dl/bl/dom-bl-base.txt",
+      "pack": []
     },
     {
       "vname": "Domain blocklist full (joewein.net)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://joewein.net/dl/bl/dom-bl.txt"
+      "url": "https://joewein.net/dl/bl/dom-bl.txt",
+      "pack": []
     },
     {
       "vname": "Malware (mirror.cedia.org.ec)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://mirror.cedia.org.ec/malwaredomains/immortal_domains.txt"
+      "url": "https://mirror.cedia.org.ec/malwaredomains/immortal_domains.txt",
+      "pack": []
     },
     {
       "vname": "Bad lists (ethanr)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://bitbucket.org/ethanr/dns-blacklists/raw/master/bad_lists/Mandiant_APT1_Report_Appendix_D.txt"
+      "url": "https://bitbucket.org/ethanr/dns-blacklists/raw/master/bad_lists/Mandiant_APT1_Report_Appendix_D.txt",
+      "pack": []
     },
     {
       "vname": "Malware (Olbat)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/malware/domains"
+      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/malware/domains",
+      "pack": []
     },
     {
       "vname": "Phising (Olbat)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/phishing/domains"
+      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/phishing/domains",
+      "pack": []
     },
     {
       "vname": "Spyware (Chris Buijs)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/spyware/domains"
+      "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/spyware/domains",
+      "pack": []
     },
     {
       "vname": "Malware (DandelionSprout)",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt"
+      "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt",
+      "pack": []
     },
     {
       "vname": "Malware (azorult-tracker.net)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://azorult-tracker.net/api/list/domain?format=plain"
+      "url": "https://azorult-tracker.net/api/list/domain?format=plain",
+      "pack": []
     },
     {
       "vname": "Blackbook (Miroslav Stampar)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/stamparm/blackbook/master/blackbook.txt"
+      "url": "https://raw.githubusercontent.com/stamparm/blackbook/master/blackbook.txt",
+      "pack": []
     },
     {
       "vname": "Bad sites (phishing.mailscanner.info)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "http://phishing.mailscanner.info/phishing.bad.sites.conf"
+      "url": "http://phishing.mailscanner.info/phishing.bad.sites.conf",
+      "pack": []
     },
     {
       "vname": "Scam and phising (infinitytec)",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt"
+      "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
+      "pack": []
     },
     {
       "vname": "Threats (infosec.cert-pa.it)",
-      "format": "domains",
+      "format": "wildcard",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://infosec.cert-pa.it/analyze/listdomains.txt"
+      "url": "https://infosec.cert-pa.it/analyze/listdomains.txt",
+      "pack": []
     },
     {
       "vname": "Toxic domains (stopforumspam.com)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://www.stopforumspam.com/downloads/toxic_domains_whole.txt"
+      "url": "https://www.stopforumspam.com/downloads/toxic_domains_whole.txt",
+      "pack": []
     },
     {
       "vname": "Mailtrail Malware (Miroslav Stampar)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/stamparm/aux/master/maltrail-malware-domains.txt"
+      "url": "https://raw.githubusercontent.com/stamparm/aux/master/maltrail-malware-domains.txt",
+      "pack": []
     },
     {
       "vname": "Malware Rescure (rescure.fruxlabs.com)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://rescure.fruxlabs.com/rescure_domain_blacklist.txt"
+      "url": "https://rescure.fruxlabs.com/rescure_domain_blacklist.txt",
+      "pack": []
     },
     {
       "vname": "Malware Maze (rescure.fruxlabs.com)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://rescure.fruxlabs.com/malware/maze.txt"
+      "url": "https://rescure.fruxlabs.com/malware/maze.txt",
+      "pack": ["disintegrated"]
     },
     {
       "vname": "Malware Ekans (rescure.fruxlabs.com)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://rescure.fruxlabs.com/malware/ekans.txt"
+      "url": "https://rescure.fruxlabs.com/malware/ekans.txt",
+      "pack": []
     },
     {
       "vname": "Malware Wastedlocker (rescure.fruxlabs.com)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://rescure.fruxlabs.com/malware/wastedlocker.txt"
+      "url": "https://rescure.fruxlabs.com/malware/wastedlocker.txt",
+      "pack": []
     },
     {
       "vname": "Malware domains (blocklist.cyberthreatcoalition.org)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://blocklist.cyberthreatcoalition.org/vetted/domain.txt"
+      "url": "https://blocklist.cyberthreatcoalition.org/vetted/domain.txt",
+      "pack": []
     },
     {
       "vname": "Malicious domains (Sophos Labs)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malicious_domains.txt"
+      "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malicious_domains.txt",
+      "pack": []
     },
     {
       "vname": "Malware domains (Sophos Labs)",
-      "format": "domains",
+      "format": "wildcard",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malware_domains.txt"
+      "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malware_domains.txt",
+      "pack": []
     },
     {
       "vname": "Covid List (rescure.fruxlabs.com)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://rescure.fruxlabs.com/covid.txt"
+      "url": "https://rescure.fruxlabs.com/covid.txt",
+      "pack": []
     },
     {
       "vname": "Covid-19 Domains (managedsentinel.com)",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://managedsentinel.com/downloads/covid19_domains.txt"
+      "url": "https://managedsentinel.com/downloads/covid19_domains.txt",
+      "pack": []
     },
     {
       "vname": "hole.cert.pl",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://hole.cert.pl/domains/domains.txt"
+      "url": "https://hole.cert.pl/domains/domains.txt",
+      "pack": []
     },
     {
       "vname": "osint.digitalside.it",
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt"
+      "url": "https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt",
+      "pack": []
     },
     {
       "vname": "Affiliate and Tracking (NextDNS)",
       "format": "domains",
       "group": "privacy",
       "subg": "affiliate-tracking-domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains",
+      "pack": []
     },
     {
       "vname": "1Hosts (Lite)",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://badmojr.github.io/1Hosts/Lite/domains.txt"
+      "url": "https://badmojr.github.io/1Hosts/Lite/domains.txt",
+      "pack": []
     },
     {
       "vname": "1Hosts (Mini)",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://badmojr.github.io/1Hosts/mini/domains.txt"
+      "url": "https://badmojr.github.io/1Hosts/mini/domains.txt",
+      "pack": []
     },
     {
       "vname": "1Hosts (Pro)",
       "format": "domains",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
-      "url": "https://badmojr.github.io/1Hosts/Pro/domains.txt"
+      "url": "https://badmojr.github.io/1Hosts/Pro/domains.txt",
+      "pack": []
     },
     {
       "vname": "280blocker",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://280blocker.net/files/280blocker_domain.txt"
+      "url": "https://280blocker.net/files/280blocker_domain.txt",
+      "pack": []
     },
     {
       "vname": "ABPindo",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt"
+      "url": "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt",
+      "pack": []
     },
     {
       "vname": "ABPVN List",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://abpvn.com/android/abpvn.txt"
+      "url": "https://abpvn.com/android/abpvn.txt",
+      "pack": []
     },
     {
       "vname": "Ad-Wars",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/jdlingyu/ad-wars/master/hosts"
+      "url": "https://raw.githubusercontent.com/jdlingyu/ad-wars/master/hosts",
+      "pack": []
     },
     {
       "vname": "AdAway",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/AdAway/adaway.github.io/master/hosts.txt"
+      "url": "https://raw.githubusercontent.com/AdAway/adaway.github.io/master/hosts.txt",
+      "pack": []
     },
     {
       "vname": "Add.2o7Net",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.2o7Net/hosts"
+      "url": "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.2o7Net/hosts",
+      "pack": []
     },
     {
       "vname": "AdGuard DNS filters",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt"
+      "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
+      "pack": []
     },
     {
       "vname": "Anti Ad",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-domains.txt"
+      "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-domains.txt",
+      "pack": []
     },
     {
       "vname": "Anti Pop Ads",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/Yhonay/antipopads/master/hosts"
+      "url": "https://raw.githubusercontent.com/Yhonay/antipopads/master/hosts",
+      "pack": []
     },
     {
       "vname": "Anudeep's Blacklist",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt"
+      "url": "https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt",
+      "pack": []
     },
     {
       "vname": "BarbBlock",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/paulgb/BarbBlock/master/blacklists/domain-list.txt"
+      "url": "https://raw.githubusercontent.com/paulgb/BarbBlock/master/blacklists/domain-list.txt",
+      "pack": []
     },
     {
       "vname": "Turkey Adlist (bkrucarci)",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/bkrucarci/turk-adlist/master/hosts"
+      "url": "https://raw.githubusercontent.com/bkrucarci/turk-adlist/master/hosts",
+      "pack": []
     },
     {
       "vname": "Bulgarian list (Adblock)",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://stanev.org/abp/adblock_bg.txt"
+      "url": "https://stanev.org/abp/adblock_bg.txt",
+      "pack": []
     },
     {
       "vname": "Cameleon",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "http://sysctl.org/cameleon/hosts"
+      "url": "http://sysctl.org/cameleon/hosts",
+      "pack": []
     },
     {
       "vname": "Polish filters (CertyficateIT)",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/hostfile.txt"
+      "url": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/hostfile.txt",
+      "pack": []
     },
     {
       "vname": "Disconnect (Ads)",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt"
+      "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt",
+      "pack": []
     },
     {
       "vname": "Disconnect (Malvertising)",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt"
+      "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt",
+      "pack": []
     },
     {
       "vname": "Disconnect (Tracking)",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt"
+      "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt",
+      "pack": []
     },
     {
       "vname": "EasyList China",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist-downloads.adblockplus.org/easylistchina.txt"
+      "url": "https://easylist-downloads.adblockplus.org/easylistchina.txt",
+      "pack": []
     },
     {
       "vname": "EasyList Czech and Slovak",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/tomasko126/easylistczechandslovak/master/filters.txt"
+      "url": "https://raw.githubusercontent.com/tomasko126/easylistczechandslovak/master/filters.txt",
+      "pack": []
     },
     {
       "vname": "EasyList Dutch",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist-downloads.adblockplus.org/easylistdutch.txt"
+      "url": "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
+      "pack": []
     },
     {
       "vname": "EasyList Germany",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist.to/easylistgermany/easylistgermany.txt"
+      "url": "https://easylist.to/easylistgermany/easylistgermany.txt",
+      "pack": []
     },
     {
       "vname": "EasyList Hebrew",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/easylist/EasyListHebrew/master/EasyListHebrew.txt"
+      "url": "https://raw.githubusercontent.com/easylist/EasyListHebrew/master/EasyListHebrew.txt",
+      "pack": []
     },
     {
       "vname": "EasyList Italy",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist-downloads.adblockplus.org/easylistitaly.txt"
+      "url": "https://easylist-downloads.adblockplus.org/easylistitaly.txt",
+      "pack": []
     },
     {
       "vname": "EasyList Lithuania",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/EasyList-Lithuania/easylist_lithuania/master/easylistlithuania.txt"
+      "url": "https://raw.githubusercontent.com/EasyList-Lithuania/easylist_lithuania/master/easylistlithuania.txt",
+      "pack": []
     },
     {
       "vname": "EasyList",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist.to/easylist/easylist.txt"
+      "url": "https://easylist.to/easylist/easylist.txt",
+      "pack": []
     },
     {
       "vname": "EasyPrivacy",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist.to/easylist/easyprivacy.txt"
+      "url": "https://easylist.to/easylist/easyprivacy.txt",
+      "pack": []
     },
     {
       "vname": "Energized Basic",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://block.energized.pro/basic/formats/domains.txt"
+      "url": "https://block.energized.pro/basic/formats/domains.txt",
+      "pack": []
     },
     {
       "vname": "Energized Blu Go",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://block.energized.pro/bluGo/formats/domains.txt"
+      "url": "https://block.energized.pro/bluGo/formats/domains.txt",
+      "pack": []
     },
     {
       "vname": "Energized Blu",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://block.energized.pro/blu/formats/domains.txt"
+      "url": "https://block.energized.pro/blu/formats/domains.txt",
+      "pack": []
     },
     {
       "vname": "Energized Regional Extension",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://block.energized.pro/extensions/regional/formats/domains.txt"
+      "url": "https://block.energized.pro/extensions/regional/formats/domains.txt",
+      "pack": []
     },
     {
       "vname": "Energized Spark",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://block.energized.pro/spark/formats/domains.txt"
+      "url": "https://block.energized.pro/spark/formats/domains.txt",
+      "pack": []
     },
     {
       "vname": "Energized Ultimate",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://block.energized.pro/ultimate/formats/domains.txt"
+      "url": "https://block.energized.pro/ultimate/formats/domains.txt",
+      "pack": []
     },
     {
       "vname": "Energized Xtreme Extension",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://block.energized.pro/extensions/xtreme/formats/domains.txt"
+      "url": "https://block.energized.pro/extensions/xtreme/formats/domains.txt",
+      "pack": []
     },
     {
       "vname": "Fanboy's Annoyance List",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist.to/easylist/fanboy-annoyance.txt"
+      "url": "https://easylist.to/easylist/fanboy-annoyance.txt",
+      "pack": []
     },
     {
       "vname": "Fanboy's Enhanced Tracking List",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://fanboy.co.nz/enhancedstats.txt"
+      "url": "https://fanboy.co.nz/enhancedstats.txt",
+      "pack": []
     },
     {
       "vname": "Finnish Easylist Addition",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/finnish-easylist-addition/finnish-easylist-addition/master/Finland_adb.txt"
+      "url": "https://raw.githubusercontent.com/finnish-easylist-addition/finnish-easylist-addition/master/Finland_adb.txt",
+      "pack": []
     },
     {
       "vname": "Frellwit's Swedish Hosts File",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/lassekongo83/Frellwits-filter-lists/master/Frellwits-Swedish-Hosts-File.txt"
+      "url": "https://raw.githubusercontent.com/lassekongo83/Frellwits-filter-lists/master/Frellwits-Swedish-Hosts-File.txt",
+      "pack": []
     },
     {
       "vname": "GoodbyeAds (jerryn70)",
       "format": "hosts",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
-      "url": "https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Hosts/GoodbyeAds.txt"
+      "url": "https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Hosts/GoodbyeAds.txt",
+      "pack": []
     },
     {
       "vname": "HostsVN",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts"
+      "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts",
+      "pack": []
     },
     {
       "vname": "Hu Filter",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter.txt"
+      "url": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter.txt",
+      "pack": []
     },
     {
       "vname": "Latvian List",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://notabug.org/latvian-list/adblock-latvian/raw/master/lists/latvian-list.txt"
+      "url": "https://notabug.org/latvian-list/adblock-latvian/raw/master/lists/latvian-list.txt",
+      "pack": []
     },
     {
       "vname": "Ads & Tracking Extended (Lighswitch05)",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt"
+      "url": "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt",
+      "pack": []
     },
     {
       "vname": "Tracking Aggressive (Lightswitch05)",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://www.github.developerdan.com/hosts/lists/tracking-aggressive-extended.txt"
+      "url": "https://www.github.developerdan.com/hosts/lists/tracking-aggressive-extended.txt",
+      "pack": []
     },
     {
       "vname": "Liste AR",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist-downloads.adblockplus.org/Liste_AR.txt"
+      "url": "https://easylist-downloads.adblockplus.org/Liste_AR.txt",
+      "pack": []
     },
     {
       "vname": "Liste FR",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist-downloads.adblockplus.org/liste_fr.txt"
+      "url": "https://easylist-downloads.adblockplus.org/liste_fr.txt",
+      "pack": []
     },
     {
       "vname": "AdAway Blocking Hosts File for Japan",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/logroid/adaway-hosts/master/hosts_no_white.txt"
+      "url": "https://raw.githubusercontent.com/logroid/adaway-hosts/master/hosts_no_white.txt",
+      "pack": []
     },
     {
       "vname": "MVPS HOSTS",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "http://winhelp2002.mvps.org/hosts.txt"
+      "url": "http://winhelp2002.mvps.org/hosts.txt",
+      "pack": []
     },
     {
       "vname": "StevenBlack",
       "format": "hosts",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
-      "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+      "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
+      "pack": []
     },
     {
       "vname": "VeleSila (yhosts)",
       "format": "hosts",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
-      "url": "https://raw.githubusercontent.com/VeleSila/yhosts/master/hosts"
+      "url": "https://raw.githubusercontent.com/VeleSila/yhosts/master/hosts",
+      "pack": []
     },
     {
       "vname": "Tiuxo (ads)",
       "format": "hosts",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
-      "url": "https://raw.githubusercontent.com/tiuxo/hosts/master/ads"
+      "url": "https://raw.githubusercontent.com/tiuxo/hosts/master/ads",
+      "pack": []
     },
     {
       "vname": "No Facebook",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/jmdugan/blocklists/master/corporations/facebook/all"
+      "url": "https://raw.githubusercontent.com/jmdugan/blocklists/master/corporations/facebook/all",
+      "pack": []
     },
     {
       "vname": "No Google",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/nickspaargaren/no-google/master/wildcards-domains"
+      "url": "https://raw.githubusercontent.com/nickspaargaren/no-google/master/wildcards-domains",
+      "pack": []
     },
     {
       "vname": "NoTrack Tracker Blocklist",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt"
+      "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt",
+      "pack": []
     },
     {
       "vname": "NoTracking HostName",
       "format": "hosts",
       "group": "privacy",
       "subg": "notracking",
-      "url": "https://raw.githubusercontent.com/notracking/hosts-blocklists/master/hostnames.txt"
+      "url": "https://raw.githubusercontent.com/notracking/hosts-blocklists/master/hostnames.txt",
+      "pack": []
     },
     {
       "vname": "Perflyst's Smart TV Blocklist",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt"
+      "url": "https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt",
+      "pack": []
     },
     {
       "vname": "Peter Lowe",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://pgl.yoyo.org/as/serverlist.php?hostformat=domains&mimetype=plaintext"
+      "url": "https://pgl.yoyo.org/as/serverlist.php?hostformat=domains&mimetype=plaintext",
+      "pack": []
     },
     {
       "vname": "RU AdList",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist-downloads.adblockplus.org/advblock.txt"
+      "url": "https://easylist-downloads.adblockplus.org/advblock.txt",
+      "pack": []
     },
     {
       "vname": "Shalla's Blacklists (adv)",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/adv/domains"
+      "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/adv/domains",
+      "pack": []
     },
     {
       "vname": "Shalla's Blacklists (tracker)",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/tracker/domains"
+      "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/tracker/domains",
+      "pack": []
     },
     {
       "vname": "someonewhocares.org (Dan Pollock)",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://someonewhocares.org/hosts/hosts"
+      "url": "https://someonewhocares.org/hosts/hosts",
+      "pack": []
     },
     {
       "vname": "UncheckyAds",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts"
+      "url": "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts",
+      "pack": []
     },
     {
       "vname": "Personal Blocklist by WaLLy3K",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://v.firebog.net/hosts/static/w3kbl.txt"
+      "url": "https://v.firebog.net/hosts/static/w3kbl.txt",
+      "pack": []
     },
     {
       "vname": "WindowsSpyBlocker (CrazyMax)",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt"
+      "url": "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt",
+      "pack": []
     },
     {
       "vname": "YousList",
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/yous/YousList/master/youslist.txt"
+      "url": "https://raw.githubusercontent.com/yous/YousList/master/youslist.txt",
+      "pack": []
     },
     {
       "vname": "Alexa (Amazon)",
-      "format": "domains",
+      "format": "wildcard",
       "group": "privacy",
       "subg": "native",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/alexa"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/alexa",
+      "pack": []
     },
     {
       "vname": "Apple",
-      "format": "domains",
+      "format": "wildcard",
       "group": "privacy",
       "subg": "native",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/apple"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/apple",
+      "pack": []
     },
     {
       "vname": "Huawei",
-      "format": "domains",
+      "format": "wildcard",
       "group": "privacy",
       "subg": "native",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/huawei"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/huawei",
+      "pack": []
     },
     {
       "vname": "Roku",
-      "format": "domains",
+      "format": "wildcard",
       "group": "privacy",
       "subg": "native",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/roku"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/roku",
+      "pack": []
     },
     {
       "vname": "Samsung",
-      "format": "domains",
+      "format": "wildcard",
       "group": "privacy",
       "subg": "native",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/samsung"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/samsung",
+      "pack": []
     },
     {
       "vname": "Sonos",
-      "format": "domains",
+      "format": "wildcard",
       "group": "privacy",
       "subg": "native",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/sonos"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/sonos",
+      "pack": []
     },
     {
       "vname": "Windows",
-      "format": "domains",
+      "format": "wildcard",
       "group": "privacy",
       "subg": "native",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/windows"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/windows",
+      "pack": []
     },
     {
       "vname": "Xiaomi",
-      "format": "domains",
+      "format": "wildcard",
       "group": "privacy",
       "subg": "native",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi"
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi",
+      "pack": []
     },
     {
       "vname": "OISD (full)",
       "format": "domains",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
-      "url": "https://dbl.oisd.nl/"
+      "url": "https://dbl.oisd.nl/",
+      "pack": []
     },
     {
       "vname": "1Hosts (Xtra)",
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://badmojr.github.io/1Hosts/Xtra/domains.txt"
+      "url": "https://badmojr.github.io/1Hosts/Xtra/domains.txt",
+      "pack": []
     },
     {
       "vname": "Spotify Ads (GoodbyeAds)",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Spotify-AdBlock.txt"
+      "url": "https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Spotify-AdBlock.txt",
+      "pack": []
     },
     {
       "vname": "AVG + Avast (ftprivacy)",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/avg-avast-data-mining-full-block.txt"
+      "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/avg-avast-data-mining-full-block.txt",
+      "pack": []
     },
     {
       "vname": "Hola VPN (ftprivacy)",
       "format": "domains",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/hola-luminati-full-block.txt"
+      "url": "https://raw.githubusercontent.com/ftpmorph/ftprivacy/master/blocklists/hola-luminati-full-block.txt",
+      "pack": []
     },
     {
       "vname": "Combined Privacy Block Lists: Final (bongochong)",
       "format": "hosts",
       "group": "privacy",
       "subg": "notracking",
-      "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/newhosts-final.hosts"
+      "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/newhosts-final.hosts",
+      "pack": []
     },
     {
       "vname": "Torrent (The Block List Project)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://blocklistproject.github.io/Lists/torrent.txt"
+      "url": "https://blocklistproject.github.io/Lists/torrent.txt",
+      "pack": []
     },
     {
       "vname": "Drugs (The Block List Project)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "",
-      "url": "https://blocklistproject.github.io/Lists/drugs.txt"
+      "url": "https://blocklistproject.github.io/Lists/drugs.txt",
+      "pack": []
     },
     {
       "vname": "Ransomware (The Block List Project)",
-      "format": "domains",
+      "format": "hosts",
       "group": "security",
       "subg": "threat-intellgence-feeds",
-      "url": "https://blocklistproject.github.io/Lists/ransomware.txt"
+      "url": "https://blocklistproject.github.io/Lists/ransomware.txt",
+      "pack": []
     },
     {
       "vname": "TikTok (The Block List Project)",
-      "format": "domains",
+      "format": "hosts",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://blocklistproject.github.io/Lists/tiktok.txt"
+      "url": "https://blocklistproject.github.io/Lists/tiktok.txt",
+      "pack": []
     },
     {
       "vname": "Malware (The Block List Project)",
-      "format": "domains",
+      "format": "hosts",
       "group": "security",
       "subg": "",
-      "url": "https://blocklistproject.github.io/Lists/malware.txt"
+      "url": "https://blocklistproject.github.io/Lists/malware.txt",
+      "pack": []
     },
     {
       "vname": "Phishing (The Block List Project)",
-      "format": "domains",
+      "format": "hosts",
       "group": "security",
       "subg": "",
-      "url": "https://blocklistproject.github.io/Lists/phishing.txt"
+      "url": "https://blocklistproject.github.io/Lists/phishing.txt",
+      "pack": []
     },
     {
       "vname": "Ads (The Block List Project)",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://blocklistproject.github.io/Lists/ads.txt"
+      "url": "https://blocklistproject.github.io/Lists/ads.txt",
+      "pack": []
     },
     {
       "vname": "Cryptojacking (The Block List Project)",
       "format": "hosts",
       "group": "security",
       "subg": "cryptojacking",
-      "url": "https://blocklistproject.github.io/Lists/crypto.txt"
+      "url": "https://blocklistproject.github.io/Lists/crypto.txt",
+      "pack": []
     },
     {
       "vname": "Porn (The Block List Project)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
-      "url": "https://blocklistproject.github.io/Lists/porn.txt"
+      "url": "https://blocklistproject.github.io/Lists/porn.txt",
+      "pack": []
     },
     {
       "vname": "WhatsApp (The Block List Project)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://blocklistproject.github.io/Lists/whatsapp.txt"
+      "url": "https://blocklistproject.github.io/Lists/whatsapp.txt",
+      "pack": []
     },
     {
       "vname": "Vaping (The Block List Project)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "",
-      "url": "https://blocklistproject.github.io/Lists/vaping.txt"
+      "url": "https://blocklistproject.github.io/Lists/vaping.txt",
+      "pack": []
     },
     {
       "vname": "Piracy (The Block List Project)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "piracy",
-      "url": "https://blocklistproject.github.io/Lists/piracy.txt"
+      "url": "https://blocklistproject.github.io/Lists/piracy.txt",
+      "pack": []
     },
     {
       "vname": "Facebook (The Block List Project)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "services",
-      "url": "https://blocklistproject.github.io/Lists/facebook.txt"
+      "url": "https://blocklistproject.github.io/Lists/facebook.txt",
+      "pack": []
     },
     {
       "vname": "Gambling (The Block List Project)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "gambling",
-      "url": "https://blocklistproject.github.io/Lists/gambling.txt"
+      "url": "https://blocklistproject.github.io/Lists/gambling.txt",
+      "pack": []
     },
     {
       "vname": "The Block List Project Basic",
       "format": "hosts",
       "group": "privacy",
       "subg": "rethinkdns-recommended",
-      "url": "https://blocklistproject.github.io/Lists/basic.txt"
+      "url": "https://blocklistproject.github.io/Lists/basic.txt",
+      "pack": []
     },
     {
       "vname": "The Block List Project Full",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://blocklistproject.github.io/Lists/everything.txt"
+      "url": "https://blocklistproject.github.io/Lists/everything.txt",
+      "pack": []
     }
   ]
 }
