@@ -133,7 +133,7 @@
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
-      "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/0.0.0.0/hosts",
+      "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/mobile/hosts",
       "pack": []
     },
     {
@@ -462,7 +462,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://www.malwaredomainlist.com/hostslist/hosts.txt",
-      "pack": []
+      "pack": ["deprecated"]
     },
     {
       "vname": "Security (StevenBlack)",
@@ -477,7 +477,7 @@
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts_without_controversies.txt",
+      "url": "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt",
       "pack": []
     },
     {
@@ -486,7 +486,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://mirror1.malwaredomains.com/files/justdomains",
-      "pack": []
+      "pack": ["deprecated"]
     },
     {
       "vname": "Malware (Disconnect.me)",
@@ -494,7 +494,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt",
-      "pack": []
+      "pack": ["deprecated"]
     },
     {
       "vname": "Phishing.Army",
@@ -558,7 +558,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://mirror.cedia.org.ec/malwaredomains/immortal_domains.txt",
-      "pack": []
+      "pack": ["deprecated"]
     },
     {
       "vname": "Bad lists (ethanr)",
@@ -670,7 +670,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/maze.txt",
-      "pack": ["disintegrated"]
+      "pack": ["try again"]
     },
     {
       "vname": "Malware Ekans (rescure.fruxlabs.com)",
@@ -678,7 +678,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/ekans.txt",
-      "pack": []
+      "pack": ["try again"]
     },
     {
       "vname": "Malware Wastedlocker (rescure.fruxlabs.com)",
@@ -686,7 +686,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/wastedlocker.txt",
-      "pack": []
+      "pack": ["try again"]
     },
     {
       "vname": "Malware domains (blocklist.cyberthreatcoalition.org)",
@@ -694,7 +694,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://blocklist.cyberthreatcoalition.org/vetted/domain.txt",
-      "pack": []
+      "pack": ["try again"]
     },
     {
       "vname": "Malicious domains (Sophos Labs)",
@@ -726,7 +726,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://managedsentinel.com/downloads/covid19_domains.txt",
-      "pack": []
+      "pack": ["deprecated"]
     },
     {
       "vname": "hole.cert.pl",
@@ -782,7 +782,7 @@
       "group": "privacy",
       "subg": "",
       "url": "https://280blocker.net/files/280blocker_domain.txt",
-      "pack": []
+      "pack": ["deprecated"]
     },
     {
       "vname": "ABPindo",
@@ -926,7 +926,7 @@
       "group": "privacy",
       "subg": "",
       "url": "https://easylist-downloads.adblockplus.org/easylistchina.txt",
-      "pack": []
+      "pack": ["deprecated"]
     },
     {
       "vname": "EasyList Czech and Slovak",
@@ -966,7 +966,7 @@
       "group": "privacy",
       "subg": "",
       "url": "https://easylist-downloads.adblockplus.org/easylistitaly.txt",
-      "pack": []
+      "pack": ["try again"]
     },
     {
       "vname": "EasyList Lithuania",
@@ -1145,11 +1145,11 @@
       "pack": []
     },
     {
-      "vname": "AdAway Blocking Hosts File for Japan",
+      "vname": "AdAway Blocklist for Japan (logroid)",
       "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/logroid/adaway-hosts/master/hosts_no_white.txt",
+      "url": "https://raw.githubusercontent.com/logroid/adaway-hosts/master/hosts.txt",
       "pack": []
     },
     {
@@ -1428,7 +1428,7 @@
       "vname": "Ransomware (The Block List Project)",
       "format": "hosts",
       "group": "security",
-      "subg": "threat-intellgence-feeds",
+      "subg": "threat-intelligence-feeds",
       "url": "https://blocklistproject.github.io/Lists/ransomware.txt",
       "pack": []
     },
@@ -1529,11 +1529,11 @@
       "pack": []
     },
     {
-      "vname": "The Block List Project Full",
+      "vname": "Strict No Porn (Clefspeare13)",
       "format": "hosts",
-      "group": "privacy",
-      "subg": "",
-      "url": "https://blocklistproject.github.io/Lists/everything.txt",
+      "group": "parentalcontrol",
+      "subg": "porn",
+      "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/strict/0.0.0.0/hosts",
       "pack": []
     }
   ]

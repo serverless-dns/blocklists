@@ -3,7 +3,7 @@ This repository is a collection of DNS-based blocklists that can be set at [reth
 **To add a new blocklist** fork and edit [blocklistConfig.json](https://github.com/serverless-dns/rethink-blocklist-metadata/blob/main/blocklistConfig.json), and a new entry which looks like this:
 
 ```json
-    {    
+    {
         "vname": "OISD (full)",
         "format": "domains",
         "group": "privacy",
@@ -22,7 +22,7 @@ This repository is a collection of DNS-based blocklists that can be set at [reth
     * current in-use groups are: `privacy`, `security`, `parentalcontrol`.
 4. `subg`
     * a string, further buckets blocklists into a sub-group within a group.
-    * examples of some sub-groups: `gambling`, `dating`, `piracy`, `porn`, `social-networks`, `affiliate-tracking-domain`, `threat-intelligence-feeds`. 
+    * examples of some sub-groups: `gambling`, `dating`, `piracy`, `porn`, `social-networks`, `affiliate-tracking-domain`, `threat-intelligence-feeds`.
     * may be empty, but preferably not.
 
 5. `url`
@@ -36,16 +36,14 @@ If you're a developer looking to experiment with the code-base or generate your 
 
 1. Download blocklist files.
     ```python
-        # install a required dependency
-        python -m pip install requests
         # this python-script parses `blocklistConfig.json` and downloads corresponding
         # blocklists in to `./blocklistfiles` directory.
-        python download.py
+        python3 download.py
     ```
-2. Create and upload to S3; a compressed, compact radix-trie of domains present in downloaded blocklists.    
-    ```shell        
+2. Create and upload to S3; a compressed, compact radix-trie of domains present in downloaded blocklists.
+    ```shell
         # this nodejs script parses downloaded files in the ./blocklistfiles directory to create
-        # a compressed, compact radix-trie and related files in the ./result directory.        
+        # a compressed, compact radix-trie and related files in the ./result directory.
         node --max-old-space-size=12288 build.js
     ```
 3. Upload to S3
@@ -63,4 +61,4 @@ If you're a developer looking to experiment with the code-base or generate your 
         # this nodejs script uploads compact radix-trie files in ./result directory to the specified S3 bucket.
         node upload.js
     ```
-    
+
