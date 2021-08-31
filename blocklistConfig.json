@@ -1441,43 +1441,11 @@
       "pack": []
     },
     {
-      "vname": "Malware (The Block List Project)",
-      "format": "hosts",
-      "group": "security",
-      "subg": "",
-      "url": "https://blocklistproject.github.io/Lists/malware.txt",
-      "pack": []
-    },
-    {
-      "vname": "Phishing (The Block List Project)",
-      "format": "hosts",
-      "group": "security",
-      "subg": "",
-      "url": "https://blocklistproject.github.io/Lists/phishing.txt",
-      "pack": []
-    },
-    {
-      "vname": "Ads (The Block List Project)",
-      "format": "hosts",
-      "group": "privacy",
-      "subg": "",
-      "url": "https://blocklistproject.github.io/Lists/ads.txt",
-      "pack": []
-    },
-    {
       "vname": "Cryptojacking (The Block List Project)",
       "format": "hosts",
       "group": "security",
       "subg": "cryptojacking",
       "url": "https://blocklistproject.github.io/Lists/crypto.txt",
-      "pack": []
-    },
-    {
-      "vname": "Porn (The Block List Project)",
-      "format": "hosts",
-      "group": "parentalcontrol",
-      "subg": "porn",
-      "url": "https://blocklistproject.github.io/Lists/porn.txt",
       "pack": []
     },
     {
@@ -1518,14 +1486,6 @@
       "group": "parentalcontrol",
       "subg": "gambling",
       "url": "https://blocklistproject.github.io/Lists/gambling.txt",
-      "pack": []
-    },
-    {
-      "vname": "The Block List Project Basic",
-      "format": "hosts",
-      "group": "privacy",
-      "subg": "rethinkdns-recommended",
-      "url": "https://blocklistproject.github.io/Lists/basic.txt",
       "pack": []
     },
     {
