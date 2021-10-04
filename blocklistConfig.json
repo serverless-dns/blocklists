@@ -134,7 +134,7 @@
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/mobile/hosts",
-      "pack": ["try again"]
+      "pack": []
     },
     {
       "vname": "Porn (Mahadi Xion)",
@@ -694,7 +694,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://blocklist.cyberthreatcoalition.org/vetted/domain.txt",
-      "pack": ["try again"]
+      "pack": []
     },
     {
       "vname": "Malicious domains (Sophos Labs)",
@@ -966,7 +966,7 @@
       "group": "privacy",
       "subg": "",
       "url": "https://easylist-downloads.adblockplus.org/easylistitaly.txt",
-      "pack": ["try again"]
+      "pack": []
     },
     {
       "vname": "EasyList Lithuania",
@@ -1158,7 +1158,7 @@
       "group": "privacy",
       "subg": "",
       "url": "http://winhelp2002.mvps.org/hosts.txt",
-      "pack": []
+      "pack": ["try again"]
     },
     {
       "vname": "StevenBlack",
@@ -1494,7 +1494,7 @@
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/strict/0.0.0.0/hosts",
-      "pack": ["try again"]
+      "pack": []
     }
   ]
 }
