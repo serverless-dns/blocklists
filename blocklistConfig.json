@@ -134,7 +134,7 @@
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/mobile/hosts",
-      "pack": []
+      "pack": ["try again"]
     },
     {
       "vname": "Porn (Mahadi Xion)",
@@ -1494,7 +1494,7 @@
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/strict/0.0.0.0/hosts",
-      "pack": []
+      "pack": ["try again"]
     }
   ]
 }
