@@ -1501,7 +1501,7 @@
       "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://block.energized.pro/unified/formats/hosts.txt",
+      "url": "https://block.energized.pro/unified/formats/domains.txt",
       "pack": []
     }
   ]
