@@ -638,7 +638,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://infosec.cert-pa.it/analyze/listdomains.txt",
-      "pack": []
+      "pack": ["try again"]
     },
     {
       "vname": "Toxic domains (stopforumspam.com)",
@@ -670,7 +670,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/maze.txt",
-      "pack": ["try again"]
+      "pack": ["deprecated"]
     },
     {
       "vname": "Malware Ekans (rescure.fruxlabs.com)",
@@ -678,7 +678,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/ekans.txt",
-      "pack": ["try again"]
+      "pack": ["deprecated"]
     },
     {
       "vname": "Malware Wastedlocker (rescure.fruxlabs.com)",
@@ -686,7 +686,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/wastedlocker.txt",
-      "pack": ["try again"]
+      "pack": ["deprecated"]
     },
     {
       "vname": "Malware domains (blocklist.cyberthreatcoalition.org)",
@@ -926,7 +926,7 @@
       "group": "privacy",
       "subg": "",
       "url": "https://easylist-downloads.adblockplus.org/easylistchina.txt",
-      "pack": ["deprecated"]
+      "pack": []
     },
     {
       "vname": "EasyList Czech and Slovak",
@@ -1158,7 +1158,7 @@
       "group": "privacy",
       "subg": "",
       "url": "http://winhelp2002.mvps.org/hosts.txt",
-      "pack": ["try again"]
+      "pack": []
     },
     {
       "vname": "StevenBlack",
@@ -1495,6 +1495,14 @@
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/strict/0.0.0.0/hosts",
       "pack": ["try again"]
+    },    
+    {
+      "vname": "Energized Unified",
+      "format": "domains",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://block.energized.pro/unified/formats/hosts.txt",
+      "pack": []
     }
   ]
 }
