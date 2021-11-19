@@ -1511,6 +1511,14 @@
         "subg": "",
         "url": "https://raw.githubusercontent.com/mtxadmin/ublock/master/hosts.txt",
         "pack": []
-    }    
+    },
+    {
+        "vname": "Peter Lowe’s Ad and tracking server list",
+        "format": "hosts",
+        "group": "privacy",
+        "subg": "",
+        "url": "https://pgl.yoyo.org/as/serverlist.php?showintro=0;hostformat=hosts",
+        "pack": []
+    }
   ]
 }
