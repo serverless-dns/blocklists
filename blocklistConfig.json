@@ -694,7 +694,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://blocklist.cyberthreatcoalition.org/vetted/domain.txt",
-      "pack": []
+      "pack": ["deprecated"]
     },
     {
       "vname": "Malicious domains (Sophos Labs)",
@@ -718,7 +718,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/covid.txt",
-      "pack": []
+      "pack": ["try again"]
     },
     {
       "vname": "Covid-19 Domains (managedsentinel.com)",

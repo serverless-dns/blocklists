@@ -11,10 +11,10 @@ async function upload() {
         var uploadFileKey = Date.now()
         if (process.env.AWS_ACCESS_KEY != undefined && process.env.AWS_SECRET_ACCESS_KEY != undefined && process.env.AWS_BUCKET_NAME != undefined) {
             console.log("Uploading file to S3")
-            let aw1 = uploadToS3("./result/td.txt", "completeblocklist/" + uploadFileKey + "/td.txt")
-            let aw2 = uploadToS3("./result/rd.txt", "completeblocklist/" + uploadFileKey + "/rd.txt")
-            let aw3 = uploadToS3("./result/basicconfig.json", "completeblocklist/" + uploadFileKey + "/basicconfig.json")
-            let aw4 = uploadToS3("./result/filetag.json", "completeblocklist/" + uploadFileKey + "/filetag.json")
+            let aw1 = uploadToS3("./result/td.txt", "blocklists/" + uploadFileKey + "/td.txt")
+            let aw2 = uploadToS3("./result/rd.txt", "blocklists/" + uploadFileKey + "/rd.txt")
+            let aw3 = uploadToS3("./result/basicconfig.json", "blocklists/" + uploadFileKey + "/basicconfig.json")
+            let aw4 = uploadToS3("./result/filetag.json", "blocklists/" + uploadFileKey + "/filetag.json")
             await Promise.all([aw1, aw2, aw3, aw4]);
         }
         else {
