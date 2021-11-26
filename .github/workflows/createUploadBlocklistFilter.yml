@@ -7,9 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    steps:      
+    steps:
     - name: checkout repo content
       uses: actions/checkout@v2
+    - name: setup inputs
+      run: |
+        RESDIR="result"
+        S3BL="blocklists"
+        echo "OUTDIR=${RESDIR}" >> $GITHUB_ENV
+        echo "S3DIR=${S3BL}" >> $GITHUB_ENV
     - name: setup python
       uses: actions/setup-python@v2
       with:
@@ -24,21 +30,27 @@ jobs:
         python download.py
     - name: Build blocklist filter using node
       run: |
-        mkdir -p result
-        node --max-old-space-size=12288 build.js      
+        mkdir -p "$OUTDIR"
+        node --max-old-space-size=12288 build.js
+      env:
+        OUTDIR: ${{ env.OUTDIR}}
     - name: Split td in 20M slices
       run: |
         # creates td00.txt, td01.txt, ... , td98.txt, td99.txt, td100.txt, ...
-        cd result && split -b20000000 -d --additional-suffix=.txt ./result/td.txt td
-        ls # list files
+        cd "$OUTDIR" && split -b20000000 -d --additional-suffix=.txt td.txt td
+        ls -lhtr # list files
+      env:
+        OUTDIR: ${{ env.OUTDIR }}
     - name: Upload blocklist to aws s3
+      run: |
+        npm install aws-sdk
+        node upload.js
       env:
         AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
-      run: |
-        npm install aws-sdk
-        node upload.js       
-        
+        S3DIR: ${{ env.S3DIR }}
+        OUTDIR: ${{ env.OUTDIR }}
+
     
 
