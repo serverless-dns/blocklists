@@ -3,10 +3,10 @@ const fs = require("fs")
 const path = require("path")
 
 const cwd = "."
-const outdir = "result"
+const outdir = process.env.OUTDIR
 
 const s3bucket = process.env.AWS_BUCKET_NAME
-const s3dir = "blocklists"
+const s3dir = process.env.S3DIR
 const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
@@ -62,10 +62,11 @@ async function toS3(f, key) {
 
 (async function() {
     try {
-        if (empty(process.env.AWS_ACCESS_KEY) ||
-                    empty(process.env.AWS_SECRET_ACCESS_KEY) ||
-                    empty(process.env.AWS_BUCKET_NAME)) {
-            console.log("one/all of access-key, secret-key, s3-bucket missing")
+        if (empty(process.env.AWS_ACCESS_KEY) || empty(process.env.AWS_SECRET_ACCESS_KEY)) {
+            console.log("access / secret keys not found")
+        }
+        if (empty(s3bucket) || empty(s3dir) || empty(outdir)) {
+            console.log("missing: s3-bucket / s3dir / outdir", s3bucket, s3dir, outdir)
             return
 	    }
 
