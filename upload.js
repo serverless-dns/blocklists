@@ -1,46 +1,81 @@
-var AWS = require('aws-sdk');
-const fs = require('fs');
-var awsBucketName = process.env.AWS_BUCKET_NAME
+const AWS = require('aws-sdk')
+const fs = require('fs')
+const path = require('path)
+
+const cwd = "."
+const outdir = "result"
+
+const s3bucket = process.env.AWS_BUCKET_NAME
+const s3dir = "blocklists"
 const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
+const version = Date.now()
+
+function empty(str) {
+    return !str
+}
+
+function s3path(x) {
+    return s3dir + "/" + version + "/" + (empty(x)) ? "" : x
+}
+    
+function localpath(x) {
+    return (empty(x)) ? path.normalize(path.join(cwd, outdir)) :
+            path.normalize(path.join(cwd, outdir, x))
+}
+
+// td is split into 20M parts: td00.txt, td01.txt, ... , td99.txt, td100.txt, td101.txt, ...
+// github.com/serverless-dns/blocklists/blob/8a6d11734ca/.github/workflows/createUploadBlocklistFilter.yml#L32
+// Uploads files in localpath
 async function upload() {
-    try {
-        var uploadFileKey = Date.now()
-        if (process.env.AWS_ACCESS_KEY != undefined && process.env.AWS_SECRET_ACCESS_KEY != undefined && process.env.AWS_BUCKET_NAME != undefined) {
-            console.log("Uploading file to S3")
-            let aw1 = uploadToS3("./result/td.txt", "blocklists/" + uploadFileKey + "/td.txt")
-            let aw2 = uploadToS3("./result/rd.txt", "blocklists/" + uploadFileKey + "/rd.txt")
-            let aw3 = uploadToS3("./result/basicconfig.json", "blocklists/" + uploadFileKey + "/basicconfig.json")
-            let aw4 = uploadToS3("./result/filetag.json", "blocklists/" + uploadFileKey + "/filetag.json")
-            await Promise.all([aw1, aw2, aw3, aw4]);
+    const files = await fs.promises.readdir(localpath())
+
+    const reqs = []
+    for (const fname of files) {
+        const fp = localpath(fname)
+        const fst = await fs.promises.stat(fp)
+        if (!fst.isFile()) {
+            console.log(fp, "not a file")
+            continue
         }
-        else {
-            console.log("AWS access key or secret key or bucket name undefined")
-            console.log("Files not uploaded to s3")
-        }
+
+        reqs.push(toS3(fp, s3path(fname)))
     }
-    catch(e){
-        console.log(e.stack)
-		node: process.exit(1)
-    }
+
+    return Promise.all(reqs)
 }
 
-async function uploadToS3(fileName, key) {
-    var readstream = fs.createReadStream(fileName)
-    console.log("File Uploading To : " + key)
-    const params = {
-        Bucket: awsBucketName,
+async function toS3(f, key) {
+    const fin = fs.createReadStream(f)
+    const r = {
+        Bucket: s3bucket,
         Key: key,
-        Body: readstream,
+        Body: fin,
         ACL: 'public-read'
-    };
-    s3.upload(params, function (s3Err, data) {
-        if (s3Err) throw s3Err
-        console.log(`File uploaded successfully at ${data.Location}`)
-    });
+    }
+    console.log("uploading", f, "to", key)
+    return s3.upload(r).promise();
 }
 
-upload()
+(async function() {
+    try {
+        if (empty(process.env.AWS_ACCESS_KEY) ||
+                    empty(process.env.AWS_SECRET_ACCESS_KEY) ||
+                    empty(process.env.AWS_BUCKET_NAME)) {
+            console.log("one/all of access-key, secret-key, s3-bucket missing")
+            return
+	    }
+
+        console.log("upload from", localpath(), "to", s3path())
+
+	    const ans = await upload()
+
+        console.log("finished", ans)
+    } catch (e) {
+        console.log(e)
+        node: process.exit(1)
+    }
+})()
