@@ -24,8 +24,13 @@ jobs:
         python download.py
     - name: Build blocklist filter using node
       run: |
-        mkdir result
-        node --max-old-space-size=12288 build.js        
+        mkdir -p result
+        node --max-old-space-size=12288 build.js      
+    - name: Split td in 20M slices
+      run: |
+        # creates td00.txt, td01.txt, ... , td98.txt, td99.txt, td100.txt, ...
+        cd result && split -b20000000 -d --additional-suffix=.txt ./result/td.txt td
+        ls # list files
     - name: Upload blocklist to aws s3
       env:
         AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
