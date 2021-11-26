@@ -10,7 +10,7 @@ const s3dir = "blocklists"
 const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-});
+})
 
 const version = Date.now()
 
@@ -57,7 +57,7 @@ async function toS3(f, key) {
         ACL: 'public-read'
     }
     console.log("uploading", f, "to", key)
-    return s3.upload(r).promise();
+    return s3.upload(r).promise()
 }
 
 (async function() {
@@ -76,6 +76,6 @@ async function toS3(f, key) {
         console.log("finished", ans)
     } catch (e) {
         console.log(e)
-        node: process.exit(1)
+        process.exitCode = 1
     }
 })()
