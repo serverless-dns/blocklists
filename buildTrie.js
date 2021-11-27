@@ -513,8 +513,8 @@ function nodeCountFromEncodedDataIfExists(bits, defaultValue) {
  * The rank directory allows you to build an index to quickly compute the rank
  * and select functions. The index can itself be encoded as a binary string.
  */
-function RankDirectory(directoryData, bitData, numBits, l1Size, l2Size, valueDirData) {
-    this.init(directoryData, bitData, numBits, l1Size, l2Size, valueDirData);
+function RankDirectory(directoryData, bitData, numBits, l1Size, l2Size) {
+    this.init(directoryData, bitData, numBits, l1Size, l2Size);
 }
 
 /**
@@ -545,7 +545,6 @@ RankDirectory.Create = function (data, nodeCount, l1Size, l2Size) {
     let valuesIndex = numBits + (bitCount * nodeCount);
 
     let directory = new BitWriter();
-    let valueDir = new BitWriter();
 
     if (config.selectsearch === false) {
         while (p + l2Size <= numBits) {
@@ -574,42 +573,13 @@ RankDirectory.Create = function (data, nodeCount, l1Size, l2Size) {
         }
     }
 
-    const bitslenindex = Math.ceil(Math.log2(nodeCount));
-    const bitslenpos = Math.ceil(Math.log2(bits.length - valuesIndex));
-    const bitslenvalue = 16;
-
-    // 0th pos is 0.
-    valueDir.write(0, bitslenpos);
-    let j = 1;
-    let insp = []
-    for (let i = valuesIndex, b = valuesIndex; (i + bitslenindex + bitslenvalue) < bits.length;) {
-        const currentIndex = bits.get(i, bitslenindex);
-        if (config.inspect) insp.push(currentIndex);
-        const currentValueHeader = bits.get(i + bitslenindex, bitslenvalue);
-        // include +1 for the header in currentValueLength
-        const currentValueLength = (countSetBits(currentValueHeader) + 1) * bitslenvalue;
-        const pos = (currentIndex / V1) | 0;
-        // for all positions less than or equal to j, fill it with
-        // the previous index, except at pos 0
-        while (pos != 0 && pos >= j) {
-            b = (pos === j) ? i : b;
-            const v = b - valuesIndex;
-            valueDir.write(v, bitslenpos);
-            j += 1;
-            if (config.debug && pos === j) console.debug(j, v, currentIndex);
-        }
-        i += currentValueLength + bitslenindex;
-    }
-    if (config.inspect) console.log(insp)
-
-    return new RankDirectory(directory.getData(), data, numBits, l1Size, l2Size, valueDir.getData());
+    return new RankDirectory(directory.getData(), data, numBits, l1Size, l2Size);
 };
 
 RankDirectory.prototype = {
 
-    init: function (directoryData, trieData, numBits, l1Size, l2Size, valueDir) {
+    init: function (directoryData, trieData, numBits, l1Size, l2Size) {
         this.directory = new BitString(directoryData);
-        if (valueDir) this.valueDir = new BitString(valueDir);
         this.data = new BitString(trieData);
         this.l1Size = l1Size;
         this.l2Size = l2Size;
@@ -1683,7 +1653,14 @@ async function build(blocklist, filesystem, savelocation, tag_dict, basicconfig)
 
     console.log("Test Blocklist Filter")
 
-    let dnlist = ["sg-ssl.effectivemeasure.net", "staging.connatix.com", "ads.redlightcenter.com", "oascentral.chicagobusiness.com", "simpsonitos.com", "putlocker.fyi", "celzero.com"]
+    let dnlist = [
+            "sg-ssl.effectivemeasure.net",
+            "staging.connatix.com",
+            "ads.redlightcenter.com",
+            "oascentral.chicagobusiness.com",
+            "simpsonitos.com",
+            "putlocker.fyi",
+            "celzero.com"]
     for (let domainname of dnlist) {
         let ts = TxtEnc.encode(domainname).reverse()
         let serresult = ft.lookup(ts)
