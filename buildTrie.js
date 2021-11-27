@@ -1077,7 +1077,7 @@ Trie.prototype = {
             // fixes bug if words not inserted in alphabetical order
             // but it is slow, so we do not use it
             /*let isLetterExist = false;
-            for ( var j = 0; j < node.children.length; j++ ) {
+            for (let j = 0; j < node.children.length; j++) {
                 if (node.children[j].letter == word[i]) {
                     this.cache.push(node.children[j]);
                     node = node.children[j];
@@ -1786,16 +1786,13 @@ function lex(a, b) {
     return lendiff;
 }
 
-var sbb32r, anb32r, adb32r, madb32r, yhb32r, vnb32r, allb32r, dblb32r, enb32r;
-var t, td, rd, ft;
-var tag, fl;
 
 async function build(blocklist, filesystem, savelocation, tag_dict, basicconfig) {
 
     let nodeCount = 0;
     // in key:value pair, key cannot be anything that coerces to boolean false
-    tag = {}
-    fl = []
+    let tag = {}
+    let fl = []
     for (t in tag_dict) {
         if (!tag_dict.hasOwnProperty(t)) continue;
         fl[tag_dict[t].value] = t
@@ -1805,12 +1802,12 @@ async function build(blocklist, filesystem, savelocation, tag_dict, basicconfig)
     }
     initialize();
 
-    t = new Trie()
+    let t = new Trie()
     t.setupFlags(fl)
 
+    let allb32r = [];
     try {
-        allb32r = []
-        var tmplist = []
+        let tmplist = []
         let filecount = 0
         let linecount = 0
         let totallinecount = 0
@@ -1819,10 +1816,10 @@ async function build(blocklist, filesystem, savelocation, tag_dict, basicconfig)
             linecount = 0
             let namesplit = filepath.split("/")
             let smallname = namesplit[namesplit.length - 1].split(".")[0]
-            var fileData = filesystem.readFileSync(filepath, 'utf8');
+            let fileData = filesystem.readFileSync(filepath, 'utf8');
             if (fileData.length > 1) {
                 console.log("adding: " + filepath, smallname + " <-file | tag-> "+tag[smallname])
-                var filelist = []
+                let filelist = []
                 for (let line of fileData.split("\n")) {
                     linecount++
                     line = line.trim()
@@ -1835,8 +1832,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict, basicconfig)
                     tag_dict[smallname].show = 1
                 }
                 filecount = filecount + 1
-            }
-            else {
+            } else {
                 console.log("empty file", filepath)
             }
         }
@@ -1853,12 +1849,12 @@ async function build(blocklist, filesystem, savelocation, tag_dict, basicconfig)
     console.log("Building Trie")
     const start = new Date().getTime();
     allb32r.forEach(s => t.insert(s));
-    td = t.encode();
+    let td = t.encode();
     nodeCount = t.getNodeCount();
     console.log("Node count: " + nodeCount)
-    rd = RankDirectory.Create(td, nodeCount, L1, L2);
+    let rd = RankDirectory.Create(td, nodeCount, L1, L2);
 
-    ft = new FrozenTrie(td, rd, nodeCount)
+    let ft = new FrozenTrie(td, rd, nodeCount)
     const end = new Date().getTime();
 
     console.log("time (ms) spent creating blocklist: ", end - start);
