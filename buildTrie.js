@@ -23,8 +23,6 @@ let config = {
     write16: true,
     // valueNode encodes "value" of arbitar length in the leafnodes
     valueNode: true,
-    // transform all inputs in to / out of trie to base32
-    base32: false,
     // unimplemented: store metadata about the trie in the trie itself
     storeMeta: false,
 }
@@ -109,14 +107,10 @@ const V1 = 64;
 const MFIELDBITS = 30;
 const TxtEnc = new TextEncoder();
 const TxtDec = new TextDecoder();
-// DELIM to tag elements in the trie, shouldn't be a valid base32 char
+// DELIM shouldn't be a valid base32 char
 const DELIM = "#";
 // utf8 encoded delim for non-base32/64
 const ENC_DELIM = TxtEnc.encode(DELIM);
-// As ddict approachs 1, better perf at cost of higher memory usage
-let DDICT = 50;
-// Max unicode char-code of a base32 string (which is 122).
-const MAXB32CHARCODE = 127;
 
 /**
  * The BitWriter will create a stream of bytes, letting you write a certain
@@ -769,7 +763,7 @@ function Trie() {
 Trie.prototype = {
     init: function () {
         this.previousWord = "";
-        this.root = (config.base32) ? new TrieNode('0') : new TrieNode([0]); // any letter would do nicely
+        this.root = new TrieNode([0]); // any letter would do nicely
         this.cache = [this.root];
         this.nodeCount = 1;
         this.invoke = 0;
@@ -897,13 +891,11 @@ Trie.prototype = {
                 // flag-node is present, so slice it out
                 node.children = node.children.slice(1);
                 node.flag = false;
-                this.nodeCount -= ((config.base32) ? base32.encode(first.letter).length : first.letter.length * 2);
+                this.nodeCount -= (first.letter.length * 2);
                 return;
             }
 
-            if (config.base32 === false) {
-                flag = TxtDec.decode(flag);
-            }
+            flag = TxtDec.decode(flag);
             val = this.flags[flag];
             //this.sset.add({v: val, f: flag})
             if (typeof (val) === "undefined") {
@@ -925,14 +917,12 @@ Trie.prototype = {
             fnode = flagNode;
         } else {
             if (!flag || flag.length === 0) {
-                this.nodeCount -= ((config.base32) ? base32.encode(node.flag).length : node.flag.length * 2);
+                this.nodeCount -= (node.flag.length * 2);
                 node.flag = undefined;
                 return;
             }
 
-            if (config.base32 === false) {
-                flag = TxtDec.decode(flag);
-            }
+            flag = TxtDec.decode(flag);
             val = this.flags[flag];
             if (typeof (val) === "undefined") {
                 // todo: error out?
@@ -953,7 +943,7 @@ Trie.prototype = {
         const index = ((val / 16) | 0) // + 1;
         const pos = val % 16;
 
-        const resnodesize = (!newlyAdded) ? ((config.base32) ? base32.encode(res).length : res.length * 2) : 0;
+        const resnodesize = (!newlyAdded) ? (res.length * 2) : 0;
 
         let h = DEC16(res[header]);
         // Fetch the actual tail index position in the character string from the
@@ -980,7 +970,7 @@ Trie.prototype = {
 
         res = CHR16(h) + res.slice(1, dataIndex) + CHR16(n) + res.slice(upsertData ? (dataIndex + 1) : dataIndex);
 
-        const newresnodesize = ((config.base32) ? base32.encode(res).length : res.length * 2);
+        const newresnodesize = (res.length * 2);
 
         this.nodeCount = this.nodeCount - resnodesize + newresnodesize;
 
@@ -998,7 +988,7 @@ Trie.prototype = {
      */
     insert: function (word) {
 
-        const index = (config.base32) ? word.lastIndexOf(DELIM) : word.lastIndexOf(ENC_DELIM[0]);
+        const index = word.lastIndexOf(ENC_DELIM[0]);
         const flag = word.slice(index + 1);
         word = word.slice(0, index);
 
@@ -1196,13 +1186,11 @@ Trie.prototype = {
                 if (typeof (flagNode.letter) === "undefined" || typeof (flagNode) === "undefined") {
                     console.log("flagnode letter undef ", flagNode, " node ", node);
                 }
-                const encValue = (config.base32) ?
-                    base32.encode(flagNode.letter) :
-                    new BitString(flagNode.letter).encode(8);
+                const encValue = new BitString(flagNode.letter).encode(8);
                 flen = encValue.length;
                 for (let i = 0; i < encValue.length; i++) {
                     const l = encValue[i];
-                    const aux = config.base32 ? new TrieNode2(l) : new TrieNode2([l]);
+                    const aux = new TrieNode2([l]);
                     aux.flag = true;
                     level.push(aux);
                 }
@@ -1214,7 +1202,7 @@ Trie.prototype = {
                 if (config.inspect) inspect[current.letter.length] = (inspect[current.letter.length + flen] | 0) + 1;
                 for (let j = 0; j < current.letter.length - 1; j++) {
                     const l = current.letter[j]
-                    const aux = config.base32 ? new TrieNode2(l) : new TrieNode2([l]);
+                    const aux = new TrieNode2([l]);
                     aux.compressed = true
                     level.push(aux)
                 }
@@ -1234,18 +1222,17 @@ Trie.prototype = {
     },
 
     /**
-     * Encode the trie and all of its nodes. Returns a string representing the
-     * encoded data.
+     * Encode the trie and all of its nodes in a bit-string.
      */
-    encode: function () {
-        // base32 => 5 bits per char, +2 bits node metadata
-        // utf8   => 8 bits per char, +2 bits node metadata
-        // final-node:      0x20 => 001 0 0000 | 0x100 => 0001 0000 0000
+    encode: function() {
+        // base32 (legacy) => 5 bits per char, +2 bits node metadata
+        // utf8 (new)      => 8 bits per char, +2 bits node metadata
+        // final-node     : 0x20 => 001 0 0000 | 0x100 => 0001 0000 0000
         // compressed-node: 0x40 => 010 0 0000 | 0x200 => 0010 0000 0000
         // flag/value-node: 0x60 => 011 0 0000 | 0x300 => 0011 0000 0000
-        const finalMask = (config.base32) ? 0x20 : 0x100;
-        const compressedMask = (config.base32) ? 0x40 : 0x200;
-        const flagMask = (config.base32) ? 0x60 : 0x300;
+        const finalMask = 0x100;
+        const compressedMask = 0x200;
+        const flagMask = 0x300;
         this.invoke += 1;
         // Write the unary encoding of the tree in level order.
         let bits = new BitWriter();
@@ -1255,7 +1242,7 @@ Trie.prototype = {
 
         bits.write(0x02, 2);
 
-        this.stats = { children: 0, single: new Array(config.base32 ? 32 : 256).fill(0) }
+        this.stats = { children: 0, single: new Array(256).fill(0) }
         let start = new Date().getTime();
         const levelorder = this.levelorder();
         const level = levelorder.level;
@@ -1280,7 +1267,7 @@ Trie.prototype = {
             bits.write(0, 1);
             if (config.compress && !config.unroll) {
                 const letter = node.letter[node.letter.length - 1];
-                let value = (config.base32) ? base32.lookup[letter] : letter;
+                let value = letter;
                 if (node.final) {
                     value |= finalMask;
                     this.stats.children += 1;
@@ -1299,7 +1286,7 @@ Trie.prototype = {
                 if (config.inspect) this.inspect[i + "_" + node.letter] = {v: value, l: node.letter, f: node.final, c: node.compressed}
             } else {
                 const letter = node.letter[0];
-                let value = (config.base32) ? base32.lookup[letter] : letter;
+                let value = letter;
                 /*if (typeof(value) == "undefined") {
                     value = 0;
                     console.log("val undefined: " + node.letter )
@@ -1324,7 +1311,7 @@ Trie.prototype = {
         // of the alphabet.
         start = new Date().getTime();
         const extraBit = (config.compress && !config.unroll) ? 1 : 0;
-        const bitslen = extraBit + ((config.base32) ? 6 : 9);
+        const bitslen = extraBit + 9;
         console.log('charslen: ' + chars.length + ", bitslen: " + bitslen, " letterstart", bits.top);
         let k = 0;
         for (c of chars) {
@@ -1375,9 +1362,8 @@ function childrenSize(tn) {
         for (c of tn.children) {
             let len = c.letter.length;
             if (c.flag) {
-                // calculate the actual length of flag-nodes: base32 (5bits / char)
-                // or bit-string (16bits / char)
-                len = config.base32 ? base32.encode(c.letter).length : len * 2;
+                // calc length(flag-nodes) bit-string (16bits / char)
+                len = len * 2;
             }
             size += len;
         }
@@ -1424,7 +1410,7 @@ function FrozenTrieNode(trie, index) {
         return flagCached;
     }
 
-    this.letter = () => (config.base32) ? base32.index[this.where()] : this.where();
+    this.letter = () => this.where();
 
     this.firstChild = () => {
         if (!fcCached) {
@@ -1472,7 +1458,7 @@ function FrozenTrieNode(trie, index) {
                     }
                     i += 1;
                 }
-                valCached = (config.base32) ? base32.decode(value.join("")) : value;
+                valCached = value;
             }
 
             return valCached;
@@ -1564,7 +1550,7 @@ FrozenTrie.prototype = {
         nodeCount = nodeCountFromEncodedDataIfExists(this.data, nodeCount);
 
         this.extraBit = (config.compress && !config.unroll) ? 1 : 0;
-        this.bitslen = ((config.base32) ? 6 : 9) + this.extraBit;
+        this.bitslen = 9 + this.extraBit;
 
         // The position of the first bit of the data in 0th node. In non-root
         // nodes, this would contain bitslen letters.
@@ -1788,447 +1774,6 @@ FrozenTrie.prototype = {
     }
 };
 
-let base32;
-
-/**
- * [hi-base32]{@link https://github.com/emn178/hi-base32}
- *
- * @version 0.5.0
- * @author Chen, Yi-Cyuan [emn178@gmail.com]
- * @copyright Chen, Yi-Cyuan 2015-2018
- * @license MIT
- */
-/*jslint bitwise: true */
-(function () {
-
-    var BASE32_ENCODE_CHAR = '0123456789abcdefghjkmnpqrtuvwxyz'.split('');
-    var BASE32_DECODE_CHAR = {
-        '0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8,
-        '9': 9, 'a': 10, 'b': 11, 'c': 12, 'd': 13, 'e': 14, 'f': 15, 'g': 16,
-        'h': 17, 'j': 18, 'k': 19, 'm': 20, 'n': 21, 'p': 22, 'q': 23, 'r': 24,
-        't': 25, 'u': 26, 'v': 27, 'w': 28, 'x': 29, 'y': 30, 'z': 31
-    };
-    const pad = false
-
-    var lookup = BASE32_DECODE_CHAR
-
-    var index = BASE32_ENCODE_CHAR
-
-    var blocks = [0, 0, 0, 0, 0, 0, 0, 0];
-
-    var throwInvalidUtf8 = function (position, partial) {
-        if (partial.length > 10) {
-            partial = '...' + partial.substr(-10);
-        }
-        var err = new Error('Decoded data is not valid UTF-8.'
-            + ' Maybe try base32.decode.asBytes()?'
-            + ' Partial data after reading ' + position + ' bytes: ' + partial + ' <-');
-        err.position = position;
-        throw err;
-    };
-
-    var toUtf8String = function (bytes) {
-        var str = '', length = bytes.length, i = 0, followingChars = 0, b, c;
-        while (i < length) {
-            b = bytes[i++];
-            if (b <= 0x7F) {
-                str += String.fromCharCode(b);
-                continue;
-            } else if (b > 0xBF && b <= 0xDF) {
-                c = b & 0x1F;
-                followingChars = 1;
-            } else if (b <= 0xEF) {
-                c = b & 0x0F;
-                followingChars = 2;
-            } else if (b <= 0xF7) {
-                c = b & 0x07;
-                followingChars = 3;
-            } else {
-                throwInvalidUtf8(i, str);
-            }
-
-            for (var j = 0; j < followingChars; ++j) {
-                b = bytes[i++];
-                if (b < 0x80 || b > 0xBF) {
-                    throwInvalidUtf8(i, str);
-                }
-                c <<= 6;
-                c += b & 0x3F;
-            }
-            if (c >= 0xD800 && c <= 0xDFFF) {
-                throwInvalidUtf8(i, str);
-            }
-            if (c > 0x10FFFF) {
-                throwInvalidUtf8(i, str);
-            }
-
-            if (c <= 0xFFFF) {
-                str += String.fromCharCode(c);
-            } else {
-                c -= 0x10000;
-                str += String.fromCharCode((c >> 10) + 0xD800);
-                str += String.fromCharCode((c & 0x3FF) + 0xDC00);
-            }
-        }
-        return str;
-    };
-
-    var decodeAsBytes = function (base32Str) {
-        if (!/^[a-z0-9=]+$/.test(base32Str)) {
-            throw new Error('Invalid base32 characters');
-        }
-        base32Str = base32Str.replace(/=/g, '');
-        var v1, v2, v3, v4, v5, v6, v7, v8, bytes = [], index = 0, length = base32Str.length;
-
-        // 4 char to 3 bytes
-        for (var i = 0, count = length >> 3 << 3; i < count;) {
-            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v6 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v7 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v8 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            bytes[index++] = (v1 << 3 | v2 >>> 2) & 255;
-            bytes[index++] = (v2 << 6 | v3 << 1 | v4 >>> 4) & 255;
-            bytes[index++] = (v4 << 4 | v5 >>> 1) & 255;
-            bytes[index++] = (v5 << 7 | v6 << 2 | v7 >>> 3) & 255;
-            bytes[index++] = (v7 << 5 | v8) & 255;
-        }
-
-        // remain bytes
-        var remain = length - count;
-        if (remain === 2) {
-            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            bytes[index++] = (v1 << 3 | v2 >>> 2) & 255;
-        } else if (remain === 4) {
-            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            bytes[index++] = (v1 << 3 | v2 >>> 2) & 255;
-            bytes[index++] = (v2 << 6 | v3 << 1 | v4 >>> 4) & 255;
-        } else if (remain === 5) {
-            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            bytes[index++] = (v1 << 3 | v2 >>> 2) & 255;
-            bytes[index++] = (v2 << 6 | v3 << 1 | v4 >>> 4) & 255;
-            bytes[index++] = (v4 << 4 | v5 >>> 1) & 255;
-        } else if (remain === 7) {
-            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v6 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v7 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            bytes[index++] = (v1 << 3 | v2 >>> 2) & 255;
-            bytes[index++] = (v2 << 6 | v3 << 1 | v4 >>> 4) & 255;
-            bytes[index++] = (v4 << 4 | v5 >>> 1) & 255;
-            bytes[index++] = (v5 << 7 | v6 << 2 | v7 >>> 3) & 255;
-        }
-        return bytes;
-    };
-
-    var encodeAscii = function (str) {
-        var v1, v2, v3, v4, v5, base32Str = '', length = str.length;
-        for (var i = 0, count = parseInt(length / 5) * 5; i < count;) {
-            v1 = str.charCodeAt(i++);
-            v2 = str.charCodeAt(i++);
-            v3 = str.charCodeAt(i++);
-            v4 = str.charCodeAt(i++);
-            v5 = str.charCodeAt(i++);
-            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                BASE32_ENCODE_CHAR[(v2 << 4 | v3 >>> 4) & 31] +
-                BASE32_ENCODE_CHAR[(v3 << 1 | v4 >>> 7) & 31] +
-                BASE32_ENCODE_CHAR[(v4 >>> 2) & 31] +
-                BASE32_ENCODE_CHAR[(v4 << 3 | v5 >>> 5) & 31] +
-                BASE32_ENCODE_CHAR[v5 & 31];
-        }
-
-        // remain char
-        var remain = length - count;
-        if (remain === 1) {
-            v1 = str.charCodeAt(i);
-            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                BASE32_ENCODE_CHAR[(v1 << 2) & 31];
-            if (pad) base32Str += '======';
-        } else if (remain === 2) {
-            v1 = str.charCodeAt(i++);
-            v2 = str.charCodeAt(i);
-            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                BASE32_ENCODE_CHAR[(v2 << 4) & 31];
-            if (pad) base32Str += '====';
-        } else if (remain === 3) {
-            v1 = str.charCodeAt(i++);
-            v2 = str.charCodeAt(i++);
-            v3 = str.charCodeAt(i);
-            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                BASE32_ENCODE_CHAR[(v2 << 4 | v3 >>> 4) & 31] +
-                BASE32_ENCODE_CHAR[(v3 << 1) & 31];
-            if (pad) base32Str += '===';
-        } else if (remain === 4) {
-            v1 = str.charCodeAt(i++);
-            v2 = str.charCodeAt(i++);
-            v3 = str.charCodeAt(i++);
-            v4 = str.charCodeAt(i);
-            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                BASE32_ENCODE_CHAR[(v2 << 4 | v3 >>> 4) & 31] +
-                BASE32_ENCODE_CHAR[(v3 << 1 | v4 >>> 7) & 31] +
-                BASE32_ENCODE_CHAR[(v4 >>> 2) & 31] +
-                BASE32_ENCODE_CHAR[(v4 << 3) & 31];
-            if (pad) base32Str += '=';
-        }
-        return base32Str;
-    };
-
-    var encodeUtf8 = function (str) {
-        var v1, v2, v3, v4, v5, code, end = false, base32Str = '',
-            index = 0, i, start = 0, bytes = 0, length = str.length;
-        do {
-            blocks[0] = blocks[5];
-            blocks[1] = blocks[6];
-            blocks[2] = blocks[7];
-            for (i = start; index < length && i < 5; ++index) {
-                code = str.charCodeAt(index);
-                if (code < 0x80) {
-                    blocks[i++] = code;
-                } else if (code < 0x800) {
-                    blocks[i++] = 0xc0 | (code >> 6);
-                    blocks[i++] = 0x80 | (code & 0x3f);
-                } else if (code < 0xd800 || code >= 0xe000) {
-                    blocks[i++] = 0xe0 | (code >> 12);
-                    blocks[i++] = 0x80 | ((code >> 6) & 0x3f);
-                    blocks[i++] = 0x80 | (code & 0x3f);
-                } else {
-                    code = 0x10000 + (((code & 0x3ff) << 10) | (str.charCodeAt(++index) & 0x3ff));
-                    blocks[i++] = 0xf0 | (code >> 18);
-                    blocks[i++] = 0x80 | ((code >> 12) & 0x3f);
-                    blocks[i++] = 0x80 | ((code >> 6) & 0x3f);
-                    blocks[i++] = 0x80 | (code & 0x3f);
-                }
-            }
-            bytes += i - start;
-            start = i - 5;
-            if (index === length) {
-                ++index;
-            }
-            if (index > length && i < 6) {
-                end = true;
-            }
-            v1 = blocks[0];
-            if (i > 4) {
-                v2 = blocks[1];
-                v3 = blocks[2];
-                v4 = blocks[3];
-                v5 = blocks[4];
-                base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                    BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                    BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                    BASE32_ENCODE_CHAR[(v2 << 4 | v3 >>> 4) & 31] +
-                    BASE32_ENCODE_CHAR[(v3 << 1 | v4 >>> 7) & 31] +
-                    BASE32_ENCODE_CHAR[(v4 >>> 2) & 31] +
-                    BASE32_ENCODE_CHAR[(v4 << 3 | v5 >>> 5) & 31] +
-                    BASE32_ENCODE_CHAR[v5 & 31];
-            } else if (i === 1) {
-                base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                    BASE32_ENCODE_CHAR[(v1 << 2) & 31];
-                if (pad) base32Str += '======';
-            } else if (i === 2) {
-                v2 = blocks[1];
-                base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                    BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                    BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                    BASE32_ENCODE_CHAR[(v2 << 4) & 31];
-                if (pad) base32Str += '====';
-            } else if (i === 3) {
-                v2 = blocks[1];
-                v3 = blocks[2];
-                base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                    BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                    BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                    BASE32_ENCODE_CHAR[(v2 << 4 | v3 >>> 4) & 31] +
-                    BASE32_ENCODE_CHAR[(v3 << 1) & 31];
-                if (pad) base32Str += '===';
-            } else {
-                v2 = blocks[1];
-                v3 = blocks[2];
-                v4 = blocks[3];
-                base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                    BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                    BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                    BASE32_ENCODE_CHAR[(v2 << 4 | v3 >>> 4) & 31] +
-                    BASE32_ENCODE_CHAR[(v3 << 1 | v4 >>> 7) & 31] +
-                    BASE32_ENCODE_CHAR[(v4 >>> 2) & 31] +
-                    BASE32_ENCODE_CHAR[(v4 << 3) & 31];
-                if (pad) base32Str += '=';
-            }
-        } while (!end);
-        return base32Str;
-    };
-
-    var encodeBytes = function (bytes) {
-        var v1, v2, v3, v4, v5, base32Str = '', length = bytes.length;
-        for (var i = 0, count = parseInt(length / 5) * 5; i < count;) {
-            v1 = bytes[i++];
-            v2 = bytes[i++];
-            v3 = bytes[i++];
-            v4 = bytes[i++];
-            v5 = bytes[i++];
-            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                BASE32_ENCODE_CHAR[(v2 << 4 | v3 >>> 4) & 31] +
-                BASE32_ENCODE_CHAR[(v3 << 1 | v4 >>> 7) & 31] +
-                BASE32_ENCODE_CHAR[(v4 >>> 2) & 31] +
-                BASE32_ENCODE_CHAR[(v4 << 3 | v5 >>> 5) & 31] +
-                BASE32_ENCODE_CHAR[v5 & 31];
-        }
-
-        // remain char
-        var remain = length - count;
-        if (remain === 1) {
-            v1 = bytes[i];
-            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                BASE32_ENCODE_CHAR[(v1 << 2) & 31];
-            if (pad) base32Str += '======';
-        } else if (remain === 2) {
-            v1 = bytes[i++];
-            v2 = bytes[i];
-            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                BASE32_ENCODE_CHAR[(v2 << 4) & 31];
-            if (pad) base32Str += '====';
-        } else if (remain === 3) {
-            v1 = bytes[i++];
-            v2 = bytes[i++];
-            v3 = bytes[i];
-            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                BASE32_ENCODE_CHAR[(v2 << 4 | v3 >>> 4) & 31] +
-                BASE32_ENCODE_CHAR[(v3 << 1) & 31];
-            if (pad) base32Str += '===';
-        } else if (remain === 4) {
-            v1 = bytes[i++];
-            v2 = bytes[i++];
-            v3 = bytes[i++];
-            v4 = bytes[i];
-            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] +
-                BASE32_ENCODE_CHAR[(v1 << 2 | v2 >>> 6) & 31] +
-                BASE32_ENCODE_CHAR[(v2 >>> 1) & 31] +
-                BASE32_ENCODE_CHAR[(v2 << 4 | v3 >>> 4) & 31] +
-                BASE32_ENCODE_CHAR[(v3 << 1 | v4 >>> 7) & 31] +
-                BASE32_ENCODE_CHAR[(v4 >>> 2) & 31] +
-                BASE32_ENCODE_CHAR[(v4 << 3) & 31];
-            if (pad) base32Str += '=';
-        }
-        return base32Str;
-    };
-
-    var encode = function (input, asciiOnly) {
-        var notString = typeof (input) !== 'string';
-        if (notString && input.constructor === ArrayBuffer) {
-            input = new Uint8Array(input);
-        }
-        if (notString) {
-            return encodeBytes(input);
-        } else if (asciiOnly) {
-            return encodeAscii(input);
-        } else {
-            return encodeUtf8(input);
-        }
-    };
-
-    var decode = function (base32Str, asciiOnly) {
-        if (!asciiOnly) {
-            return toUtf8String(decodeAsBytes(base32Str));
-        }
-        if (!/^[a-z0-9=]+$/.test(base32Str)) {
-            throw new Error('Invalid base32 characters');
-        }
-        var v1, v2, v3, v4, v5, v6, v7, v8, str = '', length = base32Str.indexOf('=');
-        if (length === -1) {
-            length = base32Str.length;
-        }
-
-        // 8 char to 5 bytes
-        for (var i = 0, count = length >> 3 << 3; i < count;) {
-            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v6 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v7 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v8 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            str += String.fromCharCode((v1 << 3 | v2 >>> 2) & 255) +
-                String.fromCharCode((v2 << 6 | v3 << 1 | v4 >>> 4) & 255) +
-                String.fromCharCode((v4 << 4 | v5 >>> 1) & 255) +
-                String.fromCharCode((v5 << 7 | v6 << 2 | v7 >>> 3) & 255) +
-                String.fromCharCode((v7 << 5 | v8) & 255);
-        }
-
-        // remain bytes
-        var remain = length - count;
-        if (remain === 2) {
-            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            str += String.fromCharCode((v1 << 3 | v2 >>> 2) & 255);
-        } else if (remain === 4) {
-            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            str += String.fromCharCode((v1 << 3 | v2 >>> 2) & 255) +
-                String.fromCharCode((v2 << 6 | v3 << 1 | v4 >>> 4) & 255);
-        } else if (remain === 5) {
-            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            str += String.fromCharCode((v1 << 3 | v2 >>> 2) & 255) +
-                String.fromCharCode((v2 << 6 | v3 << 1 | v4 >>> 4) & 255) +
-                String.fromCharCode((v4 << 4 | v5 >>> 1) & 255);
-        } else if (remain === 7) {
-            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v6 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            v7 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
-            str += String.fromCharCode((v1 << 3 | v2 >>> 2) & 255) +
-                String.fromCharCode((v2 << 6 | v3 << 1 | v4 >>> 4) & 255) +
-                String.fromCharCode((v4 << 4 | v5 >>> 1) & 255) +
-                String.fromCharCode((v5 << 7 | v6 << 2 | v7 >>> 3) & 255);
-        }
-        return str;
-    };
-
-    base32 = {
-        encode: encode,
-        decode: decode,
-        lookup: lookup,
-        index: index
-    };
-})();
-
 function lex(a, b) {
     const n = Math.min(a.length, b.length);
     const lendiff = a.length - b.length;
@@ -2248,16 +1793,13 @@ var tag, fl;
 async function build(blocklist, filesystem, savelocation, tag_dict, basicconfig) {
 
     let nodeCount = 0;
-    // DELIM shouldn't be a valid base32 char
     // in key:value pair, key cannot be anything that coerces to boolean false
     tag = {}
     fl = []
     for (t in tag_dict) {
         if (!tag_dict.hasOwnProperty(t)) continue;
         fl[tag_dict[t].value] = t
-        if (config.base32 === true) continue;
-        // reverse the value since it is prepended to
-        // the front of key when not encoded with base32
+        // reverse the value since it is prepended to the front of key
         const v = DELIM + tag_dict[t].uname;
         tag[t] = v.split("").reverse().join("")
     }
@@ -2265,8 +1807,6 @@ async function build(blocklist, filesystem, savelocation, tag_dict, basicconfig)
 
     t = new Trie()
     t.setupFlags(fl)
-    config.base32 = false
-
 
     try {
         allb32r = []
@@ -2308,11 +1848,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict, basicconfig)
         throw new Error("error building trie")
     }
 
-    if (config.base32) {
-        allb32r.sort();
-    } else {
-        allb32r.sort(lex);
-    }
+    allb32r.sort(lex);
 
     console.log("Building Trie")
     const start = new Date().getTime();
