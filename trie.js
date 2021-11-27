@@ -264,29 +264,6 @@ BitString.MaskTop = {
         0x0007,
         0x0003,
         0x0001,
-        0x0000],
-    15: [0x7fff,
-        0x3fff,
-        0x1fff,
-        0x0fff,
-        0x07ff,
-        0x03ff,
-        0x01ff,
-        0x00ff,
-        0x007f,
-        0x003f,
-        0x001f,
-        0x000f,
-        0x0007,
-        0x0003,
-        0x0001,
-        0x0000],
-    6: [0x003f,
-        0x001f,
-        0x000f,
-        0x0007,
-        0x0003,
-        0x0001,
         0x0000]
 };
 
@@ -728,47 +705,6 @@ Trie.prototype = {
         this.rflags = {};
         this.fsize = 0;
         this.indexBitsArray = ["0"];
-        this.sset = new Set();
-    },
-
-
-    lookup_check: function (node) {
-        let currentnode = this.root.children
-        let result = false
-        console.log(node)
-        for (let ni = 0; ni < node.length; ni++) {
-            console.log(node[ni])
-            for (let ci = 0; ci < currentnode.length; ci++) {
-                if (currentnode[ci].letter[0] == node[ni]) {
-                    result = true
-                    ni += (currentnode[ci].letter.length - 1)
-                    currentnode = currentnode[ci].children
-                    break;
-                }
-            }
-            if (!result) {
-                break
-            }
-            result = false
-            console.log(currentnode)
-        }
-        console.log(node)
-        if (result || ni == node.length) {
-            if (config.debug) console.debug(currentnode, currentnode[0].flag)
-            if (currentnode[0].flag) {
-                let buf = new ArrayBuffer(currentnode[0].letter.length * 2)
-                let u16arr = new Uint16Array(buf)
-                for (let si = 0; si < currentnode[0].letter.length; si++) {
-                    u16arr[si] = DEC16(currentnode[0].letter[si])
-                    if (config.debug) console.debug(currentnode[0].letter[si]+"::"+DEC16(currentnode[0].letter[si]))
-                }
-                if (config.debug) console.debug("lookup array: " + u16arr, "res: " + this.flagsToTag(u16arr))
-                if (config.debug) console.debug(this.flagsToTag(TxtDec.encode(currentnode[0].letter).reverse()))
-            }
-            if (config.debug) console.debug(node, currentnode)
-        } else {
-            console.log("Search Result Not found in t")
-        }
     },
 
     /**
@@ -851,11 +787,9 @@ Trie.prototype = {
 
         flag = TxtDec.decode(flag);
         val = this.flags[flag];
-        //this.sset.add({v: val, f: flag})
         if (typeof (val) === "undefined") {
             console.log("val undef ", node)
-            throw "val under Error"
-            return;
+            throw new Error("val undefined err")
         }
 
         const flagNode = (isNodeFlag) ? first : new TrieNode(CHR16(0));
@@ -880,7 +814,6 @@ Trie.prototype = {
         // Fetch the actual tail index position in the character string from the
         // compressed information stored in the header.
         let dataIndex = countSetBits(h & BitString.MaskBottom[16][16 - index]) + 1;
-
 
         if (config.debug && (typeof(res) === "undefined"  || typeof(res[dataIndex]) === "undefined")) {
             console.log("res/index/h/val/pos/dataindex", res, res[dataIndex], h, val, pos,dataIndex, "fnode/node/flag/let", fnode, node, node.flag, node.letter);
@@ -1602,7 +1535,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
         console.log("Total files: " + filecount)
     } catch (e) {
         console.error(e)
-        throw new Error("error building trie")
+        throw e
     }
 
     allb32r.sort(lex);
