@@ -14,32 +14,17 @@ let config = {
     // optimize pos0 impl by probing "longer steps" than usual
     fastPos: true,
     // compress converts trie into a radix-trie esque structure
-    compress: true,
+    compress: true, // always true!
     // unroll is supersceded by compress
     unroll: false,
     // useBuffer uses js typed-arrays instead of bit-strings
     useBuffer: true,
     // BitWriter packs bits in 16-bit char instead of an array
     write16: true,
-    // valueNode encodes "value" of arbitar length in the leafnodes
-    valueNode: true,
     // unimplemented: store metadata about the trie in the trie itself
     storeMeta: false,
 }
 
-if (config.valueNode) {
-    // value-node needs the extraBit to be identified as such.
-    // b00 -> !final, !compressed, !valueNode
-    // b01 -> *final, !compressed, !valueNode
-    // b10 -> !final, *compressed, !valueNode
-    // b11 -> !final, !compressed, *valueNode
-    // the above truth table is so because a single node
-    // cannot be both compressed and final, at the same time.
-    // why? because the node w/ final-letter never sets the compressed flag.
-    // only the first...end-1 letters have the compressed flag set.
-    // see: trie-node#encode
-    config.compress = true;
-}
 if (config.compress) {
     config.unroll = false; // not supported
     // compression doesn't support base64 wo unroll, min req is base128
@@ -744,7 +729,7 @@ function TrieNode(letter) {
     this.final = false;
     this.children = [];
     this.compressed = false;
-    this.flag = (config.valueNode) ? false : undefined;
+    this.flag = false;
 }
 
 // FIXME: eliminate trienode2, handle children being undefined with trienode1
@@ -824,7 +809,7 @@ Trie.prototype = {
     },
 
     getFlagNodeIfExists(children) {
-        if (config.valueNode && children && children.length > 0) {
+        if (children && children.length > 0) {
             const flagNode = children[0];
             if (flagNode.flag === true) return flagNode;
         }
@@ -881,63 +866,39 @@ Trie.prototype = {
         let fnode;
         let val;
         let newlyAdded = false;
-        if (config.valueNode === true) {
-            const first = node.children[0];
-            const isNodeFlag = (first && first.flag);
+        const first = node.children[0];
+        const isNodeFlag = (first && first.flag);
 
-            if (!flag || flag.length === 0) {
-                // nothing to do, since there's no flag-node to remove
-                if (!isNodeFlag) return;
-                // flag-node is present, so slice it out
-                node.children = node.children.slice(1);
-                node.flag = false;
-                this.nodeCount -= (first.letter.length * 2);
-                return;
-            }
-
-            flag = TxtDec.decode(flag);
-            val = this.flags[flag];
-            //this.sset.add({v: val, f: flag})
-            if (typeof (val) === "undefined") {
-                console.log("val undef ", node)
-                throw "val under Error"
-                return;
-            }
-
-            const flagNode = (isNodeFlag) ? first : new TrieNode(CHR16(0));
-            if (!isNodeFlag) { // if flag-node doesn't exist, add it at index 0.
-                const all = node.children;
-                node.children = [flagNode];
-                node.children.concat(all);
-                newlyAdded = true;
-            }
-
-            flagNode.flag = true;
-            res = flagNode.letter;
-            fnode = flagNode;
-        } else {
-            if (!flag || flag.length === 0) {
-                this.nodeCount -= (node.flag.length * 2);
-                node.flag = undefined;
-                return;
-            }
-
-            flag = TxtDec.decode(flag);
-            val = this.flags[flag];
-            if (typeof (val) === "undefined") {
-                // todo: error out?
-                if (config.debug) console.log("val undef ", node)
-                return;
-            }
-
-            if (typeof (node.flag) === "undefined") {
-                node.flag = CHR16(0);
-                newlyAdded = true
-            }
-
-            res = node.flag;
-            fnode = node;
+        if (!flag || flag.length === 0) {
+            // nothing to do, since there's no flag-node to remove
+            if (!isNodeFlag) return;
+            // flag-node is present, so slice it out
+            node.children = node.children.slice(1);
+            node.flag = false;
+            this.nodeCount -= (first.letter.length * 2);
+            return;
         }
+
+        flag = TxtDec.decode(flag);
+        val = this.flags[flag];
+        //this.sset.add({v: val, f: flag})
+        if (typeof (val) === "undefined") {
+            console.log("val undef ", node)
+            throw "val under Error"
+            return;
+        }
+
+        const flagNode = (isNodeFlag) ? first : new TrieNode(CHR16(0));
+        if (!isNodeFlag) { // if flag-node doesn't exist, add it at index 0.
+            const all = node.children;
+            node.children = [flagNode];
+            node.children.concat(all);
+            newlyAdded = true;
+        }
+
+        flagNode.flag = true;
+        res = flagNode.letter;
+        fnode = flagNode;
 
         const header = 0;
         const index = ((val / 16) | 0) // + 1;
@@ -974,11 +935,7 @@ Trie.prototype = {
 
         this.nodeCount = this.nodeCount - resnodesize + newresnodesize;
 
-        if (config.valueNode === true) {
-            fnode.letter = res;
-        } else {
-            fnode.flag = res;
-        }
+        fnode.letter = res;
 
         if (config.debug) console.log(flag, val, index, pos)
     },
@@ -1131,7 +1088,7 @@ Trie.prototype = {
             // they always are processed in conjuction with the
             // corresponding final-node. todo: not really req
             // since child-len of a flag-node is unapologetically 0.
-            if (config.valueNode && node.flag === true) continue;
+            if (node.flag === true) continue;
 
             const childrenLength = (node.children) ? node.children.length : 0;
 
@@ -1225,8 +1182,19 @@ Trie.prototype = {
      * Encode the trie and all of its nodes in a bit-string.
      */
     encode: function() {
+
+        // b00 -> !final, !compressed, !valueNode
+        // b01 -> *final, !compressed, !valueNode
+        // b10 -> !final, *compressed, !valueNode
+        // b11 -> !final, !compressed, *valueNode
+        // the above truth table is so because a single node
+        // cannot be both compressed and final, at the same time.
+        // why? because the node w/ final-letter never sets the compressed flag.
+        // only the first...end-1 letters have the compressed flag set.
+
         // base32 (legacy) => 5 bits per char, +2 bits node metadata
         // utf8 (new)      => 8 bits per char, +2 bits node metadata
+        //                   b00    b32        |  b00     utf
         // final-node     : 0x20 => 001 0 0000 | 0x100 => 0001 0000 0000
         // compressed-node: 0x40 => 010 0 0000 | 0x200 => 0010 0000 0000
         // flag/value-node: 0x60 => 011 0 0000 | 0x300 => 0011 0000 0000
@@ -1238,7 +1206,6 @@ Trie.prototype = {
         let bits = new BitWriter();
         let chars = []
         let vals = []
-        let indices = []
 
         bits.write(0x02, 2);
 
@@ -1271,15 +1238,11 @@ Trie.prototype = {
                 if (node.final) {
                     value |= finalMask;
                     this.stats.children += 1;
-                    if (!config.valueNode) {
-                        vals.push(node.flag)
-                        indices.push(i)
-                    }
                 }
                 if (node.compressed) {
                     value |= compressedMask;
                 }
-                if (config.valueNode && node.flag === true) {
+                if (node.flag === true) {
                     value |= flagMask;
                 }
                 chars.push(value);
@@ -1294,15 +1257,10 @@ Trie.prototype = {
                 if (node.final) {
                     value |= finalMask;
                     this.stats.children += 1;
-                    if (!config.valueNode) {
-                        vals.push(node.flag)
-                        indices.push(i)
-                    }
                 }
                 chars.push(value);
             }
         }
-        if (config.inspect) console.log(indices, vals)
 
         let elapsed2 = new Date().getTime() - start;
 
@@ -1324,24 +1282,6 @@ Trie.prototype = {
         console.log(this.invoke + " csize: " + nbb + " elapsed write.keys: " + elapsed2 + " elapsed write.values: " + elapsed +
             " stats: f: " + this.stats.children + ", c:" + this.stats.single);
 
-        if (config.valueNode === false) {
-            const bitslenindex = Math.ceil(Math.log2(t.getNodeCount()))
-            const bitslenvalue = 16;
-            let insp = []
-            for (let i = 0; i < vals.length; i++) {
-                const index = indices[i]
-                const value = vals[i]
-
-                bits.write(index, bitslenindex);
-                let ininsp = []
-                for (v of value) {
-                    if (config.inspect) ininsp.push(DEC16(v));
-                    bits.write(DEC16(v), bitslenvalue);
-                }
-                if (config.inspect) insp.push(ininsp);
-            }
-            if (config.inspect) console.log(insp);
-        }
 
         if (config.storeMeta) {
             console.log("metadata-start ", bits.top)
@@ -1358,20 +1298,13 @@ function childrenSize(tn) {
 
     if (!tn.children) return size;
 
-    if (config.valueNode === true) {
-        for (c of tn.children) {
-            let len = c.letter.length;
-            if (c.flag) {
-                // calc length(flag-nodes) bit-string (16bits / char)
-                len = len * 2;
-            }
-            size += len;
-        }
-        return size;
-    }
-
     for (c of tn.children) {
-        size += c.letter.length;
+        let len = c.letter.length;
+        if (c.flag) {
+            // calc length(flag-nodes) bit-string (16bits / char)
+            len = len * 2;
+        }
+        size += len;
     }
     return size;
 }
@@ -1405,7 +1338,7 @@ function FrozenTrieNode(trie, index) {
     }
     this.flag = () => {
         if (typeof (flagCached) === "undefined") {
-            flagCached = (config.valueNode) ? this.compressed() && this.final() : false;
+            flagCached = this.compressed() && this.final();
         }
         return flagCached;
     }
@@ -1436,8 +1369,7 @@ function FrozenTrieNode(trie, index) {
 
     this.childCount = () => this.childOfNextNode() - this.firstChild();
 
-    this.value = (config.valueNode) ?
-        () => {
+    this.value = () => {
 
             if (typeof (valCached) === "undefined") {
                 let value = [];
@@ -1461,49 +1393,6 @@ function FrozenTrieNode(trie, index) {
                 valCached = value;
             }
 
-            return valCached;
-        } :
-        () => {
-            if (typeof (valCached) === "undefined") {
-                const vdir = this.trie.directory.valueDir;
-                const data = this.trie.data;
-
-                const start = this.trie.valuesStart;
-                const end = data.length;
-
-                const vdirlen = this.trie.valuesDirBitsLength;
-                const vindexlen = this.trie.valuesIndexLength;
-                const vlen = 16;
-
-                const p = (this.index / V1 | 0) * vdirlen;
-                const bottomIndex = start + vdir.get(p, vdirlen);
-
-                for (let i = bottomIndex; i < end;) {
-                    const currentIndex = data.get(i, vindexlen);
-                    const vheader = data.get(i + vindexlen, vlen);
-                    const vcount = countSetBits(vheader);
-                    if (currentIndex === this.index) {
-                        const vflag = [];
-                        vflag.push(vheader);
-                        for (let k = 1; k <= vcount; k++) {
-                            const f = data.get((i + vindexlen) + (k * vlen), vlen);
-                            vflag.push(f)
-                        }
-                        valCached = vflag;
-                        break;
-                    } else if (currentIndex > this.index) {
-                        if (config.debug) {
-                            console.log("error currentindex > this.index: vh: vcount ", currentIndex, this.index, vheader, vcount,
-                                    "s:e:vdl:vil", start, end, vdirlen, vindexlen, "p:bottomIndex", p, bottomIndex)
-                        }
-                        valCached = -1;
-                        break;
-                    } else if (currentIndex < this.index) {
-                        const vhop = (vcount + 1) * vlen;
-                        i += vhop + vindexlen;
-                    }
-                }
-            }
             return valCached;
         }
 }
