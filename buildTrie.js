@@ -13,10 +13,6 @@ let config = {
     selectsearch: true,
     // optimize pos0 impl by probing "longer steps" than usual
     fastPos: true,
-    // compress converts trie into a radix-trie esque structure
-    compress: true, // always true!
-    // unroll is supersceded by compress
-    unroll: false,
     // useBuffer uses js typed-arrays instead of bit-strings
     useBuffer: true,
     // BitWriter packs bits in 16-bit char instead of an array
@@ -25,12 +21,6 @@ let config = {
     storeMeta: false,
 }
 
-if (config.compress) {
-    config.unroll = false; // not supported
-    // compression doesn't support base64 wo unroll, min req is base128
-    // min: 5 bits for letter, 1 bit for final flag, 1 bit for compress flag
-    config.utf16 = (config.unroll) ? config.utf16 : true;
-}
 if (config.write16) {
     // write16 only works with array-buffer. see: BitWriter#getData
     config.useBuffer = true;
@@ -551,7 +541,7 @@ RankDirectory.Create = function (data, nodeCount, l1Size, l2Size) {
 
     let l1bits = Math.ceil(Math.log2(numBits));
     let l2bits = Math.ceil(Math.log2(l1Size));
-    const bitCount = (config.compress && !config.unroll) ? 7 : 6;
+    const bitCount = 7;
     let valuesIndex = numBits + (bitCount * nodeCount);
 
     let directory = new BitWriter();
@@ -949,111 +939,73 @@ Trie.prototype = {
         const flag = word.slice(index + 1);
         word = word.slice(0, index);
 
-        if (config.compress === true) {
-            let j = 1;
-            let k = 0;
-            let p = 0;
-            let topped = false;
-            while (p < word.length && j < this.cache.length) {
-                const cw = this.cache[j];
-                let l = 0;
-                while (p < word.length && l < cw.letter.length) {
-                    if (word[p] !== cw.letter[l]) {
-                        // todo: replace with break label?
-                        topped = true;
-                        break;
-                    }
-                    p += 1;
-                    l += 1;
-                }
-                k = (l > 0) ? l : k;
-                j = (l > 0) ? j + 1 : j;
-                if (topped) break;
-            }
-
-            const w = word.slice(p);
-            const pos = j - 1;
-            const node = this.cache[pos];
-            const letter = node.letter.slice(0, k);
-
-            // splice out everything but root
-            if (pos >= 0) {
-                this.cache.splice(pos + 1);
-            }
-
-            // todo: should we worry about node-type valueNode/flagNode?
-            if (letter.length > 0 && letter.length !== node.letter.length) {
-                const split = node.letter.slice(letter.length);
-                const tn = new TrieNode(split);
-                tn.final = node.final;
-                // should this line exist in valueNode mode?
-                tn.flag = node.flag;
-                // assigning children should take care of moving the valueNode/flagNode
-                tn.children = node.children;
-                //this.nodeCount += 1;
-                node.letter = letter;
-                node.children = new Array();
-                node.children.push(tn);
-                node.final = false;
-                this.upsertFlag(node, undefined);
-                if (config.debug) console.log("split the node newnode/currentnode/split-reason", n, node.letter, w);
-            }
-
-            if (w.length === 0) {
-                node.final = true;
-                this.upsertFlag(node, flag);
-                if (config.debug) console.log("existing node final nl/split-word/letter-match/pfx/in-word", node.letter, w, letter, commonPrefix, word);
-            } else {
-                if (typeof (node) === "undefined") console.log("second add new-node/in-word/match-letter/parent-node", w, word, letter, searchPos/*, node.letter*/);
-                const second = new TrieNode(w);
-                second.final = true;
-                this.upsertFlag(second, flag)
-                this.nodeCount += w.length;
-                node.children.push(second);
-                this.cache.push(second);
-            }
-
-            // todo: remove this, not used, may be an incorrect location to set it
-            this.previousWord = word;
-
-            return;
-        }
-
-        let commonPrefix = 0;
-        let i = 0;
-        while (i < Math.min(word.length, this.previousWord.length)) {
-            if (word[i] !== this.previousWord[i]) break;
-            commonPrefix += 1;
-            i += 1;
-        }
-
-        this.cache.splice(commonPrefix + 1)
-        let node = this.cache[this.cache.length - 1];
-
-        for (i = commonPrefix; i < word.length; i++) {
-            // fixes bug if words not inserted in alphabetical order
-            // but it is slow, so we do not use it
-            /*let isLetterExist = false;
-            for (let j = 0; j < node.children.length; j++) {
-                if (node.children[j].letter == word[i]) {
-                    this.cache.push(node.children[j]);
-                    node = node.children[j];
-                    isLetterExist = true;
+        let j = 1;
+        let k = 0;
+        let p = 0;
+        let topped = false;
+        while (p < word.length && j < this.cache.length) {
+            const cw = this.cache[j];
+            let l = 0;
+            while (p < word.length && l < cw.letter.length) {
+                if (word[p] !== cw.letter[l]) {
+                    // todo: replace with break label?
+                    topped = true;
                     break;
                 }
+                p += 1;
+                l += 1;
             }
-            if (isLetterExist) continue;*/
-
-            const next = new TrieNode(word[i]);
-            this.nodeCount += 1;
-            node.children.push(next);
-            this.cache.push(next);
-            node = next;
+            k = (l > 0) ? l : k;
+            j = (l > 0) ? j + 1 : j;
+            if (topped) break;
         }
 
-        node.final = true;
-        this.upsertFlag(node, flag);
+        const w = word.slice(p);
+        const pos = j - 1;
+        const node = this.cache[pos];
+        const letter = node.letter.slice(0, k);
+
+        // splice out everything but root
+        if (pos >= 0) {
+            this.cache.splice(pos + 1);
+        }
+
+        // todo: should we worry about node-type valueNode/flagNode?
+        if (letter.length > 0 && letter.length !== node.letter.length) {
+            const split = node.letter.slice(letter.length);
+            const tn = new TrieNode(split);
+            tn.final = node.final;
+            // should this line exist in valueNode mode?
+            tn.flag = node.flag;
+            // assigning children should take care of moving the valueNode/flagNode
+            tn.children = node.children;
+            //this.nodeCount += 1;
+            node.letter = letter;
+            node.children = new Array();
+            node.children.push(tn);
+            node.final = false;
+            this.upsertFlag(node, undefined);
+            if (config.debug) console.log("split the node newnode/currentnode/split-reason", n, node.letter, w);
+        }
+
+        if (w.length === 0) {
+            node.final = true;
+            this.upsertFlag(node, flag);
+            if (config.debug) console.log("existing node final nl/split-word/letter-match/pfx/in-word", node.letter, w, letter, commonPrefix, word);
+        } else {
+            if (typeof (node) === "undefined") console.log("second add new-node/in-word/match-letter/parent-node", w, word, letter, searchPos/*, node.letter*/);
+            const second = new TrieNode(w);
+            second.final = true;
+            this.upsertFlag(second, flag)
+            this.nodeCount += w.length;
+            node.children.push(second);
+            this.cache.push(second);
+        }
+
+        // fixme: remove this, not used, may be an incorrect location to set it
         this.previousWord = word;
+
+        return;
     },
 
     /**
@@ -1077,8 +1029,6 @@ Trie.prototype = {
         let q = 0;
         let ord = [];
         const inspect = {};
-        // unroll superseceded by compress
-        // let unrollmap = {};
         let nbb = 0;
 
         for (let n = 0; n < level.length; n++) {
@@ -1092,48 +1042,12 @@ Trie.prototype = {
 
             const childrenLength = (node.children) ? node.children.length : 0;
 
-            // unroll superseceded by compress
-            /*const auxChild = unrollmap[node];
-            if (auxChild) {
-                staging.push(auxChild);
-                unrollmap[node] = undefined;
-            }*/
-
             q += childrenLength;
             if (n === p) {
                 ord.push(q);
                 p = q;
             }
-            // unroll superseceded by compress
-            /*if (config.unroll) {
-                for (let i = 0; i < childrenLength; i++) {
-                    const current = node.children[i];
-                    let ansector = current;
-                    // if current node is compressed, its children must be transferred to the
-                    // last element in the compressed letters list.
-                    const currentChildren = current.children;
-                    for (let j = 1; j < current.letter.length; j++) {
-                        const l = current.letter[j]
-                        const aux = new TrieNode2(l)
-                        //aux.compressed = true
-                        //unrollmap[ansector] = aux;
-                        // assign aux as a child to ansector
-                        ansector.children = [aux];
-                        ansector = aux;
-                    }
-                    if (current.compressed) {
-                        ansector.final = current.final;
-                        // assign current.children to last ancestor
-                        ansector.children = current.children;
-                        current.children = [;
-                        current.final = false;
-                    }
-                    // current represents the first letter of child at i
-                    staging.push(current);
-                }
-                staging.sort();
-                level.push(...staging);
-            } else {*/
+
             let start = 0;
             let flen = 0;
             let flagNode = this.getFlagNodeIfExists(node.children);
@@ -1222,7 +1136,7 @@ Trie.prototype = {
         for (let i = 0; i < level.length; i++) {
             const node = level[i];
             const childrenLength = (node.children) ? node.children.length : 0;
-            const size = (config.compress && !config.unroll) ? childrenSize(node) : childrenLength;
+            const size = childrenSize(node);
             nbb += size
 
             if (i % l10 == 0) console.log("at encode[i]: " + i)
@@ -1232,34 +1146,21 @@ Trie.prototype = {
                 bits.write(1, 1);
             }
             bits.write(0, 1);
-            if (config.compress && !config.unroll) {
-                const letter = node.letter[node.letter.length - 1];
-                let value = letter;
-                if (node.final) {
-                    value |= finalMask;
-                    this.stats.children += 1;
-                }
-                if (node.compressed) {
-                    value |= compressedMask;
-                }
-                if (node.flag === true) {
-                    value |= flagMask;
-                }
-                chars.push(value);
-                if (config.inspect) this.inspect[i + "_" + node.letter] = {v: value, l: node.letter, f: node.final, c: node.compressed}
-            } else {
-                const letter = node.letter[0];
-                let value = letter;
-                /*if (typeof(value) == "undefined") {
-                    value = 0;
-                    console.log("val undefined: " + node.letter )
-                }*/
-                if (node.final) {
-                    value |= finalMask;
-                    this.stats.children += 1;
-                }
-                chars.push(value);
+
+            const letter = node.letter[node.letter.length - 1];
+            let value = letter;
+            if (node.final) {
+                value |= finalMask;
+                this.stats.children += 1;
             }
+            if (node.compressed) {
+                value |= compressedMask;
+            }
+            if (node.flag === true) {
+                value |= flagMask;
+            }
+            chars.push(value);
+            if (config.inspect) this.inspect[i + "_" + node.letter] = {v: value, l: node.letter, f: node.final, c: node.compressed}
         }
 
         let elapsed2 = new Date().getTime() - start;
@@ -1268,7 +1169,7 @@ Trie.prototype = {
         // the "final" indicator. The other 5 bits store one of the 26 letters
         // of the alphabet.
         start = new Date().getTime();
-        const extraBit = (config.compress && !config.unroll) ? 1 : 0;
+        const extraBit = 1;
         const bitslen = extraBit + 9;
         console.log('charslen: ' + chars.length + ", bitslen: " + bitslen, " letterstart", bits.top);
         let k = 0;
@@ -1332,7 +1233,7 @@ function FrozenTrieNode(trie, index) {
     }
     this.compressed = () => {
         if (typeof (comCached) === "undefined") {
-            comCached = ((config.compress && !config.unroll) ? this.trie.data.get(this.trie.letterStart + (index * this.trie.bitslen), 1) : 0) === 1;
+            comCached = (this.trie.data.get(this.trie.letterStart + (index * this.trie.bitslen), 1)) === 1;
         }
         return comCached;
     }
@@ -1438,7 +1339,7 @@ FrozenTrie.prototype = {
 
         nodeCount = nodeCountFromEncodedDataIfExists(this.data, nodeCount);
 
-        this.extraBit = (config.compress && !config.unroll) ? 1 : 0;
+        this.extraBit = 1;
         this.bitslen = 9 + this.extraBit;
 
         // The position of the first bit of the data in 0th node. In non-root
@@ -1521,8 +1422,7 @@ FrozenTrie.prototype = {
                     if (debug) console.log("j: " + j + " c: " + node.getChildCount())
                     return returnValue;
                 }
-            }
-            else if (config.compress === true && !config.unroll) {
+            } else {
                 let high = node.getChildCount();
                 let low = isFlag;
 
@@ -1606,14 +1506,6 @@ FrozenTrie.prototype = {
                         child = nodes[nodes.length - 1];
                         i += comp.length - 1; // ugly compensate i++ at the top
                         break;
-                    } else {
-                        if (child.letter() === word[i]) {
-                            break;
-                        } else if (word[i] > child.letter()) {
-                            low = probe;
-                        } else {
-                            high = probe;
-                        }
                     }
 
                     if (high - low <= 1) {
