@@ -21,7 +21,7 @@ function empty(str) {
 function s3path(x) {
     return s3dir + "/" + version + "/" + (empty(x)) ? "" : x
 }
-    
+
 function localpath(x) {
     return (empty(x)) ? path.normalize(path.join(cwd, outdir)) :
             path.normalize(path.join(cwd, outdir, x))
@@ -68,11 +68,11 @@ async function toS3(f, key) {
         if (empty(s3bucket) || empty(s3dir) || empty(outdir)) {
             console.log("missing: s3-bucket / s3dir / outdir", s3bucket, s3dir, outdir)
             return
-	    }
+        }
 
         console.log("upload from", localpath(), "to", s3path())
 
-	    const ans = await upload()
+        const ans = await upload()
 
         console.log("finished", ans)
     } catch (e) {
