@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const buildTrie = require("./buildTrie.js")
+const trie = require("./trie.js")
 
 async function getBlocklistFiles(path) {
     let blocklists = []
@@ -52,7 +52,6 @@ async function loadConfig(blocklistConfigPath, unameVnameMapPath) {
 }
 
 async function main() {
-    const basicconfig = {}
     const outdir = path.normalize("./result/")
     const bldir = path.normaize("./blocklistfiles/")
     const blconfig = path.normalize("./blocklistConfig.json")
@@ -61,7 +60,7 @@ async function main() {
     try {
         const tags = await loadConfig(blconfig, unamemap)
         const bl = await getBlocklistFiles(bldir);
-        await buildTrie.build(bl, fs, outdir, tags, basicconfig)
+        await trie.build(bl, fs, outdir, tags)
     } catch (e) {
         console.log(e.stack)
         process.exitCode = 1
