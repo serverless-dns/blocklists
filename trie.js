@@ -85,9 +85,6 @@ function DECM(chr, b64) {
  */
 const L1 = 32 * 32;
 const L2 = 32;
-// skip list range for values-directory, store the nearest min index
-// of a final-node to a node at every V1 position
-const V1 = 64;
 // bits per meta-data field stored with trie-encode
 const MFIELDBITS = 30;
 const TxtEnc = new TextEncoder();
@@ -1296,16 +1293,20 @@ FrozenTrie.prototype = {
         let node = this.getRoot();
         let child;
         let periodEncVal = TxtEnc.encode(".")
+        // return false when lookup fails, or a Map when it succeeds... yeah
         let returnValue = false
         for (let i = 0; i < word.length; i++) {
             let isFlag = -1;
             let that;
+            // capture all valid subdomains
             if (periodEncVal[0] == word[i]) {
                 if (node.final()) {
                     if (returnValue == false) { returnValue = new Map() }
                     returnValue.set(TxtDec.decode(word.slice(0, i).reverse()), node.value())
                 }
             }
+            // count actual child nodes, except the key/flag/value-node which
+            // appears always at the head end (index 0) of children nodes
             do {
                 that = node.getChild(isFlag + 1);
                 if (!that.flag()) break;
@@ -1320,8 +1321,9 @@ FrozenTrie.prototype = {
                 // fixme: fix these return false to match the actual return value?
                 return returnValue;
             }
+            // linear search is simpler but very very slow
             if (config.useBinarySearch === false) {
-                let j = isFlag;
+                let j = minChild;
                 for (; j < node.getChildCount(); j++) {
                     child = node.getChild(j);
                     if (debug) console.log("it: " + j + " tl: " + child.letter() + " wl: " + word[i])
@@ -1336,8 +1338,9 @@ FrozenTrie.prototype = {
                     return returnValue;
                 }
             } else {
+                // search current letter w/ binary-search among child nodes
                 let high = node.getChildCount();
-                let low = isFlag;
+                let low = minChild;
 
                 while (high - low > 1) {
                     let probe = (high + low) / 2 | 0;
@@ -1345,6 +1348,10 @@ FrozenTrie.prototype = {
                     const prevchild = (probe > isFlag) ? node.getChild(probe - 1) : undefined;
                     if (debug) console.log("        current: " + child.letter() + " l: " + low + " h: " + high + " w: " + word[i])
 
+                    // if the current probe position is at a compressed node,
+                    // check if its sibling is also a compressed node to then
+                    // search for all letters represented by compressed nodes,
+                    // in a single go.
                     if (child.compressed() || (prevchild && (prevchild.compressed() && !prevchild.flag()))) {
 
                         let startchild = [];
@@ -1365,6 +1372,8 @@ FrozenTrie.prototype = {
                             start += 1
                         } while (true);
 
+                        // if first letter (startchild is reversed, and so: last letter)
+                        // is greater than current letter from word, then probe lower half
                         if (debug) console.log("  check: letter : "+startchild[start - 1].letter()+" word : "+word[i]+" start: "+start)
                         if (startchild[start - 1].letter() > word[i]) {
                             if (debug) console.log("        shrinkh start: " + startchild[start - 1].letter() + " s: " + start + " w: " + word[i])
@@ -1379,7 +1388,7 @@ FrozenTrie.prototype = {
 
                         // if the child itself the last-node in the seq
                         // nothing to do, there's no endchild to track
-                        if (child.compressed()) {
+                        if (child.compressed()) { // compressed, not final
                             do {
                                 end += 1
                                 const temp = node.getChild(probe + end);
@@ -1390,6 +1399,8 @@ FrozenTrie.prototype = {
                             } while (true);
                         }
 
+                        // if first letter (startchild is reversed, so: last letter)
+                        // is lesser than current letter from word, then probe higher
                         if (startchild[start - 1].letter() < word[i]) {
                             if (debug) console.log("        shrinkl start: " + startchild[start - 1].letter() + " s: " + start + " w: " + word[i])
 
@@ -1416,6 +1427,7 @@ FrozenTrie.prototype = {
                         if (debug) console.log("it: " + probe + " break ")
 
                         // final letter in compressed node is representative of all letters
+                        // that is, compressednode("abcd") is represented by final node("d")
                         child = nodes[nodes.length - 1];
                         i += comp.length - 1; // ugly compensate i++ at the top
                         break;
@@ -1425,30 +1437,6 @@ FrozenTrie.prototype = {
                         if (debug) console.log("h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe)
                         return returnValue;
                     }
-                }
-            } else {
-                let high = node.getChildCount();
-                let low = -1;
-
-                if (debug) console.log("             c: " + node.getChildCount())
-                while (high - low > 1) {
-                    let probe = (high + low) / 2 | 0;
-                    child = node.getChild(probe);
-
-                    if (debug) console.log("it: " + probe + " tl: " + child.letter() + " wl: " + word[i])
-                    if (child.letter() === word[i]) {
-                        if (debug) console.log("it: " + probe + " break ")
-                        break;
-                    } else if (word[i] > child.letter()) {
-                        low = probe;
-                    } else {
-                        high = probe;
-                    }
-                }
-
-                if (high - low <= 1) {
-                    if (debug) console.log("h-low: " + (high - low) + " c: " + node.getChildCount())
-                    return returnValue;
                 }
             }
 
