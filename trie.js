@@ -1521,20 +1521,23 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     hosts.forEach(s => t.insert(s));
     // fast array clear stackoverflow.com/a/1234337
     hosts.length = 0
-    if (global.gc) global.gc();
+    if (global.gc) {
+        console.log("gc")
+        global.gc();
+    }
     console.log("encoding trie")
     let td = t.encode();
     nodeCount = t.getNodeCount();
 
-    console.log("building rank")
+    console.log("building rank; nodecount/L1/L2", nodeCount, L1, L2)
     let rd = RankDirectory.Create(td, nodeCount, L1, L2);
 
     let ft = new FrozenTrie(td, rd, nodeCount)
     const end = new Date().getTime();
 
-    console.log("time (ms) spent creating blocklist: ", end - start);
+    console.log("time (ms) spent creating trie+rank: ", end - start);
 
-    console.log("saving trie, rank, basicconfig, filetag; nodecount: " + nodeCount)
+    console.log("saving trie, rank, basicconfig, filetag")
 
     if (!filesystem.existsSync(savelocation)) {
         filesystem.mkdirSync(savelocation)
