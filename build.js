@@ -2,10 +2,10 @@ const fs = require('fs')
 const path = require('path')
 const trie = require("./trie.js")
 
-async function getBlocklistFiles(path) {
+async function getBlocklistFiles(bldir) {
     let blocklists = []
     let dirs = []
-    dirs.push(path)
+    dirs.push(bldir)
     while (d = dirs.shift()) {
         const dir = await fs.promises.opendir(d);
         for await (const entry of dir) {
