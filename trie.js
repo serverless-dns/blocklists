@@ -13,8 +13,6 @@ const BASE64 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_
 let config = {
     // inspect trie building stats
     inspect: false,
-    // read and write bit-strings with 16-bit boundaries
-    utf16: true,
     // binary-search (not linear) to lookup for words in the forzentrie
     useBinarySearch: true,
     // debug prints debug logs
@@ -27,8 +25,6 @@ let config = {
     useBuffer: true,
     // BitWriter packs bits in 16-bit char instead of an array
     write16: true,
-    // unimplemented: store metadata about the trie in the trie itself
-    storeMeta: false,
 }
 
 if (config.write16) {
@@ -39,7 +35,7 @@ if (config.write16) {
 /**
  * Number of bits (width) of each encoding unit; ie 6 => base64.
  */
-const W = (config.utf16) ? 16 : (config.utf15) ? 15 : 6;
+const W = 16
 
 const bufferView = { 15: Uint16Array, 16: Uint16Array, 6: Uint8Array };
 
@@ -85,8 +81,6 @@ function DECM(chr, b64) {
  */
 const L1 = 32 * 32;
 const L2 = 32;
-// bits per meta-data field stored with trie-encode
-const MFIELDBITS = 30;
 const TxtEnc = new TextEncoder();
 const TxtDec = new TextDecoder();
 // DELIM shouldn't be a valid base32 char
@@ -484,15 +478,6 @@ BitString.prototype = {
     }
 };
 
-function nodeCountFromEncodedDataIfExists(bits, defaultValue) {
-    if (!config.storeMeta) return defaultValue;
-
-    // fixme: this doesn't work since the the packing is
-    // aligned to 16 bits, and there could be padded bits
-    // added at the the end that need to be discarded
-    return bits.get(bits.length - MFIELDBITS, MFIELDBITS);
-}
-
 /**
  * The rank directory allows you to build an index to quickly compute the rank
  * and select functions. The index can itself be encoded as a binary string.
@@ -518,8 +503,6 @@ RankDirectory.Create = function (data, nodeCount, l1Size, l2Size) {
     let p = 0;
     let i = 0;
     let count1 = 0, count2 = 0;
-
-    nodeCount = nodeCountFromEncodedDataIfExists(bits, nodeCount);
 
     let numBits = nodeCount * 2 + 1;
 
@@ -704,6 +687,14 @@ Trie.prototype = {
         this.indexBitsArray = ["0"];
     },
 
+    clear: function () {
+        this.letter = undefined
+        this.final = undefined
+        this.children.length = 0
+        this.compressed = undefined
+        this.flag = undefined
+    },
+
     /**
      * Returns the number of nodes in the trie
      */
@@ -847,6 +838,8 @@ Trie.prototype = {
 
         const index = word.lastIndexOf(ENC_DELIM[0]);
         const flag = word.slice(index + 1);
+        // each letter in word must be 8bits or less.
+        // todo: TxtEnc word here?
         word = word.slice(0, index);
 
         let j = 1;
@@ -949,6 +942,7 @@ Trie.prototype = {
             // corresponding final-node. todo: not really req
             // since child-len of a flag-node is unapologetically 0.
             if (node.flag === true) continue;
+            // todo: skip aux nodes
 
             const childrenLength = (node.children) ? node.children.length : 0;
 
@@ -961,12 +955,14 @@ Trie.prototype = {
             let start = 0;
             let flen = 0;
             let flagNode = this.getFlagNodeIfExists(node.children);
+            // convert flagNode / valueNode to trie children nodes
             if (flagNode) {
                 start = 1;
                 // fixme: abort when a flag node is marked as such but has no value stored?
                 if (typeof (flagNode.letter) === "undefined" || typeof (flagNode) === "undefined") {
                     console.log("flagnode letter undef ", flagNode, " node ", node);
                 }
+                // get flags split into 8 bits (uint) per array item
                 const encValue = new BitString(flagNode.letter).encode(8);
                 flen = encValue.length;
                 for (let i = 0; i < encValue.length; i++) {
@@ -981,6 +977,7 @@ Trie.prototype = {
             for (let i = start; i < childrenLength; i++) {
                 const current = node.children[i];
                 if (config.inspect) inspect[current.letter.length] = (inspect[current.letter.length + flen] | 0) + 1;
+                // flatten out: one letter each into its own trie-node
                 for (let j = 0; j < current.letter.length - 1; j++) {
                     const l = current.letter[j]
                     const aux = new TrieNode2([l]);
@@ -988,7 +985,8 @@ Trie.prototype = {
                     level.push(aux)
                 }
                 // current node represents the last letter
-                level.push(current); node
+                level.push(current);
+                node.clear();
             }
         }
         if (config.inspect) console.log(inspect);
@@ -1037,7 +1035,6 @@ Trie.prototype = {
         let start = new Date().getTime();
         const levelorder = this.levelorder();
         const level = levelorder.level;
-        const div = levelorder.div;
         let nbb = 0;
 
         console.log("levlen", level.length, "nodecount", this.nodeCount, " masks ", compressedMask, flagMask, finalMask);
@@ -1052,9 +1049,9 @@ Trie.prototype = {
             if (i % l10 == 0) console.log("at encode[i]: " + i)
             this.stats.single[childrenLength] += 1;
 
-            for (let j = 0; j < size; j++) {
-                bits.write(1, 1);
-            }
+            // set j lsb bits in int bw
+            const bw = ~0 >>> (32 - j)
+            bits.write(bw, j)
             bits.write(0, 1);
 
             const letter = node.letter[node.letter.length - 1];
@@ -1092,12 +1089,6 @@ Trie.prototype = {
         let elapsed = new Date().getTime() - start;
         console.log(this.invoke + " csize: " + nbb + " elapsed write.keys: " + elapsed2 + " elapsed write.values: " + elapsed +
             " stats: f: " + this.stats.children + ", c:" + this.stats.single);
-
-
-        if (config.storeMeta) {
-            console.log("metadata-start ", bits.top)
-            bits.write(this.nodeCount, MFIELDBITS);
-        }
 
         return bits.getData();
     }
@@ -1247,22 +1238,12 @@ FrozenTrie.prototype = {
         // pass the rank directory instead of data
         this.directory = rdir;
 
-        nodeCount = nodeCountFromEncodedDataIfExists(this.data, nodeCount);
-
         this.extraBit = 1;
         this.bitslen = 9 + this.extraBit;
 
         // The position of the first bit of the data in 0th node. In non-root
         // nodes, this would contain bitslen letters.
         this.letterStart = nodeCount * 2 + 1;
-
-        // The bit-position in this.data where the values of the final nodes start
-        // fixme: should there be a +1?
-        this.valuesStart = this.letterStart + (nodeCount * this.bitslen); // + 1;
-
-        this.valuesIndexLength = Math.ceil(Math.log2(nodeCount));
-
-        this.valuesDirBitsLength = Math.ceil(Math.log2(this.data.length - this.valuesStart));
     },
 
     /**
@@ -1431,6 +1412,14 @@ FrozenTrie.prototype = {
                         child = nodes[nodes.length - 1];
                         i += comp.length - 1; // ugly compensate i++ at the top
                         break;
+                    } else {
+                        if (child.letter() === word[i]) {
+                          break;
+                        } else if (word[i] > child.letter()) {
+                          low = probe;
+                        } else {
+                          high = probe;
+                        }
                     }
 
                     if (high - low <= 1) {
@@ -1487,15 +1476,12 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     let t = new Trie()
     t.setupFlags(fl)
 
-    let allb32r = [];
+    let hosts = [];
     try {
-        let tmplist = []
         let filecount = 0
-        let linecount = 0
         let totallinecount = 0
-        let uniqueentry = new Set()
         for (filepath of blocklist) {
-            linecount = 0
+            let linecount = 0
             let namesplit = filepath.split("/")
             let smallname = namesplit[namesplit.length - 1].split(".")[0]
             let fileData = filesystem.readFileSync(filepath, 'utf8');
@@ -1505,8 +1491,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
                 for (let line of fileData.split("\n")) {
                     linecount++
                     line = line.trim()
-                    uniqueentry.add(line)
-                    allb32r.push(TxtEnc.encode(tag[smallname] + line).reverse())
+                    hosts.push(TxtEnc.encode(tag[smallname] + line).reverse())
                 }
                 totallinecount = totallinecount + linecount
                 tag_dict[smallname].entries = linecount
@@ -1518,22 +1503,23 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
                 console.log("empty file", filepath)
             }
         }
-        console.log("Lines: " + totallinecount)
-        console.log("unique entries: " + uniqueentry.size)
-        console.log("Total files: " + filecount)
+        console.log("Lines: " + totallinecount, "Total files: " + filecount)
     } catch (e) {
         console.error(e)
         throw e
     }
 
-    allb32r.sort(lex);
+    hosts.sort(lex);
 
-    console.log("Building Trie")
+    console.log("building trie")
     const start = new Date().getTime();
-    allb32r.forEach(s => t.insert(s));
+    hosts.forEach(s => t.insert(s));
+    // fast array clear stackoverflow.com/a/1234337
+    hosts.length = 0
     let td = t.encode();
     nodeCount = t.getNodeCount();
-    console.log("Node count: " + nodeCount)
+
+    console.log("building rank")
     let rd = RankDirectory.Create(td, nodeCount, L1, L2);
 
     let ft = new FrozenTrie(td, rd, nodeCount)
@@ -1541,9 +1527,9 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
 
     console.log("time (ms) spent creating blocklist: ", end - start);
 
-    console.log("saving td and rd")
+    console.log("saving trie, rank, basicconfig, filetag; nodecount: " + nodeCount)
 
-    if(!filesystem.existsSync(savelocation)){
+    if (!filesystem.existsSync(savelocation)) {
         filesystem.mkdirSync(savelocation)
     }
 
@@ -1552,7 +1538,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
             console.log(err);
             throw err
         }
-        console.log('td write to file successful');
+        console.log('trie saved as td.txt');
     });
 
     let aw2 = filesystem.writeFile(savelocation + "rd.txt", rd.directory.bytes, function (err) {
@@ -1560,7 +1546,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
             console.log(err);
             throw err
         }
-        console.log('rd write to file successful');
+        console.log('rank saved as rd.txt');
     });
 
     let basicconfig = { "nodecount" : nodeCount };
@@ -1569,7 +1555,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
             console.log(err);
             throw err
         }
-        console.log('basic json write to file successful');
+        console.log('basicconfig.json saved');
     });
 
     let aw4 = filesystem.writeFile(savelocation + "filetag.json", JSON.stringify(tag_dict), function (err) {
@@ -1577,7 +1563,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
             console.log(err);
             throw err
         }
-        console.log('filetag write to file successful');
+        console.log('filetag.json saved');
     });
 
     await Promise.all([aw1, aw2, aw3, aw4]);
