@@ -429,7 +429,7 @@ BitString.prototype = {
      * Returns the index of the nth 0, starting at position i.
      */
     pos0: function (i, n) {
-        8if (n < 0) return 0;
+        if (n < 0) return 0;
         let step = 16;
         let index = i;
 
