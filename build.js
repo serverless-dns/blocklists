@@ -12,14 +12,14 @@ async function getBlocklistFiles(bldir) {
             if (entry.isDirectory()) {
                 dirs.push(path.join(d, entry.name))
             } else {
-                blocklists.push(d + entry.name)
+                blocklists.push(path.join(d, entry.name))
             }
         }
     }
     return blocklists
 }
 
-async function loadConfig(blocklistConfigPath, unameVnameMapPath) {
+function loadConfig(blocklistConfigPath, unameVnameMapPath) {
     try {
         const tags = {}
         const fileData = fs.readFileSync(blocklistConfigPath, 'utf8')
@@ -43,6 +43,7 @@ async function loadConfig(blocklistConfigPath, unameVnameMapPath) {
             tags[uname].url = blocklistobj.conf[index].url
             tags[uname].show = 0
             tags[uname].entries = 0
+            console.log("btag for " + uname + " index: " + index, tags[uname])
         }
         return tags
     } catch (e) {
@@ -58,8 +59,9 @@ async function main() {
     const unamemap = path.normalize("./valueUnameMap.json")
 
     try {
-        const tags = await loadConfig(blconfig, unamemap)
+        const tags = loadConfig(blconfig, unamemap)
         const bl = await getBlocklistFiles(bldir);
+        console.log("build, out: " + outdir + ", in: " + bl + ", tags: " + tags)
         await trie.build(bl, fs, outdir, tags)
     } catch (e) {
         console.log(e.stack)

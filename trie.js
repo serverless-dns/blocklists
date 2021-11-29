@@ -687,14 +687,6 @@ Trie.prototype = {
         this.indexBitsArray = ["0"];
     },
 
-    clear: function () {
-        this.letter = undefined
-        this.final = undefined
-        this.children.length = 0
-        this.compressed = undefined
-        this.flag = undefined
-    },
-
     /**
      * Returns the number of nodes in the trie
      */
@@ -986,7 +978,6 @@ Trie.prototype = {
                 }
                 // current node represents the last letter
                 level.push(current);
-                node.clear();
             }
         }
         if (config.inspect) console.log(inspect);
@@ -1033,7 +1024,12 @@ Trie.prototype = {
 
         this.stats = { children: 0, single: new Array(256).fill(0) }
         let start = new Date().getTime();
+        console.log("levelorder begin:", start)
         const levelorder = this.levelorder();
+        console.log("levelorder end: ", Date.now() - start)
+        this.root = null
+        this.cache = null
+        if (global.gc) global.gc();
         const level = levelorder.level;
         let nbb = 0;
 
@@ -1050,8 +1046,17 @@ Trie.prototype = {
             this.stats.single[childrenLength] += 1;
 
             // set j lsb bits in int bw
-            const bw = ~0 >>> (32 - j)
-            bits.write(bw, j)
+            let rem = size
+            const all1 = 0xffff_ffff // 1s all 32 bits
+            const maxbits = countSetBits(all1) // 32 bits
+            let j = Math.min(rem, /*32*/ maxbits)
+            while (j > 0) {
+                const bw = (all1 >>> (/*32*/ maxbits - j));
+                bits.write(bw, j);
+                rem -= j
+                j = Math.min(rem, maxbits)
+            }
+            // for (let j = 0; j < size; j++) bits.write(1, 1)
             bits.write(0, 1);
 
             const letter = node.letter[node.letter.length - 1];
@@ -1464,12 +1469,12 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     // in key:value pair, key cannot be anything that coerces to boolean false
     let tag = {}
     let fl = []
-    for (t in tag_dict) {
-        if (!tag_dict.hasOwnProperty(t)) continue;
-        fl[tag_dict[t].value] = t
+    for (let ele in tag_dict) {
+        if (!tag_dict.hasOwnProperty(ele)) continue;
+        fl[tag_dict[ele].value] = ele
         // reverse the value since it is prepended to the front of key
-        const v = DELIM + tag_dict[t].uname;
-        tag[t] = v.split("").reverse().join("")
+        const v = DELIM + tag_dict[ele].uname;
+        tag[ele] = v.split("").reverse().join("")
     }
     initialize();
 
@@ -1516,6 +1521,8 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     hosts.forEach(s => t.insert(s));
     // fast array clear stackoverflow.com/a/1234337
     hosts.length = 0
+    if (global.gc) global.gc();
+    console.log("encoding trie")
     let td = t.encode();
     nodeCount = t.getNodeCount();
 
