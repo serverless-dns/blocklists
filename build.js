@@ -6,7 +6,7 @@ async function getBlocklistFiles(path) {
     let blocklists = []
     let dirs = []
     dirs.push(path)
-    while (const d = dirs.shift()) {
+    while (d = dirs.shift()) {
         const dir = await fs.promises.opendir(d);
         for await (const entry of dir) {
             if (entry.isDirectory()) {
