@@ -53,7 +53,7 @@ async function loadConfig(blocklistConfigPath, unameVnameMapPath) {
 
 async function main() {
     const outdir = path.normalize("./result/")
-    const bldir = path.normaize("./blocklistfiles/")
+    const bldir = path.normalize("./blocklistfiles/")
     const blconfig = path.normalize("./blocklistConfig.json")
     const unamemap = path.normalize("./valueUnameMap.json")
 
