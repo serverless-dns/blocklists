@@ -326,6 +326,7 @@ BitString.prototype = {
     init: function (str) {
         this.bytes = str;
         this.length = this.bytes.length * W;
+        // trie#flag/value-node uses "string bytes", ref: trie#levelorder
         this.useBuffer = typeof (str) !== "string";
     },
 
@@ -657,6 +658,15 @@ function TrieNode(letter) {
     this.children = [];
     this.compressed = false;
     this.flag = false;
+
+    this.clear = function() {
+        this.letter = undefined
+        this.final = undefined
+        this.children.length = 0
+        this.children = undefined
+        this.compressed = undefined
+        this.flag = undefined
+    }
 }
 
 // FIXME: eliminate trienode2, handle children being undefined with trienode1
@@ -666,6 +676,13 @@ function TrieNode2(letter) {
     this.final = false;
     this.children = undefined;
     this.flag = undefined;
+
+    this.clear = function() {
+        this.letter = undefined
+        this.final = undefined
+        this.compressed = undefined
+        this.flag = undefined
+    }
 }
 
 function Trie() {
@@ -979,6 +996,7 @@ Trie.prototype = {
                 // current node represents the last letter
                 level.push(current);
             }
+            node.clear();
         }
         if (config.inspect) console.log(inspect);
         return { level: level, div: ord };
@@ -1521,6 +1539,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     hosts.forEach(s => t.insert(s));
     // fast array clear stackoverflow.com/a/1234337
     hosts.length = 0
+    hosts = []
     if (global.gc) {
         console.log("gc")
         global.gc();
