@@ -6,13 +6,15 @@ async function getBlocklistFiles(bldir) {
     let blocklists = []
     let dirs = []
     dirs.push(bldir)
+    // all files from bldir, incl sub-directories
     while (d = dirs.shift()) {
-        const dir = await fs.promises.opendir(d);
+        const dir = await fs.promises.opendir(d)
         for await (const entry of dir) {
+            const x = path.join(d, entry.name)
             if (entry.isDirectory()) {
-                dirs.push(path.join(d, entry.name))
+                dirs.push(cur)
             } else {
-                blocklists.push(path.join(d, entry.name))
+                blocklists.push(cur)
             }
         }
     }
