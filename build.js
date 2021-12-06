@@ -12,9 +12,9 @@ async function getBlocklistFiles(bldir) {
         for await (const entry of dir) {
             const x = path.join(d, entry.name)
             if (entry.isDirectory()) {
-                dirs.push(cur)
+                dirs.push(x)
             } else {
-                blocklists.push(cur)
+                blocklists.push(x)
             }
         }
     }
