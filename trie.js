@@ -996,7 +996,8 @@ Trie.prototype = {
                 // current node represents the last letter
                 level.push(current);
             }
-            node.clear();
+            // clear only things trie.encode doesn't need
+            // node.clear();
         }
         if (config.inspect) console.log(inspect);
         return { level: level, div: ord };
