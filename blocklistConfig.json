@@ -1511,6 +1511,14 @@
         "subg": "",
         "url": "https://raw.githubusercontent.com/mtxadmin/ublock/master/hosts.txt",
         "pack": []
+    },
+    {
+        "vname": "Badd Boyz Hosts",
+        "format": "hosts",
+        "group": "privacy",
+        "subg": "",
+        "url": "https://raw.githubusercontent.com/mitchellkrogza/Badd-Boyz-Hosts/master/hosts",
+        "pack": []
     }    
   ]
 }
