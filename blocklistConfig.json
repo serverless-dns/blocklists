@@ -17,6 +17,15 @@
       "pack": []
     },
     {
+      "vname": "AdGuard CNAME disguised trackers list",
+      "format": "domains",
+      "group": "",
+      "subg": "privacy",
+      "url": "https://raw.githubusercontent.com/AdguardTeam/cname-trackers/master/combined_disguised_trackers_justdomains.txt",
+      "pack": []
+    },
+    {
+    
       "vname": "Dating (olbat)",
       "format": "domains",
       "group": "parentalcontrol",
