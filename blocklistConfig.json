@@ -1497,6 +1497,14 @@
       "pack": ["try again"]
     },    
     {
+      "vname": "AdGuard Base Filter",
+      "format":"adguard",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_2_English/filter.txt",
+      "pack": []
+    },
+    {
       "vname": "Energized Unified",
       "format": "domains",
       "group": "privacy",
