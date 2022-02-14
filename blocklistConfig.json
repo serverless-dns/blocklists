@@ -1121,6 +1121,14 @@
       "pack": []
     },
     {
+      "vname": "DuckDuckGo Tracker Radar",
+      "format": "domains",
+      "group": "privacy",
+      "subg": "",
+      "url": "https://blokada.org/blocklists/ddgtrackerradar/standard/hosts.txt",
+      "pack": []
+    },
+    {
       "vname": "Tracking Aggressive (Lightswitch05)",
       "format": "hosts",
       "group": "privacy",
