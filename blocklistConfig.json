@@ -1505,6 +1505,14 @@
       "pack": []
     },
     {
+      "vname": "PUP filter", 
+      "format": "domains",
+      "group": "security",
+      "subg": "threat-intelligence-feeds"",
+      "url": "https://curben.gitlab.io/malware-filter/pup-filter-domains.txt",
+      "pack": []
+    }
+    {
         "vname": "Yet another small uBlock filter list",
         "format": "hosts",
         "group": "privacy",
