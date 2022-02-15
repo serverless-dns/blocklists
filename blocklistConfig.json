@@ -17,6 +17,30 @@
       "pack": []
     },
     {
+      "vname": "Malicious URL blocklist",
+      "format": "domains",
+      "group": "security",
+      "subg": "threat-intelligence-feeds",
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/safesearch-not-supported",
+      "pack": []
+    },
+    {
+      "vname": "Scam (The Block List Project)",
+      "format": "domains",
+      "group": "security",
+      "subg": "threat-intelligence-feeds",
+      "url": "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt",
+      "pack": []
+    },
+    {
+      "vname": "Phishing URL blocklist",
+      "format": "domains",
+      "group": "security",
+      "subg": "threat-intelligence-feeds",
+      "url": "https://curben.gitlab.io/malware-filter/phishing-filter-domains.txt",
+      "pack": []
+    },
+    {
       "vname": "Dating (olbat)",
       "format": "domains",
       "group": "parentalcontrol",
