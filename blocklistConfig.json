@@ -1511,6 +1511,14 @@
         "subg": "",
         "url": "https://raw.githubusercontent.com/mtxadmin/ublock/master/hosts.txt",
         "pack": []
-    }    
+    },
+    {
+        "vname": "Actually Legitimate URL Shortener Tool",
+        "format": "abp",
+        "group": "privacy",
+        "subg": "",
+        "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+        "pack": []
+    },
   ]
 }
