@@ -1517,7 +1517,7 @@
         "format": "abp",
         "group": "privacy",
         "subg": "",
-        "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+        "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt",
         "pack": []
     },
     {
@@ -1525,7 +1525,7 @@
         "format": "domain",
         "group": "privacy",
         "subg": "",
-        "url": "https://raw.githubusercontent.com/Ultimate-Hosts-Blacklist/Spam404/master/domains.list"
+        "url": "https://raw.githubusercontent.com/Ultimate-Hosts-Blacklist/Spam404/master/domains.list",
         "pack": []
     }
   ]
