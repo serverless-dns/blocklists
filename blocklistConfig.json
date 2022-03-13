@@ -1520,5 +1520,13 @@
         "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
         "pack": []
     },
+    {
+        "vname": "Ultimate-Hosts-Blacklist/Spam404",
+        "format": "domain",
+        "group": "privacy",
+        "subg": "",
+        "url": "https://raw.githubusercontent.com/Ultimate-Hosts-Blacklist/Spam404/master/domains.list"
+        "pack": []
+    }
   ]
 }
