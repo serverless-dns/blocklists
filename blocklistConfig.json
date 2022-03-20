@@ -1511,6 +1511,14 @@
         "subg": "",
         "url": "https://raw.githubusercontent.com/mtxadmin/ublock/master/hosts.txt",
         "pack": []
-    }    
+    },
+    {
+        "vname": "Inversion",
+        "format": "domains",
+        "group": "security",
+        "subg": "threat-intelligence-feeds",
+        "url": "https://raw.githubusercontent.com/elliotwutingfeng/Inversion-DNSBL-Blocklists/main/Google_hostnames.txt",
+        "pack": []
+    }
   ]
 }
