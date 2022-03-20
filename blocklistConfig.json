@@ -1401,11 +1401,19 @@
       "pack": []
     },
     {
-      "vname": "Combined Privacy Block Lists: Final (bongochong)",
+      "vname": "Combined Privacy Block Lists: Full (bongochong)",
       "format": "hosts",
       "group": "privacy",
       "subg": "notracking",
       "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/newhosts-final.hosts",
+      "pack": []
+    },
+    {
+      "vname": "Combined Privacy Block Lists: Light (bongochong)",
+      "format": "hosts",
+      "group": "privacy",
+      "subg": "notracking",
+      "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/MiniLists/mini-newhosts.hosts",
       "pack": []
     },
     {
