@@ -786,10 +786,10 @@
     },
     {
       "vname": "ABPindo",
-      "format": "abp",
+      "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/subscriptions/abpindo.txt",
+      "url": "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/subscriptions/domain.txt",
       "pack": []
     },
     {
