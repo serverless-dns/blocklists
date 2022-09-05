@@ -1527,6 +1527,14 @@
         "subg": "threat-intelligence-feeds",
         "url": "https://raw.githubusercontent.com/elliotwutingfeng/Inversion-DNSBL-Blocklists/main/Google_hostnames.txt",
         "pack": []
+    },
+    {
+        "vname": "URL Shorteners (PeterDaveHello)",
+        "format": "domains",
+        "group": "security",
+        "subg": "",
+        "url": "https://raw.githubusercontent.com/PeterDaveHello/url-shorteners/master/list",
+        "pack": []
     }
   ]
 }
