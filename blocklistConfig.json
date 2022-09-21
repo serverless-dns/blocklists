@@ -473,6 +473,14 @@
       "pack": []
     },
     {
+      "vname": "Porn & Gambling (StevenBlack)",
+      "format": "hosts",
+      "group": "parentalcontrol",
+      "subg": "porn",
+      "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn/hosts",
+      "pack": []
+    },
+    {
       "vname": "KADHosts (PolishFiltersTeam)",
       "format": "hosts",
       "group": "security",
