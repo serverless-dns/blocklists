@@ -1505,6 +1505,14 @@
       "pack": []
     },
     {
+      "vname": "Porn (The Block List Project)",
+      "format": "hosts",
+      "group": "parentalcontrol",
+      "subg": "porn",
+      "url": "https://blocklistproject.github.io/Lists/porn.txt",
+      "pack": []
+    },
+    {
       "vname": "Strict No Porn (Clefspeare13)",
       "format": "hosts",
       "group": "parentalcontrol",
