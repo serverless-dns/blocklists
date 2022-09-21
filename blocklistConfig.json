@@ -637,7 +637,7 @@
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://github.com/infinitytec/blocklists/raw/master/scams-and-phishing.txt",
+      "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
       "pack": []
     },
     {
