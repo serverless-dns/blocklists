@@ -633,11 +633,11 @@
       "pack": []
     },
     {
-      "vname": "Scam and phising (infinitytec)",
+      "vname": "Scam and phishing (infinitytec)",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
+      "url": "https://github.com/infinitytec/blocklists/raw/master/scams-and-phishing.txt",
       "pack": []
     },
     {
