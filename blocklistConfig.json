@@ -1535,6 +1535,14 @@
         "subg": "",
         "url": "https://raw.githubusercontent.com/PeterDaveHello/url-shorteners/master/list",
         "pack": []
-    }
+    },
+    {
+        "vname": "Persian Blocker",
+        "format": "domains",
+        "group": "privacy",
+        "subg": "",
+        "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt",
+        "pack": []
+    }    
   ]
 }
