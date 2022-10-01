@@ -2,6 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const trie = require("./trie.js")
 
+const outdir = process.env.OUTDIR
+const indir = process.env.INDIR
+
 async function getBlocklistFiles(bldir) {
     let blocklists = []
     let dirs = []
@@ -26,7 +29,7 @@ function loadConfig(blocklistConfigPath, unameVnameMapPath) {
         const tags = {}
         const fileData = fs.readFileSync(blocklistConfigPath, 'utf8')
         const mapData = fs.readFileSync(unameVnameMapPath, "utf8")
-        const blocklistobj = JSON.parse(fileData);
+        const blocklistobj = JSON.parse(fileData)
         const unameVnameMap = JSON.parse(mapData)
 
         for (let index in blocklistobj.conf) {
@@ -55,16 +58,16 @@ function loadConfig(blocklistConfigPath, unameVnameMapPath) {
 }
 
 async function main() {
-    const outdir = path.normalize("./result/")
-    const bldir = path.normalize("./blocklistfiles/")
+    const triedir = path.normalize(`./${outdir}/`)
+    const bldir = path.normalize(`./${indir}/`)
     const blconfig = path.normalize("./blocklistConfig.json")
     const unamemap = path.normalize("./valueUnameMap.json")
 
     try {
         const tags = loadConfig(blconfig, unamemap)
         const bl = await getBlocklistFiles(bldir);
-        console.log("build, out: " + outdir + ", in: " + bl + ", tags: " + tags)
-        await trie.build(bl, fs, outdir, tags)
+        console.log("build, out: " + triedir + ", in: " + bl + ", tags: " + tags)
+        await trie.build(bl, fs, triedir, tags)
     } catch (e) {
         console.log(e.stack)
         process.exitCode = 1
