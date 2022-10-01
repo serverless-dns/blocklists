@@ -1,0 +1,23 @@
+app = ""
+
+kill_signal = "SIGINT"
+kill_timeout = 10
+
+[build]
+dockerfile = "node.Dockerfile"
+
+[env]
+NODE_ENV = "production"
+INDIR="blocklistfiles"
+OUTDIR="result"
+S3DIR="blocklists"
+# secrets
+# AWS_BUCKET_NAME
+# AWS_ACCESS_KEY
+# AWS_SECRET_ACCESS_KEY
+
+[experimental]
+auto_rollback = true
+
+[[services]]
+
