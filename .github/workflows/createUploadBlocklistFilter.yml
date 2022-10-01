@@ -32,7 +32,10 @@ jobs:
           fallocate -l 8192M ./swapfile
           chmod 0600 ./swapfile
           mkswap ./swapfile
-          echo 25 > /proc/sys/vm/swappiness
+          # setting swapiness fails on gh-action with
+          # /home/runner/work/_temp/...sh: .../vm/swappiness: Permission denied
+          # echo 25 > /proc/sys/vm/swappiness
+          cat /proc/sys/vm/swappiness
           swapon ./swapfile
       shell: bash
     - name: Download blocklist script execution
