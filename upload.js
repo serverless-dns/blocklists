@@ -12,7 +12,9 @@ const s3 = new AWS.S3({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 })
 
-const version = Date.now()
+const d = new Date()
+// ex: 2022/1664574546478
+const version = d.getFullYear() + "/" + d.getTime()
 
 function empty(str) {
     return !str
@@ -60,7 +62,7 @@ async function toS3(f, key) {
     return s3.upload(r).promise()
 }
 
-(async function() {
+async function start() {
     try {
         if (empty(process.env.AWS_ACCESS_KEY) || empty(process.env.AWS_SECRET_ACCESS_KEY)) {
             console.log("access / secret keys not found")
@@ -79,4 +81,8 @@ async function toS3(f, key) {
         console.log(e)
         process.exitCode = 1
     }
+}
+
+(async function() {
+    await start()
 })()
