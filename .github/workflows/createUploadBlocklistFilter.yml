@@ -24,12 +24,12 @@ jobs:
         python-version: '3.9.6'
     - name: setup node
       uses: actions/setup-node@v2
-      with: 
+      with:
         node-version: '18'
     - name: setup swap
       run: |
           # make swap: community.fly.io/t/6782/10
-          fallocate -l 8192 ./swapfile
+          fallocate -l 8192M ./swapfile
           chmod 0600 ./swapfile
           mkswap ./swapfile
           echo 25 > /proc/sys/vm/swappiness
@@ -64,5 +64,5 @@ jobs:
         S3DIR: ${{ env.S3DIR }}
         OUTDIR: ${{ env.OUTDIR }}
 
-    
+
 

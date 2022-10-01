@@ -2,7 +2,7 @@
 
 if ! test -e "/swapfile"; then
   # make swap: community.fly.io/t/6782/10
-  fallocate -l 8192 /swapfile
+  fallocate -l 8192M /swapfile
   chmod 0600 /swapfile
   mkswap /swapfile
   echo 25 > /proc/sys/vm/swappiness
