@@ -28,15 +28,17 @@ jobs:
         node-version: '18'
     - name: setup swap
       run: |
+          free -hm
           # make swap: community.fly.io/t/6782/10
-          fallocate -l 8192M ./swapfile
-          chmod 0600 ./swapfile
-          mkswap ./swapfile
-          # setting swapiness fails on gh-action with
-          # /home/runner/work/_temp/...sh: .../vm/swappiness: Permission denied
-          # echo 25 > /proc/sys/vm/swappiness
-          cat /proc/sys/vm/swappiness
-          swapon ./swapfile
+          sudo fallocate -l 8192M ./swapfile
+          sudo chmod 0600 ./swapfile
+          sudo mkswap ./swapfile
+          # stackoverflow.com/a/550808
+          sudo cat /proc/sys/vm/swappiness
+          echo "33" | sudo tee /proc/sys/vm/swappiness > /dev/null
+          # github.com/pierotofy/set-swap-space/blob/master/action.yml
+          sudo swapon ./swapfile
+          free -hm
       shell: bash
     - name: Download blocklist script execution
       run: |
