@@ -1502,32 +1502,30 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
 
     let hosts = [];
     try {
-        let filecount = 0
-        let totallinecount = 0
-        for (filepath of blocklist) {
-            let linecount = 0
-            let namesplit = filepath.split("/")
-            let smallname = namesplit[namesplit.length - 1].split(".")[0]
-            let fileData = filesystem.readFileSync(filepath, 'utf8');
-            if (fileData.length > 1) {
-                console.log("adding: " + filepath, smallname + " <-file | tag-> "+tag[smallname])
-                let filelist = []
-                for (let line of fileData.split("\n")) {
-                    linecount++
-                    line = line.trim()
-                    hosts.push(TxtEnc.encode(tag[smallname] + line).reverse())
-                }
-                totallinecount = totallinecount + linecount
-                tag_dict[smallname].entries = linecount
-                if ( tag_dict[smallname].entries > 1 ){
-                    tag_dict[smallname].show = 1
-                }
-                filecount = filecount + 1
-            } else {
+        let totalfiles = 0
+        let totallines = 0
+        for (let filepath of blocklist) {
+            let patharr = filepath.split("/")
+            let fname = patharr[patharr.length - 1].split(".")[0]
+            let f = filesystem.readFileSync(filepath, 'utf8')
+            if (f.length <= 0) {
                 console.log("empty file", filepath)
+                continue
             }
+            console.log("adding: " + filepath, fname + " <-file | tag-> "+tag[fname])
+            let lines = 0
+            for (let h of f.split("\n")) {
+                const ht = tag[fname] + h.trim()
+                const htr = TxtEnc.encode(ht).reverse()
+                hosts.push(htr)
+                lines += 1
+            }
+            totallines = totallines + lines
+            tag_dict[fname].entries = lines
+            tag_dict[fname].show = lines > 1
+            totalfiles += 1
         }
-        console.log("Lines: " + totallinecount, "Total files: " + filecount)
+        console.log("Lines: " + totallines, "Files: " + totalfiles)
     } catch (e) {
         console.error(e)
         throw e
