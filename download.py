@@ -40,8 +40,8 @@ def validateBasicConfig():
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
     for value in configDict["conf"]:
-        if len(value) != len(keyFormat):            
-            print ("Invalid Blocklist config Format")            
+        if len(value) != len(keyFormat):
+            print ("Invalid Blocklist config Format")
             print (value)
             print ("Should contain below fields")
             print (keyFormat)
@@ -79,7 +79,7 @@ def validateBasicConfig():
         value["index"] = index
         index = index + 1
     random.shuffle(configDict["conf"])
-    return True          
+    return True
 
 def parseDownloadBasicConfig(configList):
     global totalUrl
@@ -91,7 +91,7 @@ def parseDownloadBasicConfig(configList):
     downloadLoc = ""
     totalUrl = 0
     fileName = ""
-    
+
     for value in configList:
         if str(value["index"]) in unameVnameMap:
             fileName = unameVnameMap[str(value["index"])]
@@ -108,9 +108,9 @@ def parseDownloadBasicConfig(configList):
             print("\n"+str(totalUrl)+":")
             print("Deprecated  blocklist -> skip download")
             print(value)
-            print("\n")            
+            print("\n")
             continue
-        ret = downloadFile(value["url"],value["format"],downloadLoc)     
+        ret = downloadFile(value["url"],value["format"],downloadLoc)
 
         if (not ret) and ('try again' in value["pack"]):
             blocklistNotDownloaded.append(str(value))
@@ -118,11 +118,12 @@ def parseDownloadBasicConfig(configList):
         elif ret == "retry":
             retryBlocklist.append(value)
         elif not ret:
-            print("\n\nFollowing blocklist not downloaded")
+            print("\n\nblocklist not downloaded:")
             print(value)
             print("\n")
-            sys.exit("")
-    
+            # FIXME: continue with warning
+            # sys.exit("")
+
 
 def createFileNotExist(filename):
     if not os.path.exists(os.path.dirname(filename)):
@@ -145,7 +146,7 @@ def regxFileDomain(txt,regx_str,grp_index,format):
         g2 = g2.strip()
         if g2 and g2[-1]!='.':
             domainlist.add(g2)
-    
+
     if format != "wildcard" and len(domainlist) <= 8:
         return ""
 
@@ -154,9 +155,9 @@ def regxFileDomain(txt,regx_str,grp_index,format):
 def writeFile(download_loc_filename,filetxt):
     global savedUrl
     if filetxt and filetxt != "":
-        createFileNotExist(download_loc_filename)         
-        with open(download_loc_filename, "w") as f:  
-            f.write(safeStr(filetxt))  
+        createFileNotExist(download_loc_filename)
+        with open(download_loc_filename, "w") as f:
+            f.write(safeStr(filetxt))
             f.close()
         savedUrl = savedUrl + 1
         return True
@@ -168,40 +169,40 @@ def urllibRequestApi(url):
         response = urllib.request.urlopen(url)
         data = response.read()
         r = data.decode('utf-8')
-        return r          
-    except Exception as e: 
-        print("Exception")    
-        print(e)   
+        return r
+    except Exception as e:
+        print("Exception")
+        print(e)
         return False
 
 def requestApi(url):
     try:
         r = requests.get(url)
-        return r.text          
+        return r.text
     except Exception as e:
-        print("\nException\n")    
+        print("\nException\n")
         print(e)
         return False
 
-def downloadFile(url,format,download_loc_filename):  
-    global totalUrl  
+def downloadFile(url,format,download_loc_filename):
+    global totalUrl
     totalUrl = totalUrl + 1
     print (str(totalUrl) +" : Downloading From : "+url)
     print ("Download Location : "+download_loc_filename)
     ret = True
     r = requestApi(url)
-    
+
     if(not r):
         print("\nException in downloading file")
         print("Exception : "+ url +" : "+download_loc_filename)
         return "retry"
 
-    if format == "domains" or format == "wildcard":        
-        filetxt = regxFileDomain(r,r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)',0,format)        
+    if format == "domains" or format == "wildcard":
+        filetxt = regxFileDomain(r,r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)',0,format)
     elif format == "hosts":
         filetxt = regxFileDomain(r,r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)',3,format)
     elif format == "abp":
-        filetxt = regxFileDomain(r,r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',1,format)               
+        filetxt = regxFileDomain(r,r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',1,format)
 
     ret = writeFile(download_loc_filename,filetxt)
     if not ret:
@@ -248,8 +249,8 @@ def main():
 
     if isConfigLoad:
         if validateBasicConfig():
-            parseDownloadBasicConfig(configDict["conf"])                                               
-            
+            parseDownloadBasicConfig(configDict["conf"])
+
             print ("\nTotal blocklist : "+str(totalUrl))
             print ("Download and saved blocklist : "+str(savedUrl))
             print ("Difference : "+str(totalUrl-savedUrl))
@@ -259,7 +260,7 @@ def main():
                 tmpRetryBlocklist = retryBlocklist
                 retryBlocklist = list()
                 parseDownloadBasicConfig(tmpRetryBlocklist)
-            
+
             print("\n\nTry later blocklist not downloaded")
             print("\n".join(blocklistNotDownloaded))
 
