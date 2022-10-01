@@ -12,8 +12,10 @@ jobs:
       uses: actions/checkout@v2
     - name: setup inputs
       run: |
+        BLDIR="blocklistfiles"
         RESDIR="result"
         S3BL="blocklists"
+        echo "INDIR=${BLDIR}" >> $GITHUB_ENV
         echo "OUTDIR=${RESDIR}" >> $GITHUB_ENV
         echo "S3DIR=${S3BL}" >> $GITHUB_ENV
     - name: setup python
@@ -23,7 +25,16 @@ jobs:
     - name: setup node
       uses: actions/setup-node@v2
       with: 
-        node-version: '14'    
+        node-version: '18'
+    - name: setup swap
+      run: |
+          # make swap: community.fly.io/t/6782/10
+          fallocate -l 8192 ./swapfile
+          chmod 0600 ./swapfile
+          mkswap ./swapfile
+          echo 25 > /proc/sys/vm/swappiness
+          swapon ./swapfile
+      shell: bash
     - name: Download blocklist script execution
       run: |
         python -m pip install requests
@@ -31,10 +42,10 @@ jobs:
     - name: Build blocklist filter using node
       run: |
         mkdir -p "$OUTDIR"
-        # 16384/1024 => 16G RAM
-        node --max-old-space-size=16384 --expose-gc build.js
+        # 16384/1024 => 16G RAM --max-old-space-size=16384
+        node --expose-gc build.js
       env:
-        OUTDIR: ${{ env.OUTDIR}}
+        OUTDIR: ${{ env.OUTDIR }}
     - name: Split td in 20M slices
       run: |
         # creates td00.txt, td01.txt, ... , td98.txt, td99.txt, td100.txt, ...
