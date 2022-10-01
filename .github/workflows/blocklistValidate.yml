@@ -7,9 +7,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    steps:      
+    steps:
     - name: checkout repo content
       uses: actions/checkout@v2
+    - name: setup inputs
+      run: |
+        BLDIR="blocklistfiles"
+        RESDIR="result"
+        S3BL="blocklists"
+        echo "INDIR=${BLDIR}" >> $GITHUB_ENV
+        echo "OUTDIR=${RESDIR}" >> $GITHUB_ENV
+        echo "S3DIR=${S3BL}" >> $GITHUB_ENV
     - name: setup python
       uses: actions/setup-python@v2
       with:
@@ -19,6 +27,4 @@ jobs:
         python -m pip install requests
     - name: Validate blocklistconfig.json
       run: python download.py
-
-    
 
