@@ -31,7 +31,8 @@ jobs:
           free -hm
           # make swap: community.fly.io/t/6782/10
           sudo fallocate -l 8192M ./swapfile
-          sudo chmod 0600 ./swapfile
+          # unix.stackexchange.com/a/297155
+          sudo chown root:root ./swapfile
           sudo mkswap ./swapfile
           # stackoverflow.com/a/550808
           sudo cat /proc/sys/vm/swappiness
