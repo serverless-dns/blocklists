@@ -5,31 +5,31 @@ import random
 import re
 import requests
 import sys
-import time
 import urllib.request
 from urllib.parse import urlparse
 
+supportedFileFormat = {"domains", "hosts", "abp", "wildcard"}
 
-
+isConfigLoad = False
+keyFormat = {"vname",  "format", "group", "subg", "url", "pack"}
 configFileLocation = "./blocklistConfig.json"
 vnameMapFileLocation = "./valueUnameMap.json"
-isConfigLoad = False
-configDict = {}
 unameVnameMap = {}
-valueExist = set()
+configDict = {}
 urlExist = set()
+valueExist = set()
 unameExist = set()
-keyFormat = {"vname",  "format", "group", "subg", "url", "pack"}
-supportedFileFormat = {"domains", "hosts", "abp", "wildcard"}
+
 totalUrl = 0
 savedUrl = 0
+
+blocklistfiles = os.environ.get("INDIR")
 blocklistDownloadRetry = 3
 blocklistNotDownloaded = list()
 retryBlocklist = list()
+
 def validateBasicConfig():
     global keyFormat
-    failed = 0
-    downloadLoc = ""
     index = 0
     regex = re.compile(
         r'^(?:http|ftp)s?://'
@@ -86,6 +86,7 @@ def parseDownloadBasicConfig(configList):
     global unameVnameMap
     global blocklistNotDownloaded
     global retryBlocklist
+    global blocklistfiles
 
     downloadLoc = ""
     totalUrl = 0
@@ -98,12 +99,10 @@ def parseDownloadBasicConfig(configList):
             fileName = str(value["index"])
 
         if value["subg"].strip() == "":
-            downloadLoc = "./blocklistfiles/" + value["group"].strip() + "/" + fileName + ".txt"
+            downloadLoc = "./" + blocklistfiles + "/" + value["group"].strip() + "/" + fileName + ".txt"
         else:
-            downloadLoc = "./blocklistfiles/" + value["group"].strip() + "/"  + value["subg"].strip() + "/" + fileName + ".txt"
+            downloadLoc = "./" + blocklistfiles + "/" + value["group"].strip() + "/"  + value["subg"].strip() + "/" + fileName + ".txt"
 
-        
-        #print (downloadLoc)
         if('deprecated' in value["pack"]):
             totalUrl = totalUrl + 1
             print("\n"+str(totalUrl)+":")
@@ -137,7 +136,6 @@ def safeStr(obj):
     try: return str(obj)
     except UnicodeEncodeError:
         return obj.encode('ascii', 'ignore').decode('ascii')
-    return ""
 
 def regxFileDomain(txt,regx_str,grp_index,format):
     domainlist = set()
@@ -211,6 +209,7 @@ def downloadFile(url,format,download_loc_filename):
         print(url +" : "+download_loc_filename)
         print("\n")
     return ret
+
 def loadBlocklistConfig():
     global isConfigLoad
     global configDict
@@ -243,8 +242,10 @@ def main():
     global configDict
     global retryBlocklist
     tmpRetryBlocklist = list()
+
     loadBlocklistConfig()
     exitWithError = False
+
     if isConfigLoad:
         if validateBasicConfig():
             parseDownloadBasicConfig(configDict["conf"])                                               
@@ -258,7 +259,6 @@ def main():
                 tmpRetryBlocklist = retryBlocklist
                 retryBlocklist = list()
                 parseDownloadBasicConfig(tmpRetryBlocklist)
-
             
             print("\n\nTry later blocklist not downloaded")
             print("\n".join(blocklistNotDownloaded))
@@ -275,9 +275,8 @@ def main():
         else:
             print ("Validation Error")
             sys.exit("")
-
     else:
         print("Error in loading BasicConfigFile for Download Process")
 
-
-main()
+if __name__ == "__main__":
+    main()
