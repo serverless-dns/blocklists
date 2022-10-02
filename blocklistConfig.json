@@ -129,12 +129,12 @@
       "pack": []
     },
     {
-      "vname": "Porn (Clefspeare13)",
+      "vname": "Porn (StevenBlack)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
-      "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/mobile/hosts",
-      "pack": ["dead"]
+      "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn/hosts",
+      "pack": []
     },
     {
       "vname": "Porn (Mahadi Xion)",
@@ -1513,12 +1513,12 @@
       "pack": []
     },
     {
-      "vname": "Strict No Porn (Clefspeare13)",
+      "vname": "OISD NSFW (Porn)",
       "format": "hosts",
       "group": "parentalcontrol",
       "subg": "porn",
-      "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/strict/0.0.0.0/hosts",
-      "pack": ["dead"]
+      "url": "https://dbl.oisd.nl/nsfw/",
+      "pack": []
     },    
     {
       "vname": "Energized Unified",
