@@ -457,12 +457,12 @@
       "pack": []
     },
     {
-      "vname": "Malware (malwaredomainlist.com)",
+      "vname": "Malware (UrlHaus.Abuse.Ch)",
       "format": "hosts",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://www.malwaredomainlist.com/hostslist/hosts.txt",
-      "pack": ["dead"]
+      "url": "https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts.txt",
+      "pack": []
     },
     {
       "vname": "Security (StevenBlack)",
