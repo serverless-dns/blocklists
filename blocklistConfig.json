@@ -785,12 +785,12 @@
       "pack": []
     },
     {
-      "vname": "280blocker",
-      "format": "domains",
+      "vname": "iVoid (intr0)",
+      "format": "hosts",
       "group": "privacy",
       "subg": "",
-      "url": "https://280blocker.net/files/280blocker_domain.txt",
-      "pack": ["dead"]
+      "url": "https://gitlab.com/intr0/iVOID.GitLab.io/raw/master/iVOID.hosts",
+      "pack": []
     },
     {
       "vname": "ABPindo",
