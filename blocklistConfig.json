@@ -134,7 +134,7 @@
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/mobile/hosts",
-      "pack": ["try again"]
+      "pack": ["dead"]
     },
     {
       "vname": "Porn (Mahadi Xion)",
@@ -462,7 +462,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://www.malwaredomainlist.com/hostslist/hosts.txt",
-      "pack": ["deprecated"]
+      "pack": ["dead"]
     },
     {
       "vname": "Security (StevenBlack)",
@@ -494,7 +494,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://mirror1.malwaredomains.com/files/justdomains",
-      "pack": ["deprecated"]
+      "pack": ["dead"]
     },
     {
       "vname": "Malware (Disconnect.me)",
@@ -502,7 +502,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt",
-      "pack": ["deprecated"]
+      "pack": ["dead"]
     },
     {
       "vname": "Phishing.Army",
@@ -550,7 +550,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://joewein.net/dl/bl/dom-bl-base.txt",
-      "pack": []
+      "pack": ["dead"]
     },
     {
       "vname": "Domain blocklist full (joewein.net)",
@@ -558,7 +558,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://joewein.net/dl/bl/dom-bl.txt",
-      "pack": []
+      "pack": ["dead"]
     },
     {
       "vname": "Malware (mirror.cedia.org.ec)",
@@ -566,7 +566,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://mirror.cedia.org.ec/malwaredomains/immortal_domains.txt",
-      "pack": ["deprecated"]
+      "pack": ["dead"]
     },
     {
       "vname": "Bad lists (ethanr)",
@@ -646,7 +646,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://infosec.cert-pa.it/analyze/listdomains.txt",
-      "pack": ["try again"]
+      "pack": ["dead"]
     },
     {
       "vname": "Toxic domains (stopforumspam.com)",
@@ -678,7 +678,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/maze.txt",
-      "pack": ["deprecated"]
+      "pack": ["dead"]
     },
     {
       "vname": "Malware Ekans (rescure.fruxlabs.com)",
@@ -686,7 +686,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/ekans.txt",
-      "pack": ["deprecated"]
+      "pack": ["dead"]
     },
     {
       "vname": "Malware Wastedlocker (rescure.fruxlabs.com)",
@@ -694,7 +694,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/malware/wastedlocker.txt",
-      "pack": ["deprecated"]
+      "pack": ["dead"]
     },
     {
       "vname": "Malware domains (blocklist.cyberthreatcoalition.org)",
@@ -702,7 +702,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://blocklist.cyberthreatcoalition.org/vetted/domain.txt",
-      "pack": ["deprecated"]
+      "pack": ["dead"]
     },
     {
       "vname": "Malicious domains (Sophos Labs)",
@@ -726,7 +726,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://rescure.fruxlabs.com/covid.txt",
-      "pack": ["try again"]
+      "pack": []
     },
     {
       "vname": "Covid-19 Domains (managedsentinel.com)",
@@ -734,7 +734,7 @@
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://managedsentinel.com/downloads/covid19_domains.txt",
-      "pack": ["deprecated"]
+      "pack": ["dead"]
     },
     {
       "vname": "hole.cert.pl",
@@ -790,7 +790,7 @@
       "group": "privacy",
       "subg": "",
       "url": "https://280blocker.net/files/280blocker_domain.txt",
-      "pack": ["deprecated"]
+      "pack": ["dead"]
     },
     {
       "vname": "ABPindo",
@@ -1518,7 +1518,7 @@
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://raw.githubusercontent.com/Clefspeare13/pornhosts/master/download_here/strict/0.0.0.0/hosts",
-      "pack": ["try again"]
+      "pack": ["dead"]
     },    
     {
       "vname": "Energized Unified",
