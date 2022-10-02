@@ -1202,7 +1202,7 @@
     },
     {
       "vname": "No Google",
-      "format": "domains",
+      "format": "wildcard",
       "group": "privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/nickspaargaren/no-google/master/wildcards-domains",
