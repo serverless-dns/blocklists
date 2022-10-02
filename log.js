@@ -32,6 +32,12 @@ function t() {
     return new Date().toISOString();
 }
 
+function sys() {
+    log.i("cpu-avg", os.loadavg(),
+        "mem-free", os.freemem()/ (1000 * 1000),
+        "mem-use", os.totalmem() / (1000 * 1000));
+}
+
 module.exports = {
-    d, i, w, e
+    d, i, w, e, sys
 };

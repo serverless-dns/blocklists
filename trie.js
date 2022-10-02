@@ -116,7 +116,7 @@ BitWriter.prototype = {
     write16(data, numBits) {
         // todo: throw error?
         if (numBits > 16) {
-            console.error("write16 can only writes lsb16 bits, out of range: " + numBits);
+            log.e("write16 can only writes lsb16 bits, out of range: " + numBits);
             return;
         }
         const n = data;
@@ -199,7 +199,7 @@ BitWriter.prototype = {
         const size = Math.ceil(n / W);
 
         let chars = (config.useBuffer) ? getBuffer(size, W) : [];
-        console.log("W/size/n ", W, size, n)
+        log.i("W/size/n ", W, size, n)
         let j = 0;
         let b = 0;
         let i = 0;
@@ -208,7 +208,7 @@ BitWriter.prototype = {
             i += 1;
             if (i === W) {
                 if (config.useBuffer) {
-                    if (config.debug) console.debug("i/j/W/n/s", i, j, W, n, size);
+                    if (config.debug) log.d("i/j/W/n/s", i, j, W, n, size);
                     chars.set([b], (j / W) | 0)
                 } else {
                     chars.push(CHR(b));
@@ -321,7 +321,7 @@ function bit0p(n, p) {
         c = c + (n < (n ^ 0x1)) ? 1 : 0;
         i += 1;
     }
-    //console.log("      ", String.fromCharCode(m).charCodeAt(0).toString(2), m, i, p, c);
+    //log.d("      ", String.fromCharCode(m).charCodeAt(0).toString(2), m, i, p, c);
     return { index: (p == c) ? i : 0, scanned: i };
 }
 
@@ -438,7 +438,7 @@ BitString.prototype = {
             while (n > 0) {
                 step = (n <= 16) ? n : 16;
                 const bits0 = step - countSetBits(this.get(i, step));
-                if (config.debug) console.log(i + ":i, step:" + step + " get: " + this.get(i,step) + " n: " + n);
+                if (config.debug) log.d(i + ":i, step:" + step + " get: " + this.get(i,step) + " n: " + n);
                 n -= bits0;
                 i += step;
                 index = i - 1;
@@ -449,7 +449,7 @@ BitString.prototype = {
         while (n > 0) {
             const d = this.get(i, step);
             const bits0 = step - countSetBits(d);
-            if (config.debug) console.log(i + ":i, step:" + step + " get: " + this.get(i,step) + " n: " + n);
+            if (config.debug) log.d(i + ":i, step:" + step + " get: " + this.get(i,step) + " n: " + n);
 
             if (n - bits0 < 0) {
                 step = Math.max(n, step / 2 | 0);
@@ -581,7 +581,7 @@ RankDirectory.prototype = {
                 x = x % this.l2Size;
             }
             const ans = (x > 0) ? this.data.pos0(rank + 1, x) : rank;
-            if (config.debug) console.debug("ans: " + ans + " " + rank + ":r, x: " + x + " " + sectionPos + ":s, o: " + o);
+            if (config.debug) log.d("ans: " + ans + " " + rank + ":r, x: " + x + " " + sectionPos + ":s, o: " + o);
             return ans;
         }
 
@@ -596,19 +596,19 @@ RankDirectory.prototype = {
         if (o >= this.l1Size) {
             sectionPos = (o / this.l1Size | 0) * this.sectionBits;
             rank = this.directory.get(sectionPos - this.l1Bits, this.l1Bits);
-            if (config.debug) console.debug("o: " + rank + " sec: " + sectionPos)
+            if (config.debug) log.d("o: " + rank + " sec: " + sectionPos)
             o = o % this.l1Size;
         }
 
         if (o >= this.l2Size) {
             sectionPos += (o / this.l2Size | 0) * this.l2Bits;
             rank += this.directory.get(sectionPos - this.l2Bits, this.l2Bits);
-            if (config.debug) console.debug("o2: " + rank + " sec: " + sectionPos)
+            if (config.debug) log.d("o2: " + rank + " sec: " + sectionPos)
         }
 
         rank += this.data.count(x - x % this.l2Size, x % this.l2Size + 1);
 
-        if (config.debug) console.log("ans: " + rank + " x: " + o + " " + sectionPos + ":s, o: " + x);
+        if (config.debug) log.d("ans: " + rank + " x: " + o + " " + sectionPos + ":s, o: " + x);
 
         return rank;
     },
@@ -741,7 +741,7 @@ Trie.prototype = {
         }
         // flags.length must be equal to tagIndices.length
         if (tagIndices.length !== flags.length - 1) {
-            console.error(tagIndices, flags, " flags and header mismatch (bug in upsert?)");
+            log.e(tagIndices, flags, " flags and header mismatch (bug in upsert?)");
             return values;
         }
         for (let i = 0; i < flags.length; i++) {
@@ -751,7 +751,7 @@ Trie.prototype = {
                 if ((flag << j) === 0) break;
                 if ((flag & mask) === mask) {
                     const pos = (index * 16) + j;
-                    if (config.debug) console.log("pos ", pos, "index/tagIndices", index, tagIndices, "j/i", j, i);
+                    if (config.debug) log.d("pos ", pos, "index/tagIndices", index, tagIndices, "j/i", j, i);
                     values.push(this.rflags[pos]);
                 }
                 mask = mask >>> 1;
@@ -781,7 +781,7 @@ Trie.prototype = {
         flag = TxtDec.decode(flag);
         val = this.flags[flag];
         if (typeof (val) === "undefined") {
-            console.log("val undef ", node)
+            log.w("val undef ", node)
             throw new Error("val undefined err")
         }
 
@@ -809,7 +809,7 @@ Trie.prototype = {
         let dataIndex = countSetBits(h & BitString.MaskBottom[16][16 - index]) + 1;
 
         if (config.debug && (typeof(res) === "undefined"  || typeof(res[dataIndex]) === "undefined")) {
-            console.log("res/index/h/val/pos/dataindex", res, res[dataIndex], h, val, pos,dataIndex, "fnode/node/flag/let", fnode, node, node.flag, node.letter);
+            log.d("res/index/h/val/pos/dataindex", res, res[dataIndex], h, val, pos,dataIndex, "fnode/node/flag/let", fnode, node, node.flag, node.letter);
         }
 
         // set n to either existing value or create a 0'd string
@@ -817,7 +817,7 @@ Trie.prototype = {
         try {
             n = (((h >>> (15 - (index))) & 0x1) !== 1) ? 0 : DEC16(res[dataIndex]);
         } catch (e) {
-            console.log("res/len/index/h/val/pos/dataindex", res, res.length, res[dataIndex], h, val, pos, dataIndex, "fnode/node/flag/let", fnode, node, node.flag, node.letter)
+            log.e("res/len/index/h/val/pos/dataindex", res, res.length, res[dataIndex], h, val, pos, dataIndex, "fnode/node/flag/let", fnode, node, node.flag, node.letter)
             throw e
         }
 
@@ -833,7 +833,7 @@ Trie.prototype = {
 
         fnode.letter = res;
 
-        if (config.debug) console.log(flag, val, index, pos)
+        if (config.debug) log.d(flag, val, index, pos)
     },
 
     /**
@@ -893,15 +893,15 @@ Trie.prototype = {
             node.children.push(tn);
             node.final = false;
             this.upsertFlag(node, undefined);
-            if (config.debug) console.log("split the node newnode/currentnode/split-reason", n, node.letter, w);
+            if (config.debug) log.d("split the node newnode/currentnode/split-reason", n, node.letter, w);
         }
 
         if (w.length === 0) {
             node.final = true;
             this.upsertFlag(node, flag);
-            if (config.debug) console.log("existing node final nl/split-word/letter-match/pfx/in-word", node.letter, w, letter, commonPrefix, word);
+            if (config.debug) log.d("existing node final nl/split-word/letter-match/pfx/in-word", node.letter, w, letter, commonPrefix, word);
         } else {
-            if (typeof (node) === "undefined") console.log("second add new-node/in-word/match-letter/parent-node", w, word, letter, searchPos/*, node.letter*/);
+            if (typeof (node) === "undefined") log.d("second add new-node/in-word/match-letter/parent-node", w, word, letter, searchPos/*, node.letter*/);
             const second = new TrieNode(w);
             second.final = true;
             this.upsertFlag(second, flag)
@@ -952,7 +952,7 @@ Trie.prototype = {
                 start = 1;
                 // fixme: abort when a flag node is marked as such but has no value stored?
                 if (typeof (flagNode.letter) === "undefined" || typeof (flagNode) === "undefined") {
-                    console.log("flagnode letter undef ", flagNode, " node ", node);
+                    log.w("flagnode letter undef ", flagNode, " node ", node);
                 }
                 // get flags split into 8 bits (uint) per array item
                 const encValue = new BitString(flagNode.letter).encode(8);
@@ -984,7 +984,7 @@ Trie.prototype = {
             // scale down things trie.encode doesn't need
             node.scale();
         }
-        if (config.inspect) console.log(inspect);
+        if (config.inspect) log.d(inspect);
         return { level: level, div: ord };
     },
 
@@ -1033,14 +1033,20 @@ Trie.prototype = {
         this.stats = { children: 0, single: new Array(256).fill(0) }
         let start = Date.now();
 
-        console.log("levelorder begin:", start)
+        log.i("levelorder begin:", start);
+        log.sys();
         const levelorder = this.levelorder();
-        console.log("levelorder end: ", Date.now() - start)
+        log.i("levelorder end: ", Date.now() - start);
+        log.sys();
 
         this.root = null
         this.cache = null
 
-        if (global.gc) global.gc();
+        if (global.gc) {
+            global.gc();
+            log.i("encode: gc");
+            log.sys();
+        }
 
         const level = levelorder.level;
         let nbb = 0;
@@ -1056,9 +1062,7 @@ Trie.prototype = {
 
             if (i % l10 == 0) {
                 log.i("at encode[i]: " + i)
-                log.i("cpuavg", os.loadavg())
-                log.i("memfree", os.freemem()/ 1024)
-                log.i("memuse", os.totalmem() / 1024)
+                log.sys();
             }
             this.stats.single[childrenLength] += 1;
 
@@ -1104,11 +1108,9 @@ Trie.prototype = {
         for (c of chars) {
             if (k % (chars.length / 10 | 0) == 0) {
                 log.i("charslen: " + k);
-                log.i("cpuavg", os.loadavg())
-                log.i("memfree", os.freemem()/ 1024)
-                log.i("memuse", os.totalmem() / 1024)
+                log.sys();
             }
-            bits.write(c, bitslen)
+            bits.write(c, bitslen);
             k += 1;
         }
 
@@ -1458,7 +1460,7 @@ FrozenTrie.prototype = {
                 }
             }
 
-            if (debug) log.d("        next: " + child.letter())
+            if (debug) log.d("        next: " + child.letter());
 
             node = child;
         }
@@ -1467,10 +1469,10 @@ FrozenTrie.prototype = {
         // level order indexing, fixme: see above re returning "false" vs [false] vs [[0], false]
         //return (node.final()) ? [node.value(), node.final()] : node.final();
         if (node.final()) {
-            if (returnValue == false) { returnValue = new Map() }
-            returnValue.set(TxtDec.decode(word.reverse()), node.value())
+            if (returnValue == false) { returnValue = new Map(); }
+            returnValue.set(TxtDec.decode(word.reverse()), node.value());
         }
-        return returnValue
+        return returnValue;
     }
 };
 
@@ -1490,85 +1492,89 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
 
     let nodeCount = 0;
     // in key:value pair, key cannot be anything that coerces to boolean false
-    let tag = {}
-    let fl = []
+    let tag = {};
+    let fl = [];
     for (let ele in tag_dict) {
         if (!tag_dict.hasOwnProperty(ele)) continue;
-        fl[tag_dict[ele].value] = ele
+        fl[tag_dict[ele].value] = ele;
         // reverse the value since it is prepended to the front of key
         const v = DELIM + tag_dict[ele].uname;
-        tag[ele] = v.split("").reverse().join("")
+        tag[ele] = v.split("").reverse().join("");
     }
     initialize();
 
-    let t = new Trie()
-    t.setupFlags(fl)
+    let t = new Trie();
+    t.setupFlags(fl);
 
     let hosts = [];
     try {
-        let totalfiles = 0
-        let totallines = 0
+        let totalfiles = 0;
+        let totallines = 0;
         for (let filepath of blocklist) {
-            let patharr = filepath.split("/")
-            let fname = patharr[patharr.length - 1].split(".")[0]
-            let f = filesystem.readFileSync(filepath, 'utf8')
+            let patharr = filepath.split("/");
+            let fname = patharr[patharr.length - 1].split(".")[0];
+            let f = filesystem.readFileSync(filepath, 'utf8');
             if (f.length <= 0) {
-                log.i("empty file", filepath)
-                continue
+                log.i("empty file", filepath);
+                continue;
             }
-            log.i("adding: " + filepath, fname + " <-file | tag-> "+tag[fname])
-            let lines = 0
+            log.i("adding: " + filepath, fname + " <-file | tag-> "+tag[fname]);
+            let lines = 0;
             for (let h of f.split("\n")) {
-                const ht = tag[fname] + h.trim()
-                const htr = TxtEnc.encode(ht).reverse()
-                hosts.push(htr)
-                lines += 1
+                const ht = tag[fname] + h.trim();
+                const htr = TxtEnc.encode(ht).reverse();
+                hosts.push(htr);
+                lines += 1;
             }
-            totallines = totallines + lines
-            tag_dict[fname].entries = lines
-            tag_dict[fname].show = lines > 1
-            totalfiles += 1
+            totallines = totallines + lines;
+            tag_dict[fname].entries = lines;
+            tag_dict[fname].show = lines > 1;
+            totalfiles += 1;
         }
-        log.i("Lines: " + totallines, "Files: " + totalfiles)
+        log.i("Lines: " + totallines, "Files: " + totalfiles);
     } catch (e) {
-        log.e(e)
-        throw e
+        log.e(e);
+        throw e;
     }
 
     hosts.sort(lex);
 
-    log.i("building trie")
     const start = Date.now();
+    log.i("building trie");
+    log.sys();
     hosts.forEach(s => t.insert(s));
     // fast array clear stackoverflow.com/a/1234337
     hosts.length = 0
     hosts = []
     if (global.gc) {
-        log.i("gc")
+        log.sys();
+        log.i("gc");
         global.gc();
     }
+
     log.i("encoding trie")
+    log.sys();
     let td = t.encode();
     nodeCount = t.getNodeCount();
 
     log.i("building rank; nodecount/L1/L2", nodeCount, L1, L2)
     let rd = RankDirectory.Create(td, nodeCount, L1, L2);
 
-    let ft = new FrozenTrie(td, rd, nodeCount)
+    let ft = new FrozenTrie(td, rd, nodeCount);
     const end = Date.now();
 
     log.i("time (ms) spent creating trie+rank: ", end - start);
 
-    log.i("saving trie, rank, basicconfig, filetag")
+    log.i("saving trie, rank, basicconfig, filetag");
 
     if (!filesystem.existsSync(savelocation)) {
-        filesystem.mkdirSync(savelocation)
+        filesystem.mkdirSync(savelocation);
     }
 
     let aw1 = filesystem.writeFile(savelocation + "td.txt", td, function (err) {
         if (err) {
             log.e(err);
-            throw err
+            throw err;
         }
         log.i('trie saved as td.txt');
     });
@@ -1576,7 +1582,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     let aw2 = filesystem.writeFile(savelocation + "rd.txt", rd.directory.bytes, function (err) {
         if (err) {
             log.e(err);
-            throw err
+            throw err;
         }
         log.i('rank saved as rd.txt');
     });
@@ -1585,7 +1591,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     let aw3 = filesystem.writeFile(savelocation + "basicconfig.json", JSON.stringify(basicconfig), function (err) {
         if (err) {
             log.e(err);
-            throw err
+            throw err;
         }
         log.i('basicconfig.json saved');
     });
@@ -1593,14 +1599,15 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     let aw4 = filesystem.writeFile(savelocation + "filetag.json", JSON.stringify(tag_dict), function (err) {
         if (err) {
             log.e(err);
-            throw err
+            throw err;
         }
         log.i('filetag.json saved');
     });
 
     await Promise.all([aw1, aw2, aw3, aw4]);
 
-    log.i("Test Blocklist Filter")
+    log.i("Search a few domains in the built trie");
+    log.sys();
 
     let testdomains = [
             "sg-ssl.effectivemeasure.net",
@@ -1609,18 +1616,18 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
             "oascentral.chicagobusiness.com",
             "simpsonitos.com",
             "putlocker.fyi",
-            "celzero.com"]
+            "celzero.com"];
     for (let domainname of testdomains) {
-        let ts = TxtEnc.encode(domainname).reverse()
-        let serresult = ft.lookup(ts)
-        log.i("query: " + domainname, "result: "+ serresult)
+        let ts = TxtEnc.encode(domainname).reverse();
+        let serresult = ft.lookup(ts);
+        log.i("query: " + domainname, "result: "+ serresult);
         if (serresult) {
             for (let [key, value] of serresult) {
-                let tagf = t.flagsToTag(value)
-                log.i(tagf)
+                let tagf = t.flagsToTag(value);
+                log.i(tagf);
             }
         } else {
-            log.w("query not found in trie")
+            log.w("query not found in trie");
         }
     }
 }
