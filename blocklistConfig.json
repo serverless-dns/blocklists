@@ -525,7 +525,7 @@
       "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
-      "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt",
+      "url": "https://gitlab.com/quidsup/notrack-blocklists/-/raw/master/malware.list",
       "pack": []
     },
     {
@@ -634,7 +634,7 @@
     },
     {
       "vname": "Scam and phishing (infinitytec)",
-      "format": "hosts",
+      "format": "domains",
       "group": "security",
       "subg": "threat-intelligence-feeds",
       "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
