@@ -849,11 +849,11 @@
       "pack": []
     },
     {
-      "vname": "Anti Pop Ads",
-      "format": "hosts",
+      "vname": "Anti Pop Ads 2 (Ador Khan)",
+      "format": "domains",
       "group": "privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/Yhonay/antipopads/master/hosts",
+      "url": "https://raw.githubusercontent.com/AdroitAdorKhan/antipopads-re/master/formats/domains.txt",
       "pack": []
     },
     {
@@ -1514,7 +1514,7 @@
     },
     {
       "vname": "OISD NSFW (Porn)",
-      "format": "hosts",
+      "format": "domains",
       "group": "parentalcontrol",
       "subg": "porn",
       "url": "https://dbl.oisd.nl/nsfw/",
