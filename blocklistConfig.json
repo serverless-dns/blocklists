@@ -1559,6 +1559,14 @@
         "subg": "",
         "url": "https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt",
         "pack": []
-    }    
+    },
+    {
+        "vname": "1Hosts (kidSaf)",
+        "format": "domains",
+        "group": "parentalcontrol",
+        "subg": "porn",
+        "url": "https://badmojr.github.io/addons_1Hosts/kidSaf/domains.txt",
+        "pack": []
+    }
   ]
 }
