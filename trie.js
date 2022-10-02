@@ -6,6 +6,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+const os = require("node:os");
+
 // impl based on S Hanov's succinct-trie: stevehanov.ca/blog/?id=120
 
 const BASE64 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
@@ -353,16 +355,13 @@ BitString.prototype = {
      * starting at a certain position, p.
      */
     get: function (p, n) {
-
         // supports n <= 31, since bitwise operations works only on +ve integers in js
-
         if (this.useBuffer) {
-            // case 1: bits lie within the given byte
             if ((p % W) + n <= W) {
+                // case 1: bits lie within the given byte
                 return (this.bytes[p / W | 0] & BitString.MaskTop[W][p % W]) >> (W - (p % W) - n);
-
-                // case 2: bits lie incompletely in the given byte
             } else {
+                // case 2: bits lie incompletely in the given byte
                 let result = (this.bytes[p / W | 0] & BitString.MaskTop[W][p % W]);
 
                 let l = W - p % W;
@@ -382,13 +381,13 @@ BitString.prototype = {
                 return result;
             }
         }
-        // case 1: bits lie within the given byte
+
         if ((p % W) + n <= W) {
+            // case 1: bits lie within the given byte
             return (DEC(this.bytes[p / W | 0]) & BitString.MaskTop[W][p % W]) >>
                 (W - (p % W) - n);
-
-            // case 2: bits lie incompletely in the given byte
         } else {
+            // case 2: bits lie incompletely in the given byte
             let result = (DEC(this.bytes[p / W | 0]) &
                 BitString.MaskTop[W][p % W]);
 
@@ -569,7 +568,6 @@ RankDirectory.prototype = {
      * up to and including position x.
      */
     rank: function (which, x) {
-
         // fixme: selectsearch doesn't work when which === 1, throw error?
         // or, impl a proper O(1) select instead of the current gross hack.
         if (config.selectsearch) {
@@ -659,13 +657,13 @@ function TrieNode(letter) {
     this.compressed = false;
     this.flag = false;
 
-    this.clear = function() {
-        this.letter = undefined
-        this.final = undefined
-        this.children.length = 0
-        this.children = undefined
-        this.compressed = undefined
-        this.flag = undefined
+    this.scale = function() {
+        // capture size and len before scaling down this node
+        this.size = childrenSize(this);
+        this.len = this.children.length;
+        this.letter = this.letter[this.letter.length - 1];
+        this.children.length = 0;
+        this.children = undefined;
     }
 }
 
@@ -677,11 +675,8 @@ function TrieNode2(letter) {
     this.children = undefined;
     this.flag = undefined;
 
-    this.clear = function() {
-        this.letter = undefined
-        this.final = undefined
-        this.compressed = undefined
-        this.flag = undefined
+    this.scale = function() {
+        // no-op
     }
 }
 
@@ -920,21 +915,6 @@ Trie.prototype = {
         return;
     },
 
-    /**
-     * Apply a function to each node, traversing the trie in level order.
-     */
-    apply: function (fn) {
-        let level = [this.root];
-        while (level.length > 0) {
-            let node = level.shift();
-            for (let i = 0; i < node.children.length; i++) {
-                level.push(node.children[i]);
-            }
-            fn(this, node);
-        }
-
-    },
-
     levelorder: function () {
         let level = [this.root];
         let p = 0;
@@ -953,6 +933,8 @@ Trie.prototype = {
             if (node.flag === true) continue;
             // todo: skip aux nodes
 
+            // a node may not have children, but may have a flagNode / valueNode
+            // which is always at index 0 of the node.children array
             const childrenLength = (node.children) ? node.children.length : 0;
 
             q += childrenLength;
@@ -983,10 +965,12 @@ Trie.prototype = {
                 nbb += 1
             }
 
+            // start iterating after flagNode / valudeNode index, if any
             for (let i = start; i < childrenLength; i++) {
                 const current = node.children[i];
                 if (config.inspect) inspect[current.letter.length] = (inspect[current.letter.length + flen] | 0) + 1;
-                // flatten out: one letter each into its own trie-node
+                // flatten out: one letter each into its own trie-node except
+                // the last-letter which holds reference to its children
                 for (let j = 0; j < current.letter.length - 1; j++) {
                     const l = current.letter[j]
                     const aux = new TrieNode2([l]);
@@ -996,8 +980,8 @@ Trie.prototype = {
                 // current node represents the last letter
                 level.push(current);
             }
-            // clear only things trie.encode doesn't need
-            // node.clear();
+            // scale down things trie.encode doesn't need
+            node.scale();
         }
         if (config.inspect) console.log(inspect);
         return { level: level, div: ord };
@@ -1033,41 +1017,53 @@ Trie.prototype = {
         const finalMask = 0x100;
         const compressedMask = 0x200;
         const flagMask = 0x300;
+
+        const all1 = 0xffff_ffff // 1s all 32 bits
+        const maxbits = countSetBits(all1) // 32 bits
+
         this.invoke += 1;
         // Write the unary encoding of the tree in level order.
         let bits = new BitWriter();
         let chars = []
-        let vals = []
 
+        // write the entry 0b10 (1 child) for root node
         bits.write(0x02, 2);
 
         this.stats = { children: 0, single: new Array(256).fill(0) }
-        let start = new Date().getTime();
+        let start = Date.now();
+
         console.log("levelorder begin:", start)
         const levelorder = this.levelorder();
         console.log("levelorder end: ", Date.now() - start)
+
         this.root = null
         this.cache = null
+
         if (global.gc) global.gc();
+
         const level = levelorder.level;
         let nbb = 0;
 
         console.log("levlen", level.length, "nodecount", this.nodeCount, " masks ", compressedMask, flagMask, finalMask);
 
-        const l10 = level.length / 5 | 0;
+        const l10 = level.length / 10 | 0;
         for (let i = 0; i < level.length; i++) {
             const node = level[i];
-            const childrenLength = (node.children) ? node.children.length : 0;
-            const size = childrenSize(node);
+            const childrenLength = (node.len > 0) ? (node.len | 0) : 0;
+            const size = (node.size > 0) ? (node.size | 0) : 0;
             nbb += size
 
-            if (i % l10 == 0) console.log("at encode[i]: " + i)
+            if (i % l10 == 0) {
+                console.log("at encode[i]: " + i)
+                console.log("cpuavg", os.loadavg())
+                console.log("memfree", os.freemem()/ 1024)
+                console.log("memuse", os.totalmem() / 1024)
+            }
             this.stats.single[childrenLength] += 1;
 
             // set j lsb bits in int bw
+            // each set bit marks one child
             let rem = size
-            const all1 = 0xffff_ffff // 1s all 32 bits
-            const maxbits = countSetBits(all1) // 32 bits
             let j = Math.min(rem, /*32*/ maxbits)
             while (j > 0) {
                 const bw = (all1 >>> (/*32*/ maxbits - j));
@@ -1076,10 +1072,10 @@ Trie.prototype = {
                 j = Math.min(rem, maxbits)
             }
             // for (let j = 0; j < size; j++) bits.write(1, 1)
+            // write 0 to mark the end of the node's child-size
             bits.write(0, 1);
 
-            const letter = node.letter[node.letter.length - 1];
-            let value = letter;
+            let value = node.letter;
             if (node.final) {
                 value |= finalMask;
                 this.stats.children += 1;
@@ -1094,23 +1090,28 @@ Trie.prototype = {
             if (config.inspect) this.inspect[i + "_" + node.letter] = {v: value, l: node.letter, f: node.final, c: node.compressed}
         }
 
-        let elapsed2 = new Date().getTime() - start;
+        let elapsed2 = Date.now() - start;
 
         // Write the data for each node, using 6 bits for node. 1 bit stores
         // the "final" indicator. The other 5 bits store one of the 26 letters
         // of the alphabet.
-        start = new Date().getTime();
+        start = Date.now();
         const extraBit = 1;
         const bitslen = extraBit + 9;
         console.log('charslen: ' + chars.length + ", bitslen: " + bitslen, " letterstart", bits.top);
         let k = 0;
         for (c of chars) {
-            if (k % (chars.length / 10 | 0) == 0) console.log("charslen: " + k);
+            if (k % (chars.length / 10 | 0) == 0) {
+                console.log("charslen: " + k);
+                console.log("cpuavg", os.loadavg())
+                console.log("memfree", os.freemem()/ 1024)
+                console.log("memuse", os.totalmem() / 1024)
+            }
             bits.write(c, bitslen)
             k += 1;
         }
 
-        let elapsed = new Date().getTime() - start;
+        let elapsed = Date.now() - start;
         console.log(this.invoke + " csize: " + nbb + " elapsed write.keys: " + elapsed2 + " elapsed write.values: " + elapsed +
             " stats: f: " + this.stats.children + ", c:" + this.stats.single);
 
@@ -1119,15 +1120,18 @@ Trie.prototype = {
 };
 
 //fixme: move to trie's prototype
+// returns the "size" of the trie node in number of bytes.
 function childrenSize(tn) {
     let size = 0;
 
     if (!tn.children) return size;
 
     for (c of tn.children) {
+        // each letter in c.letter is 1 byte long
         let len = c.letter.length;
         if (c.flag) {
             // calc length(flag-nodes) bit-string (16bits / char)
+            // ie, a single letter of a flag node is 2 bytes long
             len = len * 2;
         }
         size += len;
@@ -1481,7 +1485,6 @@ function lex(a, b) {
     return lendiff;
 }
 
-
 async function build(blocklist, filesystem, savelocation, tag_dict) {
 
     let nodeCount = 0;
@@ -1534,7 +1537,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     hosts.sort(lex);
 
     console.log("building trie")
-    const start = new Date().getTime();
+    const start = Date.now();
     hosts.forEach(s => t.insert(s));
     // fast array clear stackoverflow.com/a/1234337
     hosts.length = 0
@@ -1551,7 +1554,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     let rd = RankDirectory.Create(td, nodeCount, L1, L2);
 
     let ft = new FrozenTrie(td, rd, nodeCount)
-    const end = new Date().getTime();
+    const end = Date.now();
 
     console.log("time (ms) spent creating trie+rank: ", end - start);
 
