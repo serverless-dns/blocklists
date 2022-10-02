@@ -190,9 +190,12 @@ async def requestApi(session, url):
         else:
             raise(DownloadFailed(f"downloading {url} failed; status: {response.status}"))
 
-# stackoverflow.com/a/7957799
+# stackoverflow.com/a/7957496
 class DownloadFailed(Exception):
-    pass
+    def __init__(self, m):
+        self.message = m
+    def __str__(self):
+        return self.message
 
 # realpython.com/async-io-python/
 async def downloadFile(sess, url, format, download_loc_filename):
