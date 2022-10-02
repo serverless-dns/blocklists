@@ -48,8 +48,8 @@ jobs:
     - name: Build blocklist filter using node
       run: |
         mkdir -p "$OUTDIR"
-        # 16384/1024 => 16G RAM --max-old-space-size=16384
-        node --expose-gc build.js
+        # 32768/1024 => 32G RAM
+        node --max-old-space-size=32768 --expose-gc build.js
       env:
         OUTDIR: ${{ env.OUTDIR }}
     - name: Split td in 20M slices
