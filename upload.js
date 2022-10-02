@@ -1,6 +1,15 @@
+/*
+ * Copyright (c) 2022 RethinkDNS and its authors.
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 const AWS = require("aws-sdk")
 const fs = require("fs")
 const path = require("path")
+const log = require("./log.js")
 
 const cwd = "."
 const outdir = process.env.OUTDIR
@@ -40,7 +49,7 @@ async function upload() {
         const fp = localpath(fname)
         const fst = await fs.promises.stat(fp)
         if (!fst.isFile()) {
-            console.log(fp, "not a file")
+            log.i(fp, "not a file")
             continue
         }
 
@@ -58,27 +67,27 @@ async function toS3(f, key) {
         Body: fin,
         ACL: 'public-read'
     }
-    console.log("uploading", f, "to", key)
+    log.i("uploading", f, "to", key)
     return s3.upload(r).promise()
 }
 
 async function start() {
     try {
         if (empty(process.env.AWS_ACCESS_KEY) || empty(process.env.AWS_SECRET_ACCESS_KEY)) {
-            console.log("access / secret keys not found")
+            log.i("access / secret keys not found")
         }
         if (empty(s3bucket) || empty(s3dir) || empty(outdir)) {
-            console.log("missing: s3-bucket / s3dir / outdir", s3bucket, s3dir, outdir)
+            log.i("missing: s3-bucket / s3dir / outdir", s3bucket, s3dir, outdir)
             return
         }
 
-        console.log("upload from", localpath(), "to", s3path())
+        log.i(s3dir, outdir, "; upload from", localpath(), "to", s3path())
 
         const ans = await upload()
 
-        console.log("finished", ans)
+        log.i("finished", ans)
     } catch (e) {
-        console.log(e)
+        log.e(e)
         process.exitCode = 1
     }
 }

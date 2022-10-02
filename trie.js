@@ -7,6 +7,7 @@
  */
 
 const os = require("node:os");
+const log = require("./log.js");
 
 // impl based on S Hanov's succinct-trie: stevehanov.ca/blog/?id=120
 
@@ -1044,7 +1045,7 @@ Trie.prototype = {
         const level = levelorder.level;
         let nbb = 0;
 
-        console.log("levlen", level.length, "nodecount", this.nodeCount, " masks ", compressedMask, flagMask, finalMask);
+        log.i("levlen", level.length, "nodecount", this.nodeCount, " masks ", compressedMask, flagMask, finalMask);
 
         const l10 = level.length / 10 | 0;
         for (let i = 0; i < level.length; i++) {
@@ -1054,10 +1055,10 @@ Trie.prototype = {
             nbb += size
 
             if (i % l10 == 0) {
-                console.log("at encode[i]: " + i)
-                console.log("cpuavg", os.loadavg())
-                console.log("memfree", os.freemem()/ 1024)
-                console.log("memuse", os.totalmem() / 1024)
+                log.i("at encode[i]: " + i)
+                log.i("cpuavg", os.loadavg())
+                log.i("memfree", os.freemem()/ 1024)
+                log.i("memuse", os.totalmem() / 1024)
             }
             this.stats.single[childrenLength] += 1;
 
@@ -1098,21 +1099,21 @@ Trie.prototype = {
         start = Date.now();
         const extraBit = 1;
         const bitslen = extraBit + 9;
-        console.log('charslen: ' + chars.length + ", bitslen: " + bitslen, " letterstart", bits.top);
+        log.i('charslen: ' + chars.length + ", bitslen: " + bitslen, " letterstart", bits.top);
         let k = 0;
         for (c of chars) {
             if (k % (chars.length / 10 | 0) == 0) {
-                console.log("charslen: " + k);
-                console.log("cpuavg", os.loadavg())
-                console.log("memfree", os.freemem()/ 1024)
-                console.log("memuse", os.totalmem() / 1024)
+                log.i("charslen: " + k);
+                log.i("cpuavg", os.loadavg())
+                log.i("memfree", os.freemem()/ 1024)
+                log.i("memuse", os.totalmem() / 1024)
             }
             bits.write(c, bitslen)
             k += 1;
         }
 
         let elapsed = Date.now() - start;
-        console.log(this.invoke + " csize: " + nbb + " elapsed write.keys: " + elapsed2 + " elapsed write.values: " + elapsed +
+        log.i(this.invoke + " csize: " + nbb + " elapsed write.keys: " + elapsed2 + " elapsed write.values: " + elapsed +
             " stats: f: " + this.stats.children + ", c:" + this.stats.single);
 
         return bits.getData();
@@ -1183,7 +1184,7 @@ function FrozenTrieNode(trie, index) {
     }
 
     if (config.debug) {
-        console.log(index + " :i, fc: " + this.firstChild() + " tl: " + this.letter() +
+        log.d(index + " :i, fc: " + this.firstChild() + " tl: " + this.letter() +
                 " c: " + this.compressed() + " f: " + this.final() + " wh: " + this.where() +
                 " flag: " + this.flag());
     }
@@ -1205,10 +1206,10 @@ function FrozenTrieNode(trie, index) {
                 let value = [];
                 let i = 0;
                 let j = 0;
-                if (config.debug) console.log("thisnode: index/vc/ccount ", this.index, this.letter(), this.childCount())
+                if (config.debug) log.d("thisnode: index/vc/ccount ", this.index, this.letter(), this.childCount())
                 while (i < this.childCount()) {
                     let valueChain = this.getChild(i);
-                    if (config.debug) console.log("vc no-flag end vlet/vflag/vindex/val ", i, valueChain.letter(), valueChain.flag(), valueChain.index, value)
+                    if (config.debug) log.d("vc no-flag end vlet/vflag/vindex/val ", i, valueChain.letter(), valueChain.flag(), valueChain.index, value)
                     if (!valueChain.flag()) {
                         break;
                     }
@@ -1323,10 +1324,10 @@ FrozenTrie.prototype = {
             } while (isFlag + 1 < node.getChildCount());
 
             const minChild = isFlag;
-            if (debug) console.log("            count: " + node.getChildCount() + " i: " + i + " w: " + word[i] + " nl: " + node.letter() + " flag: " + isFlag)
+            if (debug) log.d("            count: " + node.getChildCount() + " i: " + i + " w: " + word[i] + " nl: " + node.letter() + " flag: " + isFlag)
 
             if ((node.getChildCount() - 1) <= minChild) {
-                if (debug) console.log("  no more children left, remaining word: " + word.slice(i));
+                if (debug) log.d("  no more children left, remaining word: " + word.slice(i));
                 // fixme: fix these return false to match the actual return value?
                 return returnValue;
             }
@@ -1335,15 +1336,15 @@ FrozenTrie.prototype = {
                 let j = minChild;
                 for (; j < node.getChildCount(); j++) {
                     child = node.getChild(j);
-                    if (debug) console.log("it: " + j + " tl: " + child.letter() + " wl: " + word[i])
+                    if (debug) log.d("it: " + j + " tl: " + child.letter() + " wl: " + word[i])
                     if (child.letter() == word[i]) {
-                        if (debug) console.log("it: " + j + " break ")
+                        if (debug) log.d("it: " + j + " break ")
                         break;
                     }
                 }
 
                 if (j === node.getChildCount()) {
-                    if (debug) console.log("j: " + j + " c: " + node.getChildCount())
+                    if (debug) log.d("j: " + j + " c: " + node.getChildCount())
                     return returnValue;
                 }
             } else {
@@ -1355,7 +1356,7 @@ FrozenTrie.prototype = {
                     let probe = (high + low) / 2 | 0;
                     child = node.getChild(probe);
                     const prevchild = (probe > isFlag) ? node.getChild(probe - 1) : undefined;
-                    if (debug) console.log("        current: " + child.letter() + " l: " + low + " h: " + high + " w: " + word[i])
+                    if (debug) log.d("        current: " + child.letter() + " l: " + low + " h: " + high + " w: " + word[i])
 
                     // if the current probe position is at a compressed node,
                     // check if its sibling is also a compressed node to then
@@ -1383,13 +1384,13 @@ FrozenTrie.prototype = {
 
                         // if first letter (startchild is reversed, and so: last letter)
                         // is greater than current letter from word, then probe lower half
-                        if (debug) console.log("  check: letter : "+startchild[start - 1].letter()+" word : "+word[i]+" start: "+start)
+                        if (debug) log.d("  check: letter : "+startchild[start - 1].letter()+" word : "+word[i]+" start: "+start)
                         if (startchild[start - 1].letter() > word[i]) {
-                            if (debug) console.log("        shrinkh start: " + startchild[start - 1].letter() + " s: " + start + " w: " + word[i])
+                            if (debug) log.d("        shrinkh start: " + startchild[start - 1].letter() + " s: " + start + " w: " + word[i])
 
                             high = probe - start + 1;
                             if (high - low <= 1) {
-                                if (debug) console.log("...h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe)
+                                if (debug) log.d("...h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe)
                                 return returnValue;
                             }
                             continue;
@@ -1411,12 +1412,12 @@ FrozenTrie.prototype = {
                         // if first letter (startchild is reversed, so: last letter)
                         // is lesser than current letter from word, then probe higher
                         if (startchild[start - 1].letter() < word[i]) {
-                            if (debug) console.log("        shrinkl start: " + startchild[start - 1].letter() + " s: " + start + " w: " + word[i])
+                            if (debug) log.d("        shrinkl start: " + startchild[start - 1].letter() + " s: " + start + " w: " + word[i])
 
                             low = probe + end;
 
                             if (high - low <= 1) {
-                                if (debug) console.log("...h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe)
+                                if (debug) log.d("...h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe)
                                 return returnValue;
                             }
                             continue;
@@ -1426,14 +1427,14 @@ FrozenTrie.prototype = {
                         let comp = nodes.map(n => n.letter());
                         const w = word.slice(i, i + comp.length);
 
-                        if (debug) console.log("it: " + probe + " tl: " + comp + " wl: " + w + " c: " + child.letter());
+                        if (debug) log.d("it: " + probe + " tl: " + comp + " wl: " + w + " c: " + child.letter());
 
                         if (w.length < comp.length) return returnValue;
                         for (let i = 0; i < comp.length; i++) {
                             if (w[i] !== comp[i]) return returnValue;
                         }
 
-                        if (debug) console.log("it: " + probe + " break ")
+                        if (debug) log.d("it: " + probe + " break ")
 
                         // final letter in compressed node is representative of all letters
                         // that is, compressednode("abcd") is represented by final node("d")
@@ -1451,13 +1452,13 @@ FrozenTrie.prototype = {
                     }
 
                     if (high - low <= 1) {
-                        if (debug) console.log("h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe)
+                        if (debug) log.d("h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe)
                         return returnValue;
                     }
                 }
             }
 
-            if (debug) console.log("        next: " + child.letter())
+            if (debug) log.d("        next: " + child.letter())
 
             node = child;
         }
@@ -1512,10 +1513,10 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
             let fname = patharr[patharr.length - 1].split(".")[0]
             let f = filesystem.readFileSync(filepath, 'utf8')
             if (f.length <= 0) {
-                console.log("empty file", filepath)
+                log.i("empty file", filepath)
                 continue
             }
-            console.log("adding: " + filepath, fname + " <-file | tag-> "+tag[fname])
+            log.i("adding: " + filepath, fname + " <-file | tag-> "+tag[fname])
             let lines = 0
             for (let h of f.split("\n")) {
                 const ht = tag[fname] + h.trim()
@@ -1528,37 +1529,37 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
             tag_dict[fname].show = lines > 1
             totalfiles += 1
         }
-        console.log("Lines: " + totallines, "Files: " + totalfiles)
+        log.i("Lines: " + totallines, "Files: " + totalfiles)
     } catch (e) {
-        console.error(e)
+        log.e(e)
         throw e
     }
 
     hosts.sort(lex);
 
-    console.log("building trie")
+    log.i("building trie")
     const start = Date.now();
     hosts.forEach(s => t.insert(s));
     // fast array clear stackoverflow.com/a/1234337
     hosts.length = 0
     hosts = []
     if (global.gc) {
-        console.log("gc")
+        log.i("gc")
         global.gc();
     }
-    console.log("encoding trie")
+    log.i("encoding trie")
     let td = t.encode();
     nodeCount = t.getNodeCount();
 
-    console.log("building rank; nodecount/L1/L2", nodeCount, L1, L2)
+    log.i("building rank; nodecount/L1/L2", nodeCount, L1, L2)
     let rd = RankDirectory.Create(td, nodeCount, L1, L2);
 
     let ft = new FrozenTrie(td, rd, nodeCount)
     const end = Date.now();
 
-    console.log("time (ms) spent creating trie+rank: ", end - start);
+    log.i("time (ms) spent creating trie+rank: ", end - start);
 
-    console.log("saving trie, rank, basicconfig, filetag")
+    log.i("saving trie, rank, basicconfig, filetag")
 
     if (!filesystem.existsSync(savelocation)) {
         filesystem.mkdirSync(savelocation)
@@ -1566,40 +1567,40 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
 
     let aw1 = filesystem.writeFile(savelocation + "td.txt", td, function (err) {
         if (err) {
-            console.log(err);
+            log.e(err);
             throw err
         }
-        console.log('trie saved as td.txt');
+        log.i('trie saved as td.txt');
     });
 
     let aw2 = filesystem.writeFile(savelocation + "rd.txt", rd.directory.bytes, function (err) {
         if (err) {
-            console.log(err);
+            log.e(err);
             throw err
         }
-        console.log('rank saved as rd.txt');
+        log.i('rank saved as rd.txt');
     });
 
     let basicconfig = { "nodecount" : nodeCount };
     let aw3 = filesystem.writeFile(savelocation + "basicconfig.json", JSON.stringify(basicconfig), function (err) {
         if (err) {
-            console.log(err);
+            log.e(err);
             throw err
         }
-        console.log('basicconfig.json saved');
+        log.i('basicconfig.json saved');
     });
 
     let aw4 = filesystem.writeFile(savelocation + "filetag.json", JSON.stringify(tag_dict), function (err) {
         if (err) {
-            console.log(err);
+            log.e(err);
             throw err
         }
-        console.log('filetag.json saved');
+        log.i('filetag.json saved');
     });
 
     await Promise.all([aw1, aw2, aw3, aw4]);
 
-    console.log("Test Blocklist Filter")
+    log.i("Test Blocklist Filter")
 
     let testdomains = [
             "sg-ssl.effectivemeasure.net",
@@ -1612,17 +1613,16 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
     for (let domainname of testdomains) {
         let ts = TxtEnc.encode(domainname).reverse()
         let serresult = ft.lookup(ts)
-        console.log("query: " + domainname, "result: "+ serresult)
+        log.i("query: " + domainname, "result: "+ serresult)
         if (serresult) {
             for (let [key, value] of serresult) {
                 let tagf = t.flagsToTag(value)
-                console.log(tagf)
+                log.i(tagf)
             }
         } else {
-            console.warn("query not found in trie")
+            log.w("query not found in trie")
         }
     }
 }
 
 module.exports.build = build;
-

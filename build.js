@@ -1,6 +1,15 @@
+/*
+ * Copyright (c) 2022 RethinkDNS and its authors.
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 const fs = require('fs')
 const path = require('path')
 const trie = require("./trie.js")
+const log = require("./log.js")
 
 const outdir = process.env.OUTDIR
 const indir = process.env.INDIR
@@ -48,11 +57,11 @@ function loadConfig(blocklistConfigPath, unameVnameMapPath) {
             tags[uname].url = blocklistobj.conf[index].url
             tags[uname].show = 0
             tags[uname].entries = 0
-            console.log("btag for " + uname + " index: " + index, tags[uname])
+            log.i("btag for " + uname + " index: " + index, tags[uname])
         }
         return tags
     } catch (e) {
-        console.log(e)
+        log.e(e)
         throw e
     }
 }
@@ -66,12 +75,14 @@ async function main() {
     try {
         const tags = loadConfig(blconfig, unamemap)
         const bl = await getBlocklistFiles(bldir);
-        console.log("build, out: " + triedir + ", in: " + bl + ", tags: " + tags)
+        log.i("build, out: " + triedir + ", in: " + bl + ", tags: " + tags)
         await trie.build(bl, fs, triedir, tags)
     } catch (e) {
-        console.log(e.stack)
+        log.e(e)
         process.exitCode = 1
     }
 }
 
-main()
+(async () => {
+    await main()
+})();
