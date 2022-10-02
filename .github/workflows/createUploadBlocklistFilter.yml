@@ -43,7 +43,7 @@ jobs:
       shell: bash
     - name: Download blocklist script execution
       run: |
-        python -m pip install requests
+        python -m pip install aiohttp
         python download.py
     - name: Build blocklist filter using node
       run: |

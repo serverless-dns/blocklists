@@ -3,7 +3,7 @@ FROM nikolaik/python-nodejs:latest as runner
 WORKDIR /app
 COPY . .
 # get deps
-RUN python -m pip install requests
+RUN python -m pip install aiohttp
 RUN npm install aws-sdk
 
 # run with the default entrypoint (usually, bash or sh)

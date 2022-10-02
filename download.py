@@ -3,10 +3,11 @@ import errno
 import json
 import random
 import re
-import requests
 import sys
 import urllib.request
 from urllib.parse import urlparse
+import asyncio
+import aiohttp
 
 supportedFileFormat = {"domains", "hosts", "abp", "wildcard"}
 
@@ -81,7 +82,7 @@ def validateBasicConfig():
     random.shuffle(configDict["conf"])
     return True
 
-def parseDownloadBasicConfig(configList):
+async def parseDownloadBasicConfig(configList):
     global totalUrl
     global unameVnameMap
     global blocklistNotDownloaded
@@ -92,38 +93,44 @@ def parseDownloadBasicConfig(configList):
     totalUrl = 0
     fileName = ""
 
-    for value in configList:
-        if str(value["index"]) in unameVnameMap:
-            fileName = unameVnameMap[str(value["index"])]
-        else:
-            fileName = str(value["index"])
+    # realpython.com/python-concurrency/#asyncio-version
+    async with aiohttp.ClientSession() as sess:
+        tasks = []
+        for value in configList:
+            if str(value["index"]) in unameVnameMap:
+                fileName = unameVnameMap[str(value["index"])]
+            else:
+                fileName = str(value["index"])
 
-        if value["subg"].strip() == "":
-            downloadLoc = "./" + blocklistfiles + "/" + value["group"].strip() + "/" + fileName + ".txt"
-        else:
-            downloadLoc = "./" + blocklistfiles + "/" + value["group"].strip() + "/"  + value["subg"].strip() + "/" + fileName + ".txt"
+            if value["subg"].strip() == "":
+                downloadLoc = "./" + blocklistfiles + "/" + value["group"].strip() + "/" + fileName + ".txt"
+            else:
+                downloadLoc = "./" + blocklistfiles + "/" + value["group"].strip() + "/"  + value["subg"].strip() + "/" + fileName + ".txt"
 
-        if('deprecated' in value["pack"]):
-            totalUrl = totalUrl + 1
-            print("\n"+str(totalUrl)+":")
-            print("Deprecated  blocklist -> skip download")
-            print(value)
-            print("\n")
-            continue
-        ret = downloadFile(value["url"],value["format"],downloadLoc)
+            if('dead' in value["pack"]):
+                totalUrl = totalUrl + 1
+                print("\n" + str(totalUrl) + "; dead -> skip download")
+                print(f"{value}\n")
+                continue
 
-        if (not ret) and ('try again' in value["pack"]):
-            blocklistNotDownloaded.append(str(value))
-            print("\n")
-        elif ret == "retry":
-            retryBlocklist.append(value)
-        elif not ret:
-            print("\n\nblocklist not downloaded:")
-            print(value)
-            print("\n")
-            # FIXME: continue with warning
-            # sys.exit("")
+            task = asyncio.ensure_future(downloadFile(sess, value["url"], value["format"], downloadLoc))
+            tasks.append(task)
 
+        # docs.python.org/3/library/asyncio-task.html#running-tasks-concurrently
+        rets = await asyncio.gather(*tasks, return_exceptions=True)
+
+        for ret in rets:
+            if (not ret) and ('ignore' in value["pack"]):
+                blocklistNotDownloaded.append(str(value))
+                print("\n")
+            elif ret == "retry":
+                retryBlocklist.append(value)
+            elif not ret:
+                print("\n\nblocklist not downloaded:")
+                print(value)
+                print("\n")
+                # FIXME: continue with warning
+                # sys.exit("")
 
 def createFileNotExist(filename):
     if not os.path.exists(os.path.dirname(filename)):
@@ -175,46 +182,52 @@ def urllibRequestApi(url):
         print(e)
         return False
 
-def requestApi(url):
-    try:
-        r = requests.get(url)
-        return r.text
-    except Exception as e:
-        print("\nException\n")
-        print(e)
-        return False
+# docs.aiohttp.org/en/stable/
+async def requestApi(session, url):
+    async with session.get(url) as response:
+        if response.status == 200:
+            return await response.text()
+        else:
+            raise(DownloadFailed(f"downloading {url} failed; status: {response.status}"))
 
-def downloadFile(url,format,download_loc_filename):
+# stackoverflow.com/a/7957799
+class DownloadFailed(Exception):
+    pass
+
+# realpython.com/async-io-python/
+async def downloadFile(sess, url, format, download_loc_filename):
     global totalUrl
     totalUrl = totalUrl + 1
-    print (str(totalUrl) +" : Downloading From : "+url)
-    print ("Download Location : "+download_loc_filename)
+    print (str(totalUrl) + "; src: " + url + " | dst: " + download_loc_filename)
     ret = True
-    r = requestApi(url)
+    f = True
 
-    if(not r):
-        print("\nException in downloading file")
-        print("Exception : "+ url +" : "+download_loc_filename)
+    try:
+        f = await requestApi(sess, url)
+    except Exception as e:
+        print(f"\nErr downloading {url}\n{e}")
         return "retry"
 
     if format == "domains" or format == "wildcard":
-        filetxt = regxFileDomain(r,r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)',0,format)
+        filetxt = regxFileDomain(f, r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)',0,format)
     elif format == "hosts":
-        filetxt = regxFileDomain(r,r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)',3,format)
+        filetxt = regxFileDomain(f, r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)',3,format)
     elif format == "abp":
-        filetxt = regxFileDomain(r,r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',1,format)
+        filetxt = regxFileDomain(f, r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',1,format)
 
-    ret = writeFile(download_loc_filename,filetxt)
+    ret = writeFile(download_loc_filename, filetxt)
+
     if not ret:
-        print("\n\nDownloaded file may be empty or contains less than 10 entries")
-        print(url +" : "+download_loc_filename)
-        print("\n")
+        print("\n\nDownloaded file empty or has <=10 entries\n")
+        print(url + " : " + download_loc_filename + "\n")
+
     return ret
 
 def loadBlocklistConfig():
     global isConfigLoad
     global configDict
     global unameVnameMap
+
     try:
         if os.path.isfile(configFileLocation):
             with open(configFileLocation) as json_file:
@@ -229,11 +242,9 @@ def loadBlocklistConfig():
             with open(vnameMapFileLocation) as json_file:
                 unameVnameMap = json.load(json_file)
                 json_file.close()
-
     except:
-        print ("Error in parsing Blocklist json file.")
-        print ("Check json format")
-        sys.exit("Error Occured")
+        print("Error parsing blocklist.json. Check json format")
+        sys.exit("Error")
 
 
 def main():
@@ -242,42 +253,41 @@ def main():
     global blocklistNotDownloaded
     global configDict
     global retryBlocklist
-    tmpRetryBlocklist = list()
 
+    tmpRetryBlocklist = list()
     loadBlocklistConfig()
     exitWithError = False
 
     if isConfigLoad:
         if validateBasicConfig():
-            parseDownloadBasicConfig(configDict["conf"])
+            asyncio.run(parseDownloadBasicConfig(configDict["conf"]))
 
-            print ("\nTotal blocklist : "+str(totalUrl))
-            print ("Download and saved blocklist : "+str(savedUrl))
-            print ("Difference : "+str(totalUrl-savedUrl))
+            print("\nTotal blocklists: " + str(totalUrl))
+            print("Saved blocklists: " + str(savedUrl))
+            print("Difference: " + str(totalUrl - savedUrl))
 
             if len(retryBlocklist) >= 1:
-                print("\n\nretry download block list\n\n")
+                print("\n\nretry download blocklist\n\n")
                 tmpRetryBlocklist = retryBlocklist
                 retryBlocklist = list()
-                parseDownloadBasicConfig(tmpRetryBlocklist)
+                asyncio.run(parseDownloadBasicConfig(tmpRetryBlocklist))
 
-            print("\n\nTry later blocklist not downloaded")
+            print("\n\nFailed download list:")
             print("\n".join(blocklistNotDownloaded))
 
             if len(retryBlocklist) >= 1:
-                print ("\nError in downloading blocklist\n")
+                print ("\nError downloading blocklist\n")
                 for value in retryBlocklist:
-                    if not ('try again' in value["pack"]):
+                    if not ('ignore' in value["pack"]):
                         exitWithError = True
-                    print(value)
-                    print("\n")
+                    print(f"{value}\n")
                 if exitWithError:
                     sys.exit("")
         else:
-            print ("Validation Error")
+            print("Validation Error")
             sys.exit("")
     else:
-        print("Error in loading BasicConfigFile for Download Process")
+        print("Error loading config, download aborted.")
 
 if __name__ == "__main__":
     main()
