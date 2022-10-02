@@ -5,7 +5,7 @@ if ! test -e "/swapfile"; then
   fallocate -l 8192M /swapfile
   chown root:root /swapfile
   mkswap /swapfile
-  echo 25 > /proc/sys/vm/swappiness
+  echo "20" > /proc/sys/vm/swappiness
   swapon /swapfile
 fi
 

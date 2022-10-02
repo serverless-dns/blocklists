@@ -36,7 +36,7 @@ jobs:
           sudo mkswap ./swapfile
           # stackoverflow.com/a/550808
           sudo cat /proc/sys/vm/swappiness
-          echo "33" | sudo tee /proc/sys/vm/swappiness > /dev/null
+          echo "20" | sudo tee /proc/sys/vm/swappiness > /dev/null
           # github.com/pierotofy/set-swap-space/blob/master/action.yml
           sudo swapon ./swapfile
           free -hm
