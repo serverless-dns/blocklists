@@ -957,7 +957,7 @@
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist.to/easylistgermany/easylistgermany.txt",
+      "url": "https://easylist-downloads.adblockplus.org/easylistgermany.txt",
       "pack": []
     },
     {
@@ -989,7 +989,7 @@
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist.to/easylist/easylist.txt",
+      "url": "https://easylist-downloads.adblockplus.org/easylist.txt",
       "pack": []
     },
     {
@@ -997,7 +997,7 @@
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist.to/easylist/easyprivacy.txt",
+      "url": "https://easylist-downloads.adblockplus.org/easyprivacy.txt",
       "pack": []
     },
     {
@@ -1061,7 +1061,7 @@
       "format": "abp",
       "group": "privacy",
       "subg": "",
-      "url": "https://easylist.to/easylist/fanboy-annoyance.txt",
+      "url": "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
       "pack": []
     },
     {
