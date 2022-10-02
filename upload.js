@@ -30,7 +30,7 @@ function empty(str) {
 }
 
 function s3path(x) {
-    return s3dir + "/" + version + "/" + (empty(x)) ? "" : x
+    return s3dir + "/" + version + "/" + (empty(x) ? "" : x)
 }
 
 function localpath(x) {
