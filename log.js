@@ -6,6 +6,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+const os = require("node:os");
+const process = require("node:process");
+
 // a simple logger that prints time on every output
 const E = "E/";
 const W = "W/";
@@ -33,9 +36,43 @@ function t() {
 }
 
 function sys() {
-    log.i("cpu-avg", os.loadavg(),
-        "mem-free", os.freemem()/ (1000 * 1000),
-        "mem-use", os.totalmem() / (1000 * 1000));
+    const btomb = 1000 * 1000;
+    const kbtogb = 1000 * 1000;
+    const utosec = 1000 * 1000;
+    const meminfo = process.memoryUsage(); // is slow
+    const procinfo = process.resourceUsage();
+    // os info
+    const loadavg = os.loadavg() / btomb;
+    const freemem = os.freemem()/ btomb;
+    const totalmem = os.totalmem() / btomb;
+    // memory info
+    const rss = meminfo.rss / btomb;
+    const totalheap = meminfo.heapTotal / btomb;
+    const usedheap = meminfo.heapUsed / btomb;
+    const ext = meminfo.external / btomb;
+    const buf = meminfo.arrayBuffers / btomb;
+    // proc info
+    const userslice = procinfo.userCPUTime / utosec;
+    const systemslice = procinfo.systemCPUTime / utosec;
+    const maxrss = procinfo.maxRSS / kbtogb;
+    const minorpf = procinfo.minorPageFault;
+    const majorpf = procinfo.majorPageFault;
+    log.i("meminfo",
+        "| rss", rss,
+        "| heap-total", totalheap,
+        "| heap-used", usedheap,
+        "| external", ext,
+        "| buffers", buf);
+    log.i("osinfo",
+        "| cpu-avg", loadavg,
+        "| mem-free", freemem,
+        "| mem-use", totalmem);
+    log.i("procinfo",
+        "| user", userslice,
+        "| system", systemslice,
+        "| maxrss", maxrss,
+        "| minor", minorpf,
+        "| major", majorpf);
 }
 
 module.exports = {
