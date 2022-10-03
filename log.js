@@ -57,17 +57,17 @@ function sys() {
     const maxrss = procinfo.maxRSS / kbtogb;
     const minorpf = procinfo.minorPageFault;
     const majorpf = procinfo.majorPageFault;
-    log.i("meminfo",
+    i("<meminfo>",
         "| rss", rss,
         "| heap-total", totalheap,
         "| heap-used", usedheap,
         "| external", ext,
         "| buffers", buf);
-    log.i("osinfo",
+    i("<osinfo>",
         "| cpu-avg", loadavg,
         "| mem-free", freemem,
         "| mem-use", totalmem);
-    log.i("procinfo",
+    i("<procinfo>",
         "| user", userslice,
         "| system", systemslice,
         "| maxrss", maxrss,
