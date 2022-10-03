@@ -959,7 +959,7 @@ Trie.prototype = {
                 flen = encValue.length;
                 for (let i = 0; i < encValue.length; i++) {
                     const l = encValue[i];
-                    const aux = new TrieNode2([l]);
+                    const aux = new TrieNode2(l);
                     aux.flag = true;
                     level.push(aux);
                 }
@@ -974,7 +974,7 @@ Trie.prototype = {
                 // the last-letter which holds reference to its children
                 for (let j = 0; j < current.letter.length - 1; j++) {
                     const l = current.letter[j]
-                    const aux = new TrieNode2([l]);
+                    const aux = new TrieNode2(l);
                     aux.compressed = true
                     level.push(aux)
                 }
