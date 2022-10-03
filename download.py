@@ -17,15 +17,11 @@ import aiohttp
 
 supportedFileFormat = {"domains", "hosts", "abp", "wildcard"}
 
-isConfigLoad = False
 keyFormat = {"vname", "format", "group", "subg", "url", "pack"}
 configFileLocation = "./blocklistConfig.json"
 vnameMapFileLocation = "./valueUnameMap.json"
 unameVnameMap = {}
 configDict = {}
-urlExist = set()
-valueExist = set()
-unameExist = set()
 
 totalUrl = 0
 savedUrl = 0
@@ -38,6 +34,8 @@ retryBlocklist = list()
 
 def validateBasicConfig():
     global keyFormat
+    urlExist = set()
+
     index = 0
     regex = re.compile(
         r'^(?:http|ftp)s?://'
@@ -247,7 +245,7 @@ async def downloadFile(sess, url, format, download_loc_filename):
 
 
 def loadBlocklistConfig():
-    global isConfigLoad
+    isConfigLoad = False
     global configDict
     global unameVnameMap
 
@@ -260,14 +258,14 @@ def loadBlocklistConfig():
                     isConfigLoad = True
         if not isConfigLoad:
             configDict["conf"] = {}
-
         if os.path.isfile(vnameMapFileLocation):
             with open(vnameMapFileLocation) as json_file:
                 unameVnameMap = json.load(json_file)
                 json_file.close()
     except:
         print("Error parsing blocklist.json. Check json formatting.")
-        sys.exit("Error")
+
+    return isConfigLoad
 
 
 def main():
@@ -277,41 +275,42 @@ def main():
     global configDict
     global retryBlocklist
 
-    tmpRetryBlocklist = list()
-    loadBlocklistConfig()
-    exitWithError = False
+    ok = loadBlocklistConfig()
 
-    if isConfigLoad:
-        if validateBasicConfig():
-            asyncio.run(parseDownloadBasicConfig(configDict["conf"]))
-
-            print("\nTotal blocklists: " + str(totalUrl))
-            print("Saved blocklists: " + str(savedUrl))
-            print("Difference: " + str(totalUrl - savedUrl))
-
-            if len(retryBlocklist) >= 1:
-                print("\n\nretry download blocklist\n\n")
-                tmpRetryBlocklist = retryBlocklist
-                retryBlocklist = list()
-                asyncio.run(parseDownloadBasicConfig(tmpRetryBlocklist))
-
-            if len(blocklistNotDownloaded) >= 1:
-                print("\n\nFailed download list:")
-                print("\n".join(blocklistNotDownloaded))
-
-            if len(retryBlocklist) >= 1:
-                print("\nError downloading blocklist\n")
-                for value in retryBlocklist:
-                    if not ('ignore' in value["pack"]):
-                        exitWithError = True
-                    print(f"{value}\n")
-                if exitWithError:
-                    sys.exit("")
-        else:
-            print("Validation Error")
-            sys.exit("")
-    else:
+    if not ok:
         print("Error loading config, download aborted.")
+        sys.exit("")
+
+    tmpRetryBlocklist = list()
+    exitWithError = False
+    if validateBasicConfig():
+        asyncio.run(parseDownloadBasicConfig(configDict["conf"]))
+
+        print("\nTotal blocklists: " + str(totalUrl))
+        print("Saved blocklists: " + str(savedUrl))
+        print("Difference: " + str(totalUrl - savedUrl))
+
+        if len(retryBlocklist) >= 1:
+            print("\n\nretry download blocklist\n\n")
+            tmpRetryBlocklist = retryBlocklist
+            retryBlocklist = list()
+            asyncio.run(parseDownloadBasicConfig(tmpRetryBlocklist))
+
+        if len(blocklistNotDownloaded) >= 1:
+            print("\n\nFailed download list:")
+            print("\n".join(blocklistNotDownloaded))
+
+        if len(retryBlocklist) >= 1:
+            print("\nError downloading blocklist\n")
+            for value in retryBlocklist:
+                if not ('ignore' in value["pack"]):
+                    exitWithError = True
+                print(f"{value}\n")
+            if exitWithError:
+                sys.exit("")
+    else:
+        print("Validation Error")
+        sys.exit("")
 
 
 if __name__ == "__main__":
