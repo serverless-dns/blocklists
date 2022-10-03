@@ -1518,7 +1518,9 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
                 log.i("empty file", filepath);
                 continue;
             }
-            log.i("adding: " + filepath, fname + " <-file | tag-> "+tag[fname]);
+            if (config.debug) {
+                log.d("adding: " + filepath, fname + " <-file | tag-> "+tag[fname]);
+            }
             let lines = 0;
             for (let h of f.split("\n")) {
                 const ht = tag[fname] + h.trim();
@@ -1606,28 +1608,31 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
 
     await Promise.all([aw1, aw2, aw3, aw4]);
 
-    log.i("Search a few domains in the built trie");
+    log.i("Lookup a few domains in this new trie");
     log.sys();
 
     let testdomains = [
+            "aws.com",
             "sg-ssl.effectivemeasure.net",
             "staging.connatix.com",
             "ads.redlightcenter.com",
             "oascentral.chicagobusiness.com",
             "simpsonitos.com",
             "putlocker.fyi",
+            "segment.io",
+            "google.ae",
             "celzero.com"];
     for (let domainname of testdomains) {
         let ts = TxtEnc.encode(domainname).reverse();
         let serresult = ft.lookup(ts);
-        log.i("query: " + domainname, "result: "+ serresult);
+        log.i("domain: " + domainname, "result: ");
         if (serresult) {
-            for (let [key, value] of serresult) {
+            for (let [_, value] of serresult) {
                 let tagf = t.flagsToTag(value);
                 log.i(tagf);
             }
         } else {
-            log.w("query not found in trie");
+            log.w("domain not found in trie");
         }
     }
 }
