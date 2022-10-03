@@ -37,12 +37,12 @@ function t() {
 
 function sys() {
     const btomb = 1000 * 1000;
-    const kbtogb = 1000 * 1000;
+    const kbtomb = 1000;
     const utosec = 1000 * 1000;
     const meminfo = process.memoryUsage(); // is slow
     const procinfo = process.resourceUsage();
     // os info
-    const loadavg = os.loadavg() / btomb;
+    const loadavg = os.loadavg().map(avg => avg / btomb);
     const freemem = os.freemem()/ btomb;
     const totalmem = os.totalmem() / btomb;
     // memory info
@@ -54,7 +54,7 @@ function sys() {
     // proc info
     const userslice = procinfo.userCPUTime / utosec;
     const systemslice = procinfo.systemCPUTime / utosec;
-    const maxrss = procinfo.maxRSS / kbtogb;
+    const maxrss = procinfo.maxRSS / kbtomb;
     const minorpf = procinfo.minorPageFault;
     const majorpf = procinfo.majorPageFault;
     i("<meminfo>",
