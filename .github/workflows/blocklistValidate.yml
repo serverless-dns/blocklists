@@ -1,6 +1,24 @@
 name: ValidateBlocklists
 on:
   push:
+    # TODO: inputs.environment and inputs.commit
+    branches:
+      - "main"
+    tags:
+      - "v*"
+    paths-ignore:
+      - ".github/**"
+      - "!.github/workflows/blocklistValidate.yml"
+      - ".eslintrc.cjs"
+      - ".prettierignore"
+      - "*.toml"
+      - "*.Dockerfile"
+      - "*.js"
+      - "*/*.js"
+      - ".husky/*"
+      - ".prettierrc.json"
+      - "LICENSE"
+      - "README.md"
   pull_request:
   repository_dispatch:
 env:
