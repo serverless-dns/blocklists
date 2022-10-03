@@ -35,44 +35,48 @@ function t() {
     return new Date().toISOString();
 }
 
-function sys() {
+function sys(extra=false) {
     const btomb = 1000 * 1000;
     const kbtomb = 1000;
     const utosec = 1000 * 1000;
-    const meminfo = process.memoryUsage(); // is slow
-    const procinfo = process.resourceUsage();
-    // os info
-    const loadavg = os.loadavg().map(avg => avg / btomb);
-    const freemem = os.freemem()/ btomb;
-    const totalmem = os.totalmem() / btomb;
+    if (extra) {
+        // os info
+        const loadavg = os.loadavg().map(avg => avg / btomb);
+        const freemem = os.freemem()/ btomb;
+        const totalmem = os.totalmem() / btomb;
+        i("<osinfo>",
+        "| cpu-avg", loadavg,
+        "| mem-free", freemem,
+        "| mem-use", totalmem);
+    }
     // memory info
+    const meminfo = process.memoryUsage(); // is slow
     const rss = meminfo.rss / btomb;
     const totalheap = meminfo.heapTotal / btomb;
     const usedheap = meminfo.heapUsed / btomb;
     const ext = meminfo.external / btomb;
     const buf = meminfo.arrayBuffers / btomb;
-    // proc info
-    const userslice = procinfo.userCPUTime / utosec;
-    const systemslice = procinfo.systemCPUTime / utosec;
-    const maxrss = procinfo.maxRSS / kbtomb;
-    const minorpf = procinfo.minorPageFault;
-    const majorpf = procinfo.majorPageFault;
     i("<meminfo>",
-        "| rss", rss,
-        "| heap-total", totalheap,
-        "| heap-used", usedheap,
-        "| external", ext,
-        "| buffers", buf);
-    i("<osinfo>",
-        "| cpu-avg", loadavg,
-        "| mem-free", freemem,
-        "| mem-use", totalmem);
-    i("<procinfo>",
-        "| user", userslice,
-        "| system", systemslice,
-        "| maxrss", maxrss,
-        "| minor", minorpf,
-        "| major", majorpf);
+    "| rss", rss,
+    "| heap-total", totalheap,
+    "| heap-used", usedheap,
+    "| external", ext,
+    "| buffers", buf);
+    if (extra) {
+        // proc info
+        const procinfo = process.resourceUsage();
+        const userslice = procinfo.userCPUTime / utosec;
+        const systemslice = procinfo.systemCPUTime / utosec;
+        const maxrss = procinfo.maxRSS / kbtomb;
+        const minorpf = procinfo.minorPageFault;
+        const majorpf = procinfo.majorPageFault;
+        i("<procinfo>",
+            "| user", userslice,
+            "| system", systemslice,
+            "| maxrss", maxrss,
+            "| minor", minorpf,
+            "| major", majorpf);
+    }
 }
 
 module.exports = {
