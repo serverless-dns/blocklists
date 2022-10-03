@@ -1056,6 +1056,8 @@ Trie.prototype = {
         const l10 = level.length / 10 | 0;
         for (let i = 0; i < level.length; i++) {
             const node = level[i];
+            // clear out the reference
+            level[i] = null;
             const childrenLength = (node.len > 0) ? (node.len | 0) : 0;
             const size = (node.size > 0) ? (node.size | 0) : 0;
             nbb += size
