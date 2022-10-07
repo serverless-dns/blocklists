@@ -95,9 +95,9 @@ async def parseDownloadBasicConfig(configList):
         tasks = []
         for value in configList:
             if str(value["index"]) in unameVnameMap:
-                fileName = unameVnameMap[str(value["index"])]
+                fileName = unameVnameMap[str(value["index"])].lower()
             else:
-                fileName = str(value["index"])
+                fileName = str(value["index"]).lower()
 
             if value["subg"].strip() == "":
                 downloadLoc = "./" + blocklistfiles + "/" + value[

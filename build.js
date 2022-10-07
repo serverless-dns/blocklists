@@ -42,7 +42,7 @@ function loadConfig(blocklistConfigPath, unameVnameMapPath) {
         const unameVnameMap = JSON.parse(mapData)
 
         for (let index in blocklistobj.conf) {
-            let uname = unameVnameMap[index]
+            let uname = unameVnameMap[index].toLowerCase();
             if (typeof uname == "undefined") {
                 uname = index + ""
             }
