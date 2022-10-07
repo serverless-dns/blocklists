@@ -1,6 +1,7 @@
 #!/bin/bash -eux
 
-if ! test -e "/swapfile"; then
+# stackoverflow.com/a/16753536
+if [ -n "${FLY_REGION+x}" ] && [ ! -e "/swapfile" ]; then
   # make swap: community.fly.io/t/6782/10
   fallocate -l 8192M /swapfile
   chown root:root /swapfile
@@ -28,4 +29,4 @@ cd "$OUTDIR" && split -b20000000 -d --additional-suffix=.txt td.txt td
 # list split files
 ls -lhtr
 
-node ./upload.js
+cd - && node ./upload.js

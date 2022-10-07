@@ -90,8 +90,8 @@ const codecType = (config.useCodec6) ? codec.b6 : codec.b8;
 const TxtEnc = new codec.Codec(codecType);
 const TxtDec = TxtEnc;
 // utf8 encoded delim for non-base32/64
-const ENC_DELIM = TxtEnc.delimEncoded;
-const periodEncVal = TxtEnc.periodEncoded;
+const ENC_DELIM = TxtEnc.delimEncoded();
+const periodEncVal = TxtEnc.periodEncoded();
 
 /**
  * The BitWriter will create a stream of bytes, letting you write a certain
@@ -860,7 +860,7 @@ Trie.prototype = {
 
         let flag = TxtDec.decode(encodedFlag);
         val = this.flags[flag];
-        if (typeof (val) === "undefined") {
+        if (val == null) {
             log.w(flag, encodedFlag, "<- flags, val undef for node", node);
             throw new Error("val undefined err");
         }
@@ -922,7 +922,12 @@ Trie.prototype = {
      */
     insert: function (word) {
 
+        const raw = word;
         const index = word.lastIndexOf(ENC_DELIM[0]);
+        if (index <= 0) {
+            err = "missing delim in word: " + TxtEnc.decode(word) + ", delim: " + ENC_DELIM[0] + ", encoded: " + word;
+            throw new Error(err);
+        }
         const encodedFlag = word.slice(index + 1);
         // each letter in word must be 8bits or less.
         // todo: TxtEnc word here?
