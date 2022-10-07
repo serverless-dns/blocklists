@@ -9,10 +9,19 @@ if ! test -e "/swapfile"; then
   swapon /swapfile
 fi
 
+# stackoverflow.com/a/28085062
+: "${INDIR:=blocklistfiles}"
+: "${OUTDIR:=result2}"
+: "${S3DIR:=blocklists}"
+
+export INDIR="$INDIR"
+export OUTDIR="$OUTDIR"
+export S3DIR="$S3DIR"
+
 python ./download.py
 
 # --max-old-space-size=32768 (32G)
-node --expose-gc ./build.js
+node --max-old-space-size=32768 --expose-gc ./build.js
 
 # creates td00.txt, td01.txt, ... , td98.txt, td99.txt, td100.txt, ...
 cd "$OUTDIR" && split -b20000000 -d --additional-suffix=.txt td.txt td
