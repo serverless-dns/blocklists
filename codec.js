@@ -29,6 +29,12 @@ const asterix = "*"; // ascii: 42
 // must be in lexographical order as defined by ascii/utf8; see trie.build
 const validchars6 = delim + asterix + hyphen + period + numerals + underscore + alphabet;
 
+const memstat = {encode: 0, decode: 0, encode16: 0, decode16: 0};
+const memencode = new Map();
+const memencode16 = new Map();
+const memdecode = new Map();
+const memdecode16 = new Map();
+
 const {map: ord6, rev: chr6} = index6(validchars6);
 const {map: ord16, rev: chr16} = index16();
 
@@ -59,7 +65,39 @@ class Codec {
         this.typ = typ;
     }
 
-    encode(str6or8) {
+    encode(str6or8, pool = true) {
+        if (pool) {
+            const u6or8 = memencode.get(str6or8);
+            if (u6or8 != null) {
+                memstat.encode += 1;
+                return u6or8;
+            }
+        }
+
+        const u6or8 = this.encodeinner(str6or8);
+        if (pool) memencode.set(str6or8, u6or8);
+
+        return u6or8;
+    }
+
+    decode(u6or8, pool = true) {
+        let k = null;
+        if (pool) {
+            k = u6or8.join(",");
+            const str6or8 = memdecode.get(k);
+            if (str6or8 != null) {
+                memstat.decode += 1;
+                return str6or8;
+            }
+        }
+
+        const str6or8 = this.decodeinner(u6or8);
+        if (pool && k) memdecode.set(k, str6or8);
+
+        return str6or8;
+    }
+
+    encodeinner(str6or8) {
         if (this.typ === b8) {
             const str8 = str6or8;
             // returns u8
@@ -76,7 +114,39 @@ class Codec {
         return u6;
     }
 
-    decode(u6or8) {
+    encode16(str16, pool = true) {
+        if (pool) {
+            const u6or8 = memencode16.get(str16);
+            if (u6or8 != null) {
+                memstat.encode16 += 1;
+                return u6or8;
+            }
+        }
+
+        const u6or8 = this.encode16inner(str16);
+        if (pool) memencode16.set(str16, u6or8);
+
+        return u6or8;
+    }
+
+    decode16(u6or8, pool = true) {
+        let k = null;
+        if (pool) {
+            k = u6or8.join(",");
+            const str16 = memdecode16.get(k);
+            if (str16 != null) {
+                memstat.decode16 += 1;
+                return str16;
+            }
+        }
+
+        const str16 = this.decode16inner(u6or8);
+        if (pool && k) memdecode16.set(k, str16);
+
+        return str16;
+    }
+
+    decodeinner(u6or8) {
         if (this.typ === b8) {
             const u8 = u6or8;
             // returns str8or16
@@ -92,7 +162,39 @@ class Codec {
         return str6;
     }
 
-    decode16(u6or8) {
+    encode16inner(str16) {
+        if (this.typ === b8) {
+            // returns u8
+            return this.encode(str16);
+        }
+
+        const W = 16;
+        const n = 6;
+        const mask = (2 ** n) - 1;
+        const len16 = str16.length;
+        const len6 = Math.ceil(len16 * W / n);
+        let bits = 0;
+        let acc = 0;
+        let u6 = new Uint8Array(len6);
+        let j = 0;
+
+        for (let i = 0; i < len16; i += 1) {
+          acc = (acc << W) | ord16.get(str16[i]);
+          bits += W;
+
+          while (bits >= n) {
+            u6[j++] = (acc >>> (bits - n)) & mask;
+            bits -= n;
+          }
+        }
+
+        if (bits > 0) {
+            u6[j++] = (acc << (n - bits)) & mask;
+        }
+        return u6;
+    }
+
+    decode16inner(u6or8) {
         if (this.typ === b8) {
             // returns str16
             return this.decode(u6or8);
@@ -130,44 +232,16 @@ class Codec {
         return u16;
     }
 
-    encode16(str16) {
-        if (this.typ === b8) {
-            // returns u8
-            return this.encode(str16);
-        }
-
-        const W = 16;
-        const n = 6;
-        const mask = (2 ** n) - 1;
-        const len16 = str16.length;
-        const len6 = Math.ceil(len16 * W / n);
-        let bits = 0;
-        let acc = 0;
-        let u6 = new Uint8Array(len6);
-        let j = 0;
-
-        for (let i = 0; i < len16; i += 1) {
-          acc = (acc << W) | ord16.get(str16[i]);
-          bits += W;
-
-          while (bits >= n) {
-            u6[j++] = (acc >>> (bits - n)) & mask;
-            bits -= n;
-          }
-        }
-
-        if (bits > 0) {
-            u6[j++] = (acc << (n - bits)) & mask;
-        }
-        return u6;
-    }
-
     delimEncoded() {
         return this.encode(delim);
     }
 
     periodEncoded() {
         return this.encode(period);
+    }
+
+    stats() {
+        return memstat;
     }
 }
 

@@ -58,7 +58,7 @@ function loadConfig(blocklistConfigPath, unameVnameMapPath) {
             tags[uname].url = blocklistobj.conf[index].url
             tags[uname].show = 0
             tags[uname].entries = 0
-            log.i("btag for " + uname + " index: " + index, tags[uname])
+            log.i("btag for " + uname + " index: " + index, tags[uname].group)
         }
         return tags
     } catch (e) {

@@ -693,7 +693,6 @@ Trie.prototype = {
         this.root = new TrieNode([-1]); // any letter would do nicely
         this.cache = [this.root];
         this.nodeCount = 1;
-        this.invoke = 0;
         this.stats = {};
         this.inspect = {};
         this.flags = {};
@@ -878,7 +877,7 @@ Trie.prototype = {
         fnode = flagNode;
 
         const header = 0;
-        const index = ((val / 16) | 0) // + 1;
+        const index = ((val / 16) | 0);
         const pos = val % 16;
 
         const resnodesize = (!newlyAdded) ? Math.ceil(res.length * 16 / TxtEnc.typ) : 0;
@@ -901,13 +900,14 @@ Trie.prototype = {
             throw e
         }
 
-        const upsertData = (n !== 0)
+        const upsertData = (n !== 0);
         h |= 1 << (15 - index);
         n |= 1 << (15 - pos);
 
         res = CHR16(h) + res.slice(1, dataIndex) + CHR16(n) + res.slice(upsertData ? (dataIndex + 1) : dataIndex);
 
-        // this size is dependent on how flag node is eventually serialized
+        // this size is dependent on how the flag node is eventually
+        // serialized by TxtEnc, and so calculate its size accordingly
         const newresnodesize = Math.ceil(res.length * 16 / TxtEnc.typ);
 
         this.nodeCount = this.nodeCount - resnodesize + newresnodesize;
@@ -1009,6 +1009,7 @@ Trie.prototype = {
         let q = 0;
         let ord = [];
         const inspect = {};
+        const flstat = [[]];
         let nbb = 0;
 
         for (let n = 0; n < level.length; n++) {
@@ -1039,7 +1040,7 @@ Trie.prototype = {
                 start = 1;
                 // fixme: abort when a flag node is marked as such but has no value stored?
                 if (typeof (flagNode.letter) === "undefined" || typeof (flagNode) === "undefined") {
-                    log.w("flagnode letter undef ", flagNode, " node ", node);
+                    log.w("flagnode letter undef", flagNode, "node", node);
                 }
 
                 // encode flagNode.letter which is a 16-bit js-str
@@ -1070,6 +1071,14 @@ Trie.prototype = {
                     // accumulate the count of number of blocklists;
                     // higher values for higher count, the better
                     inspect["l_" + lists] = (inspect["l_" + lists] | 0) + 1;
+                    const v = TxtDec.decode16raw(encValue);
+                    const flags = this.flagsToTag(v);
+                    for (const f of flags) {
+                        for (const g of flags) {
+                            if (flstat[f] == null) flstat[f] = [];
+                            flstat[f][g] = (flstat[f][g] | 0) + 1;
+                        }
+                    }
                 }
                 nbb += 1;
             }
@@ -1096,6 +1105,7 @@ Trie.prototype = {
             node.scale();
         }
         if (loginspect) log.d("inspect level-order", inspect);
+        if (loginspect) log.d("inspect flags dist", flstat);
         return { level: level, div: ord };
     },
 
@@ -1130,7 +1140,6 @@ Trie.prototype = {
         const all1 = 0xffff_ffff // 1s all 32 bits
         const maxbits = countSetBits(all1) // 32 bits
 
-        this.invoke += 1;
         // Write the unary encoding of the tree in level order.
         let bits = new BitWriter();
         let chars = []
@@ -1138,7 +1147,7 @@ Trie.prototype = {
         // write the entry 0b10 (1 child) for root node
         bits.write(0x02, 2);
 
-        this.stats = { children: 0, single: new Array(256).fill(0) }
+        this.stats = { children: 0, flags: 0, single: new Array(256).fill(0) }
         let start = Date.now();
 
         log.i("levelorder begin:", start);
@@ -1186,8 +1195,8 @@ Trie.prototype = {
             while (j > 0) {
                 const bw = (all1 >>> (/*32*/ maxbits - j));
                 bits.write(bw, j);
-                rem -= j
-                j = Math.min(rem, maxbits)
+                rem -= j;
+                j = Math.min(rem, maxbits);
             }
             // for (let j = 0; j < size; j++) bits.write(1, 1)
             // write 0 to mark the end of the node's child-size
@@ -1203,6 +1212,7 @@ Trie.prototype = {
             }
             if (node.flag === true) {
                 value |= flagMask;
+                this.stats.flags += 1;
             }
             chars.push(value);
             if (config.inspect) this.inspect[i + "_" + node.letter] = {v: value, l: node.letter, f: node.final, c: node.compressed}
@@ -1228,7 +1238,7 @@ Trie.prototype = {
         let k = 0;
         // the memory allocs driven by level-order & bit-writer above
         // are got rid of by the time we hit this portion of the code
-        for (c of chars) {
+        for (const c of chars) {
             if (k % (chars.length / 10 | 0) == 0) {
                 log.i("charslen: " + k);
                 log.sys();
@@ -1238,8 +1248,10 @@ Trie.prototype = {
         }
 
         let elapsed = Date.now() - start;
-        log.i(this.invoke + " csize: " + nbb + " elapsed write.keys: " + elapsed2 + " elapsed write.values: " + elapsed +
-            " stats: f: " + this.stats.children + ", c:" + this.stats.single);
+        log.i("size:", nbb, ", flags:", this.stats.flags, ", len:", this.stats.children,
+            "\nelapsed.write.keys:", elapsed2, ", elapsed.write.values:", elapsed,
+            "\nchildren:", this.stats.single,
+            "\ncodec memoized:", TxtEnc.stats());
 
         return bits.getData();
     }
