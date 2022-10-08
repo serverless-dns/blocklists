@@ -1009,7 +1009,7 @@ Trie.prototype = {
         let q = 0;
         let ord = [];
         const inspect = {};
-        const flstat = [[]];
+        const flstat = [];
         let nbb = 0;
 
         for (let n = 0; n < level.length; n++) {
@@ -1071,14 +1071,20 @@ Trie.prototype = {
                     // accumulate the count of number of blocklists;
                     // higher values for higher count, the better
                     inspect["l_" + lists] = (inspect["l_" + lists] | 0) + 1;
+                    let totalflags = 0;
                     const v = TxtDec.decode16raw(encValue);
                     const flags = this.flagsToTag(v);
-                    for (const f of flags) {
-                        for (const g of flags) {
+                    for (let f of flags) {
+                        f += "";
+                        for (let g of flags) {
+                            g += "";
                             if (flstat[f] == null) flstat[f] = [];
                             flstat[f][g] = (flstat[f][g] | 0) + 1;
                         }
+                        totalflags += 1;
                     }
+                    const k = "mm_" + totalflags + "_" + lists;
+                    inspect[k] = (inspect[k] | 0) + 1;
                 }
                 nbb += 1;
             }
