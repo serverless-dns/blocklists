@@ -65,7 +65,10 @@ class Codec {
         this.typ = typ;
     }
 
-    encode(str6or8, pool = true) {
+    // encode memoizes poorly due to the way build works
+    // by appending / prepending list names against domains
+    // which means, no two values from 2 lists are alike.
+    encode(str6or8, pool = false) {
         if (pool) {
             const u6or8 = memencode.get(str6or8);
             if (u6or8 != null) {
