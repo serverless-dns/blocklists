@@ -27,7 +27,7 @@ const hyphen = "-"; // ascii: 45
 const asterix = "*"; // ascii: 42
 
 // must be in lexographical order as defined by ascii/utf8; see trie.build
-const validchars6 = delim + asterix + hyphen + period + numerals + underscore + alphabet;
+const validchars6 = delim + asterix + hyphen + period + numerals + alphabet + underscore;
 
 const memstat = {encode: 0, decode: 0, encode16: 0, decode16: 0};
 const memencode = new Map();
@@ -117,6 +117,22 @@ class Codec {
         return u6;
     }
 
+    decodeinner(u6or8) {
+        if (this.typ === b8) {
+            const u8 = u6or8;
+            // returns str8or16
+            return decNative.decode(u8);
+        }
+        const u6 = u6or8;
+        let str6 = "";
+        for (const i of u6) {
+            const c = chr6.get(i);
+            if (c != null) str6 += c;
+            else throw new Error("decode: undef char: " + c + ", for: " + i + ", in: " + u6 + ", res: " + str6);
+        }
+        return str6;
+    }
+
     encode16(str16, pool = true) {
         if (pool) {
             const u6or8 = memencode16.get(str16);
@@ -147,22 +163,6 @@ class Codec {
         if (pool && k) memdecode16.set(k, str16);
 
         return str16;
-    }
-
-    decodeinner(u6or8) {
-        if (this.typ === b8) {
-            const u8 = u6or8;
-            // returns str8or16
-            return decNative.decode(u8);
-        }
-        const u6 = u6or8;
-        let str6 = "";
-        for (const i of u6) {
-            const c = chr6.get(i);
-            if (c != null) str6 += c;
-            else throw new Error("decode: undef char: " + c + ", for: " + i + ", in: " + u6 + ", res: " + str6);
-        }
-        return str6;
     }
 
     encode16inner(str16) {
@@ -221,18 +221,98 @@ class Codec {
             bits -= n;
           }
         }
+
+        if (bits > 0) {
+            const rem = (acc << (n - bits)) & mask;
+            // TODO: should there be a rem != 0 check?
+            if (rem !== 0) str16 += chr16.get(rem);
+            bits -= bits;
+        }
+
         return str16;
     }
 
     decode16raw(u6or8) {
         // returns u16
         const str16 = this.decode16(u6or8);
-        const u16 = new Uint16Array(str16.length);
-        let i = 0;
-        for (const c of str16) {
-            u16[i++] = ord16.get(c);
+        return str2buf(str16);
+    }
+
+    decode8(u6or8) {
+        if (this.typ === b8) {
+            // no-op
+            return u6or8;
         }
-        return u16;
+
+        const W = 6;
+        const n = 8;
+        const mask = (2 ** n) - 1;
+        const u6 = u6or8;
+        const len6 = u6.length;
+        const len8 = Math.ceil(len6 * W / n);
+        const u8 = new Uint8Array(len8);
+        let bits = 0;
+        let acc = 0;
+        let j = 0;
+ 
+        for (let i = 0; i < len6; i += 1) {
+          acc = (acc << W) | u6[i];
+          bits += W;
+
+          if (bits >= n) {
+            u8[j++] = ((acc >>> (bits - n)) & mask);
+            bits -= n;
+          }
+        }
+
+        // since encode does not pad, decode needn't worry about
+        // left-over (less than n) bits in acc.
+        // if (bits > 0) {
+        //    const rem = (acc << (n - bits));
+        //    u8[j++] = rem & mask;
+        //    bits -= bits;
+        // }
+
+        // discard excess, if any
+        return u8.slice(0, j);
+    }
+
+    encode8(u6or8) {
+        if (this.typ === b8) {
+            // no-op
+            return u6or8;
+        }
+
+        const W = 8;
+        const n = 6;
+        const u8 = u6or8;
+        const mask = (2 ** n) - 1;
+        const len8 = u8.length;
+        const len6 = Math.ceil(len8 * W / n);
+        const u6 = new Uint8Array(len6);
+        let bits = 0;
+        let acc = 0;
+        let j = 0;
+
+        for (let i = 0; i < len8; i += 1) {
+          acc = (acc << W) | u8[i];
+          bits += W;
+
+          if (bits >= n) {
+            u6[j++] = ((acc >>> (bits - n)) & mask);
+            bits -= n;
+          }
+        }
+
+        if (bits > 0) {
+            const rem = (acc << (n - bits));
+            u6[j++] = rem & mask;
+            bits -= bits;
+        }
+
+        // j should always be equal to u6.length
+        // if (j !== u6.length) console.log("in: u8", u8, "out: u6", u6);
+        return u6;
     }
 
     delimEncoded() {
@@ -248,6 +328,15 @@ class Codec {
     }
 }
 
+function str2buf(str16) {
+    const u16 = new Uint16Array(str16.length);
+    let i = 0;
+    for (const c of str16) {
+        u16[i++] = ord16.get(c);
+    }
+    return u16;
+}
+
 module.exports = {
-    b6, b8, delim, Codec
+    b6, b8, delim, str2buf, Codec
 };

@@ -8,6 +8,7 @@
 
 const log = require("./log.js");
 const codec = require("./codec.js");
+const { loadavg } = require("os");
 
 // impl based on S Hanov's succinct-trie: stevehanov.ca/blog/?id=120
 
@@ -30,6 +31,8 @@ let config = {
     write16: true,
     // use codec type b6 to convert js-str to bytes and vice-versa
     useCodec6: true,
+    // optimize storing flags, that is, store less than 3 flags as-is
+    optflags: true,
 }
 
 if (config.write16) {
@@ -92,6 +95,11 @@ const TxtDec = TxtEnc;
 // utf8 encoded delim for non-base32/64
 const ENC_DELIM = TxtEnc.delimEncoded();
 const periodEncVal = TxtEnc.periodEncoded();
+
+/** maps int index to str tags */
+const gtag = {};
+/** maps str tags to int indices */
+const gflag = {};
 
 /**
  * The BitWriter will create a stream of bytes, letting you write a certain
@@ -158,7 +166,6 @@ BitWriter.prototype = {
      */
     write: function (data, numBits) {
         if (config.write16) {
-
             while (numBits > 0) {
                 // take 16 and then the leftover pass it to write16
                 const i = (numBits - 1) / 16 | 0;
@@ -167,7 +174,6 @@ BitWriter.prototype = {
                 this.write16(b, l);
                 numBits -= l;
             }
-
             return;
         }
         for (let i = numBits - 1; i >= 0; i--) {
@@ -653,6 +659,9 @@ RankDirectory.prototype = {
  */
 function TrieNode(letter) {
     this.letter = letter;
+    // see: upsertFlag and config.optflags
+    // TODO: remove the need for optletter
+    this.optletter = null;
     this.final = false;
     this.children = [];
     this.compressed = false;
@@ -667,6 +676,7 @@ TrieNode.prototype = {
         this.letter = this.letter[this.letter.length - 1];
         this.children.length = 0;
         this.children = undefined;
+        this.optletter = null;
     },
 }
 
@@ -712,16 +722,19 @@ Trie.prototype = {
             const flagNode = children[0];
             if (flagNode.flag === true) return flagNode;
         }
-        return undefined;
+        return null;
     },
 
     setupFlags: function (flags) {
         let i = 0;
-        for (f of flags) {
+        for (const f of flags) {
+            // TODO: use gtag/gflag, rm flags and rflags from trie
             // maps ele 'f' to value 'i' (number)
             this.flags[f] = i;
             // maps value 'i' to ele 'f' (str/number)
             this.rflags[i] = f;
+            gflag[f] = i;
+            gtag[i] = f;
             i += 1;
         }
         // controls number of 16-bit sloted storage for a final trie-node flag.
@@ -729,7 +742,7 @@ Trie.prototype = {
         this.fsize = Math.ceil(Math.log2(flags.length) / 16) + 1;
     },
 
-    flagsToTag: function (flags) {
+    flagToTag: function (flags) {
         // flags has to be an array of 16-bit integers.
         const header = flags[0];
         const tagIndices = [];
@@ -838,9 +851,6 @@ Trie.prototype = {
      * pass: dreamsongs.com/RiseOfWorseIsBetter.html
      */
     upsertFlag: function (node, encodedFlag) {
-        let res;
-        let fnode;
-        let val;
         let newlyAdded = false;
         const first = node.children[0];
         const isNodeFlag = (first && first.flag);
@@ -853,34 +863,52 @@ Trie.prototype = {
             node.flag = false;
             // bitslen / encoding type affects nodecount; depending
             // which a flag node is 8bits or 6bits long. see level order
-            this.nodeCount -= Math.ceil(first.letter.length * 16 / TxtEnc.typ);
+            if (config.optflags && first.optletter != null) {
+                this.nodeCount -= Math.ceil(first.optletter.length * 8 / TxtEnc.typ);
+            } else {
+                this.nodeCount -= Math.ceil(first.letter.length * 16 / TxtEnc.typ);
+            }
             return;
         }
 
         let flag = TxtDec.decode(encodedFlag);
-        val = this.flags[flag];
+        const val = this.flags[flag];
         if (val == null) {
             log.w(flag, encodedFlag, "<- flags, val undef for node", node);
             throw new Error("val undefined err");
         }
 
         const flagNode = (isNodeFlag) ? first : new TrieNode(CHR16(0));
-        if (!isNodeFlag) { // if flag-node doesn't exist, add it at index 0.
+        // if flag-node doesn't exist, add it at index 0
+        if (!isNodeFlag) {
+            flagNode.flag = true;
             const all = node.children;
-            node.children = [flagNode];
+            node.children = [flagNode]; // index 0
             node.children.concat(all);
+            if (config.optflags) flagNode.optletter = [val];
             newlyAdded = true;
         }
 
-        flagNode.flag = true;
-        res = flagNode.letter;
-        fnode = flagNode;
-
-        const header = 0;
-        const index = ((val / 16) | 0);
-        const pos = val % 16;
+        const fnode = flagNode;
+        let res = fnode.letter;
+        let fopt = fnode.optletter;
 
         const resnodesize = (!newlyAdded) ? Math.ceil(res.length * 16 / TxtEnc.typ) : 0;
+        const optnodesize = (!newlyAdded && fopt) ? Math.ceil(fopt.length * 8 / TxtEnc.typ) : 0;
+
+        if (!newlyAdded && config.optflags) {
+            // maintain upto 3 flags as-is, if more, then wipe 'em out
+            if (fopt.length < 3) {
+                flagNode.optletter.push(val);
+            } else {
+                flagNode.optletter = null;
+                fopt = null;
+            }
+        }
+
+        const header = 0;
+        const index = (val / 16) | 0;
+        const pos = val % 16;
 
         let h = DEC16(res[header]);
         // Fetch the actual tail index position in the character string from the
@@ -897,7 +925,7 @@ Trie.prototype = {
             n = (((h >>> (15 - (index))) & 0x1) !== 1) ? 0 : DEC16(res[dataIndex]);
         } catch (e) {
             log.e("res/len/index/h/val/pos/dataindex", res, res.length, res[dataIndex], h, val, pos, dataIndex, "fnode/node/flag/let", fnode, node, node.flag, node.letter)
-            throw e
+            throw e;
         }
 
         const upsertData = (n !== 0);
@@ -909,8 +937,17 @@ Trie.prototype = {
         // this size is dependent on how the flag node is eventually
         // serialized by TxtEnc, and so calculate its size accordingly
         const newresnodesize = Math.ceil(res.length * 16 / TxtEnc.typ);
+        const newoptnodesize = (fopt) ? Math.ceil(fopt.length * 8 / TxtEnc.typ) : 0;
 
-        this.nodeCount = this.nodeCount - resnodesize + newresnodesize;
+        if (config.optflags && fopt != null) {
+            this.nodeCount +=  newoptnodesize - optnodesize;
+        } else {
+            if (optnodesize > 0) {
+                this.nodeCount += newresnodesize - optnodesize;
+            } else {
+                this.nodeCount += newresnodesize - resnodesize;
+            }
+        }
 
         fnode.letter = res;
 
@@ -921,8 +958,6 @@ Trie.prototype = {
      * Inserts a word into the trie, call in alphabetical (lexographical) order.
      */
     insert: function (word) {
-
-        const raw = word;
         const index = word.lastIndexOf(ENC_DELIM[0]);
         if (index <= 0) {
             err = "missing delim in word: " + TxtEnc.decode(word) + ", delim: " + ENC_DELIM[0] + ", encoded: " + word;
@@ -1046,11 +1081,18 @@ Trie.prototype = {
                 // encode flagNode.letter which is a 16-bit js-str
                 // encode splits letter into units of 6or8bits (uint)
                 let encValue = null;
-                if (config.useCodec6) {
-                    encValue = TxtEnc.encode16(flagNode.letter);
+                if (config.optflags && flagNode.optletter != null) {
+                    if (loginspect) inspect["optletter"] = (inspect["optletter"] | 0) + 1;
+                    encValue = TxtEnc.encode8(flagNode.optletter);
                 } else {
-                    encValue = new BitString(flagNode.letter).encode(/*mostly, 8*/TxtEnc.typ);
+                    const letter = flagNode.letter;
+                    if (config.useCodec6) {
+                        encValue = TxtEnc.encode16(letter);
+                    } else {
+                        encValue = new BitString(letter).encode(/*mostly, 8*/TxtEnc.typ);
+                    }
                 }
+
                 flen = encValue.length;
                 for (let i = 0; i < encValue.length; i++) {
                     const l = encValue[i];
@@ -1058,22 +1100,20 @@ Trie.prototype = {
                     aux.flag = true;
                     level.push(aux);
                 }
+
                 if (loginspect && flen > 0) {
-                    let lists = 0;
-                    let i = 0;
-                    for (const v of encValue) {
-                        // ignore the header
-                        if (i++ === 0) continue;
-                        lists += countSetBits(v);
-                    }
                     // count nodes having "flen" no. of children
-                    inspect["f_" + flen] = (inspect["f_" + flen] | 0) + 1;
-                    // accumulate the count of number of blocklists;
-                    // higher values for higher count, the better
-                    inspect["l_" + lists] = (inspect["l_" + lists] | 0) + 1;
-                    let totalflags = 0;
-                    const v = TxtDec.decode16raw(encValue);
-                    const flags = this.flagsToTag(v);
+                    const k1 = "encf_" + flen;
+                    inspect[k1] = (inspect[k1] | 0) + 1;
+                    let flags = null;
+                    if (config.optflags && flagNode.optletter != null) {
+                        flags = flagNode.optletter.map(i => gtag[i]);
+                     } else {
+                        const v = TxtDec.decode16raw(encValue);
+                        flags = this.flagToTag(v);
+                     }
+                    // accumulate the count of number of blocklists
+                    // that appear together
                     for (let f of flags) {
                         f += "";
                         for (let g of flags) {
@@ -1081,10 +1121,9 @@ Trie.prototype = {
                             if (flstat[f] == null) flstat[f] = [];
                             flstat[f][g] = (flstat[f][g] | 0) + 1;
                         }
-                        totalflags += 1;
                     }
-                    const k = "mm_" + totalflags + "_" + lists;
-                    inspect[k] = (inspect[k] | 0) + 1;
+                    const k2 = "ll_" + flags.length;
+                    inspect[k2] = (inspect[k2] | 0) + 1;
                 }
                 nbb += 1;
             }
@@ -1177,6 +1216,9 @@ Trie.prototype = {
         let nbb = 0;
 
         log.i("levlen", level.length, "nodecount", this.nodeCount, " masks ", compressedMask, flagMask, finalMask);
+        if (this.nodeCount !== level.length) {
+            log.w("nodecount and len(level) not the same, re-check nodeCount calc in upsertFlag");
+        }
 
         const l10 = level.length / 10 | 0;
         for (let i = 0; i < level.length; i++) {
@@ -1241,6 +1283,9 @@ Trie.prototype = {
         const extraBit = 2;
         const bitslen = extraBit + TxtEnc.typ;
         log.i('charslen: ' + chars.length + ", bitslen: " + bitslen, " letterstart", bits.top);
+        if (((this.nodeCount * 2) + 1) !== bits.top) {
+            log.w("letterstart not the same as nodecount*2+1; re-check childrenSize calc");
+        }
         let k = 0;
         // the memory allocs driven by level-order & bit-writer above
         // are got rid of by the time we hit this portion of the code
@@ -1263,23 +1308,29 @@ Trie.prototype = {
     }
 };
 
-//fixme: move to trie's prototype
+// fixme: move to trie's prototype
 // returns the "size" of the trie node in number of bytes.
 function childrenSize(tn) {
     let size = 0;
 
     if (!tn.children) return size;
 
-    for (c of tn.children) {
+    for (const c of tn.children) {
         // each letter in c.letter is 1 byte long
         let len = c.letter.length;
         if (c.flag) {
             // nodecount depends on how flag node is encoded:
             // calc length(flag-nodes) bit-string (16bits / char)
-            // ie, a single letter of a flag node is 2 bytes long
-            // and these 2 bytes are either represented as in groups
+            // ie, a single letter of a flag node is either 2 bytes
+            // long (longer length flags) or 1 byte (shorter length)
+            // and these bytes are either represented as in groups
             // of 8bits or 6bits (depending on TxtEnc.typ) in a uint8
-            len = Math.ceil(len * 16 / TxtEnc.typ);
+            if (config.optflags && c.optletter != null) {
+                const optlen = c.optletter.length;
+                len = Math.ceil(optlen * 8 / TxtEnc.typ);
+            } else {
+                len = Math.ceil(len * 16 / TxtEnc.typ);
+            }
         }
         size += len;
     }
@@ -1350,6 +1401,7 @@ function FrozenTrieNode(trie, index) {
             if (typeof (valCached) === "undefined") {
                 const childcount = this.childCount();
                 const value = [];
+                const optvalue = [];
                 let i = 0;
                 let j = 0;
                 if (config.debug) log.d("thisnode: index/vc/ccount ", this.index, this.letter(), childcount)
@@ -1359,6 +1411,9 @@ function FrozenTrieNode(trie, index) {
                     if (config.debug) log.d("vc no-flag end vlet/vflag/vindex/val ", i, valueChain.letter(), valueChain.flag(), valueChain.index, value)
                     if (!valueChain.flag()) {
                         break;
+                    }
+                    if (config.optflags) {
+                        optvalue.push(valueChain.letter());
                     }
                     if (config.useCodec6) {
                         // retrieve letter (6 bits) as-is
@@ -1375,7 +1430,21 @@ function FrozenTrieNode(trie, index) {
                     }
                     i += 1;
                 }
-                valCached = (config.useCodec6) ? TxtDec.decode16raw(value) : value;
+                // maximum number of flags stored as-is is 3.
+                // for codec b6 (6 bits), max is len 4 (8*3/6 bits each)
+                // for codec b8 (8 bits), max is len 3 (8*3/8 bits each)
+                if (config.optflags && optvalue.length <= 4) {
+                    // note: decode8 is a no-op for codec typ b8
+                    const u8 = (config.useCodec6) ? TxtDec.decode8(optvalue) : optvalue;
+                    const fl = new Array(u8.length);
+                    u8.forEach((u, i) => fl[i] = gtag[u]);
+                    const tt = tagToFlag(fl);
+                    valCached = codec.str2buf(tt);
+                    if (config.debug) log.d("buf", valCached, "tag", tt, "flag", fl);
+                    if (config.debug) log.d("enc u8", u8, "dec u6", optvalue);
+                } else {
+                    valCached = (config.useCodec6) ? TxtDec.decode16raw(value) : value;
+                }
             }
 
             return valCached;
@@ -1528,22 +1597,22 @@ FrozenTrie.prototype = {
                         // startchild len > word len terminate
                         // fixme: startchild first letter != w first letter terminate
                         do {
-                            const temp = node.getChild(probe - start)
+                            const temp = node.getChild(probe - start);
                             if (!temp.compressed()) break;
                             if (temp.flag()) break;
                             startchild.push(temp);
-                            start += 1
+                            start += 1;
                         } while (true);
 
                         // if first letter (startchild is reversed, and so: last letter)
                         // is greater than current letter from word, then probe lower half
-                        if (debug) log.d("  check: letter : "+startchild[start - 1].letter()+" word : "+word[i]+" start: "+start)
+                        if (debug) log.d("  check: letter : "+startchild[start - 1].letter()+" word : "+word[i]+" start: "+start);
                         if (startchild[start - 1].letter() > word[i]) {
-                            if (debug) log.d("        shrinkh start: " + startchild[start - 1].letter() + " s: " + start + " w: " + word[i])
+                            if (debug) log.d("        shrinkh start: " + startchild[start - 1].letter() + " s: " + start + " w: " + word[i]);
 
                             high = probe - start + 1;
                             if (high - low <= 1) {
-                                if (debug) log.d("...h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe)
+                                if (debug) log.d("...h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe);
                                 return returnValue;
                             }
                             continue;
@@ -1553,7 +1622,7 @@ FrozenTrie.prototype = {
                         // nothing to do, there's no endchild to track
                         if (child.compressed()) { // compressed, not final
                             do {
-                                end += 1
+                                end += 1;
                                 const temp = node.getChild(probe + end);
                                 endchild.push(temp);
                                 if (!temp.compressed()) break;
@@ -1565,12 +1634,12 @@ FrozenTrie.prototype = {
                         // if first letter (startchild is reversed, so: last letter)
                         // is lesser than current letter from word, then probe higher
                         if (startchild[start - 1].letter() < word[i]) {
-                            if (debug) log.d("        shrinkl start: " + startchild[start - 1].letter() + " s: " + start + " w: " + word[i])
+                            if (debug) log.d("        shrinkl start: " + startchild[start - 1].letter() + " s: " + start + " w: " + word[i]);
 
                             low = probe + end;
 
                             if (high - low <= 1) {
-                                if (debug) log.d("...h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe)
+                                if (debug) log.d("...h-low: " + (high - low) + " c: " + node.getChildCount(), high, low, child.letter(), word[i], probe);
                                 return returnValue;
                             }
                             continue;
@@ -1639,6 +1708,41 @@ function lex(a, b) {
     return lendiff;
 }
 
+function tagToFlag(fl) {
+    const debug = false;
+    let res = CHR16(0);
+
+    for (let flag of fl) {
+        let val = gflag[flag]; // .value
+        const header = 0;
+        const index = ((val / 16) | 0);
+        const pos = val % 16;
+        if (debug) log.d("val:", val, " flag:", flag/*, " tag:", ftags[flag]*/);
+
+        let h = DEC16(res[header]);
+
+        if (debug) log.d("mask:", (BitString.MaskBottom[16][16 - index]).toString(16).padStart(4, 0),
+                        "h start:", (h).toString(16).padStart(4, 0),
+                        " countbit:", countSetBits(h & BitString.MaskBottom[16][16 - index]));
+        let dataIndex = countSetBits(h & BitString.MaskBottom[16][16 - index]) + 1;
+        let n = (((h >>> (15 - (index))) & 0x1) !== 1) ? 0 : DEC16(res[dataIndex]);
+        const upsertData = (n !== 0);
+        h |= 1 << (15 - index);
+        n |= 1 << (15 - pos);
+
+        res = CHR16(h) + res.slice(1, dataIndex) + CHR16(n) + res.slice(upsertData ? (dataIndex + 1) : dataIndex);
+        if (debug) {
+            let hexres = "";
+            for(let r of res) {
+                hexres += (DEC16(r)).toString(16).padStart(4, 0) + " ";
+            }
+            log.d("h:", (h).toString(16).padStart(4, 0), "r: ", hexres, " n:", (n).toString(16).padStart(4, 0), " dataIndex:", dataIndex, " index:", index, " pos:", pos);
+        }
+    }
+    if (debug) log.d(res);
+    return res;
+}
+
 async function build(blocklist, filesystem, savelocation, tag_dict) {
 
     // in key:value pair, key cannot be anything that coerces to boolean false
@@ -1658,6 +1762,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
 
     let t = new Trie();
     t.setupFlags(fl);
+    if (config.debug) log.d("gtag (i=>str)", gtag, "\n", "gflag (str=>i)", gflag);
 
     let hosts = [];
     try {
@@ -1785,8 +1890,8 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
         const sresult = ft.lookup(ts);
         log.i("looking up domain: " + domainname, "result: ");
         if (sresult) {
-            for (let [_, value] of sresult) {
-                log.i(t.flagsToTag(value));
+            for (let [d, value] of sresult) {
+                log.i("for", d + ":", t.flagToTag(value));
             }
         } else {
             log.i(domainname, "not found in trie");
