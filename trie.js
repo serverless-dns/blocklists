@@ -896,7 +896,7 @@ Trie.prototype = {
         const resnodesize = (!newlyAdded) ? Math.ceil(res.length * 16 / TxtEnc.typ) : 0;
         const optnodesize = (!newlyAdded && fopt) ? Math.ceil(fopt.length * 8 / TxtEnc.typ) : 0;
 
-        if (!newlyAdded && config.optflags) {
+        if (!newlyAdded && config.optflags && fopt != null) {
             // maintain upto 3 flags as-is, if more, then wipe 'em out
             if (fopt.length < 3) {
                 flagNode.optletter.push(val);
