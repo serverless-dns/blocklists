@@ -19,8 +19,6 @@ supportedFileFormat = {"domains", "hosts", "abp", "wildcard"}
 
 keyFormat = {"vname", "format", "group", "subg", "url", "pack"}
 configFileLocation = "./blocklistConfig.json"
-vnameMapFileLocation = "./valueUnameMap.json"
-unameVnameMap = {}
 configDict = {}
 
 totalUrl = 0
@@ -81,7 +79,6 @@ def validateBasicConfig():
 
 async def parseDownloadBasicConfig(configList):
     global totalUrl
-    global unameVnameMap
     global blocklistNotDownloaded
     global retryBlocklist
     global blocklistfiles
@@ -94,10 +91,7 @@ async def parseDownloadBasicConfig(configList):
     async with aiohttp.ClientSession() as sess:
         tasks = []
         for value in configList:
-            if str(value["index"]) in unameVnameMap:
-                fileName = unameVnameMap[str(value["index"])].lower()
-            else:
-                fileName = str(value["index"]).lower()
+            fileName = str(value["index"]).lower()
 
             if value["subg"].strip() == "":
                 downloadLoc = "./" + blocklistfiles + "/" + value[
@@ -247,7 +241,6 @@ async def downloadFile(sess, url, format, download_loc_filename):
 def loadBlocklistConfig():
     isConfigLoad = False
     global configDict
-    global unameVnameMap
 
     try:
         if os.path.isfile(configFileLocation):
@@ -258,10 +251,7 @@ def loadBlocklistConfig():
                     isConfigLoad = True
         if not isConfigLoad:
             configDict["conf"] = {}
-        if os.path.isfile(vnameMapFileLocation):
-            with open(vnameMapFileLocation) as json_file:
-                unameVnameMap = json.load(json_file)
-                json_file.close()
+
     except:
         print("Error parsing blocklist.json. Check json formatting.")
 

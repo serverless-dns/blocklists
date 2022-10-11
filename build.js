@@ -33,32 +33,24 @@ async function getBlocklistFiles(bldir) {
     return blocklists
 }
 
-function loadConfig(blocklistConfigPath, unameVnameMapPath) {
+function loadConfig(blocklistConfigPath) {
     try {
         const tags = {}
         const fileData = fs.readFileSync(blocklistConfigPath, 'utf8')
-        const mapData = fs.readFileSync(unameVnameMapPath, "utf8")
         const blocklistobj = JSON.parse(fileData)
-        const unameVnameMap = JSON.parse(mapData)
 
         for (let index in blocklistobj.conf) {
-            let uname = unameVnameMap[index]
-            if (uname == null) {
-                uname = index + ""; // to string
-            }
-            uname = uname.toLowerCase();
+            const uid = index + ""; // string, must be lowercase
 
-            tags[uname] = {}
-            tags[uname].value = parseInt(index)
-            tags[uname].uname = uname
-            tags[uname].vname = blocklistobj.conf[index].vname
-
-            tags[uname].group = blocklistobj.conf[index].group
-            tags[uname].subg = blocklistobj.conf[index].subg
-            tags[uname].url = blocklistobj.conf[index].url
-            tags[uname].show = 0
-            tags[uname].entries = 0
-            log.i("btag for " + uname + " index: " + index, tags[uname].group)
+            tags[uid] = {}
+            tags[uid].value = parseInt(index)
+            tags[uid].vname = blocklistobj.conf[index].vname
+            tags[uid].group = blocklistobj.conf[index].group
+            tags[uid].subg = blocklistobj.conf[index].subg
+            tags[uid].url = blocklistobj.conf[index].url
+            tags[uid].show = 0
+            tags[uid].entries = 0
+            log.i("btag for " + uid + " index: " + index, tags[uid].group)
         }
         return tags
     } catch (e) {
@@ -71,10 +63,9 @@ async function main() {
     const triedir = path.normalize(`./${outdir}/`)
     const bldir = path.normalize(`./${indir}/`)
     const blconfig = path.normalize("./blocklistConfig.json")
-    const unamemap = path.normalize("./valueUnameMap.json")
 
     try {
-        const tags = loadConfig(blconfig, unamemap)
+        const tags = loadConfig(blconfig)
         const bl = await getBlocklistFiles(bldir);
         log.i("build, out: " + triedir + ", in: " + bl + ", tags: " + tags)
         await trie.build(bl, fs, triedir, tags)

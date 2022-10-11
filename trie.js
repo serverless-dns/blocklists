@@ -8,7 +8,6 @@
 
 const log = require("./log.js");
 const codec = require("./codec.js");
-const { loadavg } = require("os");
 
 // impl based on S Hanov's succinct-trie: stevehanov.ca/blog/?id=120
 
@@ -96,11 +95,8 @@ const TxtDec = TxtEnc;
 const ENC_DELIM = TxtEnc.delimEncoded();
 const periodEncVal = TxtEnc.periodEncoded();
 
-/** maps int index to str tags */
-const gtag = {};
-/** maps str tags to int indices */
-const gflag = {};
-
+/** maps the immutable blocklist-id to blocklist index (as in tag_dict) */
+const blocklistIdMap = [];
 /**
  * The BitWriter will create a stream of bytes, letting you write a certain
  * number of bits at a time. This is part of the encoder, so it is not
@@ -705,9 +701,6 @@ Trie.prototype = {
         this.nodeCount = 1;
         this.stats = {};
         this.inspect = {};
-        this.flags = {};
-        this.rflags = {};
-        this.fsize = 0;
     },
 
     /**
@@ -723,23 +716,6 @@ Trie.prototype = {
             if (flagNode.flag === true) return flagNode;
         }
         return null;
-    },
-
-    setupFlags: function (flags) {
-        let i = 0;
-        for (const f of flags) {
-            // TODO: use gtag/gflag, rm flags and rflags from trie
-            // maps ele 'f' to value 'i' (number)
-            this.flags[f] = i;
-            // maps value 'i' to ele 'f' (str/number)
-            this.rflags[i] = f;
-            gflag[f] = i;
-            gtag[i] = f;
-            i += 1;
-        }
-        // controls number of 16-bit sloted storage for a final trie-node flag.
-        // The +1 is reserved for a 16-bit header. This val must be >=2 and <=16.
-        this.fsize = Math.ceil(Math.log2(flags.length) / 16) + 1;
     },
 
     flagToTag: function (flags) {
@@ -767,7 +743,7 @@ Trie.prototype = {
                 if ((flag & mask) === mask) {
                     const pos = (index * 16) + j;
                     if (config.debug) log.d("pos ", pos, "index/tagIndices", index, tagIndices, "j/i", j, i);
-                    values.push(this.rflags[pos]);
+                    values.push(blocklistIdMap[pos]);
                 }
                 mask = mask >>> 1;
             }
@@ -872,7 +848,7 @@ Trie.prototype = {
         }
 
         let flag = TxtDec.decode(encodedFlag);
-        const val = this.flags[flag];
+        const val = blocklistIdMap[flag];
         if (val == null) {
             log.w(flag, encodedFlag, "<- flags, val undef for node", node);
             throw new Error("val undefined err");
@@ -1105,9 +1081,9 @@ Trie.prototype = {
                     // count nodes having "flen" no. of children
                     const k1 = "encf_" + flen;
                     inspect[k1] = (inspect[k1] | 0) + 1;
-                    let flags = null;
+                    let flags = [];
                     if (config.optflags && flagNode.optletter != null) {
-                        flags = flagNode.optletter.map(i => gtag[i]);
+                        flagNode.optletter.forEach(i => flags.push(blocklistIdMap[i]));
                      } else {
                         const v = TxtDec.decode16raw(encValue);
                         flags = this.flagToTag(v);
@@ -1437,7 +1413,7 @@ function FrozenTrieNode(trie, index) {
                     // note: decode8 is a no-op for codec typ b8
                     const u8 = (config.useCodec6) ? TxtDec.decode8(optvalue) : optvalue;
                     const fl = new Array(u8.length);
-                    u8.forEach((u, i) => fl[i] = gtag[u]);
+                    u8.forEach((u, i) => fl[i] = blocklistIdMap[u]);
                     const tt = tagToFlag(fl);
                     valCached = codec.str2buf(tt);
                     if (config.debug) log.d("buf", valCached, "tag", tt, "flag", fl);
@@ -1713,7 +1689,7 @@ function tagToFlag(fl) {
     let res = CHR16(0);
 
     for (let flag of fl) {
-        let val = gflag[flag]; // .value
+        let val = blocklistIdMap[flag]; // .value
         const header = 0;
         const index = ((val / 16) | 0);
         const pos = val % 16;
@@ -1747,22 +1723,20 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
 
     // in key:value pair, key cannot be anything that coerces to boolean false
     let tag = {};
-    let fl = [];
-    for (let ele in tag_dict) {
-        if (!tag_dict.hasOwnProperty(ele)) continue;
-        // value is always a number
-        fl[tag_dict[ele].value] = ele;
+    for (const [key, entry] of Object.entries(tag_dict)) {
+        // value is an immutable id for a given blocklist
+        // key always equals entry.value
+        const id = entry.value;
         // reverse the value since it is prepended to the front of key
-        // uname is, for most lists, equal to string(tag_dict[ele].value)
-        const v = codec.delim + tag_dict[ele].uname;
-        // ele may be a number, may be a string (older)
-        tag[ele] = v.split("").reverse().join("");
+        const d = codec.delim + id;
+        tag[key] = d.split("").reverse().join("");
+        // more often than not, id is almost always equal to key
+        blocklistIdMap[id] = key;
     }
+
     initialize();
 
     let t = new Trie();
-    t.setupFlags(fl);
-    if (config.debug) log.d("gtag (i=>str)", gtag, "\n", "gflag (str=>i)", gflag);
 
     let hosts = [];
     try {
@@ -1770,7 +1744,7 @@ async function build(blocklist, filesystem, savelocation, tag_dict) {
         let totallines = 0;
         for (let filepath of blocklist) {
             let patharr = filepath.split("/");
-            // fname is same as tag_dict's uname
+            // fname is same as tag_dict's  value
             let fname = patharr[patharr.length - 1].split(".")[0];
             let f = filesystem.readFileSync(filepath, 'utf8');
             if (f.length <= 0) {
