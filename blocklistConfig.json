@@ -1568,5 +1568,12 @@
         "url": "https://badmojr.github.io/addons_1Hosts/kidSaf/domains.txt",
         "pack": []
     }
+    {
+        "vname": "hosts",
+        "format": "hosts",
+        "group": "privacy",
+        "subg": "",
+        "url": "https://raw.githubusercontent.com/vdbhb59/hosts/master/hosts"
+    }
   ]
 }
