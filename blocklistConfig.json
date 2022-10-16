@@ -1577,7 +1577,7 @@
     }
         {
         "vname": "vdbhb59 special blocks",
-        "format": "special blocks",
+        "format": "domains",
         "group": "privacy",
         "subg": "",
         "url": "https://raw.githubusercontent.com/vdbhb59/hosts/master/special_blocks.txt"
