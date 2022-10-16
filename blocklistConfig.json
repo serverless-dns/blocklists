@@ -1569,11 +1569,18 @@
         "pack": []
     }
     {
-        "vname": "hosts",
+        "vname": "vdbhb59 curated hosts",
         "format": "hosts",
         "group": "privacy",
         "subg": "",
         "url": "https://raw.githubusercontent.com/vdbhb59/hosts/master/hosts"
+    }
+        {
+        "vname": "vdbhb59 special blocks",
+        "format": "special blocks",
+        "group": "privacy",
+        "subg": "",
+        "url": "https://raw.githubusercontent.com/vdbhb59/hosts/master/special_blocks.txt"
     }
   ]
 }
