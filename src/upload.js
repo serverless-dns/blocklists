@@ -6,12 +6,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import * as AWS from "aws-sdk";
+import * as awscjs from "aws-sdk";
 import * as fs from "fs";
 import * as path from "path";
 import * as log from "./log.js";
 
-const cwd = ".";
+// github.com/aws/aws-sdk-js/issues/1766
+const AWS = awscjs.default;
+const cwd = process.cwd();
 const outdir = process.env.OUTDIR;
 
 const s3bucket = process.env.AWS_BUCKET_NAME;
@@ -88,7 +90,7 @@ async function start() {
       return;
     }
 
-    log.i(s3dir, outdir, "; upload from", localpath(), "to", s3path());
+    log.i(AWS.VERSION, s3dir, outdir, "; upload", localpath(), "to", s3path());
 
     const ans = await upload();
 
