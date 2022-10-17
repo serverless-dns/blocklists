@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/serverless-dns/blocklists#readme",
   "dependencies": {
+    "aws-sdk": "^2.1233.0",
     "trie": "github:serverless-dns/trie"
   },
   "devDependencies": {

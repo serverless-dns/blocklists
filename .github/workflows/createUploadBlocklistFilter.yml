@@ -43,6 +43,7 @@ jobs:
         python download.py
     - name: 🌲 Make compact trie
       run: |
+        npm install
         mkdir -p "$OUTDIR"
         # 32768/1024 => 32G RAM
         node --max-old-space-size=32768 --expose-gc build.js
@@ -57,7 +58,6 @@ jobs:
         OUTDIR: ${{ env.OUTDIR }}
     - name: 📤 Upload compact trie
       run: |
-        npm install aws-sdk
         node upload.js
       env:
         AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
