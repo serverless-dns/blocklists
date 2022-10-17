@@ -49,10 +49,10 @@ jobs:
         node --max-old-space-size=32768 --expose-gc build.js
       env:
         OUTDIR: ${{ env.OUTDIR }}
-    - name: 🪄 Split trie in 20MB slices
+    - name: 🪄 Split trie in 30MB slices
       run: |
         # creates td00.txt, td01.txt, ... , td98.txt, td99.txt, td100.txt, ...
-        cd "$OUTDIR" && split -b20000000 -d --additional-suffix=.txt td.txt td
+        cd "$OUTDIR" && split -b30000000 -d --additional-suffix=.txt td.txt td
         ls -lhtr # list files
       env:
         OUTDIR: ${{ env.OUTDIR }}
