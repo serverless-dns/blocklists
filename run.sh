@@ -14,7 +14,7 @@ fi
 : "${INDIR:=blocklistfiles}"
 : "${OUTDIR:=result2}"
 : "${S3DIR:=blocklists}"
-: "${BLCONFIG:=blocklistConfig.json}"
+: "${BLCONFIG:=config.json}"
 
 export INDIR="$INDIR"
 export OUTDIR="$OUTDIR"

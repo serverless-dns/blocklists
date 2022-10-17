@@ -7,7 +7,7 @@ env:
   INDIR: "blocklistfiles"
   OUTDIR: "result"
   S3DIR: "blocklists"
-  BLCONFIG: "blocklistConfig.json"
+  BLCONFIG: "config.json"
 jobs:
   make:
     runs-on: ubuntu-latest
