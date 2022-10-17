@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "name": "blocklists",
+  "version": "0.1",
+  "license": "MPL-2.0",
+  "description": "An opinionated collection of blocklists for RethinkDNS.",
+  "main": "./build.js",
+  "type": "module",
+  "scripts": {
+    "clean": "npm run clean",
+    "clean:node": "rm -rf node_modules/ package-lock.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serverless-dns/blocklists.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/serverless-dns/blocklists/issues"
+  },
+  "homepage": "https://github.com/serverless-dns/blocklists#readme",
+  "dependencies": {
+    "trie": "github:serverless-dns/trie"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "clinic": "^11.1.0",
+    "eslint": "^8.5.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.4",
+    "prettier": "2.5.1"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.ts": "prettier --write"
+  }
+}
