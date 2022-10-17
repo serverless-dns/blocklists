@@ -194,7 +194,6 @@ async def requestApi(session, url):
 
 # stackoverflow.com/a/7957496
 class DownloadFailed(Exception):
-
     def __init__(self, m):
         self.message = m
 

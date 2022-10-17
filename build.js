@@ -6,75 +6,85 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-const fs = require('fs')
-const path = require('path')
-const trie = require("./trie.js")
-const log = require("./log.js")
+import * as fs from "fs";
+import * as path from "path";
+import * as trie from "trie";
+import * as log from "./log.js";
 
-const outdir = process.env.OUTDIR
-const indir = process.env.INDIR
+const outdir = process.env.OUTDIR;
+const indir = process.env.INDIR;
+
+function empty(str) {
+  return !str;
+}
 
 async function getBlocklistFiles(bldir) {
-    let blocklists = []
-    let dirs = []
-    dirs.push(bldir)
-    // all files from bldir, incl sub-directories
-    while (d = dirs.shift()) {
-        const dir = await fs.promises.opendir(d)
-        for await (const entry of dir) {
-            const x = path.join(d, entry.name)
-            if (entry.isDirectory()) {
-                dirs.push(x)
-            } else {
-                blocklists.push(x)
-            }
-        }
+  const blocklists = [];
+  const dirs = [bldir];
+  let d = null;
+  // all files from bldir, incl sub-directories
+  while ((d = dirs.shift())) {
+    const dir = await fs.promises.opendir(d);
+    for await (const entry of dir) {
+      const x = path.join(d, entry.name);
+      if (entry.isDirectory()) {
+        dirs.push(x);
+      } else {
+        blocklists.push(x);
+      }
     }
-    return blocklists
+  }
+  return blocklists;
 }
 
 function loadConfig(blocklistConfigPath) {
-    try {
-        const tags = {}
-        const fileData = fs.readFileSync(blocklistConfigPath, 'utf8')
-        const blocklistobj = JSON.parse(fileData)
+  try {
+    const tags = {};
+    const fileData = fs.readFileSync(blocklistConfigPath, "utf8");
+    const blocklistobj = JSON.parse(fileData);
 
-        for (let index in blocklistobj.conf) {
-            const uid = index + ""; // string, must be lowercase
+    for (const [id, entry] of Object.entries(blocklistobj.conf)) {
+      const uid = id + ""; // string, must be lowercase
 
-            tags[uid] = {}
-            tags[uid].value = parseInt(index)
-            tags[uid].vname = blocklistobj.conf[index].vname
-            tags[uid].group = blocklistobj.conf[index].group
-            tags[uid].subg = blocklistobj.conf[index].subg
-            tags[uid].url = blocklistobj.conf[index].url
-            tags[uid].show = 0
-            tags[uid].entries = 0
-            log.i("btag for " + uid + " index: " + index, tags[uid].group)
-        }
-        return tags
-    } catch (e) {
-        log.e(e)
-        throw e
+      tags[uid] = {
+        value: parseInt(id),
+        vname: entry.vname,
+        group: entry.group,
+        subg: entry.subg,
+        url: entry.url,
+        show: 0,
+        entries: 0,
+      };
+      log.i("btag for " + uid + " index: " + id, "in", tags[uid].group);
     }
+    return tags;
+  } catch (e) {
+    log.e(e);
+    throw e;
+  }
 }
 
 async function main() {
-    const triedir = path.normalize(`./${outdir}/`)
-    const bldir = path.normalize(`./${indir}/`)
-    const blconfig = path.normalize("./blocklistConfig.json")
+  if (empty(indir) || empty(outdir)) {
+    log.e("missing: indir / outdir", indir, outdir);
+    return;
+  }
 
-    try {
-        const tags = loadConfig(blconfig)
-        const bl = await getBlocklistFiles(bldir);
-        log.i("build, out: " + triedir + ", in: " + bl + ", tags: " + tags)
-        await trie.build(bl, fs, triedir, tags)
-    } catch (e) {
-        log.e(e)
-        process.exitCode = 1
-    }
+  const triedir = path.normalize(`./${outdir}/`);
+  const bldir = path.normalize(`./${indir}/`);
+  const blconfig = path.normalize("./blocklistConfig.json");
+
+  try {
+    const tags = loadConfig(blconfig);
+    const bl = await getBlocklistFiles(bldir);
+    log.i("build, out: " + triedir + ", in: " + bl + ", tags: " + tags);
+    await trie.build(bl, fs, triedir, tags);
+  } catch (e) {
+    log.e(e);
+    process.exitCode = 1;
+  }
 }
 
 (async () => {
-    await main()
+  await main();
 })();
