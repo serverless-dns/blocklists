@@ -4,7 +4,7 @@
   "version": "0.1",
   "license": "MPL-2.0",
   "description": "An opinionated collection of blocklists for RethinkDNS.",
-  "main": "./build.js",
+  "main": "./src/build.js",
   "type": "module",
   "scripts": {
     "clean": "npm run clean",

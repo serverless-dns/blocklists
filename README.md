@@ -45,7 +45,7 @@ If you're a developer looking to experiment with the code-base or generate your 
     ```shell
         # this nodejs script parses downloaded files in the ./blocklistfiles directory to create
         # a compressed, compact radix-trie and related files in the ./result directory.
-        node --max-old-space-size=16384 build.js
+        node --max-old-space-size=16384 ./src/build.js
     ```
 3. Upload to S3
     ```shell
@@ -56,6 +56,6 @@ If you're a developer looking to experiment with the code-base or generate your 
         # installs nodejs deps
         npm i
         # this nodejs script uploads compact radix-trie files in ./result directory to the specified S3 bucket.
-        node upload.js
+        node ./src/upload.js
     ```
 
