@@ -18,7 +18,7 @@ import aiohttp
 supportedFileFormat = {"domains", "hosts", "abp", "wildcard"}
 
 keyFormat = {"vname", "format", "group", "subg", "url", "pack"}
-configFileLocation = "./blocklistConfig.json"
+configFileLocation = os.environ.get("BLCONFIG")
 configDict = {}
 
 totalUrl = 0

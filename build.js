@@ -13,6 +13,7 @@ import * as log from "./log.js";
 
 const outdir = process.env.OUTDIR;
 const indir = process.env.INDIR;
+const blconfigjson = process.env.BLCONFIG;
 
 function empty(str) {
   return !str;
@@ -65,14 +66,14 @@ function loadConfig(blocklistConfigPath) {
 }
 
 async function main() {
-  if (empty(indir) || empty(outdir)) {
-    log.e("missing: indir / outdir", indir, outdir);
+  if (empty(indir) || empty(outdir) || empty(blconfigjson)) {
+    log.e("missing: indir / outdir / config", indir, outdir, blconfigjson);
     return;
   }
 
   const triedir = path.normalize(`./${outdir}/`);
   const bldir = path.normalize(`./${indir}/`);
-  const blconfig = path.normalize("./blocklistConfig.json");
+  const blconfig = path.normalize(`${blconfigjson}`);
 
   try {
     const tags = loadConfig(blconfig);

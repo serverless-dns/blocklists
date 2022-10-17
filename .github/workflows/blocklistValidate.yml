@@ -25,6 +25,7 @@ env:
   INDIR: "blocklistfiles"
   OUTDIR: "result"
   S3DIR: "blocklists"
+  BLCONFIG: "blocklistConfig.json"
 jobs:
   validate:
     runs-on: ubuntu-latest
