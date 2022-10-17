@@ -20,7 +20,7 @@ export INDIR="$INDIR"
 export OUTDIR="$OUTDIR"
 export S3DIR="$S3DIR"
 
-# python ./download.py
+python ./download.py
 
 # --max-old-space-size=32768 (32G)
 node --max-old-space-size=32768 --expose-gc ./build.js
@@ -30,4 +30,4 @@ cd "$OUTDIR" && split -b20000000 -d --additional-suffix=.txt td.txt td
 # list split files
 ls -lhtr
 
-#cd - && node ./upload.js
+cd - && node ./upload.js
