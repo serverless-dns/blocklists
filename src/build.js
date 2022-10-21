@@ -79,7 +79,7 @@ async function main() {
     const tags = loadConfig(blconfig);
     const bl = await getBlocklistFiles(bldir);
     log.i("build, out: " + triedir + ", in: " + bl + ", tags: " + tags);
-    await trie.build(bl, fs, triedir, tags);
+    await trie.build(bl, triedir, tags);
   } catch (e) {
     log.e(e);
     process.exitCode = 1;
