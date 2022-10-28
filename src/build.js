@@ -14,9 +14,15 @@ import * as log from "./log.js";
 const outdir = process.env.OUTDIR;
 const indir = process.env.INDIR;
 const blconfigjson = process.env.BLCONFIG;
+const codec = process.env.CODEC || "u6";
 
 function empty(str) {
   return !str;
+}
+
+function opts() {
+  const usec6 = "u6" === codec;
+  return { useCodec6: usec6 };
 }
 
 async function getBlocklistFiles(bldir) {
@@ -71,6 +77,7 @@ async function main() {
     return;
   }
 
+  const o = opts();
   const triedir = path.normalize(`./${outdir}/`);
   const bldir = path.normalize(`./${indir}/`);
   const blconfig = path.normalize(`${blconfigjson}`);
@@ -78,8 +85,8 @@ async function main() {
   try {
     const tags = loadConfig(blconfig);
     const bl = await getBlocklistFiles(bldir);
-    log.i("build, out: " + triedir + ", in: " + bl + ", tags: " + tags);
-    await trie.build(bl, triedir, tags);
+    log.i(o, "build, out: " + triedir + ", in: " + bl + ", tags: " + tags);
+    await trie.build(bl, triedir, tags, o);
   } catch (e) {
     log.e(e);
     process.exitCode = 1;

@@ -11,8 +11,11 @@ env:
   PREFER_S3_OVER_R2: "false"
 jobs:
   make:
+    strategy:
+      matrix:
+        codec: ["u8", "u6"]
     runs-on: ubuntu-latest
-    timeout-minutes: 80
+    timeout-minutes: 60
     steps:
     - name: 📃 Checkout repo
       uses: actions/checkout@v2
@@ -70,5 +73,6 @@ jobs:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
         CF_ACCOUNT_ID: ${{ env.CF_ACCOUNT_ID }}
         PREFER_S3_OVER_R2: ${{ env.PREFER_S3_OVER_R2 }}
+        CODEC: ${{ matrix.codec }}
         S3DIR: ${{ env.S3DIR }}
         OUTDIR: ${{ env.OUTDIR }}

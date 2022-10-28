@@ -15,6 +15,7 @@ import * as log from "./log.js";
 const AWS = awscjs.default;
 const cwd = process.cwd();
 const outdir = process.env.OUTDIR;
+const codec = process.env.CODEC || "u6";
 const useS3 = process.env.PREFER_S3_OVER_R2 || false;
 
 const s3bucket = process.env.AWS_BUCKET_NAME;
@@ -46,11 +47,11 @@ function empty(str) {
 }
 
 function s3path(x) {
-  return s3dir + "/" + version + "/" + (empty(x) ? "" : x);
+  return s3dir + "/" + version + "/" + codec + "/" + (empty(x) ? "" : x);
 }
 
 function r2path(x) {
-  return r2dir + "/" + version + "/" + (empty(x) ? "" : x);
+  return r2dir + "/" + version + "/" + codec + "/" + (empty(x) ? "" : x);
 }
 
 function localpath(x) {

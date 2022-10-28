@@ -15,7 +15,8 @@ fi
 : "${OUTDIR:=result2}"
 : "${S3DIR:=blocklists}"
 : "${BLCONFIG:=config.json}"
-# AWS_BUCKET_NAME, AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY
+: "${CODEC:=u6}"
+# AWS_BUCKET_NAME, AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY, CF_ACCOUNT_ID
 # are vended as secrets
 
 export INDIR="$INDIR"
