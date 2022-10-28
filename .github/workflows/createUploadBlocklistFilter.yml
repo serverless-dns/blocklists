@@ -57,6 +57,8 @@ jobs:
       env:
         BLCONFIG: ${{ env.BLCONFIG }}
         OUTDIR: ${{ env.OUTDIR }}
+        INDIR: ${{ env.INDIR }}
+        CODEC: ${{ matrix.codec }}
     - name: 🪄 Split trie in 30MB slices
       run: |
         # creates td00.txt, td01.txt, ... , td98.txt, td99.txt, td100.txt, ...
