@@ -8,6 +8,7 @@ env:
   OUTDIR: "result"
   S3DIR: "blocklists"
   BLCONFIG: "config.json"
+  PREFER_S3_OVER_R2: "false"
 jobs:
   make:
     runs-on: ubuntu-latest
@@ -56,17 +57,18 @@ jobs:
     - name: 🪄 Split trie in 30MB slices
       run: |
         # creates td00.txt, td01.txt, ... , td98.txt, td99.txt, td100.txt, ...
-        cd "$OUTDIR" && split -b30000000 -d --additional-suffix=.txt td.txt td
+        cd "$OUTDIR" && split --bytes=30M -d --additional-suffix=.txt td.txt td
         ls -lhtr # list files
       env:
         OUTDIR: ${{ env.OUTDIR }}
-    - name: 📤 Upload compact trie
+    - name: 📤 Upload artifacts
       run: |
         node ./src/upload.js
       env:
         AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+        CF_ACCOUNT_ID: ${{ env.CF_ACCOUNT_ID }}
+        PREFER_S3_OVER_R2: ${{ env.PREFER_S3_OVER_R2 }}
         S3DIR: ${{ env.S3DIR }}
         OUTDIR: ${{ env.OUTDIR }}
-

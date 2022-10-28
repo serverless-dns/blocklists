@@ -15,12 +15,26 @@ import * as log from "./log.js";
 const AWS = awscjs.default;
 const cwd = process.cwd();
 const outdir = process.env.OUTDIR;
+const useS3 = process.env.PREFER_S3_OVER_R2 || false;
 
 const s3bucket = process.env.AWS_BUCKET_NAME;
 const s3dir = process.env.S3DIR;
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  maxRetries: 2,
+});
+
+const cfid = process.env.CF_ACCOUNT_ID || "";
+const r2bucket = process.env.AWS_BUCKET_NAME;
+const r2dir = process.env.S3DIR;
+const r2 = new AWS.S3({
+  region: "auto",
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  endpoint: `https://${cfid}.r2.cloudflarestorage.com`,
+  maxRetries: 2,
+  s3ForcePathStyle: true,
 });
 
 const d = new Date();
@@ -33,6 +47,10 @@ function empty(str) {
 
 function s3path(x) {
   return s3dir + "/" + version + "/" + (empty(x) ? "" : x);
+}
+
+function r2path(x) {
+  return r2dir + "/" + version + "/" + (empty(x) ? "" : x);
 }
 
 function localpath(x) {
@@ -58,7 +76,8 @@ async function upload() {
       continue;
     }
 
-    reqs.push(toS3(fp, s3path(fname)));
+    if (useS3) reqs.push(toS3(fp, s3path(fname)));
+    else reqs.push(toR2(fp, r2path(fname)));
   }
 
   return Promise.all(reqs);
@@ -71,9 +90,21 @@ async function toS3(f, key) {
     Key: key,
     Body: fin,
     ACL: "public-read",
+    ChecksumAlgorithm: "sha1",
   };
-  log.i("uploading", f, "to", key);
+  log.i("s3: uploading", f, "to", key);
   return s3.upload(r).promise();
+}
+
+async function toR2(f, key) {
+  const fin = fs.createReadStream(f);
+  const r = {
+    Bucket: r2bucket,
+    Key: key,
+    Body: fin,
+  };
+  log.i("r2: uploading", f, "to", key);
+  return r2.upload(r).promise();
 }
 
 async function start() {
@@ -85,12 +116,19 @@ async function start() {
       log.e("access / secret keys not found");
       return;
     }
-    if (empty(s3bucket) || empty(s3dir) || empty(outdir)) {
-      log.e("missing: s3-bucket / s3dir / outdir", s3bucket, s3dir, outdir);
-      return;
+    if (useS3) {
+      if (empty(s3bucket) || empty(s3dir) || empty(outdir)) {
+        log.e("missing: s3-bucket / s3dir / outdir", s3bucket, s3dir, outdir);
+        return;
+      }
+      log.i(s3dir, outdir, "; upload", localpath(), "to", s3path());
+    } else {
+      if (empty(r2bucket) || empty(r2dir) || empty(outdir) || empty(cfid)) {
+        log.e("cfid / bucket / r2dir / outdir", cfid, r2bucket, r2dir, outdir);
+        return;
+      }
+      log.i(r2dir, outdir, "; upload", localpath(), "to", r2path());
     }
-
-    log.i(AWS.VERSION, s3dir, outdir, "; upload", localpath(), "to", s3path());
 
     const ans = await upload();
 
