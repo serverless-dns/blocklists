@@ -16,7 +16,7 @@ const AWS = awscjs.default;
 const cwd = process.cwd();
 const outdir = process.env.OUTDIR;
 const codec = process.env.CODEC || "u6";
-const useS3 = process.env.PREFER_S3_OVER_R2 || false;
+const useS3 = bool(process.env.PREFER_S3_OVER_R2) || false;
 
 const s3bucket = process.env.AWS_BUCKET_NAME;
 const s3dir = process.env.S3DIR;
@@ -41,6 +41,17 @@ const r2 = new AWS.S3({
 const d = new Date();
 // ex: 2022/1664574546478
 const version = d.getFullYear() + "/" + d.getTime();
+
+// stackoverflow.com/a/4594779
+function bool(str) {
+  if (empty(str)) {
+    return false;
+  } else if (typeof str == "string") {
+    return str.toLowerCase() === "true";
+  } else {
+    return !!str;
+  }
+}
 
 function empty(str) {
   return !str;
