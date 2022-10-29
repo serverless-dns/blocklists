@@ -42,15 +42,25 @@ jobs:
           sudo swapon ./swapfile
           free -hm
       shell: bash
-    - name: 📥 Download blocklists
+    - name: 🎨 Deps
       run: |
         python -m pip install aiohttp
+        npm install
+        # stackoverflow.com/a/69400542
+        v=$(date --utc +"%s.%3N")
+        echo "UNIX_EPOCH_SEC=${v}" >> $GITHUB_ENV
+        echo "::notice::Building ${GIT_REF}/${COMMIT_SHA} @ ${v}"
+      shell: bash
+      env:
+        COMMIT_SHA: ${{ github.sha }}
+        GIT_REF: ${{ github.ref }}
+    - name: 📥 Download blocklists
+      run: |
         python download.py
       env:
         BLCONFIG: ${{ env.BLCONFIG }}
     - name: 🌲 Make compact trie
       run: |
-        npm install
         mkdir -p "$OUTDIR"
         # 32768/1024 => 32G RAM
         node --max-old-space-size=32768 --expose-gc ./src/build.js
@@ -66,7 +76,7 @@ jobs:
         ls -lhtr # list files
       env:
         OUTDIR: ${{ env.OUTDIR }}
-    - name: 📤 Upload artifacts
+    - name: 🏆 Upload artifacts
       run: |
         node ./src/upload.js
       env:
@@ -75,6 +85,7 @@ jobs:
         AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
         CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
         PREFER_S3_OVER_R2: ${{ env.PREFER_S3_OVER_R2 }}
+        UNIX_EPOCH_SEC: ${{ env.UNIX_EPOCH_SEC }}
         CODEC: ${{ matrix.codec }}
         S3DIR: ${{ env.S3DIR }}
         OUTDIR: ${{ env.OUTDIR }}

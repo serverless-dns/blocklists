@@ -11,13 +11,6 @@ import * as fs from "fs";
 import * as path from "path";
 import * as log from "./log.js";
 
-// github.com/aws/aws-sdk-js/issues/1766
-const AWS = awscjs.default;
-const cwd = process.cwd();
-const outdir = process.env.OUTDIR;
-const codec = process.env.CODEC || "u6";
-const useS3 = bool(process.env.PREFER_S3_OVER_R2) || false;
-
 const s3bucket = process.env.AWS_BUCKET_NAME;
 const s3dir = process.env.S3DIR;
 const s3 = new AWS.S3({
@@ -38,9 +31,24 @@ const r2 = new AWS.S3({
   s3ForcePathStyle: true,
 });
 
-const d = new Date();
-// ex: 2022/1664574546478
-const version = d.getFullYear() + "/" + d.getTime();
+// github.com/aws/aws-sdk-js/issues/1766
+const AWS = awscjs.default;
+const cwd = process.cwd();
+const outdir = process.env.OUTDIR;
+const codec = process.env.CODEC || "u6";
+const useS3 = bool(process.env.PREFER_S3_OVER_R2) || false;
+const epochSec = num(process.env.UNIX_EPOCH_SEC) || Date.now() / 1000;
+const version = genVersion();
+
+function genVersion() {
+  const d = new Date(epochSec * 1000);
+  // ex: 2022/1664574546478
+  return d.getFullYear() + "/" + d.getTime();
+}
+
+function num(str) {
+  return parseFloat(str);
+}
 
 // stackoverflow.com/a/4594779
 function bool(str) {
