@@ -23,6 +23,7 @@ export INDIR="$INDIR"
 export OUTDIR="$OUTDIR"
 export S3DIR="$S3DIR"
 export BLCONFIG="$BLCONFIG"
+export CODEC="$CODEC"
 
 python ./download.py
 
