@@ -11,6 +11,9 @@ import * as fs from "fs";
 import * as path from "path";
 import * as log from "./log.js";
 
+// github.com/aws/aws-sdk-js/issues/1766
+const AWS = awscjs.default;
+
 const s3bucket = process.env.AWS_BUCKET_NAME;
 const s3dir = process.env.S3DIR;
 const s3 = new AWS.S3({
@@ -31,8 +34,6 @@ const r2 = new AWS.S3({
   s3ForcePathStyle: true,
 });
 
-// github.com/aws/aws-sdk-js/issues/1766
-const AWS = awscjs.default;
 const cwd = process.cwd();
 const outdir = process.env.OUTDIR;
 const codec = process.env.CODEC || "u6";
