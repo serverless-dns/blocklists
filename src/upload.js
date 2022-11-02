@@ -43,8 +43,9 @@ const version = genVersion();
 
 function genVersion() {
   const d = new Date(epochSec * 1000);
+  // keep this in sync with dl.rdns
   // ex: 2022/1664574546478
-  return d.getFullYear() + "/" + d.getTime();
+  return d.getUTCFullYear() + "/" + d.getTime();
 }
 
 function num(str) {
