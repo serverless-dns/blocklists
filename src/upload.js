@@ -54,8 +54,9 @@ function genVersion7() {
   const d = new Date(epochSec * 1000);
   // keep this in sync with dl.rdns
   // ex: yyyy/mm-week; 2022/11-1 or 2022/11-5
-  const w = Math.ceil(d.getUTCDay() / onetick);
-  return d.getUTCFullYear() + "/" + d.getUTCMonth() + "-" + w;
+  const wk = Math.ceil(d.getDate() / onetick);
+  const mm = d.getUTCMonth() + 1;
+  return d.getUTCFullYear() + "/bc/" + mm + "-" + wk;
 }
 
 function num(str) {
