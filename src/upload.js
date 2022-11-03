@@ -40,12 +40,22 @@ const codec = process.env.CODEC || "u6";
 const useS3 = bool(process.env.PREFER_S3_OVER_R2) || false;
 const epochSec = num(process.env.UNIX_EPOCH_SEC) || Date.now() / 1000;
 const version = genVersion();
+const version7 = genVersion7();
 
 function genVersion() {
   const d = new Date(epochSec * 1000);
   // keep this in sync with dl.rdns
-  // ex: 2022/1664574546478
+  // ex: yyyy/timesampMs; 2022/1664574546478
   return d.getUTCFullYear() + "/" + d.getTime();
+}
+
+function genVersion7() {
+  const onetick = 7; // approx. one week
+  const d = new Date(epochSec * 1000);
+  // keep this in sync with dl.rdns
+  // ex: yyyy/mm-week; 2022/11-1 or 2022/11-5
+  const w = Math.ceil(d.getUTCDay() / onetick);
+  return d.getUTCFullYear() + "/" + d.getUTCMonth() + "-" + w;
 }
 
 function num(str) {
@@ -67,12 +77,12 @@ function empty(str) {
   return !str;
 }
 
-function s3path(x) {
-  return s3dir + "/" + version + "/" + codec + "/" + (empty(x) ? "" : x);
+function s3path(x, p = version) {
+  return s3dir + "/" + p + "/" + codec + "/" + (empty(x) ? "" : x);
 }
 
-function r2path(x) {
-  return r2dir + "/" + version + "/" + codec + "/" + (empty(x) ? "" : x);
+function r2path(x, p = version) {
+  return r2dir + "/" + p + "/" + codec + "/" + (empty(x) ? "" : x);
 }
 
 function localpath(x) {
@@ -81,11 +91,10 @@ function localpath(x) {
     : path.normalize(path.join(cwd, outdir, x));
 }
 
-// td is split into 20M parts:
+// td is split into 30M parts:
 // td00.txt, td01.txt, ... , td99.txt, td100.txt, td101.txt, ...
-// github.com/serverless-dns/blocklists:
-// .github/workflows/createUploadBlocklistFilter.yml
-// Uploads files in localpath
+// ref: github.com/serverless-dns/src/trie.js#splitAndSaveTd
+// Uploads all files in localpath() to s3path() / r2path()
 async function upload() {
   const files = await fs.promises.readdir(localpath());
 
@@ -103,6 +112,18 @@ async function upload() {
   }
 
   return Promise.all(reqs);
+}
+
+async function upload7() {
+  const fp = localpath("basicconfig.json");
+  const fst = await fs.promises.stat(fp);
+
+  if (!fst.isFile()) {
+    throw new Error("no basiconfig at: " + fp);
+  }
+
+  if (useS3) return toS3(fp, s3path(fname, version7));
+  else return toR2(fp, r2path(fname, version7));
 }
 
 async function toS3(f, key) {
@@ -152,9 +173,12 @@ async function start() {
       log.i(r2dir, outdir, "; upload", localpath(), "to", r2path());
     }
 
+    // exec upload always before upload7, since metadata in
+    // upload7 dir is where the downloaders look first
     const ans = await upload();
+    const ans7 = await upload7();
 
-    log.i("finished", ans);
+    log.i("finished", ans, ans7);
   } catch (e) {
     log.e(e);
     process.exitCode = 1;
