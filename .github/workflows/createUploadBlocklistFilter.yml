@@ -84,14 +84,15 @@ jobs:
         OUTDIR: ${{ env.OUTDIR }}
         INDIR: ${{ env.INDIR }}
         CODEC: ${{ matrix.codec }}
-    - name: 🪄 Split trie in 30MB slices
+    - name: 🪄 Show artifacts
       run: |
+        # note: split now happens in serverless-dns/trie:trie.js
         # creates td00.txt, td01.txt, ... , td98.txt, td99.txt, td100.txt, ...
-        cd "$OUTDIR" && split --bytes=30M -d --additional-suffix=.txt td.txt td
+        # cd "$OUTDIR" && split --bytes=30M -d --additional-suffix=.txt td.txt td
         ls -lhtr # list files
       env:
         OUTDIR: ${{ env.OUTDIR }}
-    - name: 🏆 Upload artifacts
+    - name: 🏆 Upload
       run: |
         node ./src/upload.js
       env:
