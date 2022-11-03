@@ -115,15 +115,16 @@ async function upload() {
 }
 
 async function upload7() {
-  const fp = localpath("basicconfig.json");
+  const bcjson = "basicconfig.json";
+  const fp = localpath(bcjson);
   const fst = await fs.promises.stat(fp);
 
   if (!fst.isFile()) {
     throw new Error("no basiconfig at: " + fp);
   }
 
-  if (useS3) return toS3(fp, s3path(fname, version7));
-  else return toR2(fp, r2path(fname, version7));
+  if (useS3) return toS3(fp, s3path(bcjson, version7));
+  else return toR2(fp, r2path(bcjson, version7));
 }
 
 async function toS3(f, key) {
