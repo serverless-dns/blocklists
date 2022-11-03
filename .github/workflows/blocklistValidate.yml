@@ -32,12 +32,12 @@ jobs:
     timeout-minutes: 10
     steps:
     - name: 📃 Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: 🐉 Setup python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: '3.9.6'
-    - name: 📥 Install deps
+    - name: 🎨 Install deps
       run: |
         python -m pip install aiohttp
     - name: 💯 Validate blocklistconfig.json

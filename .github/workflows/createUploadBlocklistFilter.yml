@@ -34,13 +34,13 @@ jobs:
     timeout-minutes: 60
     steps:
     - name: 📃 Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: 🐉 Setup python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: '3.9.6'
     - name: ⭕ Setup node
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: '18'
     - name: ⏳ Make swap
