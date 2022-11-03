@@ -58,7 +58,7 @@ function loadConfig(blocklistConfigPath) {
         // uname exists in celzero/gotrie, and so continue to
         // set it despite the existence of the "value" field
         // ref: github.com/celzero/gotrie/blob/d9d0dcea/trie/frozentrie.go#L334
-        uname: str(id),
+        uname: id + "",
         vname: entry.vname,
         group: entry.group,
         subg: entry.subg,
