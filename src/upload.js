@@ -10,6 +10,7 @@ import * as awscjs from "aws-sdk";
 import * as fs from "fs";
 import * as path from "path";
 import * as log from "./log.js";
+import { genVersion, genVersion7 } from "./ver.js";
 
 // github.com/aws/aws-sdk-js/issues/1766
 const AWS = awscjs.default;
@@ -41,23 +42,6 @@ const useS3 = bool(process.env.PREFER_S3_OVER_R2) || false;
 const epochSec = num(process.env.UNIX_EPOCH_SEC) || Date.now() / 1000;
 const version = genVersion();
 const version7 = genVersion7();
-
-function genVersion() {
-  const d = new Date(epochSec * 1000);
-  // keep this in sync with dl.rdns
-  // ex: yyyy/timesampMs; 2022/1664574546478
-  return d.getUTCFullYear() + "/" + d.getTime();
-}
-
-function genVersion7() {
-  const onetick = 7; // approx. one week
-  const d = new Date(epochSec * 1000);
-  // keep this in sync with dl.rdns
-  // ex: yyyy/mm-week; 2022/11-1 or 2022/11-5
-  const wk = Math.ceil(d.getDate() / onetick);
-  const mm = d.getUTCMonth() + 1;
-  return d.getUTCFullYear() + "/bc/" + mm + "-" + wk;
-}
 
 function num(str) {
   return parseFloat(str);

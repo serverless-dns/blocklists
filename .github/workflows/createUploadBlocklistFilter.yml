@@ -83,6 +83,7 @@ jobs:
         BLCONFIG: ${{ env.BLCONFIG }}
         OUTDIR: ${{ env.OUTDIR }}
         INDIR: ${{ env.INDIR }}
+        UNIX_EPOCH_SEC: ${{ env.UNIX_EPOCH_SEC }}
         CODEC: ${{ matrix.codec }}
     - name: 🪄 Show artifacts
       run: |

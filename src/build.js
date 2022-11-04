@@ -10,11 +10,13 @@ import * as fs from "fs";
 import * as path from "path";
 import * as trie from "trie";
 import * as log from "./log.js";
+import { genVersion } from "./ver.js";
 
 const outdir = process.env.OUTDIR;
 const indir = process.env.INDIR;
 const blconfigjson = process.env.BLCONFIG;
 const codec = process.env.CODEC || "u6";
+const tstamp = genVersion(process.env.UNIX_EPOCH_SEC);
 
 function empty(str) {
   return !str;
@@ -22,7 +24,7 @@ function empty(str) {
 
 function opts() {
   const usec6 = "u6" === codec;
-  return { useCodec6: usec6 };
+  return { timestamp: tstamp, useCodec6: usec6 };
 }
 
 async function getBlocklistFiles(bldir) {
