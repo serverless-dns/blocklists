@@ -16,7 +16,7 @@ const outdir = process.env.OUTDIR;
 const indir = process.env.INDIR;
 const blconfigjson = process.env.BLCONFIG;
 const codec = process.env.CODEC || "u6";
-const tstamp = genVersion(process.env.UNIX_EPOCH_SEC);
+const tstamp = process.env.UNIX_EPOCH_SEC;
 
 function empty(str) {
   return !str;
@@ -24,7 +24,8 @@ function empty(str) {
 
 function opts() {
   const usec6 = "u6" === codec;
-  return { timestamp: tstamp, useCodec6: usec6 };
+  const v = genVersion(tstamp);
+  return { timestamp: v, useCodec6: usec6 };
 }
 
 async function getBlocklistFiles(bldir) {

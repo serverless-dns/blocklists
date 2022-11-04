@@ -39,9 +39,9 @@ const cwd = process.cwd();
 const outdir = process.env.OUTDIR;
 const codec = process.env.CODEC || "u6";
 const useS3 = bool(process.env.PREFER_S3_OVER_R2) || false;
-const epochSec = num(process.env.UNIX_EPOCH_SEC) || Date.now() / 1000;
-const version = genVersion();
-const version7 = genVersion7();
+const epochSec = num(process.env.UNIX_EPOCH_SEC);
+const version = genVersion(epochSec);
+const version7 = genVersion7(epochSec);
 
 function num(str) {
   return parseFloat(str);
