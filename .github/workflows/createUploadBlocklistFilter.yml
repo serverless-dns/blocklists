@@ -1,5 +1,9 @@
 name: MakeTrie
 on:
+  # docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#schedule
+  schedule:
+    # at 21:53 on 1st, 8th, 16th, 24th of every month
+    - cron: '53 21 1,8,16,24 * *'
   workflow_dispatch:
   repository_dispatch:
     types: custom_event_type
@@ -23,8 +27,10 @@ jobs:
         # stackoverflow.com/a/69400542
         v=$(date --utc +"%s.%3N")
         echo "epoch=${v}" >> $GITHUB_OUTPUT
-        echo "::notice::Version ${v}"
+        echo "::notice::Version ${v} / ${SCHED}"
       shell: bash
+      env:
+        SCHED: ${{ github.event.schedule }}
   make:
     needs: version
     strategy:
