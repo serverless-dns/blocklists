@@ -57,19 +57,29 @@ function loadConfig(blocklistConfigPath) {
       const uid = id + ""; // string, must be lowercase
 
       tags[uid] = {
+        // a numerical value (immutable id) assigned to this list
         value: parseInt(id),
         // uname exists in celzero/gotrie, and so continue to
         // set it despite the existence of the "value" field
         // ref: github.com/celzero/gotrie/blob/d9d0dcea/trie/frozentrie.go#L334
         uname: id + "",
+        // human readable name of this list
         vname: entry.vname,
+        // one main category this list belongs to among:
+        // ParentalControl, Security, Privacy
         group: entry.group,
+        // one main subgroup this list belongs to
         subg: entry.subg,
+        // the url where this list is hosted
         url: entry.url,
+        // list of "blocklist packs" this list belongs to
+        // may be an emtpy array, or a list of packs
+        pack: entry.pack,
         show: 0,
         entries: 0,
       };
-      log.i("btag for " + uid + " index: " + id, "in", tags[uid].group);
+      // verbose log
+      // log.d("btag for " + uid + " index: " + id, "in", tags[uid].group);
     }
     return tags;
   } catch (e) {
