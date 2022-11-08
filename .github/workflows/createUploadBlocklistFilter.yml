@@ -5,12 +5,21 @@ on:
     # at 21:53 on 1st, 8th, 16th, 24th of every month
     - cron: '53 21 1,8,16,24 * *'
   workflow_dispatch:
-  repository_dispatch:
-    types: custom_event_type
+    inputs:
+      publish:
+        description: 'publish blocklists?'
+        required: true
+        default: 'test'
+        type: choice
+        options:
+        - yes
+        - no
+        - test
 env:
   INDIR: "blocklistfiles"
   OUTDIR: "result"
   S3DIR: "blocklists"
+  S3_TEST_DIR: "testblocklists"
   BLCONFIG: "config.json"
   PREFER_S3_OVER_R2: "false"
 jobs:
@@ -68,6 +77,11 @@ jobs:
       run: |
         python -m pip install aiohttp
         npm install
+        if [ "$PUBLISH_BLOCKLISTS" = "test" ]; then
+          echo "S3DIR=$S3_TEST_DIR" >> $GITHUB_ENV
+        elif [ "$PUBLISH_BLOCKLISTS" = "no" ]; then
+          echo "S3DIR=" >> $GITHUB_ENV
+        fi
         echo "UNIX_EPOCH_SEC=${V}" >> $GITHUB_ENV
         echo "::notice::Building ${GIT_REF}/${COMMIT_SHA} @ ${V}"
       shell: bash
@@ -75,6 +89,7 @@ jobs:
         COMMIT_SHA: ${{ github.sha }}
         GIT_REF: ${{ github.ref }}
         V: ${{ needs.version.outputs.epoch }}
+        PUBLISH_BLOCKLISTS: ${{ inputs.publish }}
     - name: 📥 Download blocklists
       run: |
         python download.py
@@ -100,6 +115,8 @@ jobs:
       env:
         OUTDIR: ${{ env.OUTDIR }}
     - name: 🏆 Upload
+      # caveat: docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#providing-inputs
+      if: ${{ github.event.inputs == "yes" || github.event.inputs == "test" }}
       run: |
         node ./src/upload.js
       env:
