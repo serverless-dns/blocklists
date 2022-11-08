@@ -1362,10 +1362,10 @@
     },
     {
       "vname": "OISD (full)",
-      "format": "domains",
+      "format": "wildcard",
       "group": "Privacy",
       "subg": "OISD",
-      "url": "https://dbl.oisd.nl/",
+      "url": "https://dblw.oisd.nl/",
       "pack": ["recommended", "liteprivacy"]
     },
     {
@@ -1490,10 +1490,10 @@
     },
     {
       "vname": "OISD NSFW (Porn)",
-      "format": "domains",
+      "format": "wildcard",
       "group": "ParentalControl",
       "subg": "OISD",
-      "url": "https://dbl.oisd.nl/nsfw/",
+      "url": "https://dblw.oisd.nl/nsfwbig/",
       "pack": ["adult"]
     },    
     {
