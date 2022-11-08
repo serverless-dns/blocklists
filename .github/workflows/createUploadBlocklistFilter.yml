@@ -130,7 +130,7 @@ jobs:
     - name: 🏆 Upload?
       # stackoverflow.com/a/68317611
       # github.com/actions/runner/issues/866
-      if: ${{ steps.setup.outputs.upload == "y" }}
+      if: ${{ steps.setup.outputs.upload == 'y' }}
       run: |
         node ./src/upload.js
       env:
