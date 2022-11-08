@@ -119,9 +119,10 @@ jobs:
         cd "$OUTDIR" && ls -lhtr # list files
       env:
         OUTDIR: ${{ env.OUTDIR }}
-    - name: 🏆 Upload
-      # caveat: docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#providing-inputs
-      if: ${{ github.event.inputs == "yeah" || github.event.inputs == "test" }}
+    - name: 🏆 Upload?
+      # stackoverflow.com/a/68317611
+      # github.com/actions/runner/issues/866
+      if: ${{ (inputs.publish == 'yeah') || (inputs.publish == 'test') }}
       run: |
         node ./src/upload.js
       env:
