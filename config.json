@@ -10,7 +10,7 @@
     },
     {
       "vname": "Safesearch-only",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "SafeSearch",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/safesearch-not-supported",
@@ -42,7 +42,7 @@
     },
     {
       "vname": "Torrents (DHT nodes)",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/dht-bootstrap-nodes",
@@ -50,7 +50,7 @@
     },
     {
       "vname": "File hosting",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/file-hosting",
@@ -58,7 +58,7 @@
     },
     {
       "vname": "Proxies",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/proxies",
@@ -66,7 +66,7 @@
     },
     {
       "vname": "Streaming Audio",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-audio",
@@ -74,7 +74,7 @@
     },
     {
       "vname": "Streaming Video",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video",
@@ -82,7 +82,7 @@
     },
     {
       "vname": "Torrent Clients",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-clients",
@@ -90,7 +90,7 @@
     },
     {
       "vname": "Torrent Trackers",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-trackers",
@@ -98,7 +98,7 @@
     },
     {
       "vname": "Torrent Websites",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-websites",
@@ -106,7 +106,7 @@
     },
     {
       "vname": "Usenet",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/usenet",
@@ -114,7 +114,7 @@
     },
     {
       "vname": "Warez",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Piracy",
       "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/warez",
@@ -122,7 +122,7 @@
     },
     {
       "vname": "Porn (Tiuxo)",
-      "format": "wildcard",
+      "format": "hosts",
       "group": "ParentalControl",
       "subg": "Tiuxo",
       "url": "https://raw.githubusercontent.com/tiuxo/hosts/master/porn",
@@ -154,7 +154,7 @@
     },
     {
       "vname": "Social networks (Olbat)",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Olbat",
       "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/social_networks/domains",
@@ -162,7 +162,7 @@
     },
     {
       "vname": "9Gag",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/9gag",
@@ -170,7 +170,7 @@
     },
     {
       "vname": "Amazon",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/amazon",
@@ -178,7 +178,7 @@
     },
     {
       "vname": "Blizzard",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/blizzard",
@@ -186,7 +186,7 @@
     },
     {
       "vname": "Daily Motion",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/dailymotion",
@@ -194,7 +194,7 @@
     },
     {
       "vname": "Discord",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/discord",
@@ -202,7 +202,7 @@
     },
     {
       "vname": "Disney+",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/disneyplus",
@@ -210,7 +210,7 @@
     },
     {
       "vname": "EBay",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/ebay",
@@ -218,7 +218,7 @@
     },
     {
       "vname": "Facebook",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/facebook",
@@ -226,7 +226,7 @@
     },
     {
       "vname": "Fortnite",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/fortnite",
@@ -234,7 +234,7 @@
     },
     {
       "vname": "Hulu",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/hulu",
@@ -242,7 +242,7 @@
     },
     {
       "vname": "Imgur",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/imgur",
@@ -250,7 +250,7 @@
     },
     {
       "vname": "Instagram",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/instagram",
@@ -258,7 +258,7 @@
     },
     {
       "vname": "League of Legends",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/leagueoflegends",
@@ -266,7 +266,7 @@
     },
     {
       "vname": "Facebook Messenger",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/messenger",
@@ -274,7 +274,7 @@
     },
     {
       "vname": "Minecraft",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/minecraft",
@@ -282,7 +282,7 @@
     },
     {
       "vname": "Netflix",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/netflix",
@@ -290,7 +290,7 @@
     },
     {
       "vname": "Pinterest",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/pinterest",
@@ -298,7 +298,7 @@
     },
     {
       "vname": "Reddit",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/reddit",
@@ -306,7 +306,7 @@
     },
     {
       "vname": "Roblox",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/roblox",
@@ -314,7 +314,7 @@
     },
     {
       "vname": "Skype",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/skype",
@@ -322,7 +322,7 @@
     },
     {
       "vname": "Snapchat",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/snapchat",
@@ -330,7 +330,7 @@
     },
     {
       "vname": "Spotify",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/spotify",
@@ -338,7 +338,7 @@
     },
     {
       "vname": "Steam",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/steam",
@@ -346,7 +346,7 @@
     },
     {
       "vname": "Telegram",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/telegram",
@@ -354,7 +354,7 @@
     },
     {
       "vname": "Tiktok",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tiktok",
@@ -362,7 +362,7 @@
     },
     {
       "vname": "Tinder",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tinder",
@@ -370,7 +370,7 @@
     },
     {
       "vname": "Tumblr",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tumblr",
@@ -378,7 +378,7 @@
     },
     {
       "vname": "Twitch",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitch",
@@ -386,7 +386,7 @@
     },
     {
       "vname": "Twitter",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitter",
@@ -394,7 +394,7 @@
     },
     {
       "vname": "Vimeo",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vimeo",
@@ -402,7 +402,7 @@
     },
     {
       "vname": "VK",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vk",
@@ -410,7 +410,7 @@
     },
     {
       "vname": "WhatsApp",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/whatsapp",
@@ -418,7 +418,7 @@
     },
     {
       "vname": "YouTube",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/youtube",
@@ -426,7 +426,7 @@
     },
     {
       "vname": "Zoom",
-      "format": "wildcard",
+      "format": "domains",
       "group": "ParentalControl",
       "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/zoom",
@@ -634,7 +634,7 @@
     },
     {
       "vname": "Threats (infosec.cert-pa.it)",
-      "format": "wildcard",
+      "format": "domains",
       "group": "Security",
       "subg": "ThreatIntelligence",
       "url": "https://infosec.cert-pa.it/analyze/listdomains.txt",
@@ -706,7 +706,7 @@
     },
     {
       "vname": "Malware domains (Sophos Labs)",
-      "format": "wildcard",
+      "format": "domains",
       "group": "Security",
       "subg": "Sophos",
       "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malware_domains.txt",
@@ -1194,7 +1194,7 @@
     },
     {
       "vname": "No Google",
-      "format": "wildcard",
+      "format": "domains",
       "group": "Privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/nickspaargaren/no-google/master/wildcards-domains",
@@ -1298,7 +1298,7 @@
     },
     {
       "vname": "Alexa (Amazon)",
-      "format": "wildcard",
+      "format": "domains",
       "group": "Privacy",
       "subg": "Native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/alexa",
@@ -1306,7 +1306,7 @@
     },
     {
       "vname": "Apple",
-      "format": "wildcard",
+      "format": "domains",
       "group": "privacy",
       "subg": "Native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/apple",
@@ -1314,7 +1314,7 @@
     },
     {
       "vname": "Huawei",
-      "format": "wildcard",
+      "format": "domains",
       "group": "Privacy",
       "subg": "Native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/huawei",
@@ -1322,7 +1322,7 @@
     },
     {
       "vname": "Roku",
-      "format": "wildcard",
+      "format": "domains",
       "group": "Privacy",
       "subg": "Native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/roku",
@@ -1330,7 +1330,7 @@
     },
     {
       "vname": "Samsung",
-      "format": "wildcard",
+      "format": "domains",
       "group": "Privacy",
       "subg": "Native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/samsung",
@@ -1338,7 +1338,7 @@
     },
     {
       "vname": "Sonos",
-      "format": "wildcard",
+      "format": "domains",
       "group": "Privacy",
       "subg": "Native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/sonos",
@@ -1346,7 +1346,7 @@
     },
     {
       "vname": "Windows",
-      "format": "wildcard",
+      "format": "domains",
       "group": "Privacy",
       "subg": "Native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/windows",
@@ -1354,7 +1354,7 @@
     },
     {
       "vname": "Xiaomi",
-      "format": "wildcard",
+      "format": "domains",
       "group": "Privacy",
       "subg": "Native",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi",

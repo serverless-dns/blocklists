@@ -146,12 +146,15 @@ def regxFileDomain(txt, regx_str, grp_index, format):
     abp_regx = re.compile(regx_str, re.M)
 
     for match in re.finditer(abp_regx, txt):
-        g2 = match.groups()[grp_index]
+        g = match.groups()
+        if g is None or len(g) <= grp_index:
+            continue
+        g2 = g[grp_index]
         g2 = g2.strip()
         if g2 and g2[-1] != '.':
             domainlist.add(g2)
 
-    if format != "wildcard" and len(domainlist) <= 8:
+    if len(domainlist) <= 0:
         return ""
 
     return "\n".join(domainlist)
@@ -215,7 +218,10 @@ async def downloadFile(sess, url, format, download_loc_filename):
         print(f"\nErr downloading {url}\n{e}")
         return "retry"
 
-    if format == "domains" or format == "wildcard":
+    if format == "wildcard":
+        filetxt = regxFileDomain(f, r'(^\*\.)([a-zA-Z0-9][a-zA-Z0-9-_.]+)', 1,
+                                 format)
+    elif format == "domains":
         filetxt = regxFileDomain(f, r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)', 0,
                                  format)
     elif format == "hosts":
@@ -231,7 +237,7 @@ async def downloadFile(sess, url, format, download_loc_filename):
     ret = writeFile(download_loc_filename, filetxt)
 
     if not ret:
-        print("\n\nDownloaded file empty or has <=10 entries\n")
+        print("\n\nDownloaded file empty or has no entries\n")
         print(url + " : " + download_loc_filename + "\n")
 
     return ret
