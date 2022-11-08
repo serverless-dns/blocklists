@@ -204,7 +204,7 @@
       "vname": "Disney+",
       "format": "domains",
       "group": "ParentalControl",
-      "subg": "services",
+      "subg": "Services",
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/disneyplus",
       "pack": ["streams"]
     },
