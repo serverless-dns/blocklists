@@ -12,8 +12,13 @@ on:
         default: 'test'
         type: choice
         options:
-        - yes
-        - no
+        # "yes" / "no" convert to bools, hence use "yeah" / "nope" instead.
+        # bools are bools when accessed with input-context, but are
+        # stringified when accessed with github.events context. And so:
+        # for the sake of everyone's sanity, stick to non-boolean inputs.
+        # ref: docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#providing-inputs
+        - yeah
+        - nope
         - test
 env:
   INDIR: "blocklistfiles"
@@ -79,7 +84,7 @@ jobs:
         npm install
         if [ "$PUBLISH_BLOCKLISTS" = "test" ]; then
           echo "S3DIR=$S3_TEST_DIR" >> $GITHUB_ENV
-        elif [ "$PUBLISH_BLOCKLISTS" = "no" ]; then
+        elif [ "$PUBLISH_BLOCKLISTS" = "nope" ]; then
           echo "S3DIR=" >> $GITHUB_ENV
         fi
         echo "UNIX_EPOCH_SEC=${V}" >> $GITHUB_ENV
@@ -116,7 +121,7 @@ jobs:
         OUTDIR: ${{ env.OUTDIR }}
     - name: 🏆 Upload
       # caveat: docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#providing-inputs
-      if: ${{ github.event.inputs == "yes" || github.event.inputs == "test" }}
+      if: ${{ github.event.inputs == "yeah" || github.event.inputs == "test" }}
       run: |
         node ./src/upload.js
       env:
