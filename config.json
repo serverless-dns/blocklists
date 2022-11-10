@@ -881,6 +881,14 @@
       "pack": ["extremeprivacy"]
     },
     {
+      "vname": "Block List Project: Ads",
+      "format": "domains",
+      "group": "Privacy",
+      "subg": "",
+      "url": "https://raw.githubusercontent.com/blocklistproject/Lists/master/ads.txt",
+      "pack": []
+    },
+    {
       "vname": "Cameleon",
       "format": "hosts",
       "group": "Privacy",
