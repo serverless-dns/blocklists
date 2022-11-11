@@ -1551,6 +1551,14 @@
       "subg": "The Block List Project",
       "url": "https://blocklistproject.github.io/Lists/porn.txt",
       "pack": ["adult"]
+    },
+    {
+      "vname": "Ads (The Block List Project)",
+      "format": "domains",
+      "group": "Privacy",
+      "subg": "",
+      "url": "https://raw.githubusercontent.com/blocklistproject/Lists/master/ads.txt",
+      "pack": []
     }
   ]
 }
