@@ -18,6 +18,11 @@ const blconfigjson = process.env.BLCONFIG;
 const codec = process.env.CODEC || "u6";
 const tstamp = process.env.UNIX_EPOCH_SEC;
 
+// checks if x is a string
+function isStr(x) {
+  return typeof x === "string" || x instanceof String;
+}
+
 function empty(str) {
   return !str;
 }
@@ -55,24 +60,28 @@ function loadConfig(blocklistConfigPath) {
 
     for (const [id, entry] of Object.entries(blocklistobj.conf)) {
       const uid = id + ""; // string, must be lowercase
+      // may be a string or a list, but normalize it to a list
+      if (isStr(entry.url)) {
+        entry.url = [entry.url];
+      }
 
       tags[uid] = {
-        // a numerical value (immutable id) assigned to this list
+        // a numerical value (immutable id) assigned to these lists
         value: parseInt(id),
         // uname exists in celzero/gotrie, and so continue to
         // set it despite the existence of the "value" field
         // ref: github.com/celzero/gotrie/blob/d9d0dcea/trie/frozentrie.go#L334
         uname: id + "",
-        // human readable name of this list
+        // human readable name of these lists
         vname: entry.vname,
-        // one main category this list belongs to among:
+        // a main category these lists belong to among:
         // ParentalControl, Security, Privacy
         group: entry.group,
-        // one main subgroup this list belongs to
+        // one main subgroup these lists belong to
         subg: entry.subg,
-        // the url where this list is hosted
+        // the urls where these lists are hosted
         url: entry.url,
-        // list of "blocklist packs" this list belongs to
+        // list of "blocklist packs" these lists belong to
         // may be an emtpy array, or a list of packs
         pack: entry.pack,
         show: 0,

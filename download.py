@@ -1,3 +1,4 @@
+#! python3
 # Copyright (c) 2020 RethinkDNS and its authors.
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
@@ -15,7 +16,7 @@ from urllib.parse import urlparse
 import asyncio
 import aiohttp
 
-supportedFileFormat = {"domains", "hosts", "abp", "wildcard"}
+supportedFormats = {"domains", "hosts", "abp", "wildcard"}
 
 keyFormat = {"vname", "format", "group", "subg", "url", "pack"}
 configFileLocation = os.environ.get("BLCONFIG")
@@ -29,10 +30,13 @@ blocklistDownloadRetry = 3
 blocklistNotDownloaded = list()
 retryBlocklist = list()
 
+def validFormat(fmt):
+    global supportedFormats
+    return fmt in supportedFormats
 
-def validateBasicConfig():
+def validConfig():
     global keyFormat
-    urlExist = set()
+    processedUrls = set()
 
     index = 0
     regex = re.compile(
@@ -43,41 +47,66 @@ def validateBasicConfig():
         r'(?::\d+)?'
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
-    for value in configDict["conf"]:
-        if len(value) != len(keyFormat):
-            print(f"Invalid entry {value}")
+    for ent in configDict["conf"]:
+        if len(ent) != len(keyFormat):
+            print(f"Invalid entry {ent}")
             print(f"Must contain vname {keyFormat}")
             return False
 
-        if not keyFormat <= set(value):
-            print(f"Invalid vname {value}")
+        if not keyFormat <= set(ent):
+            print(f"Invalid vname {ent}")
             return False
 
-        if re.match(regex, value["url"]) is None:
-            print(f"Invalid url {value}")
-            return False
+        # url is either a string or a list of strings
+        if type(ent["url"]) is str:
+            if re.match(regex, ent["url"]) is None:
+                print(f"Invalid str(url) in {ent}")
+                return False
 
-        if value["url"] in urlExist:
-            print(f"Blocklist already exists {value}")
-            return False
+            if ent["url"] in processedUrls:
+                print(f"Dup blocklist {ent}")
+                return False
+            else:
+                processedUrls.add(ent["url"])
+        elif type(ent["url"]) is list:
+            for u in ent["url"]:
+                if re.match(regex, u) is None:
+                    print(f"Invalid list(url) in {ent}")
+                    return False
+
+                if u in processedUrls:
+                    print(f"Dup blocklist {ent}")
+                    return False
+                else:
+                    processedUrls.add(u)
         else:
-            urlExist.add(value["url"])
-
-        if not value["format"] in supportedFileFormat:
-            print(f"Unsupported file format {value}")
+            print(f"Url must be str or list(str) in {ent}")
             return False
 
-        if value["group"].strip() == "":
-            print(f"Missing group {value}")
+        if type(ent["format"]) is str:
+            if not validFormat(ent["format"]):
+                print(f"Unsupported str(format) in {ent}")
+                return False
+        elif type(ent["format"] is list):
+            for fmt in ent["format"]:
+                if not validFormat(fmt):
+                    print(f"Unsupported list(format) in {ent}")
+                    return False
+        else:
+            print(f"Format must be str or list(str) in {ent}")
             return False
 
-        value["index"] = index
+        if ent["group"].strip() == "":
+            print(f"Missing group {ent}")
+            return False
+
+        ent["index"] = index
         index = index + 1
     random.shuffle(configDict["conf"])
     return True
 
 
-async def parseDownloadBasicConfig(configList):
+async def startDownloads(configList):
     global totalUrl
     global blocklistNotDownloaded
     global retryBlocklist
@@ -141,7 +170,7 @@ def safeStr(obj):
         return obj.encode('ascii', 'ignore').decode('ascii')
 
 
-def regxFileDomain(txt, regx_str, grp_index, format):
+def extractDomains(txt, regx_str, grp_index):
     domainlist = set()
     abp_regx = re.compile(regx_str, re.M)
 
@@ -160,12 +189,12 @@ def regxFileDomain(txt, regx_str, grp_index, format):
     return "\n".join(domainlist)
 
 
-def writeFile(download_loc_filename, filetxt):
+def writeFile(download_loc_filename, txt):
     global savedUrl
-    if filetxt and filetxt != "":
+    if txt and len(txt) > 0:
         createFileNotExist(download_loc_filename)
         with open(download_loc_filename, "w") as f:
-            f.write(safeStr(filetxt))
+            f.write(safeStr(txt))
             f.close()
         savedUrl = savedUrl + 1
         return True
@@ -205,36 +234,51 @@ class DownloadFailed(Exception):
 
 
 # realpython.com/async-io-python/
-async def downloadFile(sess, url, format, download_loc_filename):
+async def downloadFile(sess, urls, formats, download_loc_filename):
     global totalUrl
     totalUrl = totalUrl + 1
-    print(str(totalUrl) + "; src: " + url + " | dst: " + download_loc_filename)
+    print(str(totalUrl) + "; src: " + urls + " | dst: " + download_loc_filename)
     ret = True
-    f = True
+    blocklist = True
+    txt = ""
 
-    try:
-        f = await requestApi(sess, url)
-    except Exception as e:
-        print(f"\nErr downloading {url}\n{e}")
-        return "retry"
+    if type(urls) is str:
+        ul = list()
+        ul.append(urls)
+        urls = ul
+    if type(formats) is str:
+        fl = list()
+        fl.append(formats)
+        formats = fl
 
-    if format == "wildcard":
-        filetxt = regxFileDomain(f, r'(^\*\.)([a-zA-Z0-9][a-zA-Z0-9-_.]+)', 1,
-                                 format)
-    elif format == "domains":
-        filetxt = regxFileDomain(f, r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)', 0,
-                                 format)
-    elif format == "hosts":
-        filetxt = regxFileDomain(
-            f, r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)', 3,
-            format)
-    elif format == "abp":
-        filetxt = regxFileDomain(
-            f,
-            r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',
-            1, format)
+    for i in range(0, len(urls)):
+        url = urls[i]
+        format = formats[i]
+        print(f"\n processing {url} of type {format}")
 
-    ret = writeFile(download_loc_filename, filetxt)
+        try:
+            blocklist = await requestApi(sess, url)
+        except Exception as e:
+            print(f"\nErr downloading {url}\n{e}")
+            return "retry"
+
+        if format == "wildcard":
+            domains = extractDomains(blocklist, r'(^\*\.)([a-zA-Z0-9][a-zA-Z0-9-_.]+)', 1)
+        elif format == "domains":
+            domains = extractDomains(blocklist, r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)', 0)
+        elif format == "hosts":
+            domains = extractDomains(
+                blocklist, r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)', 3)
+        elif format == "abp":
+            domains = extractDomains(blocklist, r'(^\|\|[^/\n]+\^$)', 0)
+
+        if (len(domains) > 0):
+            if (len(txt) > 0):
+                txt = txt + "\n" + domains
+            else:
+                txt = domains
+
+    ret = writeFile(download_loc_filename, txt)
 
     if not ret:
         print("\n\nDownloaded file empty or has no entries\n")
@@ -244,7 +288,7 @@ async def downloadFile(sess, url, format, download_loc_filename):
 
 
 def loadBlocklistConfig():
-    isConfigLoad = False
+    done = False
     global configDict
 
     try:
@@ -253,14 +297,14 @@ def loadBlocklistConfig():
                 configDict = json.load(json_file)
                 json_file.close()
                 if "conf" in configDict:
-                    isConfigLoad = True
-        if not isConfigLoad:
+                    done = True
+        if not done:
             configDict["conf"] = {}
 
     except:
-        print("Error parsing blocklist.json. Check json formatting.")
+        print("Could not parse config.json")
 
-    return isConfigLoad
+    return done
 
 
 def main():
@@ -278,8 +322,8 @@ def main():
 
     tmpRetryBlocklist = list()
     exitWithError = False
-    if validateBasicConfig():
-        asyncio.run(parseDownloadBasicConfig(configDict["conf"]))
+    if validConfig():
+        asyncio.run(startDownloads(configDict["conf"]))
 
         print("\nTotal blocklists: " + str(totalUrl))
         print("Saved blocklists: " + str(savedUrl))
@@ -289,7 +333,7 @@ def main():
             print("\n\nretry download blocklist\n\n")
             tmpRetryBlocklist = retryBlocklist
             retryBlocklist = list()
-            asyncio.run(parseDownloadBasicConfig(tmpRetryBlocklist))
+            asyncio.run(startDownloads(tmpRetryBlocklist))
 
         if len(blocklistNotDownloaded) >= 1:
             print("\n\nFailed download list:")
