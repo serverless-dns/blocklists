@@ -170,15 +170,15 @@ def safeStr(obj):
         return obj.encode('ascii', 'ignore').decode('ascii')
 
 
-def extractDomains(txt, regx_str, grp_index):
+def extractDomains(txt, rgx, groupindex):
     domainlist = set()
-    abp_regx = re.compile(regx_str, re.M)
+    regexc = re.compile(rgx, re.M)
 
-    for match in re.finditer(abp_regx, txt):
+    for match in re.finditer(regexc, txt):
         g = match.groups()
-        if g is None or len(g) <= grp_index:
+        if g is None or len(g) <= groupindex:
             continue
-        g2 = g[grp_index]
+        g2 = g[groupindex]
         g2 = g2.strip()
         if g2 and g2[-1] != '.':
             domainlist.add(g2)
@@ -270,7 +270,7 @@ async def downloadFile(sess, urls, formats, download_loc_filename):
             domains = extractDomains(
                 blocklist, r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)', 3)
         elif format == "abp":
-            domains = extractDomains(blocklist, r'(^\|\|[^/\n]+\^$)', 0)
+            domains = extractDomains(blocklist, r'^\|\|([^/\n]+)\^$', 0)
 
         if (len(domains) > 0):
             if (len(txt) > 0):
