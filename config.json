@@ -1414,7 +1414,7 @@
       "vname": "Torrent (The Block List Project)",
       "format": "hosts",
       "group": "ParentalControl",
-      "subg": "Piracy",
+      "subg": "The Block List Project",
       "url": "https://blocklistproject.github.io/Lists/torrent.txt",
       "pack": ["torrents", "piracy"]
     },
