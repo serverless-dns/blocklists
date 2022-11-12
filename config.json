@@ -1307,7 +1307,7 @@
     {
       "vname": "Apple",
       "format": "wildcard",
-      "group": "privacy",
+      "group": "Privacy",
       "subg": "Hagezi",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.apple.txt",
       "pack": ["apple"]
@@ -1497,7 +1497,7 @@
       "subg": "OISD",
       "url": "https://dblw.oisd.nl/nsfwbig/",
       "pack": ["adult"]
-    },    
+    },
     {
       "vname": "Energized Unified",
       "format": "domains",
