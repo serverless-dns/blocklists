@@ -270,7 +270,9 @@ async def downloadFile(sess, urls, formats, download_loc_filename):
             domains = extractDomains(
                 blocklist, r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)', 3)
         elif format == "abp":
-            domains = extractDomains(blocklist, r'^\|\|([^/\n]+)\^$', 0)
+            domains = extractDomains(blocklist,
+            r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',
+            1)
 
         if (len(domains) > 0):
             if (len(txt) > 0):

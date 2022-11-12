@@ -16,6 +16,7 @@ fi
 : "${S3DIR:=blocklists}"
 : "${BLCONFIG:=config.json}"
 : "${CODEC:=u6}"
+: "${EPSEC:=$(date +%s)}"
 # AWS_BUCKET_NAME, AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY, CF_ACCOUNT_ID
 # are vended as secrets
 
@@ -24,6 +25,7 @@ export OUTDIR="$OUTDIR"
 export S3DIR="$S3DIR"
 export BLCONFIG="$BLCONFIG"
 export CODEC="$CODEC"
+export UNIX_EPOCH_SEC="$EPSEC"
 
 python ./download.py
 
