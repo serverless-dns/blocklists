@@ -131,6 +131,7 @@ async function toR2(f, key) {
     Bucket: r2bucket,
     Key: key,
     Body: fin,
+    ChecksumAlgorithm: "sha1",
   };
   log.i("r2: uploading", f, "to", key);
   return r2.upload(r).promise();
