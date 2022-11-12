@@ -1290,10 +1290,10 @@
     },
     {
       "vname": "YousList",
-      "format": "abp",
+      "format": "hosts",
       "group": "Privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/yous/YousList/master/youslist.txt",
+      "url": "https://raw.githubusercontent.com/yous/YousList/master/hosts.txt",
       "pack": []
     },
     {
