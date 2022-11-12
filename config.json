@@ -1065,12 +1065,12 @@
       "pack": []
     },
     {
-      "vname": "Finnish Easylist Addition",
-      "format": "abp",
+      "vname": "Ads (The Block List Project)",
+      "format": "hosts",
       "group": "Privacy",
-      "subg": "EasyList",
-      "url": "https://raw.githubusercontent.com/finnish-easylist-addition/finnish-easylist-addition/master/Finland_adb.txt",
-      "pack": []
+      "subg": "The Block List Project",
+      "url": "https://raw.githubusercontent.com/blocklistproject/Lists/master/ads.txt",
+      "pack": ["extremeprivacy"]
     },
     {
       "vname": "Frellwit's Swedish Hosts File",
