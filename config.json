@@ -489,12 +489,12 @@
       "pack": ["malware"]
     },
     {
-      "vname": "Malware (Disconnect)",
-      "format": "domains",
+      "vname": "NoTrack Annoyance",
+      "format": "hosts",
       "group": "Security",
-      "subg": "ThreatIntelligence",
-      "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt",
-      "pack": ["dead"]
+      "subg": "Quidsup",
+      "url": "https://gitlab.com/quidsup/notrack-annoyance-blocklist/-/raw/master/annoyance.hosts",
+      "pack": ["spam"]
     },
     {
       "vname": "Phishing.Army",
@@ -513,10 +513,10 @@
       "pack": ["spam"]
     },
     {
-      "vname": "Malware (quidsup)",
+      "vname": "NoTrack Malware",
       "format": "domains",
       "group": "Security",
-      "subg": "ThreatIntelligence",
+      "subg": "Quidsup",
       "url": "https://gitlab.com/quidsup/notrack-blocklists/-/raw/master/malware.list",
       "pack": ["malware"]
     },
@@ -1054,7 +1054,7 @@
       "group": "Privacy",
       "subg": "Fanboy",
       "url": "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
-      "pack": []
+      "pack": ["spam"]
     },
     {
       "vname": "Fanboy's Enhanced Tracking List",
@@ -1201,10 +1201,10 @@
       "pack": ["google"]
     },
     {
-      "vname": "NoTrack Tracker Blocklist",
+      "vname": "NoTrack Blocklist",
       "format": "domains",
       "group": "Privacy",
-      "subg": "",
+      "subg": "Quidsup",
       "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt",
       "pack": ["aggressiveprivacy", "spyware"]
     },
@@ -1214,7 +1214,7 @@
       "group": "Privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/notracking/hosts-blocklists/master/hostnames.txt",
-      "pack": ["spyware"]
+      "pack": ["aggressiveprivacy", "spyware"]
     },
     {
       "vname": "Smart TV Blocklist (Perflyst)",
@@ -1222,7 +1222,7 @@
       "group": "Privacy",
       "subg": "",
       "url": "https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV.txt",
-      "pack": ["smart-tv"]
+      "pack": ["extremeprivacy", "smart-tv"]
     },
     {
       "vname": "Peter Lowe",
