@@ -131,7 +131,10 @@ async function toR2(f, key) {
     Bucket: r2bucket,
     Key: key,
     Body: fin,
-    ChecksumAlgorithm: "sha1",
+    // only supported with Workers API
+    // eslint-disable-next-line max-len
+    // developers.cloudflare.com/r2/data-access/workers-api/workers-api-reference/#checksums
+    // ChecksumAlgorithm: "sha1",
   };
   log.i("r2: uploading", f, "to", key);
   return r2.upload(r).promise();
