@@ -449,6 +449,29 @@
       "pack": ["crypto"]
     },
     {
+      "vname": "Coin blocker (Zerodot1_optional_111422)",
+      "format": "hosts",
+      "group": "Security",
+      "subg": "Cryptojacking",
+      "url": "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/hosts_optional",
+      "pack": ["crypto"]
+    },
+    {
+      "vname": "Coin blocker (Zerodot1_111422)",
+      "format": "hosts",
+      "group": "Security",
+      "subg": "Cryptojacking",
+      "url": "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/a65c403554bb623092882eb55418861f016179df/hosts",
+      "pack": ["crypto"]
+    },
+    {
+      "vname": "Coin blocker (crypto_111422)",
+      "format": "hosts",
+      "group": "Security",
+      "subg": "Cryptojacking",
+      "url": "https://blocklistproject.github.io/Lists/crypto.txt",
+      "pack": ["crypto"]
+    {
       "vname": "DoH VPN Proxy Bypass (Hagezi)",
       "format": "wildcard",
       "group": "ParentalControl",
