@@ -61,8 +61,8 @@ function loadConfig(blocklistConfigPath) {
     const blocklistobj = JSON.parse(fileData);
 
     for (const [id, entry] of Object.entries(blocklistobj.conf)) {
-      // string, must be lowercase
-      const uid = empty(unames[id]) ? id + "" : unames[id].toLowerCase();
+      // string, must be uppercase
+      const uid = empty(unames[id]) ? id + "" : unames[id].toUpperCase();
       // may be a string or a list, but normalize it to a list
       if (isStr(entry.url)) {
         entry.url = [entry.url];
@@ -116,7 +116,7 @@ async function main() {
   try {
     const tags = loadConfig(blconfig);
     const bl = await getBlocklistFiles(bldir);
-    log.i(o, "build, out: " + triedir + ", in: " + bl + ", tags: " + tags);
+    log.i(o, "build, out: " + triedir + ", in: " + bl);
     await trie.build(bl, triedir, tags, o);
   } catch (e) {
     log.e(e);
