@@ -100,9 +100,13 @@ def validConfig():
             print(f"Missing group {ent}")
             return False
 
+        # note down the order of the blocklist
         ent["index"] = index
         index = index + 1
+
+    # shuffle to avoid errors due to rate limiting
     random.shuffle(configDict["conf"])
+
     return True
 
 
@@ -120,6 +124,7 @@ async def startDownloads(configList):
     async with aiohttp.ClientSession() as sess:
         tasks = []
         for value in configList:
+            # index is the original order of the blocklist before shuffling
             fileName = str(value["index"]).lower()
 
             if value["subg"].strip() == "":
