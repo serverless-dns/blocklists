@@ -23,7 +23,7 @@
   "homepage": "https://github.com/serverless-dns/blocklists#readme",
   "dependencies": {
     "aws-sdk": "^2.1233.0",
-    "trie": "github:serverless-dns/trie#v0.0.6"
+    "trie": "github:serverless-dns/trie#v0.0.7"
   },
   "devDependencies": {
     "@types/node": "^16.11.7",
@@ -38,5 +38,6 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.ts": "prettier --write"
-  }
+  },
+  "eslintIgnore": ["src/build.js"]
 }

@@ -5,11 +5,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-
+/* eslint-disabled */
+// eslint, no import-assert: github.com/eslint/eslint/discussions/15305
 import * as fs from "fs";
 import * as path from "path";
 import * as trie from "trie";
 import * as log from "./log.js";
+import unames from "./unames.json" assert {type:"json"}
 import { genVersion } from "./ver.js";
 
 const outdir = process.env.OUTDIR;
@@ -59,7 +61,8 @@ function loadConfig(blocklistConfigPath) {
     const blocklistobj = JSON.parse(fileData);
 
     for (const [id, entry] of Object.entries(blocklistobj.conf)) {
-      const uid = id + ""; // string, must be lowercase
+      // string, must be lowercase
+      const uid = empty(unames[id]) ? id + "" : unames[id].toLowerCase();
       // may be a string or a list, but normalize it to a list
       if (isStr(entry.url)) {
         entry.url = [entry.url];
@@ -71,7 +74,7 @@ function loadConfig(blocklistConfigPath) {
         // uname exists in celzero/gotrie, and so continue to
         // set it despite the existence of the "value" field
         // ref: github.com/celzero/gotrie/blob/d9d0dcea/trie/frozentrie.go#L334
-        uname: id + "",
+        uname: uid,
         // human readable name of these lists
         vname: entry.vname,
         // a main category these lists belong to among:
@@ -84,7 +87,7 @@ function loadConfig(blocklistConfigPath) {
         // list of "blocklist packs" these lists belong to
         // may be an emtpy array, or a list of packs
         pack: entry.pack,
-        show: 0,
+        // total entries in the list (populated by trie)
         entries: 0,
       };
       // verbose log
