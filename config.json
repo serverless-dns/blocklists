@@ -1242,10 +1242,10 @@
     },
     {
       "vname": "Combined Privacy Block Lists: Light (bongochong)",
-      "format": "hosts",
+      "format": "wildcard",
       "group": "Privacy",
       "subg": "CPBL",
-      "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/MiniLists/mini-newhosts.hosts",
+      "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/MiniLists/NoFormatting/mini-cpbl-wildcard-blacklist.txt",
       "pack": ["liteprivacy", "recommended"]
     },
     {
@@ -1404,10 +1404,10 @@
     },
     {
       "vname": "Combined Privacy Block Lists: Full (bongochong)",
-      "format": "hosts",
+      "format": "wildcard",
       "group": "Privacy",
       "subg": "CPBL",
-      "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/newhosts-final.hosts",
+      "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/NoFormatting/cpbl-wildcard-blacklist.txt",
       "pack": ["aggressiveprivacy"]
     },
     {
