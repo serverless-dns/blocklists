@@ -63,9 +63,9 @@ function loadConfig(blocklistConfigPath) {
     for (const [id, entry] of Object.entries(blocklistobj.conf)) {
       // string, must be uppercase
       const uid = empty(unames[id]) ? id + "" : unames[id].toUpperCase();
-      // may be a string or a list, but normalize it to a list
-      if (isStr(entry.url)) {
-        entry.url = [entry.url];
+      // may be a str or a list, but normalize it to a str for the time being
+      if (!isStr(entry.url)) {
+        entry.url = entry.url[0];
       }
 
       tags[uid] = {
