@@ -1545,6 +1545,14 @@
       "subg": "The Block List Project",
       "url": "https://blocklistproject.github.io/Lists/porn.txt",
       "pack": ["adult"]
+    },
+    {
+      "vname": "Game Console Adblock List",
+      "format": "domains",
+      "group": "Privacy",
+      "subg": "",
+      "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/GameConsoleAdblockList.txt",
+      "pack": []
     }
   ]
 }
