@@ -1545,6 +1545,14 @@
       "subg": "The Block List Project",
       "url": "https://blocklistproject.github.io/Lists/porn.txt",
       "pack": ["adult"]
+    },
+    {
+      "vname": "Tracking (The Block List Project)",
+      "format": "hosts",
+      "group": "Privacy",
+      "subg": "The Block List Project",
+      "url": "https://blocklistproject.github.io/Lists/tracking.txt",
+      "pack": ["extremeprivacy"]
     }
   ]
 }
