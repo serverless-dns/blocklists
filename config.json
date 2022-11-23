@@ -726,11 +726,12 @@
       "pack": ["scams & phishing"]
     },
     {
-      "vname": "Covid List (rescure.me)",
-      "format": "domains",
+      "vname": "Covid List (rescure and kriskintel)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "url": "https://rescure.fruxlabs.com/covid.txt",
+      "format": ["domains", "domains"],
+      "url": ["https://rescure.fruxlabs.com/covid.txt",
+              "https://kriskintel.com/feeds/ktip_covid_domains.txt"],
       "pack": ["scams & phishing"]
     },
     {
