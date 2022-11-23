@@ -697,12 +697,17 @@
       "pack": ["dead"]
     },
     {
-      "vname": "Malware domains (cyberthreatcoalition.org)",
-      "format": "domains",
+      "vname": "Threats and IoCs",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "url": "https://blocklist.cyberthreatcoalition.org/vetted/domain.txt",
-      "pack": ["dead"]
+      "format": ["domains", "domains", "hosts", "hosts", "domains", "domains"],
+      "url": ["https://www.botvrij.eu/data/ioclist.domain.raw",
+              "https://www.botvrij.eu/data/ioclist.hostname.raw",
+              "https://threatfox.abuse.ch/downloads/hostfile",
+              "https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/master/src/hosts.txt",
+              "https://securereload.tech/Phishing/Lists/Latest/",
+              "https://dl.red.flag.domains/red.flag.domains_fr.txt"],
+      "pack": ["scams & phishing", "vanity"]
     },
     {
       "vname": "Malicious domains (Sophos Labs)",
