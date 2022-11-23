@@ -557,20 +557,20 @@
       "pack": ["spam", "malware", "crypto", "scams & phishing"]
     },
     {
-      "vname": "Malware (mirror.cedia.org.ec)",
+      "vname": "Malware (RPi)",
       "format": "domains",
       "group": "Security",
-      "subg": "ThreatIntelligence",
-      "url": "https://mirror.cedia.org.ec/malwaredomains/immortal_domains.txt",
-      "pack": ["dead"]
+      "subg": "RPiList",
+      "url": "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/malware",
+      "pack": ["malware"]
     },
     {
-      "vname": "Bad lists (ethanr)",
+      "vname": "Child Protection (RPi)",
       "format": "domains",
       "group": "Security",
-      "subg": "ThreatIntelligence",
-      "url": "https://bitbucket.org/ethanr/dns-blacklists/raw/master/bad_lists/Mandiant_APT1_Report_Appendix_D.txt",
-      "pack": ["dead"]
+      "subg": "RPiList",
+      "url": "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
+      "pack": ["vanity", "adult"]
     },
     {
       "vname": "Malware (Olbat)",
