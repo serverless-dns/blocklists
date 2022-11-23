@@ -725,12 +725,14 @@
       "pack": ["scams & phishing"]
     },
     {
-      "vname": "Covid-19 Domains (managedsentinel.com)",
-      "format": "domains",
+      "vname": "Scamware (RPi)",
       "group": "Security",
-      "subg": "ThreatIntelligence",
-      "url": "https://managedsentinel.com/downloads/covid19_domains.txt",
-      "pack": ["dead"]
+      "subg": "RPiList",
+      "format": ["domains", "domains", "domains"],
+      "url": ["https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Corona-Blocklist",
+              "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Fake-Science",
+              "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/DomainSquatting"],
+      "pack": ["scams & phishing"]
     },
     {
       "vname": "hole.cert.pl",
