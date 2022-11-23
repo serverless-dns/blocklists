@@ -1287,11 +1287,12 @@
       "pack": []
     },
     {
-      "vname": "WindowsSpyBlocker (CrazyMax)",
-      "format": "hosts",
+      "vname": "Windows Telemetry",
       "group": "Privacy",
-      "subg": "",
-      "url": "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt",
+      "subg": "RPiList",
+      "format": ["hosts", "domains"],
+      "url": ["https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt",
+              "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Win10Telemetry"],
       "pack": ["windows"]
     },
     {
