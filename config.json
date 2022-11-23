@@ -541,12 +541,12 @@
       "pack": ["scams & phishing"]
     },
     {
-      "vname": "Domain blocklist basic (joewein.net) ",
-      "format": "domains",
+      "vname": "Threats (embreaj)",
+      "format": "wildcard",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "url": "https://joewein.net/dl/bl/dom-bl-base.txt",
-      "pack": ["dead"]
+      "url": "https://dl.threat-list.com/2/domains.txt",
+      "pack": ["malware"]
     },
     {
       "vname": "Threats (Hagezi)",
