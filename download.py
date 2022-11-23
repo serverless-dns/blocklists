@@ -242,7 +242,6 @@ class DownloadFailed(Exception):
 async def downloadFile(sess, urls, formats, download_loc_filename):
     global totalUrl
     totalUrl = totalUrl + 1
-    print(str(totalUrl) + "; src: " + urls + " | dst: " + download_loc_filename)
     ret = True
     blocklist = True
     txt = ""
@@ -251,15 +250,18 @@ async def downloadFile(sess, urls, formats, download_loc_filename):
         ul = list()
         ul.append(urls)
         urls = ul
+
     if type(formats) is str:
         fl = list()
         fl.append(formats)
         formats = fl
 
+    print(f"{totalUrl}; src: {urls} | dst: {download_loc_filename}")
+
     for i in range(0, len(urls)):
         url = urls[i]
         format = formats[i]
-        print(f"\n processing {url} of type {format}")
+        print(f"\tprocessing {url} of type {format}\n")
 
         try:
             blocklist = await requestApi(sess, url)
