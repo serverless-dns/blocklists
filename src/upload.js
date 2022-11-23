@@ -99,6 +99,9 @@ async function upload() {
   return Promise.all(reqs);
 }
 
+// Uploads basic-config to a weekly-indexed dir which is of form
+// mm-ord; where mm is month => 1 to 12 and ord is (day % 7) => 1 to 5.
+// That is, if version is 8 Nov, then version7 is 11-2
 async function upload7() {
   const bcjson = "basicconfig.json";
   const fp = localpath(bcjson);
