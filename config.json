@@ -589,12 +589,12 @@
       "pack": ["scams & phishing"]
     },
     {
-      "vname": "Blackbook",
+      "vname": "Spyware (Chris Buijs)",
       "format": "domains",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "url": "https://raw.githubusercontent.com/stamparm/blackbook/master/blackbook.txt",
-      "pack": ["scams & phishing"]
+      "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/spyware/domains",
+      "pack": ["dead"]
     },
     {
       "vname": "Malware (DandelionSprout)",
