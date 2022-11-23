@@ -441,11 +441,13 @@
       "pack": ["crypto"]
     },
     {
-      "vname": "Coin blocker (Zerodot1)",
-      "format": "hosts",
+      "vname": "Coin Blocker (Zerodot1)",
       "group": "Security",
       "subg": "Cryptojacking",
-      "url": "https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser",
+      "format": ["hosts", "hosts", "hosts"],
+      "url": ["https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser",
+              "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/hosts",
+              "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/hosts_optional"],
       "pack": ["crypto"]
     },
     {
