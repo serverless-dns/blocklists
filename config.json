@@ -440,12 +440,16 @@
       "url": "https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt",
       "pack": ["crypto"]
     },
-    {
+{
       "vname": "Coin blocker (Zerodot1)",
-      "format": "hosts",
+-      "format": "hosts",
       "group": "Security",
       "subg": "Cryptojacking",
-      "url": "https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser",
+-      "url": "https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser",
++      "format": ["hosts", "hosts", "hosts"]
++      "url": ["https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser",
++              "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/hosts",
++              "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/hosts_optional"]
       "pack": ["crypto"]
     },
     {
