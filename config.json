@@ -637,12 +637,13 @@
       "pack": ["scams & phishing"]
     },
     {
-      "vname": "Threats (infosec.cert-pa.it)",
-      "format": "domains",
+      "vname": "Ransomware and malware (kriskintel)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "url": "https://infosec.cert-pa.it/analyze/listdomains.txt",
-      "pack": ["dead"]
+      "format": ["domains", "domains"],
+      "url": ["https://kriskintel.com/feeds/ktip_malicious_domains.txt",
+              "https://kriskintel.com/feeds/ktip_ransomware_feeds.txt"],
+      "pack": ["scams & phishing"]
     },
     {
       "vname": "Toxic domains (stopforumspam.com)",
