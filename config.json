@@ -58,10 +58,11 @@
     },
     {
       "vname": "Proxies",
-      "format": "domains",
       "group": "ParentalControl",
-      "subg": "Piracy",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/proxies",
+      "subg": "RPiList",
+      "format": ["domains", "domains"],
+      "url": ["https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/proxies",
+              "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/proxies"],
       "pack": ["vpn & proxies", "piracy"]
     },
     {
