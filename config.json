@@ -670,12 +670,15 @@
       "pack": ["malware"]
     },
     {
-      "vname": "Malware Maze (rescure.me)",
-      "format": "domains",
+      "vname": "NSO + others (Amnesty)",
       "group": "Security",
-      "subg": "ThreatIntelligence",
-      "url": "https://rescure.fruxlabs.com/malware/maze.txt",
-      "pack": ["dead"]
+      "subg": "Amnesty",
+      "format": ["domains", "domains", "domains", "hosts"],
+      "url": ["https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-07-18_nso/domains.txt",
+              "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-10-07_donot/domains.txt",
+              "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-12-16_cytrox/domains.txt",
+              "https://raw.githubusercontent.com/guardicore/labs_campaigns/master/Autodiscover/autodiscover-tlds.txt"],
+      "pack": ["spyware", "liteprivacy"]
     },
     {
       "vname": "Malware Ekans (rescure.me)",
