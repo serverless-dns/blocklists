@@ -1008,14 +1008,6 @@
       "pack": ["liteprivacy"]
     },
     {
-      "vname": "Energized Basic",
-      "format": "domains",
-      "group": "Privacy",
-      "subg": "Energized",
-      "url": "https://block.energized.pro/basic/formats/domains.txt",
-      "pack": []
-    },
-    {
       "vname": "Energized Blu Go",
       "format": "domains",
       "group": "Privacy",
@@ -1032,36 +1024,12 @@
       "pack": ["aggressiveprivacy"]
     },
     {
-      "vname": "Energized Regional Extension",
-      "format": "domains",
-      "group": "Privacy",
-      "subg": "Energized",
-      "url": "https://block.energized.pro/extensions/regional/formats/domains.txt",
-      "pack": ["extremeprivacy"]
-    },
-    {
       "vname": "Energized Spark",
       "format": "domains",
       "group": "Privacy",
       "subg": "Energized",
       "url": "https://block.energized.pro/spark/formats/domains.txt",
       "pack": []
-    },
-    {
-      "vname": "Energized Ultimate",
-      "format": "domains",
-      "group": "Privacy",
-      "subg": "Energized",
-      "url": "https://block.energized.pro/ultimate/formats/domains.txt",
-      "pack": ["extremeprivacy"]
-    },
-    {
-      "vname": "Energized Xtreme Extension",
-      "format": "domains",
-      "group": "Privacy",
-      "subg": "Energized",
-      "url": "https://block.energized.pro/extensions/xtreme/formats/domains.txt",
-      "pack": ["extremeprivacy"]
     },
     {
       "vname": "Fanboy's Annoyance List",
@@ -1515,14 +1483,6 @@
       "pack": ["adult"]
     },
     {
-      "vname": "Energized Unified",
-      "format": "domains",
-      "group": "Privacy",
-      "subg": "Energized",
-      "url": "https://block.energized.pro/unified/formats/domains.txt",
-      "pack": ["extremeprivacy"]
-    },
-    {
       "vname": "Yet another small uBlock filter list",
       "format": "hosts",
       "group": "Privacy",
@@ -1569,6 +1529,14 @@
       "subg": "The Block List Project",
       "url": "https://blocklistproject.github.io/Lists/tracking.txt",
       "pack": ["spyware"]
+    },
+    {
+      "vname": "Energized Porn Lite",
+      "format": "domains",
+      "group": "ParentalControl",
+      "subg": "Energized",
+      "url": "https://energized.pro/extensions/porn-lite/formats/domains.txt",
+      "pack": ["adult"]
     }
   ]
 }
