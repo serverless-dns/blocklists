@@ -1013,7 +1013,7 @@
       "group": "Privacy",
       "subg": "Energized",
       "url": "https://block.energized.pro/basic/formats/domains.txt",
-      "pack": []
+      "pack": ["dead"]
     },
     {
       "vname": "Energized Blu Go",
@@ -1037,7 +1037,7 @@
       "group": "Privacy",
       "subg": "Energized",
       "url": "https://block.energized.pro/extensions/regional/formats/domains.txt",
-      "pack": ["extremeprivacy"]
+      "pack": ["dead"]
     },
     {
       "vname": "Energized Spark",
@@ -1053,7 +1053,7 @@
       "group": "Privacy",
       "subg": "Energized",
       "url": "https://block.energized.pro/ultimate/formats/domains.txt",
-      "pack": ["extremeprivacy"]
+      "pack": ["dead"]
     },
     {
       "vname": "Energized Xtreme Extension",
@@ -1061,7 +1061,7 @@
       "group": "Privacy",
       "subg": "Energized",
       "url": "https://block.energized.pro/extensions/xtreme/formats/domains.txt",
-      "pack": ["extremeprivacy"]
+      "pack": ["dead"]
     },
     {
       "vname": "Fanboy's Annoyance List",
@@ -1520,7 +1520,7 @@
       "group": "Privacy",
       "subg": "Energized",
       "url": "https://block.energized.pro/unified/formats/domains.txt",
-      "pack": ["extremeprivacy"]
+      "pack": ["dead"]
     },
     {
       "vname": "Yet another small uBlock filter list",
