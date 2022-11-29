@@ -1265,10 +1265,10 @@
     },
     {
       "vname": "AdRules China (Cats Team)",
-      "format": "hosts",
+      "format": "domains",
       "group": "Privacy",
       "subg": "",
-      "url": "https://raw.githubusercontent.com/Cats-Team/AdRules/main/hosts.txt",
+      "url": "https://raw.githubusercontent.com/Cats-Team/AdRules/main/ad-domains.txt",
       "pack": ["extremeprivacy"]
     },
     {
