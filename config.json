@@ -139,14 +139,6 @@
       "pack": ["adult"]
     },
     {
-      "vname": "Porn (Mahadi Xion)",
-      "format": "hosts",
-      "group": "ParentalControl",
-      "subg": "Porn",
-      "url": "https://raw.githubusercontent.com/mhxion/pornaway/master/hosts/porn_sites.txt",
-      "pack": ["adult"]
-    },
-    {
       "vname": "Porn (Sinfonietta)",
       "format": "hosts",
       "group": "ParentalControl",
