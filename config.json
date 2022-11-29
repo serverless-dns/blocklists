@@ -1569,14 +1569,6 @@
       "subg": "The Block List Project",
       "url": "https://blocklistproject.github.io/Lists/tracking.txt",
       "pack": ["spyware"]
-    },
-    {
-      "vname": "Energized Porn Lite",
-      "format": "domains",
-      "group": "ParentalControl",
-      "subg": "Energized",
-      "url": "https://block.energized.pro/extensions/porn-lite/formats/domains.txt",
-      "pack": ["adult"]
     }
   ]
 }
