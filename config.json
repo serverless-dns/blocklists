@@ -147,11 +147,11 @@
       "pack": ["adult"]
     },
     {
-      "vname": "Porn (Sinfonietta)",
-      "format": "hosts",
+      "vname": "Porn Lite (Energized)",
+      "format": "domains",
       "group": "ParentalControl",
-      "subg": "Sinfonietta",
-      "url": "https://raw.githubusercontent.com/Sinfonietta/hostfiles/master/pornography-hosts",
+      "subg": "Energized",
+      "url": "https://block.energized.pro/extensions/porn-lite/formats/domains.txt",
       "pack": ["adult"]
     },
     {
