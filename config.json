@@ -526,10 +526,10 @@
     },
     {
       "vname": "Badd Boyz Hosts (Mitchell Krogza)",
-      "format": "hosts",
+      "format": "domains",
       "group": "Security",
       "subg": "BaddBoyz",
-      "url": "https://raw.githubusercontent.com/mitchellkrogza/Badd-Boyz-Hosts/master/hosts",
+      "url": "https://raw.githubusercontent.com/Ultimate-Hosts-Blacklist/BaddBoyzHosts/master/clean.list",
       "pack": ["malware", "adult"]
     },
     {
