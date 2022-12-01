@@ -4,4 +4,4 @@ result/
 package-lock.json
 execute.sh
 build.zip
-dnsdemo1ppkkeyputty.ppk
+.cf*

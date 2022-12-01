@@ -10,10 +10,15 @@ import * as awscjs from "aws-sdk";
 import * as fs from "fs";
 import * as path from "path";
 import * as log from "./log.js";
+import * as zlib from "zlib";
 import { genVersion, genVersion7 } from "./ver.js";
 
 // github.com/aws/aws-sdk-js/issues/1766
 const AWS = awscjs.default;
+
+// disable compress binaries until there's clarity
+// just on how cloudflare transcodes binary content
+const compressBinaries = false;
 
 const s3bucket = process.env.AWS_BUCKET_NAME;
 const s3dir = process.env.S3DIR;
@@ -76,6 +81,33 @@ function localpath(x) {
     : path.normalize(path.join(cwd, outdir, x));
 }
 
+function contentType(fname) {
+  if (fname.endsWith(".gz")) return "application/gzip";
+  else if (fname.endsWith(".json")) return "application/json";
+  // treat everything else as octet-stream
+  // else if (fname.endsWith(".txt")) return "text/plain";
+  else return "application/octet-stream";
+}
+
+/**
+
+ * @param {string} key
+ * @returns {string}
+ */
+function filename(key) {
+  const i = key.lastIndexOf("/");
+  const x = key.substring(i + 1);
+  if (x === "rd.txt") {
+    return "rank.bin";
+  } else if (x === "td.txt") {
+    return "trie.bin";
+  } else if (x.indexOf("td") >= 0) {
+    return x.split(".")[0] + ".bin";
+  } else {
+    return x;
+  }
+}
+
 // td is split into 30M parts:
 // td00.txt, td01.txt, ... , td99.txt, td100.txt, td101.txt, ...
 // ref: github.com/serverless-dns/src/trie.js#splitAndSaveTd
@@ -118,28 +150,61 @@ async function upload7() {
 async function toS3(f, key) {
   const fin = fs.createReadStream(f);
   const r = {
-    Bucket: s3bucket,
-    Key: key,
-    Body: fin,
-    ACL: "public-read",
-    ChecksumAlgorithm: "sha1",
+    "Bucket": s3bucket,
+    "Key": key,
+    "Body": fin,
+    "ACL": "public-read",
+    "Content-Type": contentType(key),
+    "ChecksumAlgorithm": "sha1",
   };
   log.i("s3: uploading", f, "to", key);
   return s3.upload(r).promise();
 }
 
+// the uploads to R2 may be compressed with gz
+// though, the downside is that range requests
+// are not supported: archive.is/EX0Gd
+// community.cloudflare.com/t/234756
+// But: we mitigate this by using ~30M splits
+// for our largest files: td.txt
 async function toR2(f, key) {
-  const fin = fs.createReadStream(f);
+  // f as buffer stackoverflow.com/a/70952762
+  const fin = fs.readFileSync(f);
+
+  const fname = filename(key);
+  const ftype = contentType(key);
+  let body = fin;
+  let fenc = "";
+  if (compressBinaries && ftype.endsWith("octet-stream")) {
+    // stackoverflow.com/a/59154603
+    // compress with gzip
+    body = zlib.gzipSync(fin);
+    // brotli is not supported by Web API DecompressionStream
+    // which dl.rethinkdns uses to stream uncompressed data out
+    fenc = "gzip";
+  } else if (ftype.endsWith("gzip")) {
+    fenc = "gzip";
+  }
+  const a = fin.byteLength;
+  const b = body.byteLength;
+  // eslint-disable-next-line max-len
+  // see: docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property
   const r = {
     Bucket: r2bucket,
     Key: key,
-    Body: fin,
+    Body: body,
+    ContentType: ftype,
+    // eslint-disable-next-line quotes
+    ContentDisposition: 'attachment; filename="' + fname + '"',
+    ContentEncoding: fenc,
     // only supported with Workers API
     // eslint-disable-next-line max-len
     // developers.cloudflare.com/r2/data-access/workers-api/workers-api-reference/#checksums
     // ChecksumAlgorithm: "sha1",
+    // TODO: basicconfig as metadata?
+    // docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html
   };
-  log.i("r2: uploading", f, "to", key);
+  log.i("r2:", fname, "to", key, "as", ftype, "sz:raw/gz", a, b);
   return r2.upload(r).promise();
 }
 
