@@ -1299,9 +1299,10 @@
       "vname": "Windows Telemetry",
       "group": "Privacy",
       "subg": "WindowsSpyBlocker",
-      "format": ["wildcard", "wildcard"],
+      "format": ["wildcard", "wildcard", "domains"],
       "url": ["https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/dnscrypt/spy.txt",
-              "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/dnscrypt/extra.txt"],
+              "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/dnscrypt/extra.txt"
+              "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Win10Telemetry"],
       "pack": ["windows"]
     },
     {
