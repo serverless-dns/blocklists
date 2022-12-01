@@ -123,7 +123,7 @@
       "pack": ["file-hosts", "piracy"]
     },
     {
-      "vname": "Porn (Tiuxo)",
+      "vname": "Adult (Tiuxo)",
       "format": "hosts",
       "group": "ParentalControl",
       "subg": "Tiuxo",
@@ -131,7 +131,7 @@
       "pack": ["adult"]
     },
     {
-      "vname": "Porn (StevenBlack)",
+      "vname": "Adult (StevenBlack)",
       "format": "hosts",
       "group": "ParentalControl",
       "subg": "StevenBlack",
@@ -139,15 +139,15 @@
       "pack": ["adult"]
     },
     {
-      "vname": "Porn (Mahadi Xion)",
+      "vname": "Adult (Mahadi Xion)",
       "format": "hosts",
       "group": "ParentalControl",
-      "subg": "Porn",
+      "subg": "",
       "url": "https://raw.githubusercontent.com/mhxion/pornaway/master/hosts/porn_sites.txt",
       "pack": ["adult"]
     },
     {
-      "vname": "Porn Lite (Energized)",
+      "vname": "Adult Lite (Energized)",
       "format": "domains",
       "group": "ParentalControl",
       "subg": "Energized",
@@ -1507,7 +1507,7 @@
       "pack": ["gambling"]
     },
     {
-      "vname": "OISD NSFW (Porn)",
+      "vname": "OISD NSFW (Adult)",
       "format": "wildcard",
       "group": "ParentalControl",
       "subg": "OISD",
@@ -1555,7 +1555,7 @@
       "pack": ["adult"]
     },
     {
-      "vname": "Porn (The Block List Project)",
+      "vname": "Adult (The Block List Project)",
       "format": "domains",
       "group": "ParentalControl",
       "subg": "The Block List Project",
