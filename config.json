@@ -1569,6 +1569,14 @@
       "subg": "The Block List Project",
       "url": "https://blocklistproject.github.io/Lists/alt-version/tracking-nl.txt",
       "pack": ["spyware"]
+    },
+    {
+      "vname": "Disguised Third-Party Trackers (NextDNS)",
+      "format": "domains",
+      "group": "Privacy",
+      "subg": "TrackingDomains",
+      "url": "https://raw.githubusercontent.com/nextdns/cname-cloaking-blocklist/master/domains",
+      "pack": []
     }
   ]
 }
