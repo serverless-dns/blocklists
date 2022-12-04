@@ -1569,6 +1569,14 @@
       "subg": "The Block List Project",
       "url": "https://blocklistproject.github.io/Lists/alt-version/tracking-nl.txt",
       "pack": ["spyware"]
+    },
+    {
+      "vname": "Multi Ultimate (Hagezi)",
+      "format": "wildcard",
+      "group": "Privacy",
+      "subg": "Hagezi",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/ultimate.txt",
+      "pack": ["extremeprivacy"]
     }
   ]
 }
