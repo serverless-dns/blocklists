@@ -709,6 +709,18 @@
               "https://dl.red.flag.domains/red.flag.domains_fr.txt"],
       "pack": ["scams & phishing", "vanity"]
     },
+        {
+      "vname": "McAfee Web Gateway",
+      "group": "Security",
+      "subg": "ThreatIntelligence",
+      "format": ["hosts", "hosts", "hosts", "hosts", "hosts", "hosts"],
+      "url": ["https://feodotracker.abuse.ch/downloads/ipblocklist_recommended_mcafee.txt",
+              "https://feodotracker.abuse.ch/downloads/ipblocklist_recommended_paloalto.txt",
+              "https://feodotracker.abuse.ch/downloads/ipblocklist_recommended.txt",
+              "https://feodotracker.abuse.ch/downloads/ipblocklist.txt",
+              "https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.txt",
+      "pack": ["scams & phishing", "vanity"]
+    },
     {
       "vname": "Malicious domains (Sophos Labs)",
       "format": "domains",
