@@ -147,11 +147,11 @@
       "pack": ["adult"]
     },
     {
-      "vname": "Adult Lite (Energized)",
+      "vname": "Adult (Chad Mayfield)",
       "format": "domains",
       "group": "ParentalControl",
-      "subg": "Energized",
-      "url": "https://block.energized.pro/extensions/porn-lite/formats/domains.txt",
+      "subg": "",
+      "url": "https://raw.githubusercontent.com/chadmayfield/my-pihole-blocklists/master/lists/pi_blocklist_porn_top1m.list",
       "pack": ["adult"]
     },
     {
