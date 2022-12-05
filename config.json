@@ -841,10 +841,11 @@
     },
     {
       "vname": "AdGuard DNS filters",
-      "format": "abp",
+      "format": "abp, domains",
       "group": "Privacy",
       "subg": "",
-      "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
+      "url": ["https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
+              https://raw.githubusercontent.com/AdguardTeam/cname-trackers/master/combined_disguised_trackers_justdomains.txt"],
       "pack": ["liteprivacy"]
     },
     {
@@ -1569,14 +1570,6 @@
       "subg": "The Block List Project",
       "url": "https://blocklistproject.github.io/Lists/alt-version/tracking-nl.txt",
       "pack": ["spyware"]
-    },
-    {
-      "vname": "Disguised Third-Party Trackers (NextDNS)",
-      "format": "domains",
-      "group": "Privacy",
-      "subg": "TrackingDomains",
-      "url": "https://raw.githubusercontent.com/nextdns/cname-cloaking-blocklist/master/domains",
-      "pack": []
     }
   ]
 }
