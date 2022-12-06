@@ -744,6 +744,16 @@
       "pack": ["scams & phishing"]
     },
     {
+      "vname": "Phishing (red.flag)",
+      "group": "Security",
+      "subg": "red.flag_List",
+      "format": ["domains", "domains" "domains"],
+      "url": ["https://securereload.tech/Phishing/Lists/Latest/",
+              "https://dl.red.flag.domains/red.flag.domains.txt"
+              "https://dl.red.flag.domains/red.flag.domains_fr.txt"],
+      "pack": ["scams & phishing"]
+    },    
+    {
       "vname": "hole.cert.pl",
       "format": "domains",
       "group": "Security",
