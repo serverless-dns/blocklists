@@ -39,7 +39,7 @@ where,
     2. `url`
         - a non-empty string or a list of strings, points to urls where the blocklists exists.
         - should be a well-formed http url; example: `https://fanboy.co.nz/r/fanboy-ultimate.txt`,
-          or a list of well-formed http urls `["https://url1...", "https://url2..."]
+          or a list of well-formed http urls `["https://url1...", "https://url2..."]`.
 4. Characteristics
     1. `pack`
         - an array of strings, tags the blocklists into an overarching category.
@@ -54,10 +54,10 @@ where,
           for `Security` is `2` (*extreme*) on `spyware` blocks, but `0` (*lite*) on  `privacy` blocks.
         - empty only if `pack` is empty.
 
-Submit a pull-request of your changes to have it considered for an inclusion in the *default* RethinkDNS implementation of both [the client](https://rethinkfirewall.com/) and [the resolver](https://rethinkdns.com/).
+Submit a pull-request of your changes to have it considered for an inclusion in the *default* Rethink DNS implementation of both [the client](https://rethinkfirewall.com/) and [the resolver](https://rethinkdns.com/).
 
-### Development
-If you're a developer looking to experiment with the code-base or generate your own compressed blocklist, read on.
+### Developing
+If you're a developer looking to experiment with the code-base or generate your own compressed blocklist:
 
 1. Download blocklists.
     ```python
