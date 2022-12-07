@@ -812,10 +812,8 @@
       "vname": "Malicious domains (Sophos Labs)",
       "group": "Security",
       "subg": "Sophos",
-      "format": ["domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malicious_domains.txt",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Scam"],
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malicious_domains.txt",
       "pack": ["scams & phishing"],
       "level": [0]
     },
