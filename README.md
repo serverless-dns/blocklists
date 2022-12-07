@@ -1,7 +1,7 @@
 A collection of DNS-based blocklists that can be set at [rethinkdns/configure](https://rethinkdns.com/configure) for use with any DNS over HTTPS or DNS over TLS client, like the [RethinkDNS + Firewall](https://github.com/celzero/rethink-app/) app for Android. As of Dec 2022, 194 blocklists are ingested with ~13.5 million domain names.
 
 ### Add a new blocklist
-Fork and edit [config.json](https://github.dev/serverless-dns/rethink-blocklist-metadata/blob/main/config.json). Then, add a new entry at the **bottom** of the json file, as its *last* entry:
+Fork and edit [config.json](https://github.dev/serverless-dns/rethink-blocklist-metadata/blob/main/config.json). Then, add a new entry (if not already present) at the **bottom** of the json file, as its *last* entry:
 
 ```json
     {

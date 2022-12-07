@@ -58,11 +58,11 @@ jobs:
     - name: 🐉 Setup python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.9.6'
+        python-version: '3.x'
     - name: ⭕ Setup node
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '19'
     - name: ⏳ Make swap
       run: |
           free -hm
