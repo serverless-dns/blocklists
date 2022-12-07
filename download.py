@@ -18,7 +18,7 @@ import aiohttp
 
 supportedFormats = {"domains", "hosts", "abp", "wildcard"}
 
-keyFormat = {"vname", "format", "group", "subg", "url", "pack"}
+keyFormat = {"vname", "format", "group", "subg", "url", "pack", "level"}
 configFileLocation = os.environ.get("BLCONFIG")
 configDict = {}
 
