@@ -43,7 +43,7 @@ where,
 4. Characteristics
     1. `pack`
         - an array of strings, tags the blocklists into an overarching category.
-        - some of the categories are `spam`, `spyware`, `malware`, `scams & phising`, `adult`, `drugs`, `gambling`,
+        - some of the categories are `spam`, `spyware`, `malware`, `scams & phishing`, `adult`, `drugs`, `gambling`,
           `social-media`, `smart-tv`, `games`, `shopping`, `dating`, `vanity`, `facebook`, `google`, `amazon`,
           `vpn & proxies`, `url-shorteners`, `privacy` etc.
         - may be empty.
