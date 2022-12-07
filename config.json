@@ -1544,8 +1544,10 @@
       "vname": "Xiaomi",
       "group": "Privacy",
       "subg": "Native",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi",
+        "https://github.com/unknownFalleN/xiaomi-dns-blocklist/blob/master/xiaomi_dns_block.lst"],
       "pack": [],
       "level": []
     },
