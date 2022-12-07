@@ -4,13 +4,15 @@
       "vname": "Prevent bypass",
       "group": "ParentalControl",
       "subg": "BypassMethods",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/bypass-methods",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/bypass-methods",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Tunnels"],
       "pack": ["vpn & proxies"],
-      "level": [0]
+      "level": [1]
     },
     {
-      "vname": "Safesearch-only",
+      "vname": "Safe Search Only",
       "group": "ParentalControl",
       "subg": "SafeSearch",
       "format": "domains",
@@ -22,8 +24,10 @@
       "vname": "Dating (Olbat)",
       "group": "ParentalControl",
       "subg": "Olbat",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/dating/domains",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/dating/domains",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Dating"],
       "pack": ["dating"],
       "level": [0]
     },
@@ -165,13 +169,15 @@
       "level": [0]
     },
     {
-      "vname": "Adult Lite (Energized)",
+      "vname": "Adult (ShadowWhisperer)",
       "group": "ParentalControl",
       "subg": "Energized",
-      "format": "domains",
-      "url": "https://block.energized.pro/extensions/porn-lite/formats/domains.txt",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://block.energized.pro/extensions/porn-lite/formats/domains.txt",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Adult"],
       "pack": ["adult"],
-      "level": [1]
+      "level": [2]
     },
     {
       "vname": "Social networks (Olbat)",
@@ -300,11 +306,13 @@
       "level": [0]
     },
     {
-      "vname": "Facebook Messenger",
+      "vname": "Messengers",
       "group": "ParentalControl",
       "subg": "Services",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/messenger",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/messenger",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Chat"],
       "pack": ["socialmedia"],
       "level": [1]
     },
@@ -489,11 +497,13 @@
       "level": [0, 2]
     },
     {
-      "vname": "Adblock Nocoin List (hoshsadiq)",
+      "vname": "NoCoin (hoshsadiq)",
       "group": "Security",
       "subg": "Cryptojacking",
-      "format": "hosts",
-      "url": "https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt",
+      "format": ["hosts", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Cryptocurrency"],
       "pack": ["crypto"],
       "level": [0]
     },
@@ -638,8 +648,10 @@
       "vname": "Child Protection (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock"],
       "pack": ["vanity", "adult"],
       "level": [2, 2]
     },
@@ -713,7 +725,7 @@
       "format": "domains",
       "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
       "pack": ["scams & phishing"],
-      "level": [2]
+      "level": [1]
     },
     {
       "vname": "Ransomware and malware (kriskintel)",
@@ -723,7 +735,7 @@
       "url": ["https://kriskintel.com/feeds/ktip_malicious_domains.txt",
               "https://kriskintel.com/feeds/ktip_ransomware_feeds.txt"],
       "pack": ["scams & phishing"],
-      "level": [2]
+      "level": [0]
     },
     {
       "vname": "Toxic domains (stopforumspam.com)",
@@ -794,25 +806,29 @@
               "https://securereload.tech/Phishing/Lists/Latest/",
               "https://dl.red.flag.domains/red.flag.domains_fr.txt"],
       "pack": ["scams & phishing", "vanity"],
-      "level": [2, 2]
+      "level": [1, 2]
     },
     {
       "vname": "Malicious domains (Sophos Labs)",
       "group": "Security",
       "subg": "Sophos",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malicious_domains.txt",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malicious_domains.txt",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Scam"],
       "pack": ["scams & phishing"],
       "level": [0]
     },
     {
-      "vname": "Malware domains (Sophos Labs)",
+      "vname": "Scamware",
       "group": "Security",
-      "subg": "Sophos",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malware_domains.txt",
-      "pack": ["scams & phishing", "malware"],
-      "level": [1, 0]
+      "subg": "ShadowWhisperer",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malware_domains.txt",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Scam"],
+      "pack": ["scams & phishing"],
+      "level": [2]
     },
     {
       "vname": "Covid List (rescure and kriskintel)",
@@ -853,11 +869,13 @@
       "level": [1]
     },
     {
-      "vname": "Affiliate and Tracking (NextDNS)",
+      "vname": "Affiliate & Tracking",
       "group": "Privacy",
       "subg": "TrackingDomains",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/UrlShortener"],
       "pack": ["url-shorteners"],
       "level": [0]
     },
@@ -1271,8 +1289,10 @@
       "vname": "Ads & Tracking (Lighswitch05)",
       "group": "Privacy",
       "subg": "Lighswitch05",
-      "format": "hosts",
-      "url": "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt",
+      "format": ["hosts", "domains"],
+      "url": [
+        "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Bloat"],
       "pack": ["extremeprivacy"],
       "level": [2]
     },
@@ -1488,10 +1508,12 @@
       "vname": "Apple",
       "group": "Privacy",
       "subg": "Hagezi",
-      "format": "wildcard",
-      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.apple.txt",
+      "format": ["wildcard", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.apple.txt",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Apple"],
       "pack": ["apple"],
-      "level": [0]
+      "level": [1]
     },
     {
       "vname": "Huawei",
@@ -1762,9 +1784,20 @@
       "vname": "Tracking (The Block List Project)",
       "group": "Privacy",
       "subg": "The Block List Project",
-      "format": "domains",
-      "url": "https://blocklistproject.github.io/Lists/alt-version/tracking-nl.txt",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://blocklistproject.github.io/Lists/alt-version/tracking-nl.txt",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Tracking"],
       "pack": ["spyware"],
+      "level": [2]
+    },
+    {
+      "vname": "Microsoft",
+      "group": "ParentalControl",
+      "subg": "Services",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Microsoft",
+      "pack": ["microsoft"],
       "level": [2]
     }
   ]
