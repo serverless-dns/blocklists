@@ -33,11 +33,14 @@ where,
 6. `pack`
     * an array of strings, tags the blocklists into an overarching category.
     * some of the categories are `spam`, `spyware`, `malware`, `scams & phising`, `adult`, `drugs`, `gambling`,
-      `social-media`, `smart-tv`, `games`, `shopping`, `dating`, `vanity`, `facebook`, `google`, `amazon` etc.
+      `social-media`, `smart-tv`, `games`, `shopping`, `dating`, `vanity`, `facebook`, `google`, `amazon`,
+      `vpn & proxies`, `url-shorteners`, `privacy` etc.
     * this array can be left empty.
 7. `level`
-    * an array of numbers, one per pack
-    * denotes the severity of the blocking (`0` for *lite*, `1` for *aggressive*, `2` for *extreme*).
+    * an array of numbers, one per pack.
+    * denotes an arbitrary calibration of the severity of the blocklist for a given pack, that is (`0` for
+      *lite*, `1` for *aggressive*, `2` for *extreme*); for example, `NSO + others (Amnesty)` blocklist
+      for `Security` is `2` (*extreme*) on `spyware` blocks, but `0` (*lite*) on  `privacy` blocks.
     * empty only if `pack` is empty.
 
 Submit a pull-request of your changes to have it considered for an inclusion in the *default* RethinkDNS implementation of both [the client](https://rethinkfirewall.com/) and [the resolver](https://rethinkdns.com/).
