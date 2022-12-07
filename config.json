@@ -549,8 +549,8 @@
       "vname": "KADHosts (PolishFiltersTeam)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": "hosts",
-      "url": "https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/FiltersHeroes/KADhosts/master/KADomains.txt",
       "pack": ["malware"],
       "level": [1]
     },
@@ -686,8 +686,8 @@
       "vname": "Malware (DandelionSprout)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": "hosts",
-      "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareDomains.txt",
       "pack": ["malware"],
       "level": [1]
     },
