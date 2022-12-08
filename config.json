@@ -1798,6 +1798,15 @@
       "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Microsoft",
       "pack": ["microsoft"],
       "level": [2]
+    },
+    {
+      "vname": "AdGuard Home Compilation List (DandelionSprout)",
+      "group": "Privacy",
+      "subg": "",
+      "format": "abp",
+      "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/AdGuard%20Home%20Compilation%20List/AdGuardHomeCompilationList.txt",
+      "pack": ["aggressiveprivacy"],
+      "level": [1]
     }
   ]
 }
