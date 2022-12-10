@@ -611,7 +611,7 @@
     {
       "vname": "Malware (Mitchell Krogza)",
       "group": "Security",
-      "subg": "BaddBoyz",
+      "subg": "",
       "format": "hosts",
       "url": "https://raw.githubusercontent.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites/master/hosts",
       "pack": ["scams & phishing"],
@@ -649,9 +649,8 @@
       "group": "Security",
       "subg": "RPiList",
       "format": ["domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock"],
+      "url": ["https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
+              "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock"],
       "pack": ["vanity", "adult"],
       "level": [2, 2]
     },
@@ -822,9 +821,8 @@
       "group": "Security",
       "subg": "ShadowWhisperer",
       "format": ["domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malware_domains.txt",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Scam"],
+      "url": ["https://raw.githubusercontent.com/sophoslabs/covid-iocs/master/malware_domains.txt",
+              "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Scam"],
       "pack": ["scams & phishing"],
       "level": [2]
     },
@@ -871,9 +869,8 @@
       "group": "Privacy",
       "subg": "TrackingDomains",
       "format": ["domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/UrlShortener"],
+      "url": ["https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains",
+              "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/UrlShortener"],
       "pack": ["url-shorteners"],
       "level": [0]
     },
@@ -1288,9 +1285,8 @@
       "group": "Privacy",
       "subg": "Lighswitch05",
       "format": ["hosts", "domains"],
-      "url": [
-        "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Bloat"],
+      "url": ["https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt",
+              "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Bloat"],
       "pack": ["extremeprivacy"],
       "level": [2]
     },
@@ -1508,9 +1504,8 @@
       "group": "Privacy",
       "subg": "Hagezi",
       "format": ["wildcard", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.apple.txt",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Apple"],
+      "url": ["https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.apple.txt",
+              "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Apple"],
       "pack": ["apple"],
       "level": [1]
     },
@@ -1555,9 +1550,8 @@
       "group": "Privacy",
       "subg": "Native",
       "format": ["domains", "wildcard"],
-      "url": [
-        "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/windows",
-        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.winoffice.txt"],
+      "url": ["https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/windows",
+              "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.winoffice.txt"],
       "pack": ["windows"],
       "level": [1]
     },
@@ -1566,9 +1560,8 @@
       "group": "Privacy",
       "subg": "Native",
       "format": ["domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi",
-        "https://github.com/unknownFalleN/xiaomi-dns-blocklist/blob/master/xiaomi_dns_block.lst"],
+      "url": ["https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi",
+              "https://github.com/unknownFalleN/xiaomi-dns-blocklist/blob/master/xiaomi_dns_block.lst"],
       "pack": [],
       "level": []
     },
@@ -1784,9 +1777,8 @@
       "group": "Privacy",
       "subg": "The Block List Project",
       "format": ["domains", "domains"],
-      "url": [
-        "https://blocklistproject.github.io/Lists/alt-version/tracking-nl.txt",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Tracking"],
+      "url": ["https://blocklistproject.github.io/Lists/alt-version/tracking-nl.txt",
+              "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Tracking"],
       "pack": ["spyware"],
       "level": [2]
     },
