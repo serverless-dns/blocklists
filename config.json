@@ -692,6 +692,18 @@
       "level": [1]
     },
     {
+      "vname": "Malware (DandelionSprout IDNHomographProtectionTotal, IDNHomographProtection-USLatinTLDsOnly, DummyList, AntiFaviconList)",
+      "group": "Security",
+      "subg": "ThreatIntelligence",
+      "format": ["abp" , "abp" , "abp" , "abp"],
+      "url": ["https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Special%20security%20lists/DummyList.txt",
+        "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Special%20security%20lists/IDNHomographProtection-USLatinTLDsOnly.txt",
+        "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Special%20security%20lists/IDNHomographProtectionTotal.txt",
+        "https://github.com/DandelionSprout/adfilt/blob/master/Special%20security%20lists/AntiFaviconList.txt"], 
+      "pack": ["malware"],
+      "level": [1]
+    },
+    {
       "vname": "Malware (azorult-tracker.net)",
       "group": "Security",
       "subg": "ThreatIntelligence",
