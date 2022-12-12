@@ -969,6 +969,15 @@
       "level": [0]
     },
     {
+      "vname": "EasyList Anti",
+      "group": "Privacy",
+      "subg": "EasyList",
+      "format": "abp",
+      "url": "https://raw.github.com/reek/anti-adblock-killer/master/anti-adblock-killer-filters.txt",
+      "pack": ["liteprivacy"],
+      "level": [0]
+    },
+    {
       "vname": "Anti Ad",
       "group": "Privacy",
       "subg": "",
