@@ -171,11 +171,12 @@
     {
       "vname": "Adult (ShadowWhisperer)",
       "group": "ParentalControl",
-      "subg": "Energized",
+      "subg": "",
       "format": ["domains", "domains"],
       "url": [
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Adult",
         "https://block.energized.pro/extensions/porn-lite/formats/domains.txt",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Adult"],
+        "https://raw.githubusercontent.com/chadmayfield/my-pihole-blocklists/master/lists/pi_blocklist_porn_top1m.list"],
       "pack": ["adult"],
       "level": [2]
     },
