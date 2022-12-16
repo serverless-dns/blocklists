@@ -764,11 +764,13 @@
       "level": [0]
     },
     {
-      "vname": "Toxic domains (stopforumspam.com)",
+      "vname": "Toxic (StopForumSpam + PupFilter)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": "domains",
-      "url": "https://www.stopforumspam.com/downloads/toxic_domains_whole.txt",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://www.stopforumspam.com/downloads/toxic_domains_whole.txt",
+        "https://malware-filter.gitlab.io/malware-filter/pup-filter-domains.txt"],
       "pack": ["spam"],
       "level": [2]
     },
