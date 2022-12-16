@@ -695,13 +695,13 @@
       "level": [0]
     },
     {
-      "vname": "Spyware (Chris Buijs)",
+      "vname": "Scamware (The Block List Project)",
       "group": "Security",
-      "subg": "ThreatIntelligence",
+      "subg": "The Block List Project",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/cbuijs/shallalist/master/spyware/domains",
-      "pack": ["dead"],
-      "level": []
+      "url": "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt",
+      "pack": ["scams & phishing"],
+      "level": [2]
     },
     {
       "vname": "Malware (mypdns.org)",
