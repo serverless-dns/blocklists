@@ -786,13 +786,13 @@
       "level": []
     },
     {
-      "vname": "Malware Wastedlocker (rescure.fruxlabs.com)",
+      "vname": "Global Anti-Scam (Inversion)",
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": "domains",
-      "url": "https://rescure.fruxlabs.com/malware/wastedlocker.txt",
-      "pack": ["dead"],
-      "level": []
+      "url": "https://raw.githubusercontent.com/elliotwutingfeng/GlobalAntiScamOrg-blocklist/main/global-anti-scam-org-scam-urls-pihole.txt",
+      "pack": ["scams & phishing"],
+      "level": [1]
     },
     {
       "vname": "Threats and IoCs",
