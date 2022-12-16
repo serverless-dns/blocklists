@@ -664,10 +664,15 @@
       "vname": "Child Protection (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": ["domains", "domains"],
+      "format": ["domains", "domains", "hosts", "hosts", "hosts", "hosts", "hosts"],
       "url": [
         "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock"],
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock",
+        "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/hosts.txt",
+        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/weapons.txt",
+        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/religion.txt",
+        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/porn_strict.txt",
+        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/drugs.txt"],
       "pack": ["vanity", "adult"],
       "level": [2, 2]
     },
