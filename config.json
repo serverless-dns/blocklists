@@ -657,8 +657,7 @@
       "url": [
         "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/malware",
         "https://dl.red.flag.domains/red.flag.domains.txt",
-        "https://dl.red.flag.domains/red.flag.domains_fr.txt",
-        "https://securereload.tech/Phishing/Lists/Latest/"],
+        "https://dl.red.flag.domains/red.flag.domains_fr.txt"],
       "pack": ["malware"],
       "level": [1]
     },
