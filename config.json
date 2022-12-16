@@ -21,9 +21,9 @@
       "level": []
     },
     {
-      "vname": "Dating (Olbat)",
+      "vname": "Dating (Olbat + ShadowWhisperer)",
       "group": "ParentalControl",
-      "subg": "Olbat",
+      "subg": "",
       "format": ["domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/dating/domains",
@@ -32,11 +32,13 @@
       "level": [0]
     },
     {
-      "vname": "Gambling (Olbat)",
+      "vname": "Gambling (Olbat + hostsVN)",
       "group": "ParentalControl",
-      "subg": "Olbat",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/gambling/domains",
+      "subg": "",
+      "format": ["domains", "hosts"],
+      "url": [
+        "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/gambling/domains",
+        "https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/gambling/hosts"],
       "pack": ["gambling"],
       "level": [0]
     },
