@@ -1694,8 +1694,10 @@
       "vname": "Vaping (The Block List Project)",
       "group": "ParentalControl",
       "subg": "The Block List Project",
-      "format": "domains",
-      "url": "https://blocklistproject.github.io/Lists/alt-version/vaping-nl.txt",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://blocklistproject.github.io/Lists/alt-version/vaping-nl.txt",
+        "https://raw.githubusercontent.com/jaykepeters/Blocklists/master/Drugs/vaping.txt"],
       "pack": ["drugs"],
       "level": [1]
     },
