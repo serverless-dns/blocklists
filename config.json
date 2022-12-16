@@ -1185,13 +1185,13 @@
       "level": []
     },
     {
-      "vname": "Energized Spark",
+      "vname": "Blocklist (ph00lt0)",
       "group": "Privacy",
-      "subg": "Energized",
-      "format": "domains",
-      "url": "https://block.energized.pro/spark/formats/domains.txt",
-      "pack": [],
-      "level": []
+      "subg": "Privacy",
+      "format": "hosts",
+      "url": "https://raw.githubusercontent.com/ph00lt0/blocklists/master/pihole-blocklist.txt",
+      "pack": ["aggressiveprivacy"],
+      "level": [1]
     },
     {
       "vname": "Ultimate (Hagezi)",
