@@ -638,8 +638,10 @@
       "vname": "Threats (Hagezi)",
       "group": "Security",
       "subg": "Hagezi",
-      "format": "wildcard",
-      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
+      "format": ["wildcard", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
+        "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt"],
       "pack": ["spam", "malware", "crypto", "scams & phishing"],
       "level": [2, 2, 2, 2]
     },
