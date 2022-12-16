@@ -92,9 +92,10 @@
       "vname": "Streaming Video",
       "group": "ParentalControl",
       "subg": "RPiList",
-      "format": ["domains", "domains"],
+      "format": ["domains", "domains", "domains"],
       "url": ["https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video",
-              "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Streaming"],
+              "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Streaming",
+              "https://raw.githubusercontent.com/nickspaargaren/no-amazon/master/categories/amazonvideoparsed"],
       "pack": ["streams", "piracy"],
       "level": [0, 2]
     },
@@ -204,8 +205,10 @@
       "vname": "Amazon",
       "group": "ParentalControl",
       "subg": "Services",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/amazon",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/nickspaargaren/no-amazon/master/amazon.txt",
+        "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/amazon"],
       "pack": ["shopping", "amazon"],
       "level": [0, 0]
     },
@@ -440,8 +443,10 @@
       "vname": "Twitch",
       "group": "ParentalControl",
       "subg": "Services",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitch",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitch",
+        "https://raw.githubusercontent.com/nickspaargaren/no-amazon/master/categories/twitchparsed"],
       "pack": ["gaming", "streams", "amazon"],
       "level": [1, 0, 2]
     },
