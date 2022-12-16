@@ -178,7 +178,7 @@
       "vname": "Adult (ShadowWhisperer)",
       "group": "ParentalControl",
       "subg": "",
-      "format": ["domains", "domains"],
+      "format": ["domains", "domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Adult",
         "https://block.energized.pro/extensions/porn-lite/formats/domains.txt",
@@ -1192,7 +1192,7 @@
       "subg": "Energized",
       "format": "domains",
       "url": "https://block.energized.pro/bluGo/formats/domains.txt",
-      "pack": [""],
+      "pack": [],
       "level": []
     },
     {
@@ -1247,7 +1247,7 @@
       "format": "abp",
       "url": "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
       "pack": ["spam"],
-      "level": []
+      "level": [2]
     },
     {
       "vname": "Fanboy's Enhanced Tracking List",
