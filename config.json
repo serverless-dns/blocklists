@@ -653,8 +653,10 @@
       "vname": "Malware (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/malware",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/malware",
+        "https://dl.red.flag.domains/red.flag.domains.txt"],
       "pack": ["malware"],
       "level": [1]
     },
