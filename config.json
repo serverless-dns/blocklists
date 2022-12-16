@@ -1194,13 +1194,13 @@
       "level": []
     },
     {
-      "vname": "Energized Ultimate",
+      "vname": "Ultimate (Hagezi)",
       "group": "Privacy",
-      "subg": "Energized",
-      "format": "domains",
-      "url": "https://block.energized.pro/ultimate/formats/domains.txt",
-      "pack": ["dead"],
-      "level": []
+      "subg": "Hagezi",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/ultimate.txt",
+      "pack": ["extremeprivacy"],
+      "level": [2]
     },
     {
       "vname": "Energized Xtreme Extension",
