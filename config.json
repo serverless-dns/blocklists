@@ -653,10 +653,12 @@
       "vname": "Malware (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": ["domains", "domains"],
+      "format": ["domains", "domains", "domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/malware",
-        "https://dl.red.flag.domains/red.flag.domains.txt"],
+        "https://dl.red.flag.domains/red.flag.domains.txt",
+        "https://dl.red.flag.domains/red.flag.domains_fr.txt",
+        "https://securereload.tech/Phishing/Lists/Latest/"],
       "pack": ["malware"],
       "level": [1]
     },
