@@ -89,6 +89,8 @@ function loadConfig(blocklistConfigPath) {
         // list of "blocklist packs" these lists belong to
         // may be an emtpy array, or a list of packs
         pack: entry.pack,
+        // aggressiveness levels of a blocklist given a list of packs
+        level: entry.level,
         // total entries in the list (populated by trie)
         entries: 0,
       };
