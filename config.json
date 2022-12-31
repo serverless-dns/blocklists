@@ -1420,7 +1420,7 @@
       "group": "Privacy",
       "subg": "Quidsup",
       "format": "domains",
-      "url": "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt",
+      "url": "https://gitlab.com/quidsup/notrack-blocklists/-/raw/master/trackers.list",
       "pack": ["aggressiveprivacy", "spyware"],
       "level": [1, 1]
     },
@@ -1483,7 +1483,7 @@
       "group": "Privacy",
       "subg": "",
       "format": "hosts",
-      "url": "https://someonewhocares.org/hosts/hosts",
+      "url": "https://someonewhocares.org/hosts/zero/hosts",
       "pack": ["liteprivacy"],
       "level": [0]
     },
