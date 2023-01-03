@@ -578,8 +578,8 @@
       "vname": "NoTrack Annoyance",
       "group": "Security",
       "subg": "Quidsup",
-      "format": "hosts",
-      "url": "https://gitlab.com/quidsup/notrack-annoyance-blocklist/-/raw/master/annoyance.hosts",
+      "format": "domains",
+      "url": "https://gitlab.com/quidsup/notrack-annoyance-blocklist/-/raw/master/annoyance.list",
       "pack": ["spam"],
       "level": [0]
     },
@@ -1291,8 +1291,8 @@
       "vname": "HostsVN",
       "group": "Privacy",
       "subg": "",
-      "format": "hosts",
-      "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/wildcard.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
