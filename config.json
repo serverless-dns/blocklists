@@ -1322,8 +1322,8 @@
       "url": [
         "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt",
         "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Bloat"],
-      "pack": ["extremeprivacy"],
-      "level": [2]
+      "pack": ["aggressiveprivacy"],
+      "level": [1]
     },
     {
       "vname": "Tracking Aggressive (Lightswitch05)",
@@ -1331,8 +1331,8 @@
       "subg": "Lighswitch05",
       "format": "hosts",
       "url": "https://www.github.developerdan.com/hosts/lists/tracking-aggressive-extended.txt",
-      "pack": ["aggressiveprivacy"],
-      "level": [1]
+      "pack": ["extremeprivacy"],
+      "level": [2]
     },
     {
       "vname": "Liste AR",
@@ -1493,8 +1493,8 @@
       "subg": "",
       "format": "hosts",
       "url": "https://raw.githubusercontent.com/vdbhb59/hosts/master/hosts",
-      "pack": ["extremeprivacy"],
-      "level": [2]
+      "pack": ["aggressiveprivacy"],
+      "level": [1]
     },
     {
       "vname": "Personal Blocklist (WaLLy3K)",
@@ -1777,8 +1777,8 @@
       "subg": "",
       "format": "hosts",
       "url": "https://raw.githubusercontent.com/mtxadmin/ublock/master/hosts.txt",
-      "pack": ["aggressiveprivacy"],
-      "level": [1]
+      "pack": ["extremeprivacy"],
+      "level": [2]
     },
     {
       "vname": "URL Shorteners (PeterDaveHello)",
@@ -1825,7 +1825,7 @@
         "https://blocklistproject.github.io/Lists/alt-version/tracking-nl.txt",
         "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Tracking"],
       "pack": ["spyware"],
-      "level": [2]
+      "level": [1]
     },
     {
       "vname": "Microsoft",
