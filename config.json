@@ -1179,22 +1179,22 @@
       "level": [0]
     },
     {
-      "vname": "Energized Basic",
+      "vname": "Multi (Hagezi)",
       "group": "Privacy",
-      "subg": "Energized",
-      "format": "domains",
-      "url": "https://block.energized.pro/basic/formats/domains.txt",
-      "pack": ["dead"],
-      "level": []
+      "subg": "Hagezi",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/multi.txt",
+      "pack": ["liteprivacy"],
+      "level": [0]
     },
     {
-      "vname": "Energized Blu Go",
+      "vname": "Light (Hagezi)",
       "group": "Privacy",
-      "subg": "Energized",
-      "format": "domains",
-      "url": "https://block.energized.pro/bluGo/formats/domains.txt",
-      "pack": [],
-      "level": []
+      "subg": "Hagezi",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/light.txt",
+      "pack": ["liteprivacy"],
+      "level": [0]
     },
     {
       "vname": "Energized Blu",
