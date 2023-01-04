@@ -1052,13 +1052,13 @@
       "level": [2]
     },
     {
-      "vname": "Cameleon",
+      "vname": "OISD (basic)",
       "group": "Privacy",
-      "subg": "",
-      "format": "hosts",
-      "url": "http://sysctl.org/cameleon/hosts",
-      "pack": ["dead"],
-      "level": []
+      "subg": "OISD",
+      "format": "wildcard",
+      "url": "https://dblw.oisd.nl/basic/",
+      "pack": ["liteprivacy"],
+      "level": [0]
     },
     {
       "vname": "Polish filters (Certyficate.IT)",
