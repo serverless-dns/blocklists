@@ -84,10 +84,10 @@ function loadConfig(blocklistConfigPath) {
         subg: entry.subg,
         // the urls where these lists are hosted
         url: entry.url,
-        // hosts, abp, domain, or wildcard
+        // hosts, abp, domains, or wildcard
         format: entry.format,
         // list of "blocklist packs" these lists belong to
-        // may be an emtpy array, or a list of packs
+        // may be an empty array, or a list of packs
         pack: entry.pack,
         // aggressiveness levels of a blocklist given a list of packs
         level: entry.level,
