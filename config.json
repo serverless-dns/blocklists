@@ -579,8 +579,8 @@
       "vname": "NoTrack Annoyance",
       "group": "Security",
       "subg": "Quidsup",
-      "format": "hosts",
-      "url": "https://gitlab.com/quidsup/notrack-annoyance-blocklist/-/raw/master/annoyance.hosts",
+      "format": "domains",
+      "url": "https://gitlab.com/quidsup/notrack-annoyance-blocklist/-/raw/master/annoyance.list",
       "pack": ["spam"],
       "level": [0]
     },
@@ -666,11 +666,11 @@
       "vname": "Child Protection (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": ["domains", "domains", "hosts", "hosts", "hosts", "hosts", "hosts"],
+      "format": ["domains", "domains", "domains", "hosts", "hosts", "hosts", "hosts"],
       "url": [
         "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
         "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock",
-        "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/hosts.txt",
+        "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/domainsonly",
         "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/weapons.txt",
         "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/religion.txt",
         "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/porn_strict.txt",
@@ -1053,13 +1053,13 @@
       "level": [2]
     },
     {
-      "vname": "Cameleon",
+      "vname": "OISD (basic)",
       "group": "Privacy",
-      "subg": "",
-      "format": "hosts",
-      "url": "http://sysctl.org/cameleon/hosts",
-      "pack": [],
-      "level": []
+      "subg": "OISD",
+      "format": "wildcard",
+      "url": "https://dblw.oisd.nl/basic/",
+      "pack": ["liteprivacy"],
+      "level": [0]
     },
     {
       "vname": "Polish filters (Certyficate.IT)",
@@ -1137,8 +1137,8 @@
       "vname": "EasyList Hebrew",
       "group": "Privacy",
       "subg": "EasyList",
-      "format": "abp",
-      "url": "https://raw.githubusercontent.com/easylist/EasyListHebrew/master/EasyListHebrew.txt",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/easylist/EasyListHebrew/master/adguard_hosts.txt",
       "pack": ["extremeprivacy"],
       "level": [2]
     },
@@ -1292,8 +1292,8 @@
       "vname": "HostsVN",
       "group": "Privacy",
       "subg": "",
-      "format": "hosts",
-      "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/wildcard.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
