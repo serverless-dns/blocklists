@@ -654,7 +654,7 @@
       "vname": "Malware (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": ["domains", "domains", "domains", "domains"],
+      "format": ["domains", "domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/malware",
         "https://dl.red.flag.domains/red.flag.domains.txt",
@@ -1065,7 +1065,7 @@
       "vname": "Polish filters (Certyficate.IT)",
       "group": "Privacy",
       "subg": "",
-      "format": "hosts",
+      "format": "domains",
       "url": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/hostfile.txt",
       "pack": [],
       "level": []
