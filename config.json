@@ -861,9 +861,8 @@
       "vname": "Covid List (rescure and kriskintel)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": ["domains", "domains"],
-      "url": ["https://rescure.fruxlabs.com/covid.txt",
-              "https://kriskintel.com/feeds/ktip_covid_domains.txt"],
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/cbuijs/accomplist/master/covid/optimized.black.domain.list",
       "pack": ["scams & phishing"],
       "level": [2]
     },
@@ -1119,8 +1118,8 @@
       "vname": "EasyList Dutch",
       "group": "Privacy",
       "subg": "EasyList",
-      "format": "abp",
-      "url": "https://easylist-downloads.adblockplus.org/easylistdutch.txt",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/cbuijs/accomplist/master/dutch/optimized.black.domain.list",
       "pack": ["extremeprivacy"],
       "level": [2]
     },
@@ -1164,8 +1163,8 @@
       "vname": "EasyList Basic",
       "group": "Privacy",
       "subg": "EasyList",
-      "format": "abp",
-      "url": "https://easylist-downloads.adblockplus.org/easylist.txt",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/cbuijs/accomplist/master/easylist/optimized.black.domain.list",
       "pack": ["liteprivacy"],
       "level": [0]
     },
