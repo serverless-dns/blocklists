@@ -1179,7 +1179,7 @@
       "level": [0]
     },
     {
-      "vname": "Multi (Hagezi)",
+      "vname": "Normal (Hagezi)",
       "group": "Privacy",
       "subg": "Hagezi",
       "format": "wildcard",
@@ -1301,8 +1301,8 @@
       "vname": "Hu Filter",
       "group": "Privacy",
       "subg": "",
-      "format": "abp",
-      "url": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter.txt",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter-dns.txt",
       "pack": [],
       "level": []
     },
