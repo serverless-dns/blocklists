@@ -315,7 +315,7 @@
       "level": [0]
     },
     {
-      "vname": "Messengers",
+      "vname": "Chat Services",
       "group": "ParentalControl",
       "subg": "Services",
       "format": ["domains", "domains"],
@@ -639,7 +639,7 @@
       "level": [2]
     },
     {
-      "vname": "Threats (Hagezi)",
+      "vname": "Threat Intelligence Feeds(Hagezi)",
       "group": "Security",
       "subg": "Hagezi",
       "format": ["wildcard", "domains", "hosts"],
@@ -648,7 +648,7 @@
         "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt",
         "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/phishing.txt"],
       "pack": ["spam", "malware", "crypto", "scams & phishing"],
-      "level": [2, 2, 2, 2]
+      "level": [2, 2, 2]
     },
     {
       "vname": "Malware (RPi)",
@@ -828,7 +828,7 @@
       "vname": "Threats and IoCs",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": ["domains", "domains", "hosts", "hosts", "domains", "domains"],
+      "format": ["domains", "domains", "hosts", "hosts", "domains"],
       "url": ["https://www.botvrij.eu/data/ioclist.domain.raw",
               "https://www.botvrij.eu/data/ioclist.hostname.raw",
               "https://threatfox.abuse.ch/downloads/hostfile",
