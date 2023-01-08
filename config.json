@@ -315,13 +315,11 @@
       "level": [0]
     },
     {
-      "vname": "Chat Services",
+      "vname": "Messenger",
       "group": "ParentalControl",
       "subg": "Services",
-      "format": ["domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/messenger",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Chat"],
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/messenger",
       "pack": ["socialmedia"],
       "level": [1]
     },
