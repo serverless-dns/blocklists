@@ -1061,7 +1061,7 @@
       "vname": "Polish filters (Certyficate.IT)",
       "group": "Privacy",
       "subg": "",
-      "format": "domains",
+      "format": "hosts",
       "url": "https://raw.githubusercontent.com/MajkiIT/polish-ads-filter/master/polish-pihole-filters/hostfile.txt",
       "pack": [],
       "level": []
