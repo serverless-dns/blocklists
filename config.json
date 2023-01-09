@@ -637,13 +637,12 @@
       "level": [2]
     },
     {
-      "vname": "Threat Intelligence Feeds(Hagezi)",
+      "vname": "Threat Intelligence Feeds (Hagezi)",
       "group": "Security",
       "subg": "Hagezi",
-      "format": ["wildcard", "domains", "hosts"],
+      "format": ["wildcard", "hosts"],
       "url": [
         "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
-        "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt",
         "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/phishing.txt"],
       "pack": ["spam", "malware", "crypto", "scams & phishing"],
       "level": [2, 2, 2]
@@ -733,7 +732,7 @@
       "level": [0]
     },
     {
-      "vname": "Bad sites (phishing.mailscanner.info)",
+      "vname": "Bad Sites (phishing.mailscanner.info)",
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": ["domains", "domains", "hosts"],
@@ -745,7 +744,7 @@
       "level": [2]
     },
     {
-      "vname": "Scam and phishing (infinitytec)",
+      "vname": "Scam and Phishing (infinitytec)",
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": "domains",
@@ -754,7 +753,7 @@
       "level": [1]
     },
     {
-      "vname": "Ransomware and malware (kriskintel)",
+      "vname": "Ransomware and Malware (kriskintel)",
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": ["domains", "domains"],
@@ -793,7 +792,7 @@
       "level": [2]
     },
     {
-      "vname": "NSO + others (Amnesty)",
+      "vname": "NSO + Others (Amnesty)",
       "group": "Security",
       "subg": "Amnesty",
       "format": ["domains", "domains", "domains", "hosts"],
