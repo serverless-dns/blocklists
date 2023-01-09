@@ -918,7 +918,7 @@
       "subg": "1Hosts",
       "format": "domains",
       "url": "https://raw.githubusercontent.com/badmojr/1Hosts/master/mini/domains.wildcards",
-      "pack": [""],
+      "pack": ["liteprivacy"],
       "level": [0]
     },
     {
@@ -932,11 +932,11 @@
     },
     {
       "vname": "iVoid (intr0)",
-      "group": "Privacy",
-      "subg": "",
+      "group": "Security",
+      "subg": "ThreatIntelligence",
       "format": "hosts",
       "url": "https://gitlab.com/intr0/iVOID.GitLab.io/raw/master/iVOID.hosts",
-      "pack": ["aggressiveprivacy"],
+      "pack": ["scams & phishing"],
       "level": [1]
     },
     {
