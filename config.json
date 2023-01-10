@@ -1593,10 +1593,10 @@
       "vname": "Xiaomi",
       "group": "Privacy",
       "subg": "Native",
-      "format": ["domains", "domains"],
+      "format": ["domains", "wildcard"],
       "url": [
         "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi",
-        "https://github.com/unknownFalleN/xiaomi-dns-blocklist/blob/master/xiaomi_dns_block.lst"],
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.huawei.txt"],
       "pack": [],
       "level": []
     },
