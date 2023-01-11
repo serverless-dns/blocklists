@@ -1548,8 +1548,8 @@
       "group": "Privacy",
       "subg": "Native",
       "format": ["domains", "wildcard"],
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/huawei",
-             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.huawei.txt",
+      "url": ["https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/huawei",
+             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.huawei.txt"],
       "pack": [],
       "level": []
     },
