@@ -643,7 +643,8 @@
       "format": ["wildcard", "hosts"],
       "url": [
         "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/phishing.txt"],
+        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/phishing.txt",
+        "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt"],
       "pack": ["spam", "malware", "crypto", "scams & phishing"],
       "level": [2, 2, 2]
     },
@@ -1546,8 +1547,9 @@
       "vname": "Huawei",
       "group": "Privacy",
       "subg": "Native",
-      "format": "domains",
+      "format": ["domains", "wildcard"],
       "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/huawei",
+             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.huawei.txt",
       "pack": [],
       "level": []
     },
@@ -1593,10 +1595,10 @@
       "vname": "Xiaomi",
       "group": "Privacy",
       "subg": "Native",
-      "format": ["domains", "wildcard"],
+      "format": ["domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi",
-        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.huawei.txt"],
+        "https://github.com/unknownFalleN/xiaomi-dns-blocklist/blob/master/xiaomi_dns_block.lst"],
       "pack": [],
       "level": []
     },
