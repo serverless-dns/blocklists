@@ -640,7 +640,7 @@
       "vname": "Threat Intelligence Feeds (Hagezi)",
       "group": "Security",
       "subg": "Hagezi",
-      "format": ["wildcard", "hosts"],
+      "format": ["wildcard", "hosts", "domains"],
       "url": [
         "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
         "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/phishing.txt",
