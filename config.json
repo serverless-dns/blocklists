@@ -640,11 +640,11 @@
       "vname": "Threat Intelligence Feeds (Hagezi)",
       "group": "Security",
       "subg": "Hagezi",
-      "format": ["wildcard", "hosts", "domains"],
+      "format": ["wildcard", "domains", "hosts"],
       "url": [
         "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/phishing.txt",
-        "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt"],
+        "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt",
+        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/phishing.txt"],
       "pack": ["spam", "malware", "crypto", "scams & phishing"],
       "level": [2, 2, 2]
     },
