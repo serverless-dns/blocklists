@@ -267,7 +267,7 @@ async def downloadFile(sess, urls, formats, download_loc_filename):
             blocklist = await requestApi(sess, url)
         except Exception as e:
             print(f"\nErr downloading {url}\n{e}")
-            return "retry"
+            continue
 
         if format == "wildcard":
             domains = extractDomains(blocklist, r'(^\*\.)([a-zA-Z0-9][a-zA-Z0-9-_.]+)', 1)
@@ -292,6 +292,7 @@ async def downloadFile(sess, urls, formats, download_loc_filename):
     if not ret:
         print("\n\nDownloaded file empty or has no entries\n")
         print(url + " : " + download_loc_filename + "\n")
+        return "retry"
 
     return ret
 
@@ -338,17 +339,17 @@ def main():
         print("Saved blocklists: " + str(savedUrl))
         print("Difference: " + str(totalUrl - savedUrl))
 
-        if len(retryBlocklist) >= 1:
-            print("\n\nretry download blocklist\n\n")
+        if len(retryBlocklist) > 0:
+            print("\n\nretry downloading blocklist\n\n")
             tmpRetryBlocklist = retryBlocklist
             retryBlocklist = list()
             asyncio.run(startDownloads(tmpRetryBlocklist))
 
-        if len(blocklistNotDownloaded) >= 1:
+        if len(blocklistNotDownloaded) > 0:
             print("\n\nFailed download list:")
             print("\n".join(blocklistNotDownloaded))
 
-        if len(retryBlocklist) >= 1:
+        if len(retryBlocklist) > 0:
             print("\nError downloading blocklist\n")
             for value in retryBlocklist:
                 if not ('ignore' in value["pack"]):
