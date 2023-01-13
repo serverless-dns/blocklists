@@ -1774,8 +1774,8 @@
       "vname": "Yet another small uBlock filter list",
       "group": "Privacy",
       "subg": "",
-      "format": "hosts",
-      "url": "https://raw.githubusercontent.com/mtxadmin/ublock/master/hosts.txt",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/mtxadmin/ublock/master/hosts_blokada.txt",
       "pack": ["extremeprivacy"],
       "level": [2]
     },
