@@ -54,9 +54,9 @@ jobs:
     timeout-minutes: 100
     steps:
     - name: 📃 Checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3.3.0
     - name: 🐉 Setup python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4.5.0
       with:
         python-version: '3.x'
     - name: ⭕ Setup node
