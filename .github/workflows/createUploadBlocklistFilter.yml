@@ -60,7 +60,7 @@ jobs:
       with:
         python-version: '3.x'
     - name: ⭕ Setup node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v3.6.0
       with:
         node-version: '19'
     - name: ⏳ Make swap
