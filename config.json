@@ -798,13 +798,13 @@
       "level": [0, 0]
     },
     {
-      "vname": "Malware Ekans (rescure.me)",
+      "vname": "Malicious domains (cbuijs)",
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": "domains",
-      "url": "https://rescure.fruxlabs.com/malware/ekans.txt",
-      "pack": ["dead"],
-      "level": []
+      "url": "https://raw.githubusercontent.com/cbuijs/accomplist/master/malicious-dom/plain.black.domain.list",
+      "pack": ["malware"],
+      "level": [2]
     },
     {
       "vname": "Global Anti-Scam (Inversion)",
