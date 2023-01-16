@@ -293,8 +293,7 @@ async def downloadFile(sess, urls, formats, download_loc_filename):
     ret = writeFile(download_loc_filename, txt)
 
     if not ret:
-        print("\n\nDownloaded file empty or has no entries\n")
-        print(url + " : " + download_loc_filename + "\n")
+        print(f"\n\nretry: 0 entries {url} : {download_loc_filename}\n")
         return "retry"
 
     return ret
