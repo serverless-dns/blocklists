@@ -25,6 +25,9 @@ configDict = {}
 totalUrl = 0
 savedUrl = 0
 
+# docs.aiohttp.org/en/stable/client_quickstart.html#aiohttp-client-timeouts
+ctimeout = aiohttp.ClientTimeout(total=180, sock_connect=15, sock_read=30)
+
 blocklistfiles = os.environ.get("INDIR")
 blocklistDownloadRetry = 3
 blocklistNotDownloaded = list()
@@ -121,7 +124,7 @@ async def startDownloads(configList):
     fileName = ""
 
     # realpython.com/python-concurrency/#asyncio-version
-    async with aiohttp.ClientSession() as sess:
+    async with aiohttp.ClientSession(timeout=ctimeout) as sess:
         tasks = []
         for value in configList:
             # index is the original order of the blocklist before shuffling
