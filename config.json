@@ -791,8 +791,8 @@
               "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-10-07_donot/domains.txt",
               "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-12-16_cytrox/domains.txt",
               "https://raw.githubusercontent.com/guardicore/labs_campaigns/master/Autodiscover/autodiscover-tlds.txt"],
-      "pack": ["spyware", "liteprivacy"],
-      "level": [2, 0]
+      "pack": ["spyware", "malware"],
+      "level": [0, 0]
     },
     {
       "vname": "Malware Ekans (rescure.me)",
