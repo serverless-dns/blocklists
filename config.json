@@ -175,10 +175,9 @@
       "vname": "Adult (ShadowWhisperer)",
       "group": "ParentalControl",
       "subg": "",
-      "format": ["domains", "domains", "domains"],
+      "format": ["domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Adult",
-        "https://block.energized.pro/extensions/porn-lite/formats/domains.txt",
         "https://raw.githubusercontent.com/chadmayfield/my-pihole-blocklists/master/lists/pi_blocklist_porn_top1m.list"],
       "pack": ["adult"],
       "level": [2]
@@ -1188,8 +1187,8 @@
       "subg": "Energized",
       "format": "domains",
       "url": "https://block.energized.pro/blu/formats/domains.txt",
-      "pack": ["aggressiveprivacy"],
-      "level": [1]
+      "pack": ["dead"],
+      "level": []
     },
     {
       "vname": "Energized Regional Extension",
@@ -1219,13 +1218,13 @@
       "level": [2]
     },
     {
-      "vname": "Energized Xtreme Extension",
+      "vname": "The Quantum Blocklist (AI)",
       "group": "Privacy",
-      "subg": "Energized",
+      "subg": "",
       "format": "domains",
-      "url": "https://block.energized.pro/extensions/xtreme/formats/domains.txt",
-      "pack": ["dead"],
-      "level": []
+      "url": "https://raw.githubusercontent.com/cbuijs/accomplist/master/quantum/plain.black.domain.list",
+      "pack": ["extremeprivacy"],
+      "level": [2]
     },
     {
       "vname": "Fanboy's Annoyance List",
@@ -1745,13 +1744,13 @@
       "level": [1]
     },
     {
-      "vname": "Energized Unified",
+      "vname": "Blocklists (cbuijs)",
       "group": "Privacy",
-      "subg": "Energized",
+      "subg": "",
       "format": "domains",
-      "url": "https://block.energized.pro/unified/formats/domains.txt",
-      "pack": ["dead"],
-      "level": []
+      "url": "https://github.com/cbuijs/accomplist/raw/master/deugniets/plain.black.domain.list",
+      "pack": ["extremeprivacy"],
+      "level": [2]
     },
     {
       "vname": "Yet another small uBlock filter list",
