@@ -1043,7 +1043,7 @@
       "group": "Privacy",
       "subg": "OISD",
       "format": "wildcard",
-      "url": "https://dblw.oisd.nl/basic/",
+      "url": "https://github.com/sjhgvr/oisd/raw/main/dblw_basic.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
@@ -1594,7 +1594,7 @@
       "group": "Privacy",
       "subg": "OISD",
       "format": "wildcard",
-      "url": "https://dblw.oisd.nl/",
+      "url": "https://github.com/sjhgvr/oisd/raw/main/dblw_full.txt",
       "pack": ["recommended", "liteprivacy"],
       "level": [0, 0]
     },
@@ -1740,7 +1740,7 @@
       "group": "ParentalControl",
       "subg": "OISD",
       "format": "wildcard",
-      "url": "https://dblw.oisd.nl/nsfwbig/",
+      "url": "https://github.com/sjhgvr/oisd/raw/main/dblw_nsfwbig.txt",
       "pack": ["adult"],
       "level": [1]
     },
