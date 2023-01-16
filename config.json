@@ -163,13 +163,13 @@
       "level": [0]
     },
     {
-      "vname": "Adult (Mahadi Xion)",
+      "vname": "Adult (cbuijs)",
       "group": "ParentalControl",
       "subg": "",
-      "format": "hosts",
-      "url": "https://raw.githubusercontent.com/mhxion/pornaway/master/hosts/porn_sites.txt",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/cbuijs/accomplist/master/family-safe/plain.black.domain.list",
       "pack": ["adult"],
-      "level": [0]
+      "level": [1]
     },
     {
       "vname": "Adult (ShadowWhisperer)",
