@@ -528,8 +528,10 @@
       "vname": "DoH VPN Proxy Bypass (Hagezi)",
       "group": "ParentalControl",
       "subg": "Hagezi",
-      "format": "wildcard",
-      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh-vpn-proxy-bypass.txt",
+      "format": ["wildcard", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh-vpn-proxy-bypass.txt",
+        "https://raw.githubusercontent.com/cbuijs/accomplist/master/doh/deugniets.black.list"],
       "pack": ["vpn & proxies"],
       "level": [1]
     },
@@ -689,8 +691,10 @@
       "vname": "Scamware (The Block List Project)",
       "group": "Security",
       "subg": "The Block List Project",
-      "format": "domains",
-      "url": "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt",
+        "https://github.com/cbuijs/accomplist/raw/master/typosquat/plain.black.domain.list"],
       "pack": ["scams & phishing"],
       "level": [2]
     },
@@ -1394,8 +1398,10 @@
       "vname": "No Google",
       "group": "Privacy",
       "subg": "",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nickspaargaren/no-google/master/wildcards-domains",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/nickspaargaren/no-google/master/wildcards-domains",
+        "https://raw.githubusercontent.com/cbuijs/accomplist/master/chris/google-doms.list"],
       "pack": ["google"],
       "level": [0]
     },
