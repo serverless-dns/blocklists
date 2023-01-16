@@ -688,15 +688,15 @@
       "level": [0]
     },
     {
-      "vname": "Scamware (The Block List Project)",
+      "vname": "Typosquatting Protection",
       "group": "Security",
-      "subg": "The Block List Project",
+      "subg": "ThreatIntelligence",
       "format": ["domains", "domains"],
       "url": [
-        "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt",
-        "https://github.com/cbuijs/accomplist/raw/master/typosquat/plain.black.domain.list"],
+        "https://github.com/cbuijs/accomplist/raw/master/typosquat/plain.black.domain.list",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Typo"],
       "pack": ["scams & phishing"],
-      "level": [2]
+      "level": [1]
     },
     {
       "vname": "Malware (DandelionSprout)",
@@ -738,11 +738,13 @@
       "level": [2]
     },
     {
-      "vname": "Scam and Phishing (infinitytec)",
+      "vname": "Scams and Phishing (infinitytec)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
+        "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt"],
       "pack": ["scams & phishing"],
       "level": [1]
     },
