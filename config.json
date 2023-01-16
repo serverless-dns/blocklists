@@ -853,7 +853,7 @@
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/cbuijs/accomplist/master/covid/optimized.black.domain.list",
+      "url": "https://raw.githubusercontent.com/cbuijs/accomplist/master/covid/plain.black.domain.list",
       "pack": ["scams & phishing"],
       "level": [2]
     },
