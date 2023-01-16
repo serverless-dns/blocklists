@@ -92,11 +92,10 @@
       "vname": "Streaming Video",
       "group": "ParentalControl",
       "subg": "RPiList",
-      "format": ["domains", "domains", "domains", "hosts"],
+      "format": ["domains", "domains", "domains"],
       "url": ["https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video",
               "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Streaming",
-              "https://raw.githubusercontent.com/nickspaargaren/no-amazon/master/categories/amazonvideoparsed",
-              "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/movies.txt"],
+              "https://raw.githubusercontent.com/nickspaargaren/no-amazon/master/categories/amazonvideoparsed"],
       "pack": ["streams", "piracy"],
       "level": [0, 2]
     },
@@ -122,10 +121,8 @@
       "vname": "Torrent Websites",
       "group": "ParentalControl",
       "subg": "Piracy",
-      "format": ["hosts", "domains"],
-      "url": [
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/torrent.txt",
-        "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-websites"],
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/torrent-websites",
       "pack": ["torrents", "piracy"],
       "level": [0, 2]
     },
@@ -640,11 +637,10 @@
       "vname": "Threat Intelligence Feeds (Hagezi)",
       "group": "Security",
       "subg": "Hagezi",
-      "format": ["wildcard", "domains", "hosts"],
+      "format": ["wildcard", "domains"],
       "url": [
         "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
-        "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt",
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/phishing.txt"],
+        "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt"],
       "pack": ["spam", "malware", "crypto", "scams & phishing"],
       "level": [2, 2, 2]
     },
@@ -664,15 +660,11 @@
       "vname": "Child Protection (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": ["domains", "domains", "domains", "hosts", "hosts", "hosts", "hosts"],
+      "format": ["domains", "domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
         "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock",
-        "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/domainsonly",
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/weapons.txt",
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/religion.txt",
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/porn_strict.txt",
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/drugs.txt"],
+        "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/domainsonly"],
       "pack": ["vanity", "adult"],
       "level": [2, 2]
     },
@@ -704,13 +696,11 @@
       "level": [2]
     },
     {
-      "vname": "Malware (mypdns.org)",
+      "vname": "Malware (DandelionSprout)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": ["hosts", "domains"],
-      "url": [
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/malicious.txt",
-        "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareDomains.txt"],
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareDomains.txt",
       "pack": ["malware"],
       "level": [1]
     },
@@ -896,9 +886,8 @@
       "vname": "Affiliate & Tracking",
       "group": "Privacy",
       "subg": "TrackingDomains",
-      "format": ["hosts", "domains", "domains"],
+      "format": ["domains", "domains"],
       "url": [
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/redirector.txt",
         "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains",
         "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/UrlShortener"],
       "pack": ["url-shorteners"],
@@ -1260,10 +1249,8 @@
       "vname": "Ads (The Block List Project)",
       "group": "Privacy",
       "subg": "The Block List Project",
-      "format": ["domains", "hosts"],
-      "url": [
-        "https://blocklistproject.github.io/Lists/alt-version/ads-nl.txt",
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/adware.txt"],
+      "format": "domains",
+      "url": "https://blocklistproject.github.io/Lists/alt-version/ads-nl.txt",
       "pack": ["extremeprivacy"],
       "level": [2]
     },
@@ -1696,10 +1683,8 @@
       "vname": "Cryptojacking (The Block List Project)",
       "group": "Security",
       "subg": "The Block List Project",
-      "format": ["domains", "hosts"],
-      "url": [
-        "https://blocklistproject.github.io/Lists/alt-version/crypto-nl.txt",
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/coinblocker.txt"],
+      "format": "domains",
+      "url": "https://blocklistproject.github.io/Lists/alt-version/crypto-nl.txt",
       "pack": ["crypto"],
       "level": [2]
     },
@@ -1745,10 +1730,8 @@
       "vname": "Gambling (The Block List Project)",
       "group": "ParentalControl",
       "subg": "The Block List Project",
-      "format": ["domains", "hosts"],
-      "url": [
-        "https://blocklistproject.github.io/Lists/alt-version/gambling-nl.txt",
-        "https://mypdns.org/my-privacy-dns/hosts/-/raw/master/download/gambling.txt"],
+      "format": "domains",
+      "url": "https://blocklistproject.github.io/Lists/alt-version/gambling-nl.txt",
       "pack": ["gambling"],
       "level": [2]
     },
