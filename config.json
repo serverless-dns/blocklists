@@ -1822,6 +1822,15 @@
       "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Microsoft",
       "pack": ["microsoft"],
       "level": [2]
+    },
+    {
+      "vname": "Vanity Top-Level Domains (cbuijs)",
+      "group": "Security",
+      "subg": "ThreatIntelligence",
+      "format": "domains",
+      "url": "https://github.com/cbuijs/accomplist/raw/master/tlds/plain.black.domain.list",
+      "pack": ["spam"],
+      "level": [2]
     }
   ]
 }
