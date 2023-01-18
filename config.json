@@ -649,11 +649,8 @@
       "vname": "Malware (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": ["domains", "domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/malware",
-        "https://dl.red.flag.domains/red.flag.domains.txt",
-        "https://dl.red.flag.domains/red.flag.domains_fr.txt"],
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/malware",
       "pack": ["malware"],
       "level": [1]
     },
@@ -1833,6 +1830,15 @@
       "url": "https://github.com/cbuijs/accomplist/raw/master/tlds/plain.black.domain.list",
       "pack": ["spam"],
       "level": [2]
+    },
+    {
+      "vname": "Red Flag Domains",
+      "group": "Security",
+      "subg": "",
+      "format": "domains",
+      "url": "https://dl.red.flag.domains/red.flag.domains.txt",
+      "pack": ["scams & phishing", "spam", "malware"],
+      "level": [1, 1, 1]
     }
   ]
 }
