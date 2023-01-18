@@ -30,7 +30,6 @@ ctimeout = aiohttp.ClientTimeout(total=180, sock_connect=15, sock_read=30)
 
 blocklistfiles = os.environ.get("INDIR")
 blocklistDownloadRetry = 3
-blocklistNotDownloaded = list()
 retryBlocklist = list()
 
 def validFormat(fmt):
@@ -112,56 +111,6 @@ def validConfig():
 
     return True
 
-
-async def startDownloads(configList):
-    global totalUrl
-    global blocklistNotDownloaded
-    global retryBlocklist
-    global blocklistfiles
-
-    downloadLoc = ""
-    totalUrl = 0
-    fileName = ""
-
-    # realpython.com/python-concurrency/#asyncio-version
-    async with aiohttp.ClientSession(timeout=ctimeout) as sess:
-        tasks = []
-        for value in configList:
-            # index is the original order of the blocklist before shuffling
-            fileName = str(value["index"]).lower()
-
-            if value["subg"].strip() == "":
-                downloadLoc = "./" + blocklistfiles + "/" + value[
-                    "group"].strip() + "/" + fileName + ".txt"
-            else:
-                downloadLoc = "./" + blocklistfiles + "/" + value[
-                    "group"].strip() + "/" + value["subg"].strip(
-                    ) + "/" + fileName + ".txt"
-
-            if ('dead' in value["pack"]):
-                totalUrl = totalUrl + 1
-                print("\n" + str(totalUrl) + "; dead -> skip download")
-                print(f"{value}\n")
-                continue
-
-            task = asyncio.ensure_future(
-                downloadFile(sess, value["url"], value["format"], downloadLoc))
-            tasks.append(task)
-
-        # docs.python.org/3/library/asyncio-task.html#running-tasks-concurrently
-        rets = await asyncio.gather(*tasks, return_exceptions=True)
-
-        for ret in rets:
-            if (not ret) and ('ignore' in value["pack"]):
-                blocklistNotDownloaded.append(str(value))
-            elif ret == "retry":
-                retryBlocklist.append(value)
-            elif not ret:
-                print(f"\n\nblocklist not downloaded:\n{value}\n")
-                # FIXME: continue with warning
-                # sys.exit("")
-
-
 def createFileNotExist(filename):
     if not os.path.exists(os.path.dirname(filename)):
         try:
@@ -242,12 +191,16 @@ class DownloadFailed(Exception):
 
 
 # realpython.com/async-io-python/
-async def downloadFile(sess, urls, formats, download_loc_filename):
+async def downloadFile(sess, urls, formats, packtypes, download_loc_filename):
     global totalUrl
     totalUrl = totalUrl + 1
-    ret = True
-    blocklist = True
-    txt = ""
+    ret = False
+    alldomains = ""
+
+    if ('dead' in packtypes or 'ignore' in packtypes):
+        totalUrl = totalUrl + 1
+        print(f"\n {str(totalUrl)}; dead / ignore -> skip download {urls}\n")
+        return ret
 
     if type(urls) is str:
         ul = list()
@@ -264,39 +217,92 @@ async def downloadFile(sess, urls, formats, download_loc_filename):
     for i in range(0, len(urls)):
         url = urls[i]
         format = formats[i]
+        domains = ""
+        response = ""
         print(f"\tprocessing {url} of type {format}\n")
 
-        try:
-            blocklist = await requestApi(sess, url)
-        except Exception as e:
-            print(f"\nErr downloading {url}\n{e}")
-            continue
+        for i in range(0, 2):
+            try:
+                response = await requestApi(sess, url)
+                break
+            except Exception as e:
+                print(f"\nretry_once: Err downloading {url}\n{e}")
+                continue
 
         if format == "wildcard":
-            domains = extractDomains(blocklist, r'(^\*\.)([a-zA-Z0-9][a-zA-Z0-9-_.]+)', 1)
+            domains = extractDomains(response, r'(^\*\.)([a-zA-Z0-9][a-zA-Z0-9-_.]+)', 1)
         elif format == "domains":
-            domains = extractDomains(blocklist, r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)', 0)
+            domains = extractDomains(response, r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)', 0)
         elif format == "hosts":
             domains = extractDomains(
-                blocklist, r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)', 3)
+                response, r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)', 3)
         elif format == "abp":
-            domains = extractDomains(blocklist,
+            domains = extractDomains(response,
             r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',
             1)
 
         if (len(domains) > 0):
-            if (len(txt) > 0):
-                txt = txt + "\n" + domains
+            if (len(alldomains) > 0):
+                alldomains = alldomains + "\n" + domains
             else:
-                txt = domains
+                alldomains = domains
 
-    ret = writeFile(download_loc_filename, txt)
+    ret = writeFile(download_loc_filename, alldomains)
 
     if not ret:
-        print(f"\n\nretry: 0 entries {url} : {download_loc_filename}\n")
+        print(f"\nretry: 0 entries {urls} : {download_loc_filename}\n")
         return "retry"
 
     return ret
+
+async def startDownloads(configList):
+    global retryBlocklist
+    global blocklistfiles
+
+    downloadLoc = ""
+    fileName = ""
+
+    if blocklistfiles is None:
+        print(f"env var blocklistfiles is None; not downloading files")
+        return
+
+    # realpython.com/python-concurrency/#asyncio-version
+    async with aiohttp.ClientSession(timeout=ctimeout) as sess:
+        tasks = []
+        for value in configList:
+            # index is the original order of the blocklist before shuffling
+            fileName = str(value["index"]).lower()
+
+            if value["subg"].strip() == "":
+                downloadLoc = "./" + blocklistfiles + "/" + value[
+                    "group"].strip() + "/" + fileName + ".txt"
+            else:
+                downloadLoc = "./" + blocklistfiles + "/" + value[
+                    "group"].strip() + "/" + value["subg"].strip(
+                    ) + "/" + fileName + ".txt"
+
+            packtypes = value["pack"]
+            urls = value["url"]
+            fmt = value["format"]
+
+            task = asyncio.ensure_future(
+                downloadFile(sess, urls, fmt, packtypes, downloadLoc))
+            tasks.append(task)
+
+        # docs.python.org/3/library/asyncio-task.html#running-tasks-concurrently
+        rets = await asyncio.gather(*tasks, return_exceptions=True)
+
+        for i in range(0, len(rets)):
+            ret = rets[i]
+            val = configList[i]
+            if ret == "retry":
+                print (f"\nblocklist download failed:\n{val}\n")
+                retryBlocklist.append(val)
+            elif not ret:
+                print(f"\n\nblocklist ignored:\n{val}\n")
+            else:
+                # blocklist download & save successful
+                pass
 
 
 def loadBlocklistConfig():
@@ -304,7 +310,7 @@ def loadBlocklistConfig():
     global configDict
 
     try:
-        if os.path.isfile(configFileLocation):
+        if configFileLocation is not None and os.path.isfile(configFileLocation):
             with open(configFileLocation) as json_file:
                 configDict = json.load(json_file)
                 json_file.close()
@@ -322,7 +328,6 @@ def loadBlocklistConfig():
 def main():
     global totalUrl
     global savedUrl
-    global blocklistNotDownloaded
     global configDict
     global retryBlocklist
 
@@ -332,8 +337,6 @@ def main():
         print("Error loading config, download aborted.")
         sys.exit("")
 
-    tmpRetryBlocklist = list()
-    exitWithError = False
     if validConfig():
         asyncio.run(startDownloads(configDict["conf"]))
 
@@ -342,23 +345,15 @@ def main():
         print("Difference: " + str(totalUrl - savedUrl))
 
         if len(retryBlocklist) > 0:
-            print("\n\nretry downloading blocklist\n\n")
+            print("\n\nretry downloading blocklist\n")
             tmpRetryBlocklist = retryBlocklist
             retryBlocklist = list()
             asyncio.run(startDownloads(tmpRetryBlocklist))
 
-        if len(blocklistNotDownloaded) > 0:
-            print("\n\nFailed download list:")
-            print("\n".join(blocklistNotDownloaded))
-
         if len(retryBlocklist) > 0:
-            print("\nError downloading blocklist\n")
+            print("\nretries failed for\n")
             for value in retryBlocklist:
-                if not ('ignore' in value["pack"]):
-                    exitWithError = True
                 print(f"{value}\n")
-            if exitWithError:
-                sys.exit("")
     else:
         print("Validation Error")
         sys.exit("")
