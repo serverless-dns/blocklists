@@ -525,9 +525,9 @@
       "level": [2]
     },
     {
-      "vname": "DoH VPN Proxy Bypass (Hagezi)",
+      "vname": "DoH VPN Proxy Bypass",
       "group": "ParentalControl",
-      "subg": "Hagezi",
+      "subg": "BypassMethods",
       "format": ["wildcard", "domains"],
       "url": [
         "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh-vpn-proxy-bypass.txt",
@@ -1229,7 +1229,7 @@
       "subg": "",
       "format": "domains",
       "url": "https://raw.githubusercontent.com/cbuijs/accomplist/master/quantum/plain.black.domain.list",
-      "pack": ["extremeprivacy"],
+      "pack": ["ignore"],
       "level": [2]
     },
     {
@@ -1757,7 +1757,7 @@
       "subg": "",
       "format": "domains",
       "url": "https://github.com/cbuijs/accomplist/raw/master/deugniets/plain.black.domain.list",
-      "pack": ["extremeprivacy"],
+      "pack": ["ignore"],
       "level": [2]
     },
     {
