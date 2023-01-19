@@ -1,7 +1,7 @@
 {
   "conf": [
     {
-      "vname": "Prevent bypass",
+      "vname": "Prevent bypass (NextDNS + ShadowWhisperer)",
       "group": "ParentalControl",
       "subg": "BypassMethods",
       "format": ["domains", "domains"],
@@ -70,9 +70,9 @@
       "level": [0, 2]
     },
     {
-      "vname": "Proxies",
+      "vname": "Proxies (NextDNS + RPiList)",
       "group": "ParentalControl",
-      "subg": "RPiList",
+      "subg": "",
       "format": ["domains", "domains"],
       "url": ["https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/proxies",
               "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/proxies"],
@@ -89,9 +89,9 @@
       "level": [0, 2]
     },
     {
-      "vname": "Streaming Video",
+      "vname": "Streaming Video (NextDNS + RPiList + nickspaargaren)",
       "group": "ParentalControl",
-      "subg": "RPiList",
+      "subg": "Services",
       "format": ["domains", "domains", "domains"],
       "url": ["https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video",
               "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Streaming",
@@ -201,7 +201,7 @@
       "level": [1]
     },
     {
-      "vname": "Amazon",
+      "vname": "Amazon (nickspaargaren + NextDNS)",
       "group": "ParentalControl",
       "subg": "Services",
       "format": ["domains", "domains"],
@@ -437,7 +437,7 @@
       "level": [1]
     },
     {
-      "vname": "Twitch",
+      "vname": "Twitch (NextDNS + nickspaargaren)",
       "group": "ParentalControl",
       "subg": "Services",
       "format": ["domains", "domains"],
@@ -525,7 +525,7 @@
       "level": [2]
     },
     {
-      "vname": "DoH VPN Proxy Bypass",
+      "vname": "DoH VPN Proxy Bypass (Hagezi + cbuijs)",
       "group": "ParentalControl",
       "subg": "BypassMethods",
       "format": ["wildcard", "domains"],
@@ -685,7 +685,7 @@
       "level": [0]
     },
     {
-      "vname": "Typosquatting Protection",
+      "vname": "Typosquatting Protection (cbuijs + ShadowWhisperer)",
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": ["domains", "domains"],
@@ -1276,7 +1276,7 @@
     {
       "vname": "HostsVN",
       "group": "Privacy",
-      "subg": "",
+      "subg": "HostsVN",
       "format": "wildcard",
       "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/wildcard.txt",
       "pack": ["liteprivacy"],
@@ -1393,7 +1393,7 @@
       "level": [0]
     },
     {
-      "vname": "No Google",
+      "vname": "No Google (nickspaargaren + cbuijs)",
       "group": "Privacy",
       "subg": "",
       "format": ["domains", "domains"],
@@ -1494,7 +1494,7 @@
       "level": []
     },
     {
-      "vname": "Windows Telemetry",
+      "vname": "Windows Telemetry (crazy-max + RPiList)",
       "group": "Privacy",
       "subg": "WindowsSpyBlocker",
       "format": ["wildcard", "wildcard", "domains"],
@@ -1523,9 +1523,9 @@
       "level": [1]
     },
     {
-      "vname": "Apple",
+      "vname": "Apple (Hagezi + ShadowWhisperer)",
       "group": "Privacy",
-      "subg": "Hagezi",
+      "subg": "Native",
       "format": ["wildcard", "domains"],
       "url": [
         "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.apple.txt",
@@ -1534,7 +1534,7 @@
       "level": [1]
     },
     {
-      "vname": "Huawei",
+      "vname": "Huawei (NextDNS + Hagezi)",
       "group": "Privacy",
       "subg": "Native",
       "format": ["domains", "wildcard"],
@@ -1571,7 +1571,7 @@
       "level": []
     },
     {
-      "vname": "Windows",
+      "vname": "Windows (NextDNS + Hagezi)",
       "group": "Privacy",
       "subg": "Native",
       "format": ["domains", "wildcard"],
@@ -1701,7 +1701,7 @@
       "level": [2]
     },
     {
-      "vname": "Vaping (The Block List Project)",
+      "vname": "Vaping (The Block List Project + jaykepeters)",
       "group": "ParentalControl",
       "subg": "The Block List Project",
       "format": ["domains", "domains"],
