@@ -175,10 +175,8 @@
       "vname": "Adult (ShadowWhisperer)",
       "group": "ParentalControl",
       "subg": "",
-      "format": ["domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Adult",
-        "https://raw.githubusercontent.com/chadmayfield/my-pihole-blocklists/master/lists/pi_blocklist_porn_top1m.list"],
+      "format": ["domains"],
+      "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Adult",
       "pack": ["adult"],
       "level": [2]
     },
@@ -638,10 +636,8 @@
       "vname": "Threat Intelligence Feeds (Hagezi)",
       "group": "Security",
       "subg": "Hagezi",
-      "format": ["wildcard", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
-        "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt"],
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
       "pack": ["spam", "malware", "crypto", "scams & phishing"],
       "level": [2, 2, 2]
     },
@@ -658,11 +654,8 @@
       "vname": "Child Protection (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": ["domains", "domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock",
-        "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/domainsonly"],
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
       "pack": ["vanity", "adult"],
       "level": [2, 2]
     },
@@ -723,14 +716,12 @@
       "level": [0]
     },
     {
-      "vname": "Bad Sites (phishing.mailscanner.info)",
+      "vname": "Bad Sites (phishing.mailscanner.info + MalwareFilter)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": ["domains", "domains", "hosts"],
-      "url": [
-        "http://phishing.mailscanner.info/phishing.bad.sites.conf",
-        "https://malware-filter.gitlab.io/malware-filter/phishing-filter-domains.txt",
-        "https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/threat/hosts"],
+      "format": "domains",
+      "url": ["http://phishing.mailscanner.info/phishing.bad.sites.conf",
+              "https://malware-filter.gitlab.io/malware-filter/phishing-filter-domains.txt"],
       "pack": ["scams & phishing"],
       "level": [2]
     },
@@ -738,10 +729,8 @@
       "vname": "Scams and Phishing (infinitytec)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": ["domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
-        "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt"],
+    "format": "domains",
+      "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
       "pack": ["scams & phishing"],
       "level": [1]
     },
@@ -817,12 +806,14 @@
       "vname": "Threats and IoCs",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": ["domains", "domains", "hosts", "hosts", "domains"],
+      "format": ["domains", "domains", "hosts", "hosts", "domains", "domains", "domains", "hosts"],
       "url": ["https://www.botvrij.eu/data/ioclist.domain.raw",
               "https://www.botvrij.eu/data/ioclist.hostname.raw",
               "https://threatfox.abuse.ch/downloads/hostfile",
               "https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/master/src/hosts.txt",
-              "https://securereload.tech/Phishing/Lists/Latest/"],
+              "https://securereload.tech/Phishing/Lists/Latest/",
+              "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/domainsonly",
+              "https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/threat/hosts"],
       "pack": ["scams & phishing", "vanity"],
       "level": [1, 2]
     },
@@ -887,11 +878,9 @@
       "vname": "Affiliate & Tracking",
       "group": "Privacy",
       "subg": "TrackingDomains",
-      "format": ["domains", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/UrlShortener"],
-      "pack": ["url-shorteners"],
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains",
+      "pack": ["aggressiveprivacy"],
       "level": [0]
     },
     {
@@ -1130,13 +1119,14 @@
       "level": [2]
     },
     {
-      "vname": "EasyList Italy",
+      "vname": "Italy Lists (EasyList + Marco Acorte)",
       "group": "Privacy",
       "subg": "EasyList",
-      "format": "abp",
-      "url": "https://easylist-downloads.adblockplus.org/easylistitaly.txt",
-      "pack": ["extremeprivacy"],
-      "level": [2]
+      "format": ["abp", "domains"],
+      "url": ["https://easylist-downloads.adblockplus.org/easylistitaly.txt",
+              "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt"],
+      "pack": ["extremeprivacy", "spam"],
+      "level": [2, 2]
     },
     {
       "vname": "EasyList Lithuania",
@@ -1305,9 +1295,7 @@
       "group": "Privacy",
       "subg": "Lighswitch05",
       "format": ["hosts", "domains"],
-      "url": [
-        "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Bloat"],
+      "url": "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt",
       "pack": ["aggressiveprivacy"],
       "level": [1]
     },
@@ -1766,11 +1754,12 @@
       "level": [2]
     },
     {
-      "vname": "URL Shorteners (PeterDaveHello)",
+      "vname": "URL Shorteners (PeterDaveHello + ShadowWhisperer)",
       "group": "Security",
       "subg": "TrackingDomains",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/PeterDaveHello/url-shorteners/master/list",
+      "format": ["domains", "domains"],
+      "url": ["https://raw.githubusercontent.com/PeterDaveHello/url-shorteners/master/list",
+            "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/UrlShortener"],
       "pack": ["url-shorteners"],
       "level": [1]
     },
@@ -1828,6 +1817,33 @@
       "format": "domains",
       "url": "https://github.com/cbuijs/accomplist/raw/master/tlds/plain.black.domain.list",
       "pack": ["spam"],
+      "level": [2]
+    },
+    {
+      "vname": "NSFL (ShadowWhisperer)",
+      "group": "ParentalControl",
+      "subg": "ShadowWhisperer",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock",
+      "pack": ["adult"],
+      "level": [0]
+    },
+    {
+      "vname": "Bloat (ShadowWhisperer)",
+      "group": "Privacy",
+      "subg": "ShadowWhisperer",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Bloat",
+      "pack": ["extremeprivacy"],
+      "level": [2]
+    },
+    {
+      "vname": "Scamware (The Block List Project)",
+      "group": "Security",
+      "subg": "The Block List Project",
+      "format": "domains",
+      "url": "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt",
+      "pack": ["scams & phishing"],
       "level": [2]
     }
   ]
