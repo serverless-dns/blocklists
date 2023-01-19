@@ -726,11 +726,13 @@
       "level": [2]
     },
     {
-      "vname": "Scams and Phishing (infinitytec)",
+      "vname": "Scams and Phishing (infinitytec + TBLP)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-    "format": "domains",
-      "url": "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt",
+        "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt"],
       "pack": ["scams & phishing"],
       "level": [1]
     },
@@ -806,14 +808,13 @@
       "vname": "Threats and IoCs",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": ["domains", "domains", "hosts", "hosts", "domains", "domains", "domains", "hosts"],
+      "format": ["domains", "domains", "hosts", "hosts", "domains", "domains", "hosts"],
       "url": ["https://www.botvrij.eu/data/ioclist.domain.raw",
               "https://www.botvrij.eu/data/ioclist.hostname.raw",
               "https://threatfox.abuse.ch/downloads/hostfile",
               "https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/master/src/hosts.txt",
               "https://securereload.tech/Phishing/Lists/Latest/",
               "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/domainsonly",
-              "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt",
               "https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/threat/hosts"],
       "pack": ["scams & phishing", "vanity"],
       "level": [1, 2]
