@@ -175,7 +175,7 @@
       "vname": "Adult (ShadowWhisperer)",
       "group": "ParentalControl",
       "subg": "",
-      "format": ["domains"],
+      "format": "domains",
       "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Adult",
       "pack": ["adult"],
       "level": [2]
@@ -719,7 +719,7 @@
       "vname": "Bad Sites (phishing.mailscanner.info + MalwareFilter)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": "domains",
+      "format": ["domains", "domains"],
       "url": ["http://phishing.mailscanner.info/phishing.bad.sites.conf",
               "https://malware-filter.gitlab.io/malware-filter/phishing-filter-domains.txt"],
       "pack": ["scams & phishing"],
@@ -813,6 +813,7 @@
               "https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/master/src/hosts.txt",
               "https://securereload.tech/Phishing/Lists/Latest/",
               "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/domainsonly",
+              "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt",
               "https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/threat/hosts"],
       "pack": ["scams & phishing", "vanity"],
       "level": [1, 2]
@@ -1835,15 +1836,6 @@
       "format": "domains",
       "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Bloat",
       "pack": ["extremeprivacy"],
-      "level": [2]
-    },
-    {
-      "vname": "Scamware (The Block List Project)",
-      "group": "Security",
-      "subg": "The Block List Project",
-      "format": "domains",
-      "url": "https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt",
-      "pack": ["scams & phishing"],
       "level": [2]
     }
   ]
