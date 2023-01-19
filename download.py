@@ -230,7 +230,7 @@ async def downloadFile(sess, urls, formats, packtypes, download_loc_filename):
                 continue
 
         if format == "wildcard":
-            domains = extractDomains(response, r'(^\*\.)([a-zA-Z0-9][a-zA-Z0-9-_.]+)', 1)
+            domains = extractDomains(response, r'(^[\*\.]+([a-zA-Z0-9][a-zA-Z0-9-_.]+)', 1)
         elif format == "domains":
             domains = extractDomains(response, r'(^[a-zA-Z0-9][a-zA-Z0-9-_.]+)', 0)
         elif format == "hosts":
