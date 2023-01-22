@@ -1668,7 +1668,7 @@
       "format": "domains",
       "url": "https://blocklistproject.github.io/Lists/alt-version/torrent-nl.txt",
       "pack": ["torrents", "piracy"],
-      "level": [2, 2]
+      "level": [1, 1]
     },
     {
       "vname": "Drugs (The Block List Project)",
