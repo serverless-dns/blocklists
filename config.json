@@ -716,7 +716,7 @@
       "subg": "ThreatIntelligence",
       "format": "domains",
       "url": "https://azorult-tracker.net/api/list/domain?format=plain",
-      "pack": ["malware"],
+      "pack": ["dead"],
       "level": [1]
     },
     {
