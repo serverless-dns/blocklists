@@ -16,12 +16,12 @@ from urllib.parse import urlparse
 import asyncio
 import aiohttp
 
-supportedFormats = {"domains", "hosts", "abp", "wildcard"}
-
-keyFormat = {"vname", "format", "group", "subg", "url", "pack", "level"}
 configFileLocation = os.environ.get("BLCONFIG")
-configDict = {}
 
+supportedFormats = {"domains", "hosts", "abp", "wildcard"}
+keyFormat = {"vname", "format", "group", "subg", "url", "pack", "level", "index"}
+
+configDict = {}
 totalUrl = 0
 savedUrl = 0
 
@@ -50,9 +50,17 @@ def validConfig():
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
     for ent in configDict["conf"]:
+
+        # note down the order of the blocklist
+        ent["index"] = index
+        index = index + 1
+
+        if "dead" in ent["pack"] or "ignore" in ent["pack"]:
+            continue
+
         if len(ent) != len(keyFormat):
             print(f"Invalid entry {ent}")
-            print(f"Must contain vname {keyFormat}")
+            print(f"Must have {keyFormat}")
             return False
 
         if not keyFormat <= set(ent):
@@ -101,10 +109,6 @@ def validConfig():
         if ent["group"].strip() == "":
             print(f"Missing group {ent}")
             return False
-
-        # note down the order of the blocklist
-        ent["index"] = index
-        index = index + 1
 
     # shuffle to avoid errors due to rate limiting
     random.shuffle(configDict["conf"])
