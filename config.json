@@ -4,10 +4,19 @@
       "vname": "Prevent bypass",
       "group": "ParentalControl",
       "subg": "BypassMethods",
-      "format": ["domains", "domains"],
+      "format": ["domains", "domains", "domains", "domains", "domains",
+                 "domains", "domains", "domains", "wildcard", "domains"],
       "url": [
-        "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/bypass-methods",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Tunnels"],
+        "https://raw.githubusercontent.com/nextdns/dns-bypass-methods/main/apple-private-relay",
+        "https://raw.githubusercontent.com/nextdns/dns-bypass-methods/main/browsers",
+        "https://raw.githubusercontent.com/nextdns/dns-bypass-methods/main/encrypted-dns",
+        "https://raw.githubusercontent.com/nextdns/dns-bypass-methods/main/linux",
+        "https://raw.githubusercontent.com/nextdns/dns-bypass-methods/main/proxies",
+        "https://raw.githubusercontent.com/nextdns/dns-bypass-methods/main/tor",
+        "https://raw.githubusercontent.com/nextdns/dns-bypass-methods/main/vpn",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Tunnels",
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh-vpn-proxy-bypass.txt",
+        "https://raw.githubusercontent.com/cbuijs/accomplist/master/doh/deugniets.black.list"],
       "pack": ["vpn & proxies"],
       "level": [1]
     },
@@ -16,7 +25,7 @@
       "group": "ParentalControl",
       "subg": "SafeSearch",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/safesearch-not-supported",
+      "url": "https://raw.githubusercontent.com/nextdns/no-safesearch/main/domains",
       "pack": [],
       "level": []
     },
@@ -64,8 +73,10 @@
       "vname": "File hosting",
       "group": "ParentalControl",
       "subg": "Piracy",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/file-hosting",
+      "format": ["domains", "domains", "domains"],
+      "url": ["https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/file-hosting",
+              "https://raw.githubusercontent.com/nextdns/bin-domains/main/hostnames",
+              "https://raw.githubusercontent.com/nextdns/bin-domains/main/domains"],
       "pack": ["file-hosts", "piracy"],
       "level": [0, 2]
     },
@@ -194,7 +205,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/9gag",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/9gag",
       "pack": ["vanity"],
       "level": [1]
     },
@@ -205,7 +216,7 @@
       "format": ["domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/nickspaargaren/no-amazon/master/amazon.txt",
-        "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/amazon"],
+        "https://raw.githubusercontent.com/nextdns/services/main/services/amazon"],
       "pack": ["shopping", "amazon"],
       "level": [0, 0]
     },
@@ -214,7 +225,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/blizzard",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/blizzard",
       "pack": ["gaming"],
       "level": [0]
     },
@@ -223,7 +234,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/dailymotion",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/dailymotion",
       "pack": ["streams"],
       "level": [0]
     },
@@ -232,7 +243,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/discord",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/discord",
       "pack": ["socialmedia"],
       "level": [1]
     },
@@ -241,7 +252,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/disneyplus",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/disneyplus",
       "pack": ["streams"],
       "level": [1]
     },
@@ -250,7 +261,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/ebay",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/ebay",
       "pack": ["shopping"],
       "level": [0]
     },
@@ -259,7 +270,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/facebook",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/facebook",
       "pack": ["socialmedia", "facebook"],
       "level": [1, 0]
     },
@@ -268,7 +279,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/fortnite",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/fortnite",
       "pack": ["gaming"],
       "level": [0]
     },
@@ -277,7 +288,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/hulu",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/hulu",
       "pack": ["streams"],
       "level": [0]
     },
@@ -286,7 +297,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/imgur",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/imgur",
       "pack": ["vanity"],
       "level": [1]
     },
@@ -295,7 +306,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/instagram",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/instagram",
       "pack": ["socialmedia", "facebook"],
       "level": [1, 0]
     },
@@ -304,7 +315,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/leagueoflegends",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/leagueoflegends",
       "pack": ["gaming"],
       "level": [0]
     },
@@ -313,7 +324,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/messenger",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/messenger",
       "pack": ["socialmedia"],
       "level": [1]
     },
@@ -322,7 +333,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/minecraft",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/minecraft",
       "pack": ["gaming"],
       "level": [0]
     },
@@ -331,7 +342,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/netflix",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/netflix",
       "pack": ["streams"],
       "level": [2]
     },
@@ -340,7 +351,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/pinterest",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/pinterest",
       "pack": ["socialmedia"],
       "level": [1]
     },
@@ -349,7 +360,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/reddit",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/reddit",
       "pack": ["socialmedia", "vanity"],
       "level": [0, 0]
     },
@@ -358,7 +369,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/roblox",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/roblox",
       "pack": ["gaming"],
       "level": [0]
     },
@@ -367,7 +378,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/skype",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/skype",
       "pack": ["socialmedia"],
       "level": [1]
     },
@@ -376,7 +387,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/snapchat",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/snapchat",
       "pack": ["socialmedia"],
       "level": [1]
     },
@@ -385,7 +396,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/spotify",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/spotify",
       "pack": ["shopping"],
       "level": [2]
     },
@@ -394,7 +405,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/steam",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/steam",
       "pack": ["gaming"],
       "level": [0]
     },
@@ -403,7 +414,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/telegram",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/telegram",
       "pack": ["socialmedia"],
       "level": [1]
     },
@@ -421,7 +432,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tinder",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/tinder",
       "pack": ["socialmedia", "dating"],
       "level": [1, 0]
     },
@@ -430,7 +441,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tumblr",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/tumblr",
       "pack": ["socialmedia"],
       "level": [1]
     },
@@ -440,7 +451,7 @@
       "subg": "Services",
       "format": ["domains", "domains"],
       "url": [
-        "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitch",
+        "https://raw.githubusercontent.com/nextdns/services/main/services/twitch",
         "https://raw.githubusercontent.com/nickspaargaren/no-amazon/master/categories/twitchparsed"],
       "pack": ["gaming", "streams", "amazon"],
       "level": [1, 0, 2]
@@ -450,7 +461,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/twitter",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/twitter",
       "pack": ["socialmedia"],
       "level": [0]
     },
@@ -459,7 +470,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vimeo",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/vimeo",
       "pack": ["streams"],
       "level": [1]
     },
@@ -468,7 +479,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/vk",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/vk",
       "pack": ["socialmedia"],
       "level": [1]
     },
@@ -486,7 +497,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/youtube",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/youtube",
       "pack": ["streams", "google", "youtube"],
       "level": [1, 2, 0]
     },
@@ -495,7 +506,7 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/zoom",
+      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/zoom",
       "pack": ["zoom", "socialmedia"],
       "level": [0, 2]
     },
@@ -1506,9 +1517,9 @@
     {
       "vname": "Alexa (Amazon)",
       "group": "Privacy",
-      "subg": "Native",
+      "subg": "NativeTracking",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/alexa",
+      "url": "https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/alexa",
       "pack": ["amazon"],
       "level": [1]
     },
@@ -1526,9 +1537,9 @@
     {
       "vname": "Huawei",
       "group": "Privacy",
-      "subg": "Native",
+      "subg": "NativeTracking",
       "format": ["domains", "wildcard"],
-      "url": ["https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/huawei",
+      "url": ["https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/huawei",
              "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.huawei.txt"],
       "pack": [],
       "level": []
@@ -1536,37 +1547,37 @@
     {
       "vname": "Roku",
       "group": "Privacy",
-      "subg": "Native",
+      "subg": "NativeTracking",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/roku",
+      "url": "https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/roku",
       "pack": ["streams"],
       "level": [1]
     },
     {
       "vname": "Samsung",
       "group": "Privacy",
-      "subg": "Native",
+      "subg": "NativeTracking",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/samsung",
+      "url": "https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/samsung",
       "pack": [],
       "level": []
     },
     {
       "vname": "Sonos",
       "group": "Privacy",
-      "subg": "Native",
+      "subg": "NativeTracking",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/sonos",
+      "url": "https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/sonos",
       "pack": [],
       "level": []
     },
     {
       "vname": "Windows",
       "group": "Privacy",
-      "subg": "Native",
+      "subg": "NativeTracking",
       "format": ["domains", "wildcard"],
       "url": [
-        "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/windows",
+        "https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/windows",
         "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.winoffice.txt"],
       "pack": ["windows"],
       "level": [1]
@@ -1574,10 +1585,10 @@
     {
       "vname": "Xiaomi",
       "group": "Privacy",
-      "subg": "Native",
+      "subg": "NativeTracking",
       "format": ["domains", "domains"],
       "url": [
-        "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/native/xiaomi",
+        "https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/xiaomi",
         "https://github.com/unknownFalleN/xiaomi-dns-blocklist/blob/master/xiaomi_dns_block.lst"],
       "pack": [],
       "level": []
