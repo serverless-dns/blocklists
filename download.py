@@ -160,6 +160,7 @@ def writeFile(download_loc_filename, txt):
         savedUrl = savedUrl + 1
         return True
     else:
+        print(f"write: empty txt for ${downloda_loc_filename}\n")
         return False
 
 
@@ -170,7 +171,6 @@ def urllibRequestApi(url):
         r = data.decode('utf-8')
         return r
     except Exception as e:
-        print("Exception")
         print(e)
         return False
 
@@ -230,8 +230,12 @@ async def downloadFile(sess, urls, formats, packtypes, download_loc_filename):
                 response = await requestApi(sess, url)
                 break
             except Exception as e:
-                print(f"\nretry_once: Err downloading {url}\n{e}")
+                print(f"\nretry_once: Err downloading {url}: {e}")
                 continue
+
+        if len(response) == 0:
+            print(f"\nretry: no response {urls} : {download_loc_filename}\n")
+            return "retry"
 
         if format == "wildcard":
             domains = extractDomains(response, r'(^[\*\.]+)([a-zA-Z0-9][a-zA-Z0-9-_.]+)', 1)
