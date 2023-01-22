@@ -651,7 +651,7 @@
       "format": "wildcard",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
       "pack": ["spam", "malware", "crypto", "scams & phishing"],
-      "level": [2, 2, 2]
+      "level": [2, 2, 2, 2]
     },
     {
       "vname": "Malware (RPi)",
