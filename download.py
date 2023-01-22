@@ -111,7 +111,7 @@ def validConfig():
 
     return True
 
-def createFileNotExist(filename):
+def createFileIfNeeded(filename):
     if not os.path.exists(os.path.dirname(filename)):
         try:
             os.makedirs(os.path.dirname(filename))
@@ -149,7 +149,7 @@ def extractDomains(txt, rgx, groupindex):
 def writeFile(download_loc_filename, txt):
     global savedUrl
     if txt and len(txt) > 0:
-        createFileNotExist(download_loc_filename)
+        createFileIfNeeded(download_loc_filename)
         with open(download_loc_filename, "w") as f:
             f.write(safeStr(txt))
             f.close()
@@ -311,9 +311,9 @@ def loadBlocklistConfig():
 
     try:
         if configFileLocation is not None and os.path.isfile(configFileLocation):
-            with open(configFileLocation) as json_file:
-                configDict = json.load(json_file)
-                json_file.close()
+            with open(configFileLocation) as jsonfile:
+                configDict = json.load(jsonfile)
+                jsonfile.close()
                 if "conf" in configDict:
                     done = True
         if not done:
@@ -355,7 +355,7 @@ def main():
             for value in retryBlocklist:
                 print(f"{value}\n")
     else:
-        print("Validation Error")
+        print("validation Error")
         sys.exit("")
 
 
