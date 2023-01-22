@@ -197,14 +197,14 @@ class DownloadFailed(Exception):
 # realpython.com/async-io-python/
 async def downloadFile(sess, urls, formats, packtypes, download_loc_filename):
     global totalUrl
-    totalUrl = totalUrl + 1
     ret = False
     alldomains = ""
 
     if ('dead' in packtypes or 'ignore' in packtypes):
-        totalUrl = totalUrl + 1
-        print(f"\n {str(totalUrl)}; dead / ignore -> skip download {urls}\n")
+        print(f"\n dead / ignore -> skip download {urls}\n")
         return ret
+
+    totalUrl = totalUrl + 1
 
     if type(urls) is str:
         ul = list()
