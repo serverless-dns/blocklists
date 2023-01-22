@@ -274,20 +274,21 @@ async def startDownloads(configList):
     async with aiohttp.ClientSession(timeout=ctimeout) as sess:
         tasks = []
         for value in configList:
-            # index is the original order of the blocklist before shuffling
-            fileName = str(value["index"]).lower()
-
-            if value["subg"].strip() == "":
-                downloadLoc = "./" + blocklistfiles + "/" + value[
-                    "group"].strip() + "/" + fileName + ".txt"
-            else:
-                downloadLoc = "./" + blocklistfiles + "/" + value[
-                    "group"].strip() + "/" + value["subg"].strip(
-                    ) + "/" + fileName + ".txt"
-
             packtypes = value["pack"]
             urls = value["url"]
             fmt = value["format"]
+            group = value["group"].strip()
+            subg = value["subg"].strip()
+
+            # index is the original order of the blocklist before shuffling
+            fileName = str(value["index"]).lower()
+
+            if group == "":
+                downloadLoc = "./" + blocklistfiles + "/" + fileName + ".txt"
+            elif subg == "":
+                downloadLoc = "./" + blocklistfiles + "/" + group + "/" + fileName + ".txt"
+            else:
+                downloadLoc = "./" + blocklistfiles + "/" + group + "/" + subg + "/" + fileName + ".txt"
 
             task = asyncio.ensure_future(
                 downloadFile(sess, urls, fmt, packtypes, downloadLoc))
