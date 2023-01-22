@@ -423,9 +423,10 @@
       "group": "ParentalControl",
       "subg": "Services",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/tiktok",
-      "pack": ["socialmedia"],
-      "level": [0]
+      "url": ["https://raw.githubusercontent.com/nextdns/services/main/services/tiktok",
+              "https://blocklistproject.github.io/Lists/alt-version/tiktok-nl.txt"],
+      "pack": ["tiktok", "socialmedia"],
+      "level": [0, 0]
     },
     {
       "vname": "Tinder",
@@ -487,8 +488,10 @@
       "vname": "WhatsApp",
       "group": "ParentalControl",
       "subg": "Services",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/parentalcontrol/services/whatsapp",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/services/main/services/whatsapp",
+        "https://blocklistproject.github.io/Lists/alt-version/whatsapp-nl.txt"],
       "pack": ["facebook", "whatsapp"],
       "level": [2, 0]
     },
@@ -534,13 +537,11 @@
       "level": [2]
     },
     {
-      "vname": "DoH VPN Proxy Bypass",
-      "group": "ParentalControl",
+      "vname": "Dynamic DNS Providers",
+      "group": "Security",
       "subg": "BypassMethods",
-      "format": ["wildcard", "domains"],
-      "url": [
-        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/doh-vpn-proxy-bypass.txt",
-        "https://raw.githubusercontent.com/cbuijs/accomplist/master/doh/deugniets.black.list"],
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/nextdns/ddns-domains/main/suffixes",
       "pack": ["vpn & proxies"],
       "level": [1]
     },
@@ -888,13 +889,13 @@
       "level": [1]
     },
     {
-      "vname": "Affiliate & Tracking",
+      "vname": "Bloat (ShadowWhisperer)",
       "group": "Privacy",
-      "subg": "TrackingDomains",
+      "subg": "ShadowWhisperer",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/metadata/master/privacy/affiliate-tracking-domains",
-      "pack": ["aggressiveprivacy"],
-      "level": [0]
+      "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Bloat",
+      "pack": ["extremeprivacy"],
+      "level": [2]
     },
     {
       "vname": "1Hosts (Lite)",
@@ -1675,13 +1676,13 @@
       "level": [2]
     },
     {
-      "vname": "TikTok (The Block List Project)",
+      "vname": "NSFL (ShadowWhisperer)",
       "group": "ParentalControl",
-      "subg": "The Block List Project",
+      "subg": "ShadowWhisperer",
       "format": "domains",
-      "url": "https://blocklistproject.github.io/Lists/alt-version/tiktok-nl.txt",
-      "pack": ["tiktok", "socialmedia"],
-      "level": [1, 1]
+      "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock",
+      "pack": ["adult"],
+      "level": [1]
     },
     {
       "vname": "Cryptojacking (The Block List Project)",
@@ -1693,13 +1694,13 @@
       "level": [2]
     },
     {
-      "vname": "WhatsApp (The Block List Project)",
-      "group": "ParentalControl",
-      "subg": "The Block List Project",
+      "vname": "WhatsApp",
+      "group": "",
+      "subg": "",
       "format": "domains",
-      "url": "https://blocklistproject.github.io/Lists/alt-version/whatsapp-nl.txt",
-      "pack": ["facebook"],
-      "level": [2]
+      "url": "",
+      "pack": ["dead"],
+      "level": []
     },
     {
       "vname": "Vaping (The Block List Project)",
@@ -1830,24 +1831,6 @@
       "format": "domains",
       "url": "https://github.com/cbuijs/accomplist/raw/master/tlds/plain.black.domain.list",
       "pack": ["spam"],
-      "level": [2]
-    },
-    {
-      "vname": "NSFL (ShadowWhisperer)",
-      "group": "ParentalControl",
-      "subg": "ShadowWhisperer",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Shock",
-      "pack": ["adult"],
-      "level": [0]
-    },
-    {
-      "vname": "Bloat (ShadowWhisperer)",
-      "group": "Privacy",
-      "subg": "ShadowWhisperer",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Bloat",
-      "pack": ["extremeprivacy"],
       "level": [2]
     }
   ]
