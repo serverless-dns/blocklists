@@ -979,8 +979,8 @@
       "subg": "",
       "format": "hosts",
       "url": "https://raw.githubusercontent.com/AdAway/adaway.github.io/master/hosts.txt",
-      "pack": ["liteprivacy"],
-      "level": [0]
+      "pack": ["aggressiveprivacy"],
+      "level": [1]
     },
     {
       "vname": "Add.2o7Net",
