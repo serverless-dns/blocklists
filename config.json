@@ -1203,20 +1203,21 @@
     {
       "vname": "Energized Blu",
       "group": "Privacy",
-      "subg": "Energized",
+      "subg": "",
       "format": "domains",
       "url": "https://block.energized.pro/blu/formats/domains.txt",
       "pack": ["dead"],
       "level": []
     },
     {
-      "vname": "Energized Regional Extension",
+      "vname": "Ad Set Hosts (rentianyu)",
       "group": "Privacy",
-      "subg": "Energized",
-      "format": "domains",
-      "url": "https://block.energized.pro/extensions/regional/formats/domains.txt",
-      "pack": ["dead"],
-      "level": []
+      "subg": "",
+      "format": ["hosts", "hosts"],
+      "url": ["https://raw.githubusercontent.com/rentianyu/Ad-set-hosts/master/hosts",
+              "https://raw.githubusercontent.com/rentianyu/Ad-set-hosts/master/xiaobeita/hosts"],
+      "pack": ["aggressiveprivacy"],
+      "level": [1]
     },
     {
       "vname": "Blocklist (ph00lt0)",
