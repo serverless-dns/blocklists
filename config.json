@@ -916,8 +916,8 @@
       "subg": "1Hosts",
       "format": "domains",
       "url": "https://raw.githubusercontent.com/badmojr/1Hosts/master/Lite/domains.wildcards",
-      "pack": ["liteprivacy"],
-      "level": [0]
+      "pack": ["recommended", "liteprivacy"],
+      "level": [0, 0]
     },
     {
       "vname": "1Hosts (mini)",
@@ -934,8 +934,8 @@
       "subg": "1Hosts",
       "format": "domains",
       "url": "https://raw.githubusercontent.com/badmojr/1Hosts/master/Pro/domains.wildcards",
-      "pack": ["recommended", "aggressiveprivacy"],
-      "level": [0, 1]
+      "pack": ["aggressiveprivacy"],
+      "level": [1]
     },
     {
       "vname": "iVoid (intr0)",
