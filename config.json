@@ -1201,13 +1201,13 @@
       "level": [0]
     },
     {
-      "vname": "Energized Blu",
+      "vname": "Blocklist (hBlock)",
       "group": "Privacy",
-      "subg": "Energized",
+      "subg": "",
       "format": "domains",
-      "url": "https://block.energized.pro/blu/formats/domains.txt",
-      "pack": ["dead"],
-      "level": []
+      "url": "https://hblock.molinero.dev/hosts_domains.txt",
+      "pack": ["aggressiveprivacy"],
+      "level": [1]
     },
     {
       "vname": "Energized Regional Extension",
@@ -1845,15 +1845,6 @@
       "url": "https://github.com/cbuijs/accomplist/raw/master/tlds/plain.black.domain.list",
       "pack": ["spam"],
       "level": [2]
-    },
-    {
-      "vname": "Blocklist (hBlock)",
-      "group": "Privacy",
-      "subg": "",
-      "format": "domains",
-      "url": "https://hblock.molinero.dev/hosts_domains.txt",
-      "pack": ["aggressiveprivacy"],
-      "level": [1]
     }
   ]
 }
