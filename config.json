@@ -1378,8 +1378,8 @@
       "subg": "StevenBlack",
       "format": "hosts",
       "url": "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
-      "pack": ["liteprivacy", "recommended"],
-      "level": [0, 0]
+      "pack": ["aggressiveprivacy", "recommended"],
+      "level": [1, 1]
     },
     {
       "vname": "VeleSila (yhosts)",
