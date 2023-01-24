@@ -1179,8 +1179,8 @@
       "subg": "EasyList",
       "format": "abp",
       "url": "https://easylist-downloads.adblockplus.org/easyprivacy.txt",
-      "pack": ["liteprivacy"],
-      "level": [0]
+      "pack": ["aggressiveprivacy"],
+      "level": [1]
     },
     {
       "vname": "Normal (Hagezi)",
