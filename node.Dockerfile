@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:latest as runner
+FROM nikolaik/python-nodejs:latest AS runner
 # todo: is git required?
 WORKDIR /app
 COPY . .
