@@ -1846,6 +1846,17 @@
       "url": "https://github.com/cbuijs/accomplist/raw/master/tlds/plain.black.domain.list",
       "pack": ["spam"],
       "level": [2]
+    },
+    {
+      "vname": "Tiny CN Block List Replenish",
+      "group": "Security",
+      "format": "domains",
+      "url": [
+        "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/common.txt",
+        "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"
+      ],
+      "pack": ["privacy", "gambling"],
+      "level": [0, 0]
     }
   ]
 }
