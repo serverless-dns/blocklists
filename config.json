@@ -1855,7 +1855,7 @@
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/common.txt",
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"
       ],
-      "pack": ["privacy", "gambling"],
+      "pack": ["liteprivacy", "gambling"],
       "level": [0, 0]
     }
   ]
