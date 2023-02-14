@@ -992,12 +992,11 @@
       "level": []
     },
     {
-      "vname": "AdGuard DNS filters",
+      "vname": "AdGuard SDNS Filter",
       "group": "Privacy",
       "subg": "",
-      "format": ["abp", "domains"],
-      "url": ["https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
-              "https://raw.githubusercontent.com/AdguardTeam/cname-trackers/master/combined_disguised_trackers_justdomains.txt"],
+      "format": "abp",
+      "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
