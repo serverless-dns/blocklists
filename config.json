@@ -1224,8 +1224,8 @@
       "subg": "Privacy",
       "format": "hosts",
       "url": "https://raw.githubusercontent.com/ph00lt0/blocklists/master/pihole-blocklist.txt",
-      "pack": ["aggressiveprivacy"],
-      "level": [1]
+      "pack": ["extremeprivacy"],
+      "level": [2]
     },
     {
       "vname": "Ultimate (Hagezi)",
