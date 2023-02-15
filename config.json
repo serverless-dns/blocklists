@@ -1058,8 +1058,8 @@
       "vname": "OISD (small)",
       "group": "Privacy",
       "subg": "OISD",
-      "format": "abp",
-      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/oisd_small.txt",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/dblw_small.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
@@ -1611,8 +1611,8 @@
       "vname": "OISD (big)",
       "group": "Privacy",
       "subg": "OISD",
-      "format": "abp",
-      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/oisd_big.txt",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/dblw_big.txt",
       "pack": ["recommended", "liteprivacy"],
       "level": [0, 0]
     },
@@ -1757,8 +1757,8 @@
       "vname": "OISD NSFW (Adult)",
       "group": "ParentalControl",
       "subg": "OISD",
-      "format": "abp",
-      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/oisd_nsfw.txt",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/dblw_nsfw.txt",
       "pack": ["adult"],
       "level": [1]
     },
