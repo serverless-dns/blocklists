@@ -1847,15 +1847,16 @@
       "level": [2]
     },
     {
-      "vname": "Tiny CN Block List Replenish",
+      "vname": "Tiny China Block List Replenish",
       "group": "Privacy",
-      "format": "domains",
+      "format": ["domains", "domains"],
+      "subg": "",
       "url": [
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/common.txt",
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"
       ],
       "pack": ["liteprivacy", "gambling"],
-      "level": [0, 0]
+      "level": [0, 1]
     }
   ]
 }
