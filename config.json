@@ -1059,7 +1059,7 @@
       "group": "Privacy",
       "subg": "OISD",
       "format": "abp",
-      "url": "https://small.oisd.nl/",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/oisd_small.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
@@ -1612,7 +1612,7 @@
       "group": "Privacy",
       "subg": "OISD",
       "format": "abp",
-      "url": "https://big.oisd.nl/",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/oisd_big.txt",
       "pack": ["recommended", "liteprivacy"],
       "level": [0, 0]
     },
@@ -1758,7 +1758,7 @@
       "group": "ParentalControl",
       "subg": "OISD",
       "format": "abp",
-      "url": "https://nsfw.oisd.nl/",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/oisd_nsfw.txt",
       "pack": ["adult"],
       "level": [1]
     },
