@@ -1055,11 +1055,11 @@
       "level": [2]
     },
     {
-      "vname": "OISD (basic)",
+      "vname": "OISD (small)",
       "group": "Privacy",
       "subg": "OISD",
       "format": "wildcard",
-      "url": "https://github.com/sjhgvr/oisd/raw/main/dblw_basic.txt",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/dblw_small.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
@@ -1608,11 +1608,11 @@
       "level": []
     },
     {
-      "vname": "OISD (full)",
+      "vname": "OISD (big)",
       "group": "Privacy",
       "subg": "OISD",
       "format": "wildcard",
-      "url": "https://github.com/sjhgvr/oisd/raw/main/dblw_full.txt",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/dblw_big.txt",
       "pack": ["recommended", "liteprivacy"],
       "level": [0, 0]
     },
@@ -1758,7 +1758,7 @@
       "group": "ParentalControl",
       "subg": "OISD",
       "format": "wildcard",
-      "url": "https://github.com/sjhgvr/oisd/raw/main/dblw_nsfwbig.txt",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/dblw_nsfw.txt",
       "pack": ["adult"],
       "level": [1]
     },
