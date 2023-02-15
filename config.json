@@ -1849,7 +1849,7 @@
     },
     {
       "vname": "Tiny CN Block List Replenish",
-      "group": "Security",
+      "group": "Privacy",
       "format": "domains",
       "url": [
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/common.txt",
