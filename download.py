@@ -228,14 +228,18 @@ async def downloadFile(sess, urls, formats, packtypes, download_loc_filename):
         for i in range(0, 2):
             try:
                 response = await requestApi(sess, url)
-                break
+                if len(response) == 0:
+                    print(f"\retry_once: dead-list {url} : {download_loc_filename}\n")
+                    continue
+                else:
+                    break
             except Exception as e:
-                print(f"\nretry_once: Err downloading {url}: {e}")
+                print(f"\nretry_once: download err {url}: {e}")
                 continue
 
         if len(response) == 0:
-            print(f"\nretry: no response {urls} : {download_loc_filename}\n")
-            return "retry"
+            print(f"\dead list: no response {urls} : {download_loc_filename}\n")
+            continue
 
         if format == "wildcard":
             domains = extractDomains(response, r'(^[\*\.]+)([a-zA-Z0-9][a-zA-Z0-9-_.]+)', 1)
