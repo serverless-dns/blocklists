@@ -694,8 +694,9 @@
       "vname": "Typosquatting Protection",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": "domains",
-      "url": "https://github.com/cbuijs/accomplist/raw/master/typosquat/plain.black.domain.list",
+      "format": ["domains", "domains"],
+      "url": ["https://github.com/cbuijs/accomplist/raw/master/typosquat/plain.black.domain.list",
+              "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Typo"],
       "pack": ["scams & phishing"],
       "level": [1]
     },
