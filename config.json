@@ -695,9 +695,8 @@
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": ["domains", "domains"],
-      "url": [
-        "https://github.com/cbuijs/accomplist/raw/master/typosquat/plain.black.domain.list",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Typo"],
+      "url": ["https://github.com/cbuijs/accomplist/raw/master/typosquat/plain.black.domain.list",
+              "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Typo"],
       "pack": ["scams & phishing"],
       "level": [1]
     },
@@ -795,7 +794,7 @@
       "url": ["https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-07-18_nso/domains.txt",
               "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-10-07_donot/domains.txt",
               "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-12-16_cytrox/domains.txt",
-              "https://raw.githubusercontent.com/guardicore/labs_campaigns/master/Autodiscover/autodiscover-tlds.txt",
+              "https://raw.githubusercontent.com/cbuijs/accomplist/master/autodiscover/plain.black.domain.level-1.list",
               "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-kaspersky.txt",
               "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-zscaler.txt",
               "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-cyble.txt"],
@@ -1059,7 +1058,7 @@
       "group": "Privacy",
       "subg": "OISD",
       "format": "wildcard",
-      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/dblw_small.txt",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild_small.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
@@ -1612,7 +1611,7 @@
       "group": "Privacy",
       "subg": "OISD",
       "format": "wildcard",
-      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/dblw_big.txt",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild_big.txt",
       "pack": ["recommended", "liteprivacy"],
       "level": [0, 0]
     },
@@ -1758,7 +1757,7 @@
       "group": "ParentalControl",
       "subg": "OISD",
       "format": "wildcard",
-      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/dblw_nsfw.txt",
+      "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild_nsfw.txt",
       "pack": ["adult"],
       "level": [1]
     },
