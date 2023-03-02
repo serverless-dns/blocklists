@@ -1000,6 +1000,33 @@
       "level": [0]
     },
     {
+      "vname": "AdGuard Mobile Ads",
+      "group": "Privacy",
+      "subg": "",
+      "format": "hosts",
+      "url": "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileAds.txt",
+      "pack": ["liteprivacy"],
+      "level": [0]
+    },
+    {
+      "vname": "AdGuard Mobile Tracking and Spyware",
+      "group": "Privacy",
+      "subg": "",
+      "format": "hosts",
+      "url": "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileSpyware.txt",
+      "pack": ["liteprivacy"],
+      "level": [0]
+    },
+    {
+      "vname": "AdGuard Tracking Protection",
+      "group": "Privacy",
+      "subg": "",
+      "format": "hosts",
+      "url": "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardTracking.txt",
+      "pack": ["liteprivacy"],
+      "level": [0]
+    },
+    {
       "vname": "Anti Ad",
       "group": "Privacy",
       "subg": "",
