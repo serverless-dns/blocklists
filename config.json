@@ -531,7 +531,7 @@
       "vname": "Dynamic DNS Providers",
       "group": "Security",
       "subg": "Hagezi",
-      "format": "domains",
+      "format": "wildcard",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/dyndns.txt",
       "pack": ["vpn & proxies"],
       "level": [1]
