@@ -539,9 +539,9 @@
     {
       "vname": "Dynamic DNS Providers",
       "group": "Security",
-      "subg": "BypassMethods",
+      "subg": "Hagezi",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/ddns-domains/main/suffixes",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/dyndns.txt",
       "pack": ["vpn & proxies"],
       "level": [1]
     },
