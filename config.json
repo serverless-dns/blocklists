@@ -994,8 +994,8 @@
       "vname": "AdGuard SDNS Filter",
       "group": "Privacy",
       "subg": "",
-      "format": "abp",
-      "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
+      "format": "hosts",
+      "url": "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardDNS.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
