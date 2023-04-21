@@ -1485,7 +1485,7 @@
       "group": "Privacy",
       "subg": "",
       "format": "hosts",
-      "url": "https://raw.githubusercontent.com/vdbhb59/hosts/master/hosts",
+      "url": "https://hosts.flossboxin.org.in/files/hosts",
       "pack": ["aggressiveprivacy"],
       "level": [1]
     },
