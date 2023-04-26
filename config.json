@@ -964,11 +964,13 @@
       "level": [1]
     },
     {
-      "vname": "AdAway",
+      "vname": "AdGuard Tracking and Spyware",
       "group": "Privacy",
       "subg": "",
-      "format": "hosts",
-      "url": "https://raw.githubusercontent.com/AdAway/adaway.github.io/master/hosts.txt",
+      "format": ["hosts", "hosts"],
+      "url": [
+        "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileSpyware.txt",
+        "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileAds.txt"],
       "pack": ["aggressiveprivacy"],
       "level": [1]
     },
@@ -985,8 +987,8 @@
       "vname": "AdGuard SDNS Filter",
       "group": "Privacy",
       "subg": "",
-      "format": "abp",
-      "url": "https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt",
+      "format": "hosts",
+      "url": "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardDNS.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
