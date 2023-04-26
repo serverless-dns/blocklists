@@ -65,9 +65,10 @@
       "group": "ParentalControl",
       "subg": "Piracy",
       "format": ["domains", "domains", "domains"],
-      "url": ["https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/file-hosting",
-              "https://raw.githubusercontent.com/nextdns/bin-domains/main/hostnames",
-              "https://raw.githubusercontent.com/nextdns/bin-domains/main/domains"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/file-hosting",
+        "https://raw.githubusercontent.com/nextdns/bin-domains/main/hostnames",
+        "https://raw.githubusercontent.com/nextdns/bin-domains/main/domains"],
       "pack": ["file-hosts", "piracy"],
       "level": [0, 2]
     },
@@ -76,8 +77,9 @@
       "group": "ParentalControl",
       "subg": "RPiList",
       "format": ["domains", "domains"],
-      "url": ["https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/proxies",
-              "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/proxies"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/proxies",
+        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/proxies"],
       "pack": ["vpn & proxies", "piracy"],
       "level": [0, 2]
     },
@@ -95,9 +97,10 @@
       "group": "ParentalControl",
       "subg": "RPiList",
       "format": ["domains", "domains", "domains"],
-      "url": ["https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video",
-              "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Streaming",
-              "https://raw.githubusercontent.com/nickspaargaren/no-amazon/master/categories/amazonvideoparsed"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video",
+        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Streaming",
+        "https://raw.githubusercontent.com/nickspaargaren/no-amazon/master/categories/amazonvideoparsed"],
       "pack": ["streams", "piracy"],
       "level": [0, 2]
     },
@@ -520,10 +523,11 @@
       "group": "Security",
       "subg": "Cryptojacking",
       "format": ["domains", "domains", "domains", "domains"],
-      "url": ["https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/list.txt",
-              "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/list_browser.txt",
-              "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/list_browser_AdBlock.txt",
-              "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/list_optional.txt"],
+      "url": [
+        "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/list.txt",
+        "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/list_browser.txt",
+        "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/list_browser_AdBlock.txt",
+        "https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/list_optional.txt"],
       "pack": ["crypto"],
       "level": [2]
     },
@@ -667,8 +671,9 @@
       "group": "Security",
       "subg": "",
       "format": ["domains", "domains"],
-      "url": ["https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/malware/domains",
-              "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-malware-traffic.txt"],
+      "url": [
+        "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/malware/domains",
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-malware-traffic.txt"],
       "pack": ["malware"],
       "level": [0]
     },
@@ -686,8 +691,9 @@
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": ["domains", "domains"],
-      "url": ["https://github.com/cbuijs/accomplist/raw/master/typosquat/plain.black.domain.list",
-              "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Typo"],
+      "url": [
+        "https://github.com/cbuijs/accomplist/raw/master/typosquat/plain.black.domain.list",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Typo"],
       "pack": ["scams & phishing"],
       "level": [1]
     },
@@ -723,8 +729,9 @@
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": ["domains", "domains"],
-      "url": ["http://phishing.mailscanner.info/phishing.bad.sites.conf",
-              "https://malware-filter.gitlab.io/malware-filter/phishing-filter-domains.txt"],
+      "url": [
+        "http://phishing.mailscanner.info/phishing.bad.sites.conf",
+        "https://malware-filter.gitlab.io/malware-filter/phishing-filter-domains.txt"],
       "pack": ["scams & phishing"],
       "level": [2]
     },
@@ -782,13 +789,14 @@
       "group": "Security",
       "subg": "Amnesty",
       "format": ["domains", "domains", "domains", "hosts", "domains", "domains", "domains"],
-      "url": ["https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-07-18_nso/domains.txt",
-              "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-10-07_donot/domains.txt",
-              "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-12-16_cytrox/domains.txt",
-              "https://raw.githubusercontent.com/cbuijs/accomplist/master/autodiscover/plain.black.domain.level-1.list",
-              "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-kaspersky.txt",
-              "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-zscaler.txt",
-              "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-cyble.txt"],
+      "url": [
+        "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-07-18_nso/domains.txt",
+        "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-10-07_donot/domains.txt",
+        "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-12-16_cytrox/domains.txt",
+        "https://raw.githubusercontent.com/cbuijs/accomplist/master/autodiscover/plain.black.domain.level-1.list",
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-kaspersky.txt",
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-zscaler.txt",
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-cyble.txt"],
       "pack": ["spyware", "malware"],
       "level": [0, 0]
     },
@@ -816,21 +824,22 @@
       "subg": "ThreatIntelligence",
       "format": ["domains", "domains", "hosts", "hosts", "domains", "domains", "hosts", "domains",
                  "domains", "domains", "domains", "domains", "domains", "domains", "domains"],
-      "url": ["https://www.botvrij.eu/data/ioclist.domain.raw",
-              "https://www.botvrij.eu/data/ioclist.hostname.raw",
-              "https://threatfox.abuse.ch/downloads/hostfile",
-              "https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/master/src/hosts.txt",
-              "https://securereload.tech/Phishing/Lists/Latest/",
-              "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/domainsonly",
-              "https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/threat/hosts",
-              "https://cert-agid.gov.it/download/log4shell-iocs-raw-domain.txt",
-              "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-certagid.txt",
-              "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-csirt.txt",
-              "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-orangecyber.txt",
-              "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-sentinelone.txt",
-              "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-unit42-silverterrier.txt",
-              "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-unit42-playbook.txt",
-              "https://raw.githubusercontent.com/hpthreatresearch/iocs/main/CryptBot/domains.txt"],
+      "url": [
+        "https://www.botvrij.eu/data/ioclist.domain.raw",
+        "https://www.botvrij.eu/data/ioclist.hostname.raw",
+        "https://threatfox.abuse.ch/downloads/hostfile",
+        "https://raw.githubusercontent.com/MetaMask/eth-phishing-detect/master/src/hosts.txt",
+        "https://securereload.tech/Phishing/Lists/Latest/",
+        "https://raw.githubusercontent.com/HexxiumCreations/threat-list/gh-pages/domainsonly",
+        "https://raw.githubusercontent.com/bigdargon/hostsVN/master/extensions/threat/hosts",
+        "https://cert-agid.gov.it/download/log4shell-iocs-raw-domain.txt",
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-certagid.txt",
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-csirt.txt",
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-orangecyber.txt",
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-sentinelone.txt",
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-unit42-silverterrier.txt",
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-unit42-playbook.txt",
+        "https://raw.githubusercontent.com/hpthreatresearch/iocs/main/CryptBot/domains.txt"],
       "pack": ["scams & phishing", "vanity"],
       "level": [1, 2]
     },
@@ -868,8 +877,9 @@
       "group": "Security",
       "subg": "RPiList",
       "format": ["domains", "domains"],
-      "url": ["https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Corona-Blocklist",
-              "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Fake-Science"],
+      "url": [
+        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Corona-Blocklist",
+        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Fake-Science"],
       "pack": ["scams & phishing"],
       "level": [2]
     },
@@ -1141,8 +1151,9 @@
       "group": "Privacy",
       "subg": "EasyList",
       "format": ["abp", "domains"],
-      "url": ["https://easylist-downloads.adblockplus.org/easylistitaly.txt",
-              "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt"],
+      "url": [
+        "https://easylist-downloads.adblockplus.org/easylistitaly.txt",
+        "https://raw.githubusercontent.com/marco-acorte/antispam-it/main/antispam-it.txt"],
       "pack": ["extremeprivacy", "spam"],
       "level": [2, 2]
     },
@@ -1205,8 +1216,9 @@
       "group": "Privacy",
       "subg": "",
       "format": ["hosts", "hosts"],
-      "url": ["https://raw.githubusercontent.com/rentianyu/Ad-set-hosts/master/hosts",
-              "https://raw.githubusercontent.com/rentianyu/Ad-set-hosts/master/xiaobeita/hosts"],
+      "url": [
+        "https://raw.githubusercontent.com/rentianyu/Ad-set-hosts/master/hosts",
+        "https://raw.githubusercontent.com/rentianyu/Ad-set-hosts/master/xiaobeita/hosts"],
       "pack": ["aggressiveprivacy"],
       "level": [1]
     },
@@ -1545,8 +1557,9 @@
       "group": "Privacy",
       "subg": "NativeTracking",
       "format": ["domains", "wildcard"],
-      "url": ["https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/huawei",
-             "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.huawei.txt"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/huawei",
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.huawei.txt"],
       "pack": [],
       "level": []
     },
@@ -1777,8 +1790,9 @@
       "group": "Security",
       "subg": "TrackingDomains",
       "format": ["domains", "domains"],
-      "url": ["https://raw.githubusercontent.com/PeterDaveHello/url-shorteners/master/list",
-            "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/UrlShortener"],
+      "url": [
+        "https://raw.githubusercontent.com/PeterDaveHello/url-shorteners/master/list",
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/UrlShortener"],
       "pack": ["url-shorteners"],
       "level": [1]
     },
@@ -1845,8 +1859,7 @@
       "subg": "",
       "url": [
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/common.txt",
-        "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"
-      ],
+        "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"],
       "pack": ["liteprivacy", "gambling"],
       "level": [0, 1]
     }
