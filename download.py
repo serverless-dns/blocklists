@@ -160,7 +160,7 @@ def writeFile(download_loc_filename, txt):
         savedUrl = savedUrl + 1
         return True
     else:
-        print(f"write: empty txt for ${downloda_loc_filename}\n")
+        print(f"write: empty txt for ${download_loc_filename}\n")
         return False
 
 
@@ -229,16 +229,16 @@ async def downloadFile(sess, urls, formats, packtypes, download_loc_filename):
             try:
                 response = await requestApi(sess, url)
                 if len(response) == 0:
-                    print(f"\retry_once: dead-list {url} : {download_loc_filename}\n")
+                    print(f"\nretry_once: dead-list {url} : {download_loc_filename}\n")
                     continue
                 else:
                     break
             except Exception as e:
-                print(f"\nretry_once: download err {url}: {e}")
+                print(f"\nretry_once: download err {url} / {e}")
                 continue
 
         if len(response) == 0:
-            print(f"\dead list: no response {urls} : {download_loc_filename}\n")
+            print(f"dead list: no response {url} : {download_loc_filename}\n")
             continue
 
         if format == "wildcard":
