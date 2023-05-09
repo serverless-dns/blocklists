@@ -707,13 +707,13 @@
       "level": [1]
     },
     {
-      "vname": "Malware (azorult-tracker.net)",
+      "vname": "Free Website Hosting",
       "group": "Security",
-      "subg": "ThreatIntelligence",
-      "format": "domains",
-      "url": "https://azorult-tracker.net/api/list/domain?format=plain",
-      "pack": ["dead"],
-      "level": [1]
+      "subg": "HaGeZi",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/hoster.txt",
+      "pack": "scams & phishing",
+      "level": [2]
     },
     {
       "vname": "Blackbook (Miroslav Stampar)",
@@ -1855,22 +1855,13 @@
     {
       "vname": "Tiny China Block List Replenish",
       "group": "Privacy",
-      "format": ["domains", "domains"],
       "subg": "",
+      "format": ["domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/common.txt",
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"],
       "pack": ["liteprivacy", "gambling"],
       "level": [0, 1]
-    },
-    {
-      "vname": "Free Website Hosting",
-      "group": "Security",
-      "format": "wildcard",
-      "subg": "HaGeZi",
-      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/hoster.txt",
-      "pack": "scams & phishing",
-      "level": [2]
     }
   ]
 }
