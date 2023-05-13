@@ -712,7 +712,7 @@
       "subg": "HaGeZi",
       "format": "wildcard",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/hoster.txt",
-      "pack": "scams & phishing",
+      "pack": ["scams & phishing"],
       "level": [2]
     },
     {
