@@ -534,7 +534,7 @@
     {
       "vname": "Dynamic DNS Providers",
       "group": "Security",
-      "subg": "Hagezi",
+      "subg": "HaGeZi",
       "format": "wildcard",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/dyndns.txt",
       "pack": ["vpn & proxies"],
@@ -640,9 +640,9 @@
       "level": [2]
     },
     {
-      "vname": "Threat Intelligence Feeds (Hagezi)",
+      "vname": "Threat Intelligence Feeds (HaGeZi)",
       "group": "Security",
-      "subg": "Hagezi",
+      "subg": "HaGeZi",
       "format": "wildcard",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/tif.txt",
       "pack": ["spam", "malware", "crypto", "scams & phishing"],
@@ -707,13 +707,13 @@
       "level": [1]
     },
     {
-      "vname": "Malware (azorult-tracker.net)",
+      "vname": "Free Website Hosting",
       "group": "Security",
-      "subg": "ThreatIntelligence",
-      "format": "domains",
-      "url": "https://azorult-tracker.net/api/list/domain?format=plain",
-      "pack": ["dead"],
-      "level": [1]
+      "subg": "HaGeZi",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/hoster.txt",
+      "pack": ["scams & phishing"],
+      "level": [2]
     },
     {
       "vname": "Blackbook (Miroslav Stampar)",
@@ -1030,18 +1030,18 @@
       "level": [0]
     },
     {
-      "vname": "Multi Pro (Hagezi)",
+      "vname": "Multi Pro (HaGeZi)",
       "group": "Privacy",
-      "subg": "Hagezi",
+      "subg": "HaGeZi",
       "format": "wildcard",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.txt",
       "pack": ["aggressiveprivacy"],
       "level": [1]
     },
     {
-      "vname": "Multi Pro++ (Hagezi)",
+      "vname": "Multi Pro++ (HaGeZi)",
       "group": "Privacy",
-      "subg": "Hagezi",
+      "subg": "HaGeZi",
       "format": "wildcard",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/pro.plus.txt",
       "pack": ["extremeprivacy"],
@@ -1185,18 +1185,18 @@
       "level": [1]
     },
     {
-      "vname": "Normal (Hagezi)",
+      "vname": "Normal (HaGeZi)",
       "group": "Privacy",
-      "subg": "Hagezi",
+      "subg": "HaGeZi",
       "format": "wildcard",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/multi.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
     {
-      "vname": "Light (Hagezi)",
+      "vname": "Light (HaGeZi)",
       "group": "Privacy",
-      "subg": "Hagezi",
+      "subg": "HaGeZi",
       "format": "wildcard",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/light.txt",
       "pack": ["liteprivacy"],
@@ -1232,9 +1232,9 @@
       "level": [2]
     },
     {
-      "vname": "Ultimate (Hagezi)",
+      "vname": "Ultimate (HaGeZi)",
       "group": "Privacy",
-      "subg": "Hagezi",
+      "subg": "HaGeZi",
       "format": "wildcard",
       "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/ultimate.txt",
       "pack": ["extremeprivacy"],
@@ -1544,7 +1544,7 @@
     {
       "vname": "Apple",
       "group": "Privacy",
-      "subg": "Hagezi",
+      "subg": "HaGeZi",
       "format": ["wildcard", "domains"],
       "url": [
         "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.apple.txt",
@@ -1855,8 +1855,8 @@
     {
       "vname": "Tiny China Block List Replenish",
       "group": "Privacy",
-      "format": ["domains", "domains"],
       "subg": "",
+      "format": ["domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/common.txt",
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"],
