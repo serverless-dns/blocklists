@@ -1864,7 +1864,7 @@
       "level": [0, 1]
     },
     {
-      "vname": "Apple Block Certificate Revorking + OTA",
+      "vname": "Apple Block Certificate Revoking + OTA",
 
       "group": "ParentalControl",
       "subg": "Apple",
