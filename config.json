@@ -1864,36 +1864,16 @@
       "level": [0, 1]
     },
     {
-      "vname": "fuckfuckadblock (pop-ups & anti-adblock bypass)",
+      "vname": "Apple Block Certificate Revorking + OTA",
 
       "group": "ParentalControl",
-      "subg": "fuckfuckadblock",
+      "subg": "Apple",
 
-      "format": "abp",
-      "URL": [
-        "https://fuckfuckadblock.pages.dev/fuckfuckadblock.txt?_=3",
-        "https://raw.githack.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt?_=3",
-        "https://cdn.statically.io/gh/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt?_=3",
-        "https://raw.githubusercontent.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt?_=3"],
+      "format": "domains",
+      "URL": "https://raw.githubusercontent.com/Nguyenhuyhoan/Config/main/Adblock_Revoke_Ota.txt",
 
-      "pack": ["recommended", "spam"],
-      "level": [2, 2]
-    },
-    {
-      "vname": "fuckfuckadblock (mining)",
-
-      "group": "ParentalControl",
-      "subg": "fuckfuckadblock",
-
-      "format": "abp",
-      "URL": [
-        "https://fuckfuckadblock.pages.dev/fuckfuckadblock-mining.txt?_=3",
-        "https://raw.githack.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock-mining.txt?_=3",
-        "https://cdn.statically.io/gh/bogachenko/fuckfuckadblock/master/fuckfuckadblock-mining.txt?_=3",
-        "https://raw.githubusercontent.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock-mining.txt?_=3"],
-
-      "pack": ["recommended", "spyware", "malware", "scams & phishing"],
-      "level": [2, 2, 2, 2]
+      "pack": [],
+      "level": []
     }
   ]
 }
