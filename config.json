@@ -508,13 +508,14 @@
       "level": [0, 2]
     },
     {
-      "vname": "NoCoin (hoshsadiq + ShadowWhisperer)",
+      "vname": "NoCoin (hoshsadiq + ShadowWhisperer + Olbat)",
       "group": "Security",
       "subg": "Cryptojacking",
-      "format": ["hosts", "domains"],
+      "format": ["hosts", "domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt",
-        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Cryptocurrency"],
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Cryptocurrency",
+        "https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/cryptojacking/domains"],
       "pack": ["crypto"],
       "level": [0]
     },
