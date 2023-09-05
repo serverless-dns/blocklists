@@ -1844,7 +1844,7 @@
       "level": [2]
     },
     {
-      "vname": "Vanity Top-Level Domains (cbuijs)",
+      "vname": "Bad Top-Level Domains (cbuijs)",
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": "domains",
