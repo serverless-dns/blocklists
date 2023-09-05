@@ -416,7 +416,7 @@
       "vname": "Tiktok",
       "group": "ParentalControl",
       "subg": "Services",
-      "format": "domains",
+      "format": ["domains", "domains"],
       "url": ["https://raw.githubusercontent.com/nextdns/services/main/services/tiktok",
               "https://blocklistproject.github.io/Lists/alt-version/tiktok-nl.txt"],
       "pack": ["tiktok", "socialmedia"],
