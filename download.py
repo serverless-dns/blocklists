@@ -216,10 +216,13 @@ async def downloadFile(sess, urls, formats, packtypes, download_loc_filename):
         fl.append(formats)
         formats = fl
 
-    print(f"{totalUrl}; src: {urls} | dst: {download_loc_filename}")
+    print(f"read: {totalUrl}; src: {urls} | dst: {download_loc_filename}")
 
     for i in range(0, len(urls)):
         url = urls[i]
+        if len(formats) <= i:
+            print(f"format missing for {url}")
+            continue
         format = formats[i]
         domains = ""
         response = ""
@@ -253,11 +256,17 @@ async def downloadFile(sess, urls, formats, packtypes, download_loc_filename):
             r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',
             1)
 
-        if (len(domains) > 0):
-            if (len(alldomains) > 0):
+        dlen = len(domains)
+        alen = len(alldomains)
+        if (dlen > 0):
+            print(f"\t total domains in {url} of type {format}: {dlen}\n")
+            if (alen > 0):
                 alldomains = alldomains + "\n" + domains
             else:
                 alldomains = domains
+
+    alen = len(alldomains)
+    print(f"write: {totalUrl}; src: {urls} | dst: {download_loc_filename} | tot: {alen} of ({len(urls)}) urls\n")
 
     ret = writeFile(download_loc_filename, alldomains)
 
