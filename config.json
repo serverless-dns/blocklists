@@ -1863,6 +1863,18 @@
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"],
       "pack": ["liteprivacy", "gambling"],
       "level": [0, 1]
+    },
+    {
+      "vname": "Apple Block Certificate Revoking + OTA",
+
+      "group": "ParentalControl",
+      "subg": "Apple",
+
+      "format": "domains",
+      "URL": "https://raw.githubusercontent.com/Nguyenhuyhoan/Config/main/Adblock_Revoke_Ota.txt",
+
+      "pack": [],
+      "level": []
     }
   ]
 }
