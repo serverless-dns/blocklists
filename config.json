@@ -1863,6 +1863,38 @@
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"],
       "pack": ["liteprivacy", "gambling"],
       "level": [0, 1]
+    },
+    {
+      "vname": "fuckfuckadblock (pop-ups & anti-adblock bypass)",
+
+      "group": "ParentalControl",
+      "subg": "fuckfuckadblock",
+
+      "format": "abp",
+      "URL": [
+        "https://fuckfuckadblock.pages.dev/fuckfuckadblock.txt?_=3",
+        "https://raw.githack.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt?_=3",
+        "https://cdn.statically.io/gh/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt?_=3",
+        "https://raw.githubusercontent.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt?_=3"],
+
+      "pack": ["recommended", "spam"],
+      "level": [2, 2]
+    },
+    {
+      "vname": "fuckfuckadblock (mining)",
+
+      "group": "ParentalControl",
+      "subg": "fuckfuckadblock",
+
+      "format": "abp",
+      "URL": [
+        "https://fuckfuckadblock.pages.dev/fuckfuckadblock-mining.txt?_=3",
+        "https://raw.githack.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock-mining.txt?_=3",
+        "https://cdn.statically.io/gh/bogachenko/fuckfuckadblock/master/fuckfuckadblock-mining.txt?_=3",
+        "https://raw.githubusercontent.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock-mining.txt?_=3"],
+
+      "pack": ["recommended", "spyware", "malware", "scams & phishing"],
+      "level": [2, 2, 2, 2]
     }
   ]
 }
