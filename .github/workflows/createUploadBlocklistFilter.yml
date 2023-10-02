@@ -66,8 +66,9 @@ jobs:
     - name: ⏳ Make swap
       run: |
           free -hm
+          df -h
           # make swap: community.fly.io/t/6782/10
-          sudo fallocate -l 18G /tmp/swapfile
+          sudo fallocate -l 12G /tmp/swapfile
           # unix.stackexchange.com/a/297155
           sudo chown root:root /tmp/swapfile
           sudo mkswap /tmp/swapfile
@@ -77,6 +78,7 @@ jobs:
           # github.com/pierotofy/set-swap-space/blob/master/action.yml
           sudo swapon /tmp/swapfile
           free -hm
+          df -h
       shell: bash
     - name: 🎨 Setup
       id: setup
