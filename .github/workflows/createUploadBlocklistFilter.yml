@@ -68,7 +68,7 @@ jobs:
           free -hm
           df -h
           # make swap: community.fly.io/t/6782/10
-          sudo fallocate -l 12G /tmp/swapfile
+          sudo fallocate -l 16G /tmp/swapfile
           # unix.stackexchange.com/a/297155
           sudo chown root:root /tmp/swapfile
           sudo mkswap /tmp/swapfile
