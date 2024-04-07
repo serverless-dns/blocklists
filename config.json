@@ -1478,11 +1478,11 @@
       "level": [0, 0]
     },
     {
-      "vname": "AdRules China (Cats Team)",
+      "vname": "AdRules DNS List",
       "group": "Privacy",
       "subg": "",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/Cats-Team/AdRules/main/ad-domains.txt",
+      "format": "abp",
+      "url": "https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt",
       "pack": ["extremeprivacy"],
       "level": [2]
     },
