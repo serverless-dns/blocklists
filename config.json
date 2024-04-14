@@ -1868,7 +1868,7 @@
       "vname": "Jarelllama's Scam Blocklist",
 
       "group": "Security",
-      "subg": "",
+      "subg": "Scam Blocklist",
 
       "format": "abp",
       "url": "https://raw.githubusercontent.com/jarelllama/Scam-Blocklist/main/lists/adblock/scams.txt",
