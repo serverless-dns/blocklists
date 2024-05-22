@@ -578,6 +578,18 @@
       "level": [1]
     },
     {
+      "vname": "FMHY Unsafe sites",
+
+      "group": "Security",
+      "subg": "FMHY",
+
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/WindowsAurora/FMHYFilterlist/main/filterlist-domains.txt",
+
+      "pack": ["malware", "spyware"],
+      "level": [0, 1]
+    },
+    {
       "vname": "NoTrack Annoyance",
       "group": "Security",
       "subg": "Quidsup",
