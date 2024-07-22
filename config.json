@@ -889,8 +889,8 @@
       "group": "Security",
       "subg": "ThreatIntelligence",
       "format": "domains",
-      "url": "https://hole.cert.pl/domains/domains.txt",
-      "pack": ["malware"],
+      "url": "https://hole.cert.pl/domains/v2/domains.txt",
+      "pack": ["scams & phishing", "malware"],
       "level": [1]
     },
     {
