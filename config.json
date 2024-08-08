@@ -798,7 +798,7 @@
         "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-kaspersky.txt",
         "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-zscaler.txt",
         "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-cyble.txt",
-        "https://raw.githubusercontent.com/WindowsAurora/FMHYFilterlist/main/filterlist-domains.txt"],
+        "https://raw.githubusercontent.com/fmhy/FMHYFilterlist/main/filterlist-domains.txt"],
       "pack": ["spyware", "malware"],
       "level": [0, 0]
     },
