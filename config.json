@@ -789,7 +789,7 @@
       "vname": "NSO + Others (Amnesty)",
       "group": "Security",
       "subg": "Amnesty",
-      "format": ["domains", "domains", "domains", "hosts", "domains", "domains", "domains"],
+      "format": ["domains", "domains", "domains", "hosts", "domains", "domains", "domains", "domains"],
       "url": [
         "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-07-18_nso/domains.txt",
         "https://raw.githubusercontent.com/AmnestyTech/investigations/master/2021-10-07_donot/domains.txt",
@@ -797,7 +797,8 @@
         "https://raw.githubusercontent.com/cbuijs/accomplist/master/autodiscover/plain.black.domain.level-1.list",
         "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-kaspersky.txt",
         "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-zscaler.txt",
-        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-cyble.txt"],
+        "https://raw.githubusercontent.com/scafroglia93/blocklists/master/blocklists-cyble.txt",
+        "https://raw.githubusercontent.com/fmhy/FMHYFilterlist/main/filterlist-domains.txt"],
       "pack": ["spyware", "malware"],
       "level": [0, 0]
     },
