@@ -1307,8 +1307,8 @@
       "vname": "Hu Filter",
       "group": "Privacy",
       "subg": "",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/hufilter/hufilter/master/hufilter-dns.txt",
+      "format": "hosts",
+      "url": "https://cdn.jsdelivr.net/gh/hufilter/hufilter@gh-pages/hufilter-hosts.txt",
       "pack": [],
       "level": []
     },
