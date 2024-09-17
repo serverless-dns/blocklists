@@ -96,7 +96,7 @@
       "vname": "Streaming Video",
       "group": "ParentalControl",
       "subg": "RPiList",
-      "format": ["domains", "domains", "domains"],
+      "format": ["domains", "abp", "domains"],
       "url": [
         "https://raw.githubusercontent.com/nextdns/piracy-blocklists/master/streaming-video",
         "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Streaming",
@@ -653,7 +653,7 @@
       "vname": "Malware (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": "domains",
+      "format": "abp",
       "url": "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/malware",
       "pack": ["malware"],
       "level": [1]
@@ -662,7 +662,7 @@
       "vname": "Child Protection (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": "domains",
+      "format": "abp",
       "url": "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/child-protection",
       "pack": ["vanity", "adult"],
       "level": [2, 2]
@@ -878,7 +878,7 @@
       "vname": "Scamware (RPi)",
       "group": "Security",
       "subg": "RPiList",
-      "format": ["domains", "domains"],
+      "format": ["abp", "abp"],
       "url": [
         "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Corona-Blocklist",
         "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Fake-Science"],
