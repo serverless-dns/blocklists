@@ -637,7 +637,7 @@
       "subg": "ThreatIntelligence",
       "format": "wildcard",
       "url": "https://dl.threat-list.com/2/domains.txt",
-      "pack": ["malware"],
+      "pack": ["dead"],
       "level": [2]
     },
     {
