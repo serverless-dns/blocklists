@@ -1298,8 +1298,8 @@
       "vname": "HostsVN",
       "group": "Privacy",
       "subg": "",
-      "format": "wildcard",
-      "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/wildcard.txt",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/domain.txt",
       "pack": ["liteprivacy"],
       "level": [0]
     },
