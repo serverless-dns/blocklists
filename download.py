@@ -20,6 +20,15 @@ configFileLocation = os.environ.get("BLCONFIG")
 
 supportedFormats = {"domains", "hosts", "abp", "wildcard"}
 keyFormat = {"vname", "format", "group", "subg", "url", "pack", "level", "index"}
+packs = {"dating", "gambling", "adult", "socialmedia",
+         "vpn & proxies", "torrents", "file-hosts", "piracy", "streams",
+         "malware", "scams & phishing", "spam", "crypto",
+         "extremeprivacy", "recommended", "liteprivacy", "aggressiveprivacy",
+         "vanity", "shopping", "smart-tv", "url-shorteners",
+         "amazon", "facebook", "tiktok", "google", "zoom",
+         "whatsapp", "youtube", "windows", "apple", "microsoft",
+          "ads & trackers", "spyware", "drugs",
+          "dead", "ignore"}
 
 configDict = {}
 totalUrl = 0
@@ -49,6 +58,20 @@ def validConfig():
         r'(?::\d+)?'
         r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
+    """
+    Example entry,
+    {
+      "vname": "Scamware (RPi)",
+      "group": "Security",
+      "subg": "RPiList",
+      "format": ["abp", "abp"],
+      "url": [
+        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Corona-Blocklist",
+        "https://raw.githubusercontent.com/RPiList/specials/master/Blocklisten/Fake-Science"],
+      "pack": ["scams & phishing", "malware"],
+      "level": [2, 2]
+    }
+    """
     for ent in configDict["conf"]:
 
         # note down the order of the blocklist
@@ -67,6 +90,8 @@ def validConfig():
             print(f"Invalid vname {ent}")
             return False
 
+        totalUrls = 0
+        totalFormats = 0
         # url is either a string or a list of strings
         if type(ent["url"]) is str:
             if re.match(regex, ent["url"]) is None:
@@ -78,6 +103,7 @@ def validConfig():
                 return False
             else:
                 processedUrls.add(ent["url"])
+            totalUrls = 1
         elif type(ent["url"]) is list:
             for u in ent["url"]:
                 if re.match(regex, u) is None:
@@ -89,6 +115,7 @@ def validConfig():
                     return False
                 else:
                     processedUrls.add(u)
+                    totalUrls += 1
         else:
             print(f"Url must be str or list(str) in {ent}")
             return False
@@ -97,18 +124,55 @@ def validConfig():
             if not validFormat(ent["format"]):
                 print(f"Unsupported str(format) in {ent}")
                 return False
+            totalFormats = 1
         elif type(ent["format"] is list):
             for fmt in ent["format"]:
                 if not validFormat(fmt):
                     print(f"Unsupported list(format) in {ent}")
                     return False
+                totalFormats += 1
         else:
             print(f"Format must be str or list(str) in {ent}")
             return False
 
+        if totalUrls != totalFormats:
+            print(f"Url and Format count mismatch {ent}")
+            return False
+
+        # subg can be empty
         if ent["group"].strip() == "":
             print(f"Missing group {ent}")
             return False
+
+        if ent["pack"] is None:
+            print(f"Missing pack {ent}")
+            return False
+        if ent["level"] is None:
+            print(f"Missing level {ent}")
+            return False
+
+        if type(ent["pack"]) is str:
+            print(f"Pack must be str[] {ent}")
+            return False
+        if type(ent["level"]) is int:
+            print(f"Level must be int[] {ent}")
+            return False
+
+        totalPacks = len(ent["pack"]) # can be 0
+        totalLevels = len(ent["level"]) # can be 0
+        if totalPacks != totalLevels:
+            print(f"Pack != Level; {totalLevels} != {totalPacks} {ent}")
+            return False
+
+        for pack in ent["pack"]:
+            if pack not in packs:
+                print(f"Invalid pack {pack} {ent}")
+                return False
+
+        for lvl in ent["level"]:
+            if lvl not in [0, 1, 2]:
+                print(f"Invalid level, must be from [0,1,2] {ent}")
+                return False
 
     # shuffle to avoid errors due to rate limiting
     random.shuffle(configDict["conf"])
