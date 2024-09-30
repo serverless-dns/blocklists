@@ -344,8 +344,10 @@
       "vname": "Pinterest",
       "group": "ParentalControl",
       "subg": "Services",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/services/main/services/pinterest",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/jmdugan/blocklists/master/corporations/pinterest/all",
+        "https://raw.githubusercontent.com/nextdns/services/main/services/pinterest"],
       "pack": ["socialmedia"],
       "level": [1]
     },
@@ -1838,8 +1840,10 @@
       "vname": "Microsoft",
       "group": "ParentalControl",
       "subg": "Services",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Microsoft",
+      "format": ["domains", "domains"],
+      "url": [
+        "https://raw.githubusercontent.com/ShadowWhisperer/BlockLists/master/Lists/Microsoft",
+        "https://raw.githubusercontent.com/jmdugan/blocklists/master/corporations/microsoft/all"],
       "pack": ["microsoft"],
       "level": [2]
     },
