@@ -649,13 +649,13 @@
       "level": [1]
     },
     {
-      "vname": "Threats (embreaj)",
+      "vname": "Threats (DandelionSprout)",
       "group": "Security",
       "subg": "ThreatIntelligence",
-      "format": "wildcard",
-      "url": "https://dl.threat-list.com/2/domains.txt",
-      "pack": ["dead"],
-      "level": [2]
+      "format": "hosts",
+      "url": "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt",
+      "pack": ["malware"],
+      "level": [1]
     },
     {
       "vname": "Threat Intelligence Feeds (HaGeZi)",
