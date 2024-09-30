@@ -1261,13 +1261,13 @@
       "level": [2]
     },
     {
-      "vname": "Fanboy's Enhanced Tracking List",
+      "vname": "Ads (AWAvenue)",
       "group": "Privacy",
-      "subg": "Fanboy",
+      "subg": "",
       "format": "abp",
-      "url": "https://fanboy.co.nz/enhancedstats.txt",
-      "pack": ["dead"],
-      "level": []
+      "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt",
+      "pack": ["aggressiveprivacy"],
+      "level": [2]
     },
     {
       "vname": "Ads (The Block List Project)",
@@ -1482,8 +1482,10 @@
       "vname": "AdRules DNS List",
       "group": "Privacy",
       "subg": "",
-      "format": "abp",
-      "url": "https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt",
+      "format": ["abp", "abp"],
+      "url": [
+        "https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt",
+        "https://raw.githubusercontent.com/8680/GOODBYEADS/refs/heads/master/data/rules/dns.txt"],
       "pack": ["extremeprivacy"],
       "level": [2]
     },
