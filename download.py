@@ -20,7 +20,7 @@ configFileLocation = os.environ.get("BLCONFIG")
 
 supportedFormats = {"domains", "hosts", "abp", "wildcard"}
 keyFormat = {"vname", "format", "group", "subg", "url", "pack", "level", "index"}
-packs = {"dating", "gambling", "adult", "socialmedia",
+packs = {"dating", "gaming", "gambling", "adult", "socialmedia",
          "vpn & proxies", "torrents", "file-hosts", "piracy", "streams",
          "malware", "scams & phishing", "spam", "crypto",
          "extremeprivacy", "recommended", "liteprivacy", "aggressiveprivacy",
