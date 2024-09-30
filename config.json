@@ -890,7 +890,7 @@
       "format": "domains",
       "url": "https://hole.cert.pl/domains/v2/domains.txt",
       "pack": ["scams & phishing", "malware"],
-      "level": [1]
+      "level": [1, 1]
     },
     {
       "vname": "Threats (osint.digitalside.it)",
