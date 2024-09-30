@@ -1008,8 +1008,10 @@
       "vname": "Anti Ad",
       "group": "Privacy",
       "subg": "",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-domains.txt",
+      "format": ["domains", "hosts"],
+      "url": [
+        "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-domains.txt",
+        "https://raw.githubusercontent.com/neodevpro/neodevhost/master/host"],
       "pack": ["aggressiveprivacy"],
       "level": [1]
     },
@@ -1267,7 +1269,7 @@
       "format": "abp",
       "url": "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/AWAvenue-Ads-Rule.txt",
       "pack": ["aggressiveprivacy"],
-      "level": [2]
+      "level": [1]
     },
     {
       "vname": "Ads (The Block List Project)",
@@ -1327,7 +1329,7 @@
       "vname": "Ads & Tracking (Lighswitch05)",
       "group": "Privacy",
       "subg": "Lighswitch05",
-      "format": ["hosts", "domains"],
+      "format": ["hosts"],
       "url": "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt",
       "pack": ["aggressiveprivacy"],
       "level": [1]
