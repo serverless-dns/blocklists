@@ -994,10 +994,11 @@
       "vname": "AdGuard Tracking and Spyware",
       "group": "Privacy",
       "subg": "",
-      "format": ["hosts", "hosts"],
+      "format": ["hosts", "hosts", "domains"],
       "url": [
         "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileSpyware.txt",
-        "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileAds.txt"],
+        "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileAds.txt",
+        "https://raw.githubusercontent.com/AssoEchap/stalkerware-indicators/master/generated/hosts"],
       "pack": ["aggressiveprivacy"],
       "level": [1]
     },
