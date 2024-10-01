@@ -1886,6 +1886,18 @@
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"],
       "pack": ["liteprivacy", "gambling"],
       "level": [0, 1]
+    },
+    {
+      "vname": "Jarelllama's Scam Blocklist",
+
+      "group": "Security",
+      "subg": "Scam Blocklist",
+
+      "format": "abp",
+      "url": "https://raw.githubusercontent.com/jarelllama/Scam-Blocklist/main/lists/adblock/scams.txt",
+
+      "pack": ["scams & phishing"],
+      "level": [1]
     }
   ]
 }
