@@ -11,6 +11,19 @@
       "pack": ["vpn & proxies"],
       "level": [1]
     },
+
+        {
+      "vname": "ads Block Lists: Light (haikoc)",
+
+      "group": "Privacy",
+      "subg": "haikoc",
+
+      "format": "host",
+      "url": "https://raw.githubusercontent.com/hoanghai81/hoanghai81.github.io/refs/heads/main/deny",
+
+      "pack": ["liteprivacy", "recommended"],
+      "level": [0, 0]
+        },
     {
       "vname": "Safe Search Only",
       "group": "ParentalControl",
