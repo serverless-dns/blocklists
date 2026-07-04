@@ -1886,6 +1886,21 @@
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"],
       "pack": ["liteprivacy", "gambling"],
       "level": [0, 1]
+},
+    {
+      "vname": "Yanmax Blocklist",
+      "group": "Privacy",
+      "subg": "mrtag-oss",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/mrtag-oss/blocklistyanmax/refs/heads/main/blocklist.txt",
+      "pack": [
+        "liteprivacy",
+        "recommended"
+      ],
+      "level": [
+        0,
+        0
+      ]
     }
   ]
 }
