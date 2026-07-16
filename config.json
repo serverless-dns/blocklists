@@ -1892,7 +1892,7 @@
       "group": "Privacy",
       "subg": "mrtag-oss",
       "format": "domains",
-      "url": "https://raw.githubusercontent.com/mrtag-oss/blocklistyanmax/refs/heads/main/blocklist.txt",
+      "url": "https://raw.githubusercontent.com/mrtag-oss/blocklistyanmax/refs/heads/main/blacklistadguard.txt",
       "pack": [
         "liteprivacy",
         "recommended"
