@@ -1598,8 +1598,10 @@
       "vname": "Samsung",
       "group": "Privacy",
       "subg": "NativeTracking",
-      "format": "domains",
-      "url": "https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/samsung",
+      "format": ["domains", "wildcard"],
+      "url": [
+        "https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/samsung",
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.samsung.txt"],
       "pack": [],
       "level": []
     },
@@ -1627,10 +1629,11 @@
       "vname": "Xiaomi",
       "group": "Privacy",
       "subg": "NativeTracking",
-      "format": ["domains", "domains"],
+      "format": ["domains", "domains", "wildcard"],
       "url": [
         "https://raw.githubusercontent.com/nextdns/native-tracking-domains/main/domains/xiaomi",
-        "https://github.com/unknownFalleN/xiaomi-dns-blocklist/blob/master/xiaomi_dns_block.lst"],
+        "https://github.com/unknownFalleN/xiaomi-dns-blocklist/blob/master/xiaomi_dns_block.lst",
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.xiaomi.txt"],
       "pack": [],
       "level": []
     },
@@ -1886,6 +1889,107 @@
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"],
       "pack": ["liteprivacy", "gambling"],
       "level": [0, 1]
+    },
+    {
+      "vname": "Fake (HaGeZi)",
+      "group": "Security",
+      "subg": "HaGeZi",
+      "format": "wildcards",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/fake.txt",
+      "pack": ["scams & phishing"],
+      "level": [2]
+    },
+    {
+      "vname": "Pop-Up Ads (HaGeZi)",
+      "group": "Privacy",
+      "subg": "HaGeZi",
+      "format": "wildcards",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/popupads.txt",
+      "pack": ["privacy"],
+      "level": [1]
+    },
+    {
+      "vname": "Safesearch (HaGeZi)",
+      "group": "ParentalControl",
+      "subg": "HaGeZi",
+      "format": "wildcards",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/nosafesearch.txt",
+      "pack": [],
+      "level": []
+    },
+    {
+      "vname": "Most Abused TLDs (HaGeZi)",
+      "group": "Security",
+      "subg": "HaGeZi",
+      "format": "abp",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/spam-tlds-adblock.txt",
+      "pack": ["spam"],
+      "level": [2]
+    },
+    {
+      "vname": "Anti Piracy (HaGeZi)",
+      "group": "ParentalControl",
+      "subg": "HaGeZi",
+      "format": "wildcards",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/anti.piracy.txt",
+      "pack": ["piracy"],
+      "level": [1]
+    },
+    {
+      "vname": "Gambling (HaGeZi)",
+      "group": "ParentalControl",
+      "subg": "HaGeZi",
+      "format": "wildcards",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/gambling.txt",
+      "pack": ["gambling"],
+      "level": [2]
+    },
+    {
+      "vname": "Amazon's Native Tracker",
+      "group": "Privacy",
+      "subg": "NativeTracking",
+      "format": "wildcards",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.amazon.txt",
+      "pack": ["liteprivacy"],
+      "level": [0]
+    },
+    {
+      "vname": "TikTok's Native Tracker",
+      "group": "Privacy",
+      "subg": "NativeTracking",
+      "format": ["wildcards", "wildcards"],
+      "url": [
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.tiktok.txt",
+        "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.tiktok.extended.txt"],
+      "pack": ["liteprivacy"],
+      "level": [1]
+    },
+    {
+      "vname": "LG webOS's Native Tracker",
+      "group": "Privacy",
+      "subg": "NativeTracking",
+      "format": "wildcards",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.lgwebos.txt",
+      "pack": ["liteprivacy"],
+      "level": [0]
+    },
+    {
+      "vname": "Vivo's Native Tracker",
+      "group": "Privacy",
+      "subg": "NativeTracking",
+      "format": "wildcards",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.vivo.txt",
+      "pack": ["liteprivacy"],
+      "level": [0]
+    },
+    {
+      "vname": "OPPO/Realme's Native Tracker",
+      "group": "Privacy",
+      "subg": "NativeTracking",
+      "format": "wildcards",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.oppo-realme.txt",
+      "pack": ["liteprivacy"],
+      "level": [0]
     }
   ]
 }
