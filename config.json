@@ -1886,6 +1886,15 @@
         "https://raw.githubusercontent.com/tim-hub/tiny-cn-blocklist-replenish/master/others.txt"],
       "pack": ["liteprivacy", "gambling"],
       "level": [0, 1]
+    },
+    {
+      "vname": "Homograph IDN",
+      "group": "Security",
+      "subg": "",
+      "format": "domains",
+      "url": "https://raw.githubusercontent.com/cbuijs/accomplist/master/homograph/plain.black.idn.domain.list",
+      "pack": ["scams & phishing"],
+      "level": [2]
     }
   ]
 }
