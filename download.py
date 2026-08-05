@@ -195,7 +195,7 @@ def safeStr(obj):
         return obj.encode('ascii', 'ignore').decode('ascii')
 
 
-def extractDomains(txt, rgx, groupindex):
+def extractDomains(txt, rgx, groupindex, isAbp=False):
     domainlist = set()
     regexc = re.compile(rgx, re.M)
 
@@ -205,8 +205,20 @@ def extractDomains(txt, rgx, groupindex):
             continue
         g2 = g[groupindex]
         g2 = g2.strip()
-        if g2 and g2[-1] != '.':
-            domainlist.add(g2)
+        
+        # Special handling for ABP format
+        if isAbp:
+            # ABP domain rule - convert to wildcard format for DNS blocking
+            domain = g2
+            # Remove any path/parameter suffixes (e.g., domain/path or domain$thirdparty)
+            domain = domain.split('/')[0].split('$')[0].split('^')[0]
+            domain = domain.strip()
+            if domain and domain[-1] != '.':
+                # Convert to wildcard format for DNS blocking
+                domainlist.add("*." + domain)
+        else:
+            if g2 and g2[-1] != '.':
+                domainlist.add(g2)
 
     if len(domainlist) <= 0:
         return ""
@@ -316,9 +328,11 @@ async def downloadFile(sess, urls, formats, packtypes, download_loc_filename):
             domains = extractDomains(
                 response, r'(^([0-9]{1,3}\.){3}[0-9]{1,3})([ \t]+)([a-zA-Z0-9-_.]+)', 3)
         elif format == "abp":
+            # ABP format: Extract domain from ||domain^ patterns for DNS-level blocking
+            # Simpler regex that matches ||domain patterns and captures the domain
             domains = extractDomains(response,
-            r'^(\|\||[a-zA-Z0-9])([a-zA-Z0-9][a-zA-Z0-9-_.]+)((\^[a-zA-Z0-9\-\|\$\.\*]*)|(\$[a-zA-Z0-9\-\|\.])*|(\\[a-zA-Z0-9\-\||\^\.]*))$',
-            1)
+            r'^\|\|([a-zA-Z0-9][a-zA-Z0-9-_.]+)',
+            0, isAbp=True)
 
         dlen = len(domains)
         alen = len(alldomains)
