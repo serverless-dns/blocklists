@@ -1788,6 +1788,17 @@
       "url": "https://raw.githubusercontent.com/sjhgvr/oisd/main/domainswild_nsfw.txt",
       "pack": ["adult"],
       "level": [1]
+      
+    },
+    {
+      "vname": "HaGeZi NSFW",
+      "group": "ParentalControl",
+      "subg": "HaGeZi",
+      "format": "wildcard",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/nsfw.txt",
+      "pack": ["adult"],
+      "level": [1]
+      
     },
     {
       "vname": "Blocklists (cbuijs)",
