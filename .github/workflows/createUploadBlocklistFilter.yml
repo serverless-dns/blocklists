@@ -2,8 +2,8 @@ name: MakeTrie
 on:
   # docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#schedule
   schedule:
-    # at 21:53 on 1st, 8th, 16th, 24th of every month
-    - cron: '53 21 1,8,16,24 * *'
+    # at 05:00 only on Sunday
+    - cron: 00 05 * * 0 
   workflow_dispatch:
     inputs:
       publish:
